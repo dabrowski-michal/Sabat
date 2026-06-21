@@ -3,6 +3,58 @@ import SabatActorSheet from "./module/actor/actor-sheet.js";
 import SabatItem from "./module/item/item.js";
 import SabatItemSheet from "./module/item/item-sheet.js";
 
+Hooks.once("ready", async function () {
+  if (!game.user?.isGM) return;
+
+  // Migrate legacy "equipment" items → "armor" type.
+  // The type field is immutable on existing documents, so we delete + recreate.
+  const ARMOR_DEFAULTS = {
+    description: "", protection: 0, equipped: false, paperDollLayer: "",
+    locations: { head: false, rightArm: false, leftArm: false, chest: false, abdomen: false, rightLeg: false, leftLeg: false }
+  };
+
+  function buildArmorData(src) {
+    return {
+      name: src.name,
+      type: "armor",
+      img: src.img,
+      flags: src.flags,
+      system: {
+        ...ARMOR_DEFAULTS,
+        description: src.system?.description ?? "",
+        protection: src.system?.armorValue ?? src.system?.protection ?? 0,
+        equipped: src.system?.equipped ?? false,
+      }
+    };
+  }
+
+  let migrated = 0;
+
+  // World-level items
+  const worldEquip = game.items.filter(i => i.type === "equipment");
+  if (worldEquip.length) {
+    const snapshots = worldEquip.map(i => i.toObject());
+    await Item.deleteDocuments(worldEquip.map(i => i.id));
+    await Item.createDocuments(snapshots.map(buildArmorData));
+    migrated += snapshots.length;
+  }
+
+  // Actor-owned items
+  for (const actor of game.actors) {
+    const owned = actor.items.filter(i => i.type === "equipment");
+    if (!owned.length) continue;
+    const snapshots = owned.map(i => i.toObject());
+    await actor.deleteEmbeddedDocuments("Item", owned.map(i => i.id));
+    await actor.createEmbeddedDocuments("Item", snapshots.map(buildArmorData));
+    migrated += snapshots.length;
+  }
+
+  if (migrated > 0) {
+    ui.notifications.info(`Sabat | Migrated ${migrated} legacy "equipment" item(s) to "armor".`);
+    console.log(`Sabat | Migration: ${migrated} equipment → armor`);
+  }
+});
+
 Hooks.once("init", function () {
   console.log("Sabat | Initializing system");
 

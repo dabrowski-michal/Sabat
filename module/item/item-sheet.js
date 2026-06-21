@@ -15,7 +15,9 @@ export default class SabatItemSheet extends ItemSheet {
 
   get template() {
     const type = this.item.type;
-    return `systems/sabat/templates/item/${type}-sheet.html`;
+    const valid = ["weapon", "armor", "item", "spell"];
+    const resolved = valid.includes(type) ? type : "item";
+    return `systems/sabat/templates/item/${resolved}-sheet.html`;
   }
 
   getData() {

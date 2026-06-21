@@ -1,0 +1,14 @@
+{
+  "TYPES": {
+    "Actor": {
+      "character": "Character",
+      "monster": "Monster"
+    },
+    "Item": {
+      "weapon": "Weapon",
+      "armor": "Armor",
+      "item": "Item",
+      "spell": "Spell"
+    }
+  }
+}
