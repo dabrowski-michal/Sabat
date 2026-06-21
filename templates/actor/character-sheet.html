@@ -185,52 +185,6 @@
           </div>
         </div>
 
-        <!-- Armor Hit Zones -->
-        <div class="armor-zones panel">
-          <h3 class="panel-title">Armor (Protection)</h3>
-          <div class="armor-grid">
-            <div class="armor-item">
-              <label>Head</label>
-              <input type="number" name="system.armor.head" value="{{system.armor.head}}" min="0" />
-            </div>
-            <div class="armor-item">
-              <label>Right Arm</label>
-              <input type="number" name="system.armor.rightArm" value="{{system.armor.rightArm}}" min="0" />
-            </div>
-            <div class="armor-item">
-              <label>Left Arm</label>
-              <input type="number" name="system.armor.leftArm" value="{{system.armor.leftArm}}" min="0" />
-            </div>
-            <div class="armor-item">
-              <label>Chest I</label>
-              <input type="number" name="system.armor.chest1" value="{{system.armor.chest1}}" min="0" />
-            </div>
-            <div class="armor-item">
-              <label>Chest II</label>
-              <input type="number" name="system.armor.chest2" value="{{system.armor.chest2}}" min="0" />
-            </div>
-            <div class="armor-item">
-              <label>Chest III</label>
-              <input type="number" name="system.armor.chest3" value="{{system.armor.chest3}}" min="0" />
-            </div>
-            <div class="armor-item">
-              <label>Abdomen I</label>
-              <input type="number" name="system.armor.abdomen1" value="{{system.armor.abdomen1}}" min="0" />
-            </div>
-            <div class="armor-item">
-              <label>Abdomen II</label>
-              <input type="number" name="system.armor.abdomen2" value="{{system.armor.abdomen2}}" min="0" />
-            </div>
-            <div class="armor-item">
-              <label>Right Leg</label>
-              <input type="number" name="system.armor.rightLeg" value="{{system.armor.rightLeg}}" min="0" />
-            </div>
-            <div class="armor-item">
-              <label>Left Leg</label>
-              <input type="number" name="system.armor.leftLeg" value="{{system.armor.leftLeg}}" min="0" />
-            </div>
-          </div>
-        </div>
 
       </div><!-- .chars-layout -->
     </div><!-- .tab.characteristics -->
@@ -315,6 +269,53 @@
             {{#if paperDoll.chest}}<img src="{{paperDoll.chest}}" class="paperdoll-layer layer-chest" alt="" />{{/if}}
             {{#if paperDoll.head}}<img src="{{paperDoll.head}}" class="paperdoll-layer layer-head" alt="" />{{/if}}
             {{#if paperDoll.hands}}<img src="{{paperDoll.hands}}" class="paperdoll-layer layer-hands" alt="" />{{/if}}
+          </div>
+
+          <!-- Armor Hit Zones — integrated below the doll -->
+          <div class="armor-zones panel">
+            <h3 class="panel-title">Armor (Base Values)</h3>
+            <div class="armor-grid">
+              <div class="armor-item">
+                <label>Head</label>
+                <input type="number" name="system.armor.head" value="{{system.armor.head}}" min="0" />
+              </div>
+              <div class="armor-item">
+                <label>R. Arm</label>
+                <input type="number" name="system.armor.rightArm" value="{{system.armor.rightArm}}" min="0" />
+              </div>
+              <div class="armor-item">
+                <label>L. Arm</label>
+                <input type="number" name="system.armor.leftArm" value="{{system.armor.leftArm}}" min="0" />
+              </div>
+              <div class="armor-item">
+                <label>Chest I</label>
+                <input type="number" name="system.armor.chest1" value="{{system.armor.chest1}}" min="0" />
+              </div>
+              <div class="armor-item">
+                <label>Chest II</label>
+                <input type="number" name="system.armor.chest2" value="{{system.armor.chest2}}" min="0" />
+              </div>
+              <div class="armor-item">
+                <label>Chest III</label>
+                <input type="number" name="system.armor.chest3" value="{{system.armor.chest3}}" min="0" />
+              </div>
+              <div class="armor-item">
+                <label>Abd. I</label>
+                <input type="number" name="system.armor.abdomen1" value="{{system.armor.abdomen1}}" min="0" />
+              </div>
+              <div class="armor-item">
+                <label>Abd. II</label>
+                <input type="number" name="system.armor.abdomen2" value="{{system.armor.abdomen2}}" min="0" />
+              </div>
+              <div class="armor-item">
+                <label>R. Leg</label>
+                <input type="number" name="system.armor.rightLeg" value="{{system.armor.rightLeg}}" min="0" />
+              </div>
+              <div class="armor-item">
+                <label>L. Leg</label>
+                <input type="number" name="system.armor.leftLeg" value="{{system.armor.leftLeg}}" min="0" />
+              </div>
+            </div>
           </div>
         </div>
 

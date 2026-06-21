@@ -15,6 +15,18 @@
   "esmodules": ["sabat.js"],
   "styles": ["css/sabat.css"],
   "template": "template.json",
+  "documentTypes": {
+    "Actor": {
+      "character": {},
+      "monster": {}
+    },
+    "Item": {
+      "weapon": {},
+      "armor": {},
+      "item": {},
+      "spell": {}
+    }
+  },
   "packs": [],
   "languages": [],
   "url": "https://github.com/dabrowski-michal/Sabat",

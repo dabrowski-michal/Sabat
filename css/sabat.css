@@ -184,12 +184,7 @@
 .sabat-sheet .chars-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
   gap: 10px;
-}
-
-.sabat-sheet .armor-zones {
-  grid-column: 1 / -1;
 }
 
 /* Primary chars grid */
@@ -692,6 +687,9 @@
 .sabat-sheet .paperdoll-column {
   flex-shrink: 0;
   width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .sabat-sheet .equipment-lists {
@@ -703,12 +701,17 @@
 .sabat-sheet .paperdoll-container {
   position: relative;
   width: 300px;
-  height: 500px;
+  height: 360px;
   margin: 0 auto;
   background: rgba(255, 255, 255, 0.15);
   border: 1px solid var(--aq-border);
   border-radius: 4px;
   overflow: hidden;
+}
+
+/* Armor zones panel inside paperdoll-column */
+.sabat-sheet .paperdoll-column .armor-zones {
+  margin-bottom: 0;
 }
 
 .paperdoll-layer {
