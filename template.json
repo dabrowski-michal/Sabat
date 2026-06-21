@@ -28,6 +28,7 @@
         "family": "",
         "biography": ""
       },
+      "gender": "male",
       "health": {
         "value": 10,
         "max": 10
@@ -143,12 +144,14 @@
       "reload": 0,
       "range": "Melee",
       "equipped": false,
+      "paperDollLayer": "",
       "notes": ""
     },
     "armor": {
       "description": "",
       "protection": 0,
       "equipped": false,
+      "paperDollLayer": "",
       "locations": {
         "head":     false,
         "rightArm": false,

@@ -54,6 +54,19 @@
         <input type="checkbox" name="system.equipped" {{#if system.equipped}}checked{{/if}} />
       </div>
 
+      <div class="field-group">
+        <label>Paper Doll Layer</label>
+        <select name="system.paperDollLayer">
+          <option value=""       {{#if (eq system.paperDollLayer "")}}selected{{/if}}>None</option>
+          <option value="weapon" {{#if (eq system.paperDollLayer "weapon")}}selected{{/if}}>Weapon</option>
+          <option value="legs"   {{#if (eq system.paperDollLayer "legs")}}selected{{/if}}>Legs</option>
+          <option value="boots"  {{#if (eq system.paperDollLayer "boots")}}selected{{/if}}>Boots</option>
+          <option value="chest"  {{#if (eq system.paperDollLayer "chest")}}selected{{/if}}>Chest</option>
+          <option value="head"   {{#if (eq system.paperDollLayer "head")}}selected{{/if}}>Head</option>
+          <option value="hands"  {{#if (eq system.paperDollLayer "hands")}}selected{{/if}}>Hands</option>
+        </select>
+      </div>
+
     </div>
 
     <div class="field-group full-width">

@@ -81,6 +81,21 @@ export default class SabatActorSheet extends ActorSheet {
     context.hpPct = system.health.max > 0
       ? Math.round((system.health.value / system.health.max) * 100)
       : 0;
+
+    // Paper doll base image
+    const gender = system.gender ?? "male";
+    context.bodyImage = `systems/sabat/assets/base_${gender}.png`;
+
+    // Build paper doll layer map from equipped items
+    const validLayers = new Set(["weapon", "legs", "boots", "chest", "head", "hands"]);
+    const paperDoll = {};
+    for (const item of this.actor.items) {
+      const layer = item.system.paperDollLayer;
+      if (item.system.equipped && layer && validLayers.has(layer)) {
+        paperDoll[layer] = item.img;
+      }
+    }
+    context.paperDoll = paperDoll;
   }
 
   activateListeners(html) {
@@ -106,6 +121,14 @@ export default class SabatActorSheet extends ActorSheet {
 
     // Weapon damage roll
     html.find(".damage-roll").click(this._onDamageRoll.bind(this));
+
+    // Equip/unequip toggle
+    html.find(".item-equip-toggle").click(async ev => {
+      const li = $(ev.currentTarget).closest(".item");
+      const item = this.actor.items.get(li.data("itemId"));
+      if (!item) return;
+      await item.update({ "system.equipped": !item.system.equipped });
+    });
   }
 
   async _onSkillRoll(event) {
