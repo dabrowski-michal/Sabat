@@ -24,6 +24,49 @@ Hooks.once("init", function () {
   _registerHandlebarsHelpers();
 });
 
+const HIT_LOCATION_LABELS = {
+  head: "Head", rightArm: "Right Arm", leftArm: "Left Arm",
+  chest: "Chest", abdomen: "Abdomen", rightLeg: "Right Leg", leftLeg: "Left Leg"
+};
+
+Hooks.on("renderChatMessage", (_message, html) => {
+  html.find(".apply-damage-btn").click(async (ev) => {
+    const btn      = ev.currentTarget;
+    const damage   = parseInt(btn.dataset.damage) || 0;
+    const location = btn.dataset.location;
+    const locLabel = HIT_LOCATION_LABELS[location] ?? location;
+
+    const targets = canvas.tokens?.controlled ?? [];
+    if (!targets.length) {
+      return ui.notifications.warn("Select one or more tokens before applying damage.");
+    }
+
+    for (const token of targets) {
+      const actor = token.actor;
+      if (!actor) continue;
+
+      const protection  = actor.system.protection?.[location] ?? 0;
+      const actualDmg   = Math.max(0, damage - protection);
+      const newHp       = Math.max(0, (actor.system.health.value ?? 0) - actualDmg);
+
+      await actor.update({ "system.health.value": newHp });
+
+      await ChatMessage.create({
+        speaker: ChatMessage.getSpeaker({ actor }),
+        content: `
+          <div class="sabat-roll">
+            <strong>${actor.name}</strong> — struck in the <strong>${locLabel}</strong>.
+            <div class="roll-details">
+              Armor absorbed <strong>${protection}</strong> ·
+              Damage dealt: <strong>${actualDmg}</strong> ·
+              HP: ${newHp} / ${actor.system.health.max}
+            </div>
+          </div>`
+      });
+    }
+  });
+});
+
 function _registerHandlebarsHelpers() {
   Handlebars.registerHelper("eq", (a, b) => a === b);
   Handlebars.registerHelper("gt", (a, b) => a > b);

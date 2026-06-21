@@ -8,7 +8,8 @@
       "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Pliki\\\\Coding\\\\Aquelarre\\\\css\")",
       "PowerShell(Get-ChildItem \"c:\\\\Pliki\\\\Coding\\\\Aquelarre\" -Recurse -File | Where-Object { $_.Extension -in \".json\",\".js\",\".html\",\".css\" } | Select-Object FullName | ForEach-Object { $_.FullName.Replace\\(\"c:\\\\Pliki\\\\Coding\\\\Aquelarre\\\\\",\"\"\\) })",
       "PowerShell($src = \"c:\\\\Pliki\\\\Coding\\\\Aquelarre\"; $zip = \"$src\\\\aquelarre.zip\"; if \\(Test-Path $zip\\) { Remove-Item $zip }; $items = @\\(\"$src\\\\system.json\", \"$src\\\\aquelarre.js\", \"$src\\\\template.json\", \"$src\\\\css\", \"$src\\\\module\", \"$src\\\\templates\"\\); Compress-Archive -Path $items -DestinationPath $zip; Write-Output \"Created: $zip\"; \\(Get-Item $zip\\).Length / 1KB | ForEach-Object { Write-Output \"Size: $\\([math]::Round\\($_, 1\\)\\) KB\" })",
-      "PowerShell($f = \"c:\\\\Pliki\\\\Coding\\\\Aquelarre\\\\css\\\\sabat.css\"; \\(Get-Content $f -Raw\\) -replace '\\\\.aquelarre-sheet', '.sabat-sheet' -replace '\\\\.aquelarre-roll', '.sabat-roll' -replace 'AQUELARRE', 'SABAT' | Set-Content $f -Encoding utf8 -NoNewline; Write-Output \"CSS updated\")"
+      "PowerShell($f = \"c:\\\\Pliki\\\\Coding\\\\Aquelarre\\\\css\\\\sabat.css\"; \\(Get-Content $f -Raw\\) -replace '\\\\.aquelarre-sheet', '.sabat-sheet' -replace '\\\\.aquelarre-roll', '.sabat-roll' -replace 'AQUELARRE', 'SABAT' | Set-Content $f -Encoding utf8 -NoNewline; Write-Output \"CSS updated\")",
+      "PowerShell($src = \"c:\\\\Pliki\\\\Coding\\\\Aquelarre\"; $zip = \"$src\\\\sabat.zip\"; $items = @\\(\"$src\\\\system.json\",\"$src\\\\sabat.js\",\"$src\\\\template.json\",\"$src\\\\css\",\"$src\\\\module\",\"$src\\\\templates\"\\); Compress-Archive -Path $items -DestinationPath $zip -Force; Write-Output \"Created: $zip\"; [math]::Round\\(\\(Get-Item $zip\\).Length/1KB,1\\))"
     ]
   }
 }

@@ -131,7 +131,7 @@
     }
   },
   "Item": {
-    "types": ["weapon", "equipment", "item", "spell"],
+    "types": ["weapon", "armor", "item", "spell"],
     "templates": {},
     "weapon": {
       "alternativeName": "",
@@ -145,12 +145,19 @@
       "equipped": false,
       "notes": ""
     },
-    "equipment": {
+    "armor": {
       "description": "",
-      "weight": 0,
-      "quantity": 1,
+      "protection": 0,
       "equipped": false,
-      "armorValue": 0
+      "locations": {
+        "head":     false,
+        "rightArm": false,
+        "leftArm":  false,
+        "chest":    false,
+        "abdomen":  false,
+        "rightLeg": false,
+        "leftLeg":  false
+      }
     },
     "item": {
       "description": "",

@@ -1,0 +1,64 @@
+<form class="sabat-sheet item-sheet armor-sheet" autocomplete="off">
+  <header class="item-header">
+    <img class="item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    <div class="item-header-fields">
+      <h1><input type="text" name="name" value="{{item.name}}" placeholder="Armor Name" /></h1>
+      <div class="item-type-label">Armor</div>
+    </div>
+  </header>
+
+  <section class="item-body">
+    <div class="form-grid">
+
+      <div class="field-group">
+        <label>Protection Value</label>
+        <input type="number" name="system.protection" value="{{system.protection}}" min="0" />
+      </div>
+
+      <div class="field-group checkbox-group">
+        <label>Equipped</label>
+        <input type="checkbox" name="system.equipped" {{#if system.equipped}}checked{{/if}} />
+      </div>
+
+    </div>
+
+    <div class="field-group full-width">
+      <label>Covered Locations</label>
+      <div class="location-grid">
+        <label class="location-item">
+          <input type="checkbox" name="system.locations.head"     {{#if system.locations.head}}checked{{/if}} />
+          Head
+        </label>
+        <label class="location-item">
+          <input type="checkbox" name="system.locations.rightArm" {{#if system.locations.rightArm}}checked{{/if}} />
+          Right Arm
+        </label>
+        <label class="location-item">
+          <input type="checkbox" name="system.locations.leftArm"  {{#if system.locations.leftArm}}checked{{/if}} />
+          Left Arm
+        </label>
+        <label class="location-item">
+          <input type="checkbox" name="system.locations.chest"    {{#if system.locations.chest}}checked{{/if}} />
+          Chest
+        </label>
+        <label class="location-item">
+          <input type="checkbox" name="system.locations.abdomen"  {{#if system.locations.abdomen}}checked{{/if}} />
+          Abdomen
+        </label>
+        <label class="location-item">
+          <input type="checkbox" name="system.locations.rightLeg" {{#if system.locations.rightLeg}}checked{{/if}} />
+          Right Leg
+        </label>
+        <label class="location-item">
+          <input type="checkbox" name="system.locations.leftLeg"  {{#if system.locations.leftLeg}}checked{{/if}} />
+          Left Leg
+        </label>
+      </div>
+    </div>
+
+    <div class="field-group full-width">
+      <label>Description</label>
+      <textarea name="system.description" rows="4">{{system.description}}</textarea>
+    </div>
+  </section>
+</form>

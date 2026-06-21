@@ -32,5 +32,16 @@ export default class SabatActor extends Actor {
     if (system.health.value > system.health.max) {
       system.health.value = system.health.max;
     }
+
+    // Derived protection from equipped armor items
+    const locs = ["head", "rightArm", "leftArm", "chest", "abdomen", "rightLeg", "leftLeg"];
+    system.protection = Object.fromEntries(locs.map(l => [l, 0]));
+    for (const item of this.items) {
+      if (item.type !== "armor" || !item.system.equipped) continue;
+      const prot = item.system.protection ?? 0;
+      for (const loc of locs) {
+        if (item.system.locations?.[loc]) system.protection[loc] += prot;
+      }
+    }
   }
 }

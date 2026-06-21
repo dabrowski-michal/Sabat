@@ -628,3 +628,56 @@
 .roll-result.result-success  { background: #3a6b3a; color: #fff; }
 .roll-result.result-failure  { background: #6b3a3a; color: #fff; }
 .roll-result.result-blunder  { background: #4a0a0a; color: #fff; }
+
+/* ---- Margin of success/failure ---- */
+.margin-text {
+  font-size: 0.82em;
+  font-weight: normal;
+  opacity: 0.85;
+  margin-left: 5px;
+}
+
+/* ---- Apply Damage button ---- */
+.apply-damage-btn {
+  display: block;
+  width: 100%;
+  margin-top: 7px;
+  padding: 5px 10px;
+  background: var(--aq-red);
+  color: #fff;
+  border: 1px solid var(--aq-brown-dark);
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: var(--aq-font-body);
+  font-size: 0.85em;
+  transition: background 0.15s;
+}
+
+.apply-damage-btn:hover { background: #6a0f0f; }
+
+/* ---- Armor item sheet: location checkboxes ---- */
+.location-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px 16px;
+  margin-top: 6px;
+}
+
+.location-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85em;
+  color: var(--aq-text);
+  cursor: pointer;
+}
+
+.location-item input[type="checkbox"] { cursor: pointer; }
+
+/* ---- Armor list: protection + equipped columns ---- */
+.sabat-sheet .item-prot,
+.sabat-sheet .item-eqp {
+  text-align: center;
+  font-family: var(--aq-font-number);
+  color: var(--aq-text-muted);
+}

@@ -1,3 +1,18 @@
+const HIT_LOCATION_LABELS = {
+  head: "Head", rightArm: "Right Arm", leftArm: "Left Arm",
+  chest: "Chest", abdomen: "Abdomen", rightLeg: "Right Leg", leftLeg: "Left Leg"
+};
+
+function _hitLocationKey(d10) {
+  if (d10 === 1)  return "head";
+  if (d10 === 2)  return "rightArm";
+  if (d10 === 3)  return "leftArm";
+  if (d10 <= 6)  return "chest";
+  if (d10 <= 8)  return "abdomen";
+  if (d10 === 9)  return "rightLeg";
+  return "leftLeg";
+}
+
 export default class SabatActorSheet extends ActorSheet {
 
   static get defaultOptions() {
@@ -57,10 +72,10 @@ export default class SabatActorSheet extends ActorSheet {
     }));
 
     // Bucket items by type
-    context.weapons   = this.actor.items.filter(i => i.type === "weapon");
-    context.equipment = this.actor.items.filter(i => i.type === "equipment");
-    context.items     = this.actor.items.filter(i => i.type === "item");
-    context.spells    = this.actor.items.filter(i => i.type === "spell");
+    context.weapons = this.actor.items.filter(i => i.type === "weapon");
+    context.armor   = this.actor.items.filter(i => i.type === "armor");
+    context.items   = this.actor.items.filter(i => i.type === "item");
+    context.spells  = this.actor.items.filter(i => i.type === "spell");
 
     // HP bar percentage
     context.hpPct = system.health.max > 0
@@ -103,14 +118,17 @@ export default class SabatActorSheet extends ActorSheet {
     const roll = await new Roll("1d100").evaluate({ async: true });
     const d = roll.total;
 
-    let resultLabel, resultClass;
+    let resultLabel, resultClass, marginText;
+    const margin = target - d;
 
     if (d <= 5) {
       resultLabel = "Auto-Success ★";
       resultClass = "result-critical";
+      marginText  = "(Automatic)";
     } else if (d >= 96) {
       resultLabel = "Auto-Failure ✗";
       resultClass = "result-blunder";
+      marginText  = "(Automatic)";
     } else if (d <= target) {
       const critThreshold = Math.max(1, Math.floor(target * 0.1));
       if (d <= critThreshold) {
@@ -120,6 +138,7 @@ export default class SabatActorSheet extends ActorSheet {
         resultLabel = "Success ✓";
         resultClass = "result-success";
       }
+      marginText = `(Beat target by ${margin})`;
     } else {
       const failRange = 100 - target;
       const blunderThreshold = target + Math.floor(failRange * 0.9) + 1;
@@ -130,13 +149,14 @@ export default class SabatActorSheet extends ActorSheet {
         resultLabel = "Failure ✗";
         resultClass = "result-failure";
       }
+      marginText = `(Missed target by ${Math.abs(margin)})`;
     }
 
     const flavor = `
       <div class="sabat-roll">
         <strong>${skillLabel}</strong>
         <div class="roll-details">Rolled <strong>${d}</strong> vs target <strong>${target}%</strong></div>
-        <div class="roll-result ${resultClass}">${resultLabel}</div>
+        <div class="roll-result ${resultClass}">${resultLabel} <span class="margin-text">${marginText}</span></div>
       </div>`;
 
     await roll.toMessage({
@@ -153,10 +173,31 @@ export default class SabatActorSheet extends ActorSheet {
     if (!item) return;
 
     const formula = item.system.damage || "1d6";
-    const roll = await new Roll(formula).evaluate({ async: true });
-    await roll.toMessage({
+    const [damageRoll, locRoll] = await Promise.all([
+      new Roll(formula).evaluate({ async: true }),
+      new Roll("1d10").evaluate({ async: true })
+    ]);
+
+    const locKey   = _hitLocationKey(locRoll.total);
+    const locLabel = HIT_LOCATION_LABELS[locKey];
+
+    await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      flavor: `<strong>${item.name}</strong> — Damage`
+      rolls: [damageRoll],
+      content: `
+        <div class="sabat-roll sabat-damage-roll">
+          <strong>${item.name}</strong>
+          <div class="roll-details">
+            Damage: <strong>${damageRoll.total}</strong>
+            &nbsp;|&nbsp;
+            Hit Location (d10=${locRoll.total}): <strong>${locLabel}</strong>
+          </div>
+          <button class="apply-damage-btn"
+            data-damage="${damageRoll.total}"
+            data-location="${locKey}">
+            ⚔ Apply Damage to Selected Token(s)
+          </button>
+        </div>`
     });
   }
 
