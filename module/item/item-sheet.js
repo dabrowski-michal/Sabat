@@ -1,8 +1,8 @@
-export default class AquelarreItemSheet extends ItemSheet {
+export default class SabatItemSheet extends ItemSheet {
 
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["aquelarre", "sheet", "item"],
+      classes: ["sabat", "sheet", "item"],
       width: 520,
       height: 480,
       tabs: [{
@@ -15,7 +15,7 @@ export default class AquelarreItemSheet extends ItemSheet {
 
   get template() {
     const type = this.item.type;
-    return `systems/aquelarre/templates/item/${type}-sheet.html`;
+    return `systems/sabat/templates/item/${type}-sheet.html`;
   }
 
   getData() {

@@ -1,4 +1,4 @@
-export default class AquelarreItem extends Item {
+export default class SabatItem extends Item {
   prepareDerivedData() {
     super.prepareDerivedData();
   }

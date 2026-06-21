@@ -1,4 +1,4 @@
-export default class AquelarreActor extends Actor {
+export default class SabatActor extends Actor {
 
   prepareDerivedData() {
     super.prepareDerivedData();

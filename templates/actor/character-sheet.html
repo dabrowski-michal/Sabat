@@ -1,4 +1,4 @@
-<form class="aquelarre-sheet character-sheet" autocomplete="off">
+﻿<form class="sabat-sheet character-sheet" autocomplete="off">
 
   <!-- ===== HEADER ===== -->
   <header class="sheet-header">
@@ -11,7 +11,7 @@
         <div class="field-group">
           <label>Kingdom</label>
           <select name="system.background.kingdom">
-            <option value="" {{#unless system.background.kingdom}}selected{{/unless}}>—</option>
+            <option value=”” {{#unless system.background.kingdom}}selected{{/unless}}>—</option>
             <option value="castile"  {{#if (eq system.background.kingdom "castile")}}selected{{/if}}>Crown of Castile</option>
             <option value="aragon"   {{#if (eq system.background.kingdom "aragon")}}selected{{/if}}>Crown of Aragón</option>
             <option value="granada"  {{#if (eq system.background.kingdom "granada")}}selected{{/if}}>Kingdom of Granada</option>
@@ -22,7 +22,7 @@
         <div class="field-group">
           <label>People</label>
           <select name="system.background.people">
-            <option value="" {{#unless system.background.people}}selected{{/unless}}>—</option>
+            <option value=”” {{#unless system.background.people}}selected{{/unless}}>—</option>
             <option value="arab"       {{#if (eq system.background.people "arab")}}selected{{/if}}>Arab</option>
             <option value="aragonese"  {{#if (eq system.background.people "aragonese")}}selected{{/if}}>Aragonese</option>
             <option value="castilian"  {{#if (eq system.background.people "castilian")}}selected{{/if}}>Castilian</option>
@@ -37,7 +37,7 @@
         <div class="field-group">
           <label>Social Class</label>
           <select name="system.background.socialClass">
-            <option value="" {{#unless system.background.socialClass}}selected{{/unless}}>—</option>
+            <option value=”” {{#unless system.background.socialClass}}selected{{/unless}}>—</option>
             <option value="upper-nobility" {{#if (eq system.background.socialClass "upper-nobility")}}selected{{/if}}>Upper Nobility</option>
             <option value="lower-nobility" {{#if (eq system.background.socialClass "lower-nobility")}}selected{{/if}}>Lower Nobility</option>
             <option value="burgher"        {{#if (eq system.background.socialClass "burgher")}}selected{{/if}}>Burgher</option>

@@ -1,7 +1,7 @@
 {
-  "id": "aquelarre",
-  "title": "Aquelarre",
-  "description": "Game system for the Aquelarre tabletop RPG — a dark medieval fantasy set in the Iberian Peninsula.",
+  "id": "sabat",
+  "title": "Sabat",
+  "description": "Game system for the Sabat tabletop RPG — a dark medieval fantasy set in the Iberian Peninsula.",
   "version": "1.0.0",
   "compatibility": {
     "minimum": "11",
@@ -12,12 +12,12 @@
       "name": "Michal"
     }
   ],
-  "esmodules": ["aquelarre.js"],
-  "styles": ["css/aquelarre.css"],
+  "esmodules": ["sabat.js"],
+  "styles": ["css/sabat.css"],
   "template": "template.json",
   "packs": [],
   "languages": [],
-  "url": "https://github.com/dabrowski-michal/Aquelarre",
-  "manifest": "https://raw.githubusercontent.com/dabrowski-michal/Aquelarre/master/system.json",
-  "download": "https://github.com/dabrowski-michal/Aquelarre/releases/download/v1.0.0/aquelarre.zip"
+  "url": "https://github.com/dabrowski-michal/Sabat",
+  "manifest": "https://raw.githubusercontent.com/dabrowski-michal/Sabat/master/system.json",
+  "download": "https://github.com/dabrowski-michal/Sabat/releases/download/v1.0.0/sabat.zip"
 }

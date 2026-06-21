@@ -1,24 +1,24 @@
-import AquelarreActor from "./module/actor/actor.js";
-import AquelarreActorSheet from "./module/actor/actor-sheet.js";
-import AquelarreItem from "./module/item/item.js";
-import AquelarreItemSheet from "./module/item/item-sheet.js";
+import SabatActor from "./module/actor/actor.js";
+import SabatActorSheet from "./module/actor/actor-sheet.js";
+import SabatItem from "./module/item/item.js";
+import SabatItemSheet from "./module/item/item-sheet.js";
 
 Hooks.once("init", function () {
-  console.log("Aquelarre | Initializing system");
+  console.log("Sabat | Initializing system");
 
-  CONFIG.Actor.documentClass = AquelarreActor;
-  CONFIG.Item.documentClass = AquelarreItem;
+  CONFIG.Actor.documentClass = SabatActor;
+  CONFIG.Item.documentClass = SabatItem;
 
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("aquelarre", AquelarreActorSheet, {
+  Actors.registerSheet("sabat", SabatActorSheet, {
     makeDefault: true,
-    label: "Aquelarre Character Sheet"
+    label: "Sabat Character Sheet"
   });
 
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("aquelarre", AquelarreItemSheet, {
+  Items.registerSheet("sabat", SabatItemSheet, {
     makeDefault: true,
-    label: "Aquelarre Item Sheet"
+    label: "Sabat Item Sheet"
   });
 
   _registerHandlebarsHelpers();

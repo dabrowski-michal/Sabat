@@ -1,9 +1,9 @@
-export default class AquelarreActorSheet extends ActorSheet {
+export default class SabatActorSheet extends ActorSheet {
 
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["aquelarre", "sheet", "actor"],
-      template: "systems/aquelarre/templates/actor/character-sheet.html",
+      classes: ["sabat", "sheet", "actor"],
+      template: "systems/sabat/templates/actor/character-sheet.html",
       width: 780,
       height: 880,
       tabs: [{
@@ -133,7 +133,7 @@ export default class AquelarreActorSheet extends ActorSheet {
     }
 
     const flavor = `
-      <div class="aquelarre-roll">
+      <div class="sabat-roll">
         <strong>${skillLabel}</strong>
         <div class="roll-details">Rolled <strong>${d}</strong> vs target <strong>${target}%</strong></div>
         <div class="roll-result ${resultClass}">${resultLabel}</div>
