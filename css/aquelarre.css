@@ -1,0 +1,630 @@
+/* =========================================
+   AQUELARRE — Foundry VTT System Stylesheet
+   Medieval dark-fantasy aesthetic
+   ========================================= */
+
+/* ---- Variables ---- */
+:root {
+  --aq-parchment:   #f5ead6;
+  --aq-parchment-d: #e8d9b8;
+  --aq-brown:       #5c3d1e;
+  --aq-brown-dark:  #3a2010;
+  --aq-brown-light: #8b6344;
+  --aq-red:         #8b1a1a;
+  --aq-gold:        #c9a227;
+  --aq-border:      #8b6344;
+  --aq-text:        #2a1a0a;
+  --aq-text-muted:  #7a5c38;
+  --aq-shadow:      rgba(58, 32, 16, 0.3);
+  --aq-font-body:   "Georgia", serif;
+  --aq-font-label:  "Georgia", serif;
+  --aq-font-number: "Courier New", monospace;
+}
+
+/* ---- Base Sheet ---- */
+.aquelarre-sheet {
+  font-family: var(--aq-font-body);
+  color: var(--aq-text);
+  background: var(--aq-parchment);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+.aquelarre-sheet input[type="text"],
+.aquelarre-sheet input[type="number"],
+.aquelarre-sheet select,
+.aquelarre-sheet textarea {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--aq-border);
+  border-radius: 2px;
+  color: var(--aq-text);
+  font-family: var(--aq-font-body);
+  padding: 2px 4px;
+}
+
+.aquelarre-sheet input[type="text"]:focus,
+.aquelarre-sheet input[type="number"]:focus,
+.aquelarre-sheet select:focus,
+.aquelarre-sheet textarea:focus {
+  border-color: var(--aq-brown);
+  outline: none;
+  box-shadow: 0 0 3px var(--aq-shadow);
+}
+
+/* ---- Header ---- */
+.aquelarre-sheet .sheet-header {
+  display: flex;
+  gap: 12px;
+  padding: 10px 12px;
+  background: var(--aq-brown);
+  background-image: linear-gradient(135deg, var(--aq-brown-dark) 0%, var(--aq-brown) 100%);
+  border-bottom: 3px solid var(--aq-gold);
+  color: var(--aq-parchment);
+}
+
+.aquelarre-sheet .profile-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border: 2px solid var(--aq-gold);
+  border-radius: 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.aquelarre-sheet .header-fields {
+  flex: 1;
+}
+
+.aquelarre-sheet .charname input {
+  font-size: 1.5em;
+  font-family: var(--aq-font-label);
+  font-weight: bold;
+  color: var(--aq-parchment);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--aq-gold);
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.aquelarre-sheet .charname input::placeholder { color: rgba(245,234,214,0.5); }
+
+.aquelarre-sheet .header-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.aquelarre-sheet .header-row .field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.aquelarre-sheet .header-row label {
+  font-size: 0.65em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--aq-gold);
+}
+
+.aquelarre-sheet .header-row input,
+.aquelarre-sheet .header-row select {
+  background: rgba(0,0,0,0.25);
+  border: 1px solid var(--aq-gold);
+  color: var(--aq-parchment);
+  font-size: 0.85em;
+  padding: 2px 6px;
+  max-width: 140px;
+}
+
+.aquelarre-sheet .header-row input[type="number"] { width: 60px; }
+
+/* ---- Tabs ---- */
+.aquelarre-sheet .sheet-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--aq-brown);
+  background: var(--aq-parchment-d);
+  padding: 0 8px;
+}
+
+.aquelarre-sheet .sheet-tabs .item {
+  padding: 6px 14px;
+  font-size: 0.85em;
+  font-family: var(--aq-font-label);
+  color: var(--aq-brown-light);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: bold;
+  margin-bottom: -2px;
+}
+
+.aquelarre-sheet .sheet-tabs .item:hover { color: var(--aq-brown); }
+.aquelarre-sheet .sheet-tabs .item.active {
+  color: var(--aq-brown-dark);
+  border-bottom-color: var(--aq-gold);
+}
+
+/* ---- Sheet Body ---- */
+.aquelarre-sheet .sheet-body {
+  padding: 10px 12px;
+  overflow-y: auto;
+}
+
+.aquelarre-sheet .tab { display: none; }
+.aquelarre-sheet .tab.active { display: block; }
+
+/* ---- Panels ---- */
+.aquelarre-sheet .panel {
+  background: rgba(255,255,255,0.3);
+  border: 1px solid var(--aq-border);
+  border-radius: 4px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+
+.aquelarre-sheet .panel-title {
+  font-family: var(--aq-font-label);
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--aq-brown);
+  margin: 0 0 8px 0;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--aq-gold);
+}
+
+/* ---- Characteristics Tab ---- */
+.aquelarre-sheet .chars-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 10px;
+}
+
+.aquelarre-sheet .armor-zones {
+  grid-column: 1 / -1;
+}
+
+/* Primary chars grid */
+.aquelarre-sheet .char-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.aquelarre-sheet .char-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.aquelarre-sheet .char-label {
+  font-family: var(--aq-font-label);
+  font-size: 0.75em;
+  font-weight: bold;
+  color: var(--aq-brown);
+  text-transform: uppercase;
+}
+
+.aquelarre-sheet .char-name {
+  font-size: 0.6em;
+  color: var(--aq-text-muted);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.aquelarre-sheet .char-value {
+  width: 46px;
+  text-align: center;
+  font-family: var(--aq-font-number);
+  font-size: 1.1em;
+  font-weight: bold;
+  color: var(--aq-brown-dark);
+  border: 2px solid var(--aq-border) !important;
+  padding: 3px !important;
+}
+
+/* HP Bar */
+.aquelarre-sheet .resource-bar-wrap {
+  margin-bottom: 8px;
+}
+
+.aquelarre-sheet .resource-bar-wrap > label {
+  font-size: 0.75em;
+  font-weight: bold;
+  color: var(--aq-brown);
+  display: block;
+  margin-bottom: 3px;
+}
+
+.aquelarre-sheet .hp-bar-track {
+  height: 12px;
+  background: #c4a882;
+  border: 1px solid var(--aq-border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.aquelarre-sheet .hp-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #8b1a1a, #c0392b);
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+.aquelarre-sheet .resource-inputs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85em;
+}
+
+.aquelarre-sheet .resource-inputs input { width: 48px; text-align: center; }
+.aquelarre-sheet .resource-max { font-weight: bold; color: var(--aq-brown); }
+
+/* Secondary grid */
+.aquelarre-sheet .secondary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 12px;
+}
+
+.aquelarre-sheet .sec-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.aquelarre-sheet .sec-item label {
+  font-size: 0.72em;
+  color: var(--aq-brown);
+  white-space: nowrap;
+  flex: 1;
+}
+
+.aquelarre-sheet .sec-item input[type="number"] { width: 52px; text-align: center; }
+
+.aquelarre-sheet .derived-value {
+  font-family: var(--aq-font-number);
+  font-weight: bold;
+  color: var(--aq-brown-dark);
+  background: rgba(0,0,0,0.05);
+  border: 1px solid var(--aq-border);
+  border-radius: 2px;
+  padding: 2px 6px;
+  min-width: 38px;
+  text-align: center;
+  display: inline-block;
+}
+
+.aquelarre-sheet .resource-pair {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.aquelarre-sheet .resource-pair input[type="number"] { width: 42px; }
+
+/* Armor zones */
+.aquelarre-sheet .armor-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+
+.aquelarre-sheet .armor-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.aquelarre-sheet .armor-item label {
+  font-size: 0.65em;
+  color: var(--aq-text-muted);
+  text-align: center;
+}
+
+.aquelarre-sheet .armor-item input {
+  width: 42px;
+  text-align: center;
+  font-family: var(--aq-font-number);
+}
+
+/* ---- Skills Tab ---- */
+.aquelarre-sheet .skills-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.aquelarre-sheet .skill-list-header {
+  display: grid;
+  grid-template-columns: 1fr 36px 44px 22px;
+  gap: 4px;
+  padding: 2px 4px 4px;
+  border-bottom: 1px solid var(--aq-border);
+  margin-bottom: 4px;
+}
+
+.aquelarre-sheet .skill-list-header span {
+  font-size: 0.65em;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--aq-text-muted);
+}
+
+.aquelarre-sheet .col-name { text-align: left; }
+.aquelarre-sheet .col-attr, .aquelarre-sheet .col-pct, .aquelarre-sheet .col-adv { text-align: center; }
+
+.aquelarre-sheet .skill-row {
+  display: grid;
+  grid-template-columns: 1fr 36px 44px 22px;
+  gap: 4px;
+  align-items: center;
+  padding: 2px 4px;
+  border-radius: 2px;
+  transition: background 0.1s;
+}
+
+.aquelarre-sheet .skill-row:nth-child(even) { background: rgba(0,0,0,0.04); }
+.aquelarre-sheet .skill-row:hover { background: rgba(201,162,39,0.15); }
+
+.aquelarre-sheet .skill-name {
+  font-size: 0.8em;
+  cursor: pointer;
+  color: var(--aq-brown);
+  transition: color 0.15s;
+}
+
+.aquelarre-sheet .skill-name:hover {
+  color: var(--aq-red);
+  text-decoration: underline;
+}
+
+.aquelarre-sheet .skill-attr {
+  font-size: 0.65em;
+  text-align: center;
+  color: var(--aq-text-muted);
+  font-family: var(--aq-font-number);
+}
+
+.aquelarre-sheet .skill-value {
+  width: 100%;
+  text-align: center;
+  font-family: var(--aq-font-number);
+  font-size: 0.85em;
+  padding: 1px 2px !important;
+}
+
+.aquelarre-sheet .skill-adv {
+  justify-self: center;
+}
+
+/* ---- Items Tab ---- */
+.aquelarre-sheet .items-section {
+  margin-bottom: 10px;
+}
+
+.aquelarre-sheet .section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.aquelarre-sheet .section-header .panel-title { margin-bottom: 0; border-bottom: none; }
+
+.aquelarre-sheet .section-header .item-create {
+  color: var(--aq-brown-light);
+  cursor: pointer;
+  transition: color 0.15s;
+  font-size: 0.9em;
+  padding: 2px 4px;
+}
+
+.aquelarre-sheet .section-header .item-create:hover { color: var(--aq-gold); }
+
+.aquelarre-sheet .item-list-header {
+  display: grid;
+  gap: 4px;
+  padding: 3px 6px;
+  border-bottom: 1px solid var(--aq-border);
+  margin-bottom: 2px;
+  font-size: 0.65em;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--aq-text-muted);
+  letter-spacing: 0.04em;
+}
+
+/* Weapons list columns */
+.aquelarre-sheet .items-section:nth-child(1) .item-list-header,
+.aquelarre-sheet .items-section:nth-child(1) .item.flexrow {
+  grid-template-columns: 1fr 80px 70px 56px;
+}
+
+/* Equipment list columns */
+.aquelarre-sheet .items-section:nth-child(2) .item-list-header,
+.aquelarre-sheet .items-section:nth-child(2) .item.flexrow {
+  grid-template-columns: 1fr 44px 54px 56px;
+}
+
+/* Items list columns */
+.aquelarre-sheet .items-section:nth-child(3) .item-list-header,
+.aquelarre-sheet .items-section:nth-child(3) .item.flexrow {
+  grid-template-columns: 1fr 44px 60px 56px;
+}
+
+.aquelarre-sheet .item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.aquelarre-sheet .item.flexrow {
+  display: grid;
+  gap: 4px;
+  align-items: center;
+  padding: 4px 6px;
+  border-radius: 2px;
+  transition: background 0.1s;
+  font-size: 0.83em;
+}
+
+.aquelarre-sheet .item.flexrow:nth-child(even) { background: rgba(0,0,0,0.04); }
+.aquelarre-sheet .item.flexrow:hover { background: rgba(201,162,39,0.12); }
+
+.aquelarre-sheet .item-name { font-weight: bold; color: var(--aq-brown-dark); }
+
+.aquelarre-sheet .item-damage {
+  font-family: var(--aq-font-number);
+  color: var(--aq-red);
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+}
+
+.aquelarre-sheet .item-damage:hover { text-decoration: underline; }
+
+.aquelarre-sheet .item-range,
+.aquelarre-sheet .item-qty,
+.aquelarre-sheet .item-armor,
+.aquelarre-sheet .item-weight {
+  text-align: center;
+  color: var(--aq-text-muted);
+  font-family: var(--aq-font-number);
+}
+
+.aquelarre-sheet .item-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.aquelarre-sheet .item-controls a {
+  color: var(--aq-brown-light);
+  cursor: pointer;
+  font-size: 0.85em;
+  transition: color 0.15s;
+}
+
+.aquelarre-sheet .item-controls .item-edit:hover { color: var(--aq-gold); }
+.aquelarre-sheet .item-controls .item-delete:hover { color: var(--aq-red); }
+
+.aquelarre-sheet .item-empty {
+  padding: 6px;
+  font-size: 0.78em;
+  color: var(--aq-text-muted);
+  font-style: italic;
+  text-align: center;
+}
+
+/* ---- Biography Tab ---- */
+.aquelarre-sheet .bio-grid {
+  display: grid;
+  grid-template-columns: 1fr 80px 80px;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.aquelarre-sheet .field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.aquelarre-sheet .field-group label {
+  font-size: 0.72em;
+  font-weight: bold;
+  color: var(--aq-brown);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.aquelarre-sheet .field-group.full-width { margin-top: 8px; }
+
+.aquelarre-sheet textarea {
+  resize: vertical;
+  min-height: 60px;
+  font-size: 0.85em;
+}
+
+.aquelarre-sheet .checkbox-group {
+  flex-direction: row;
+  align-items: center;
+}
+
+/* ---- Item Sheets ---- */
+.aquelarre-sheet.item-sheet .item-header {
+  display: flex;
+  gap: 10px;
+  padding: 10px 12px;
+  background: linear-gradient(135deg, var(--aq-brown-dark), var(--aq-brown));
+  border-bottom: 2px solid var(--aq-gold);
+}
+
+.aquelarre-sheet.item-sheet .item-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border: 2px solid var(--aq-gold);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.aquelarre-sheet.item-sheet .item-header-fields { flex: 1; }
+.aquelarre-sheet.item-sheet .item-header-fields h1 input {
+  font-size: 1.3em;
+  font-family: var(--aq-font-label);
+  color: var(--aq-parchment);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--aq-gold);
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.aquelarre-sheet.item-sheet .item-type-label {
+  font-size: 0.7em;
+  text-transform: uppercase;
+  color: var(--aq-gold);
+  letter-spacing: 0.08em;
+}
+
+.aquelarre-sheet.item-sheet .item-body {
+  padding: 12px;
+}
+
+.aquelarre-sheet .form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 12px;
+  margin-bottom: 10px;
+}
+
+/* ---- Chat Roll Results ---- */
+.aquelarre-roll { font-family: var(--aq-font-body); }
+.aquelarre-roll .roll-details { font-size: 0.85em; color: #555; margin: 2px 0; }
+.aquelarre-roll .roll-result {
+  font-weight: bold;
+  font-size: 1.05em;
+  padding: 3px 6px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.roll-result.result-critical { background: #2d6a2d; color: #fff; }
+.roll-result.result-success  { background: #3a6b3a; color: #fff; }
+.roll-result.result-failure  { background: #6b3a3a; color: #fff; }
+.roll-result.result-blunder  { background: #4a0a0a; color: #fff; }

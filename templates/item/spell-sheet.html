@@ -1,0 +1,48 @@
+<form class="aquelarre-sheet item-sheet spell-sheet" autocomplete="off">
+  <header class="item-header">
+    <img class="item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    <div class="item-header-fields">
+      <h1><input type="text" name="name" value="{{item.name}}" placeholder="Spell Name" /></h1>
+      <div class="item-type-label">Spell</div>
+    </div>
+  </header>
+
+  <section class="item-body">
+    <div class="form-grid">
+
+      <div class="field-group">
+        <label>Vis (Power)</label>
+        <select name="system.vis">
+          <option value="Prima"   {{#if (eq system.vis "Prima")}}selected{{/if}}>Prima</option>
+          <option value="Secunda" {{#if (eq system.vis "Secunda")}}selected{{/if}}>Secunda</option>
+          <option value="Tertia"  {{#if (eq system.vis "Tertia")}}selected{{/if}}>Tertia</option>
+          <option value="Quarta"  {{#if (eq system.vis "Quarta")}}selected{{/if}}>Quarta</option>
+          <option value="Quinta"  {{#if (eq system.vis "Quinta")}}selected{{/if}}>Quinta</option>
+          <option value="Sexta"   {{#if (eq system.vis "Sexta")}}selected{{/if}}>Sexta</option>
+          <option value="Septima" {{#if (eq system.vis "Septima")}}selected{{/if}}>Septima</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label>CP Cost</label>
+        <input type="number" name="system.concentrationCost" value="{{system.concentrationCost}}" min="0" />
+      </div>
+
+      <div class="field-group">
+        <label>Duration</label>
+        <input type="text" name="system.duration" value="{{system.duration}}" placeholder="e.g., 1 hour" />
+      </div>
+
+    </div>
+
+    <div class="field-group full-width">
+      <label>Description</label>
+      <textarea name="system.description" rows="4">{{system.description}}</textarea>
+    </div>
+
+    <div class="field-group full-width">
+      <label>Notes</label>
+      <textarea name="system.notes" rows="2">{{system.notes}}</textarea>
+    </div>
+  </section>
+</form>

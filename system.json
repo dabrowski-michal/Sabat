@@ -1,0 +1,23 @@
+{
+  "id": "aquelarre",
+  "title": "Aquelarre",
+  "description": "Game system for the Aquelarre tabletop RPG — a dark medieval fantasy set in the Iberian Peninsula.",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "11",
+    "verified": "12"
+  },
+  "authors": [
+    {
+      "name": "Michal"
+    }
+  ],
+  "esmodules": ["aquelarre.js"],
+  "styles": ["css/aquelarre.css"],
+  "template": "template.json",
+  "packs": [],
+  "languages": [],
+  "url": "",
+  "manifest": "",
+  "download": ""
+}

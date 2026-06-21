@@ -1,0 +1,35 @@
+<form class="aquelarre-sheet item-sheet generic-item-sheet" autocomplete="off">
+  <header class="item-header">
+    <img class="item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    <div class="item-header-fields">
+      <h1><input type="text" name="name" value="{{item.name}}" placeholder="Item Name" /></h1>
+      <div class="item-type-label">Item</div>
+    </div>
+  </header>
+
+  <section class="item-body">
+    <div class="form-grid">
+
+      <div class="field-group">
+        <label>Quantity</label>
+        <input type="number" name="system.quantity" value="{{system.quantity}}" min="0" />
+      </div>
+
+      <div class="field-group">
+        <label>Weight</label>
+        <input type="number" name="system.weight" value="{{system.weight}}" min="0" step="0.1" />
+      </div>
+
+    </div>
+
+    <div class="field-group full-width">
+      <label>Description</label>
+      <textarea name="system.description" rows="3">{{system.description}}</textarea>
+    </div>
+
+    <div class="field-group full-width">
+      <label>Notes</label>
+      <textarea name="system.notes" rows="2">{{system.notes}}</textarea>
+    </div>
+  </section>
+</form>

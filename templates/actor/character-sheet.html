@@ -1,0 +1,430 @@
+<form class="aquelarre-sheet character-sheet" autocomplete="off">
+
+  <!-- ===== HEADER ===== -->
+  <header class="sheet-header">
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+    <div class="header-fields">
+      <h1 class="charname">
+        <input name="name" type="text" value="{{actor.name}}" placeholder="Character Name" />
+      </h1>
+      <div class="header-row">
+        <div class="field-group">
+          <label>Kingdom</label>
+          <select name="system.background.kingdom">
+            <option value="" {{#unless system.background.kingdom}}selected{{/unless}}>—</option>
+            <option value="castile"  {{#if (eq system.background.kingdom "castile")}}selected{{/if}}>Crown of Castile</option>
+            <option value="aragon"   {{#if (eq system.background.kingdom "aragon")}}selected{{/if}}>Crown of Aragón</option>
+            <option value="granada"  {{#if (eq system.background.kingdom "granada")}}selected{{/if}}>Kingdom of Granada</option>
+            <option value="navarre"  {{#if (eq system.background.kingdom "navarre")}}selected{{/if}}>Kingdom of Navarre</option>
+            <option value="portugal" {{#if (eq system.background.kingdom "portugal")}}selected{{/if}}>Kingdom of Portugal</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label>People</label>
+          <select name="system.background.people">
+            <option value="" {{#unless system.background.people}}selected{{/unless}}>—</option>
+            <option value="arab"       {{#if (eq system.background.people "arab")}}selected{{/if}}>Arab</option>
+            <option value="aragonese"  {{#if (eq system.background.people "aragonese")}}selected{{/if}}>Aragonese</option>
+            <option value="castilian"  {{#if (eq system.background.people "castilian")}}selected{{/if}}>Castilian</option>
+            <option value="basque"     {{#if (eq system.background.people "basque")}}selected{{/if}}>Basque</option>
+            <option value="catalan"    {{#if (eq system.background.people "catalan")}}selected{{/if}}>Catalan</option>
+            <option value="galician"   {{#if (eq system.background.people "galician")}}selected{{/if}}>Galician</option>
+            <option value="jew"        {{#if (eq system.background.people "jew")}}selected{{/if}}>Jew</option>
+            <option value="navarrese"  {{#if (eq system.background.people "navarrese")}}selected{{/if}}>Navarrese</option>
+            <option value="portuguese" {{#if (eq system.background.people "portuguese")}}selected{{/if}}>Portuguese</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label>Social Class</label>
+          <select name="system.background.socialClass">
+            <option value="" {{#unless system.background.socialClass}}selected{{/unless}}>—</option>
+            <option value="upper-nobility" {{#if (eq system.background.socialClass "upper-nobility")}}selected{{/if}}>Upper Nobility</option>
+            <option value="lower-nobility" {{#if (eq system.background.socialClass "lower-nobility")}}selected{{/if}}>Lower Nobility</option>
+            <option value="burgher"        {{#if (eq system.background.socialClass "burgher")}}selected{{/if}}>Burgher</option>
+            <option value="townsfolk"      {{#if (eq system.background.socialClass "townsfolk")}}selected{{/if}}>Townsfolk</option>
+            <option value="peasant"        {{#if (eq system.background.socialClass "peasant")}}selected{{/if}}>Peasant</option>
+            <option value="slave"          {{#if (eq system.background.socialClass "slave")}}selected{{/if}}>Slave</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label>Profession</label>
+          <input type="text" name="system.background.profession" value="{{system.background.profession}}" placeholder="Profession" />
+        </div>
+        <div class="field-group">
+          <label>Age</label>
+          <input type="number" name="system.background.age" value="{{system.background.age}}" min="0" />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== TABS ===== -->
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="characteristics">Characteristics</a>
+    <a class="item" data-tab="skills">Skills</a>
+    <a class="item" data-tab="items">Equipment</a>
+    <a class="item" data-tab="biography">Biography</a>
+  </nav>
+
+  <section class="sheet-body">
+
+    <!-- ===== TAB: CHARACTERISTICS ===== -->
+    <div class="tab characteristics" data-group="primary" data-tab="characteristics">
+
+      <div class="chars-layout">
+
+        <!-- Primary Characteristics -->
+        <div class="primary-chars panel">
+          <h3 class="panel-title">Primary Characteristics</h3>
+          <div class="char-grid">
+            <div class="char-item">
+              <label class="char-label">STR</label>
+              <span class="char-name">Strength</span>
+              <input class="char-value" type="number" name="system.characteristics.str" value="{{system.characteristics.str}}" min="1" max="20" />
+            </div>
+            <div class="char-item">
+              <label class="char-label">AGI</label>
+              <span class="char-name">Agility</span>
+              <input class="char-value" type="number" name="system.characteristics.agi" value="{{system.characteristics.agi}}" min="1" max="20" />
+            </div>
+            <div class="char-item">
+              <label class="char-label">DEX</label>
+              <span class="char-name">Dexterity</span>
+              <input class="char-value" type="number" name="system.characteristics.dex" value="{{system.characteristics.dex}}" min="1" max="20" />
+            </div>
+            <div class="char-item">
+              <label class="char-label">VIT</label>
+              <span class="char-name">Vitality</span>
+              <input class="char-value" type="number" name="system.characteristics.vit" value="{{system.characteristics.vit}}" min="1" max="20" />
+            </div>
+            <div class="char-item">
+              <label class="char-label">PER</label>
+              <span class="char-name">Perception</span>
+              <input class="char-value" type="number" name="system.characteristics.per" value="{{system.characteristics.per}}" min="1" max="20" />
+            </div>
+            <div class="char-item">
+              <label class="char-label">COM</label>
+              <span class="char-name">Communication</span>
+              <input class="char-value" type="number" name="system.characteristics.com" value="{{system.characteristics.com}}" min="1" max="20" />
+            </div>
+            <div class="char-item">
+              <label class="char-label">CUL</label>
+              <span class="char-name">Culture</span>
+              <input class="char-value" type="number" name="system.characteristics.cul" value="{{system.characteristics.cul}}" min="1" max="20" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Secondary / Derived -->
+        <div class="secondary-chars panel">
+          <h3 class="panel-title">Secondary Characteristics</h3>
+
+          <!-- HP Bar -->
+          <div class="resource-bar-wrap">
+            <label>Life Points</label>
+            <div class="hp-bar-track">
+              <div class="hp-bar-fill" style="width: {{hpPct}}%"></div>
+            </div>
+            <div class="resource-inputs">
+              <input type="number" name="system.health.value" value="{{system.health.value}}" min="0" />
+              <span>/</span>
+              <span class="resource-max">{{system.health.max}}</span>
+            </div>
+          </div>
+
+          <div class="secondary-grid">
+            <div class="sec-item">
+              <label>Luck (initial)</label>
+              <span class="derived-value">{{system.secondaryCharacteristics.luckInitial}}</span>
+            </div>
+            <div class="sec-item">
+              <label>Luck (current)</label>
+              <input type="number" name="system.secondaryCharacteristics.luckCurrent" value="{{system.secondaryCharacteristics.luckCurrent}}" min="0" />
+            </div>
+            <div class="sec-item">
+              <label>Rationality (RR)</label>
+              <input type="number" name="system.secondaryCharacteristics.rr" value="{{system.secondaryCharacteristics.rr}}" min="0" max="100" />
+            </div>
+            <div class="sec-item">
+              <label>Irrationality (IRR)</label>
+              <span class="derived-value">{{system.secondaryCharacteristics.irr}}</span>
+            </div>
+            <div class="sec-item">
+              <label>Appearance (APP)</label>
+              <input type="number" name="system.secondaryCharacteristics.app" value="{{system.secondaryCharacteristics.app}}" min="0" />
+            </div>
+            <div class="sec-item">
+              <label>Temperance</label>
+              <input type="number" name="system.secondaryCharacteristics.temperance" value="{{system.secondaryCharacteristics.temperance}}" min="0" max="100" />
+            </div>
+            <div class="sec-item">
+              <label>Conc. Points (CP)</label>
+              <div class="resource-pair">
+                <input type="number" name="system.secondaryCharacteristics.concentrationPoints.value"
+                  value="{{system.secondaryCharacteristics.concentrationPoints.value}}" min="0" />
+                <span>/</span>
+                <span class="derived-value">{{system.secondaryCharacteristics.concentrationPoints.max}}</span>
+              </div>
+            </div>
+            <div class="sec-item">
+              <label>Faith Points (FP)</label>
+              <div class="resource-pair">
+                <input type="number" name="system.secondaryCharacteristics.faithPoints.value"
+                  value="{{system.secondaryCharacteristics.faithPoints.value}}" min="0" />
+                <span>/</span>
+                <span class="derived-value">{{system.secondaryCharacteristics.faithPoints.max}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Armor Hit Zones -->
+        <div class="armor-zones panel">
+          <h3 class="panel-title">Armor (Protection)</h3>
+          <div class="armor-grid">
+            <div class="armor-item">
+              <label>Head</label>
+              <input type="number" name="system.armor.head" value="{{system.armor.head}}" min="0" />
+            </div>
+            <div class="armor-item">
+              <label>Right Arm</label>
+              <input type="number" name="system.armor.rightArm" value="{{system.armor.rightArm}}" min="0" />
+            </div>
+            <div class="armor-item">
+              <label>Left Arm</label>
+              <input type="number" name="system.armor.leftArm" value="{{system.armor.leftArm}}" min="0" />
+            </div>
+            <div class="armor-item">
+              <label>Chest I</label>
+              <input type="number" name="system.armor.chest1" value="{{system.armor.chest1}}" min="0" />
+            </div>
+            <div class="armor-item">
+              <label>Chest II</label>
+              <input type="number" name="system.armor.chest2" value="{{system.armor.chest2}}" min="0" />
+            </div>
+            <div class="armor-item">
+              <label>Chest III</label>
+              <input type="number" name="system.armor.chest3" value="{{system.armor.chest3}}" min="0" />
+            </div>
+            <div class="armor-item">
+              <label>Abdomen I</label>
+              <input type="number" name="system.armor.abdomen1" value="{{system.armor.abdomen1}}" min="0" />
+            </div>
+            <div class="armor-item">
+              <label>Abdomen II</label>
+              <input type="number" name="system.armor.abdomen2" value="{{system.armor.abdomen2}}" min="0" />
+            </div>
+            <div class="armor-item">
+              <label>Right Leg</label>
+              <input type="number" name="system.armor.rightLeg" value="{{system.armor.rightLeg}}" min="0" />
+            </div>
+            <div class="armor-item">
+              <label>Left Leg</label>
+              <input type="number" name="system.armor.leftLeg" value="{{system.armor.leftLeg}}" min="0" />
+            </div>
+          </div>
+        </div>
+
+      </div><!-- .chars-layout -->
+    </div><!-- .tab.characteristics -->
+
+    <!-- ===== TAB: SKILLS ===== -->
+    <div class="tab skills" data-group="primary" data-tab="skills">
+      <div class="skills-layout">
+
+        <!-- General Skills -->
+        <div class="skill-column panel">
+          <h3 class="panel-title">General Skills</h3>
+          <div class="skill-list-header">
+            <span class="col-name">Skill</span>
+            <span class="col-attr">Attr</span>
+            <span class="col-pct">%</span>
+            <span class="col-adv">Adv</span>
+          </div>
+          {{#each generalSkills}}
+          <div class="skill-row">
+            <span class="skill-name skill-roll"
+              data-skill="{{this.key}}"
+              data-label="{{skillLabel this.key}}"
+              data-target="{{this.skill.value}}"
+              title="Click to roll {{skillLabel this.key}}">
+              {{skillLabel this.key}}
+            </span>
+            <span class="skill-attr">{{skillAttr this.key}}</span>
+            <input class="skill-value" type="number"
+              name="system.skills.{{this.key}}.value"
+              value="{{this.skill.value}}" min="0" max="200" />
+            <input class="skill-adv" type="checkbox"
+              name="system.skills.{{this.key}}.advancement"
+              {{#if this.skill.advancement}}checked{{/if}} />
+          </div>
+          {{/each}}
+        </div>
+
+        <!-- Combat Skills -->
+        <div class="skill-column panel combat-skills">
+          <h3 class="panel-title">Combat Skills</h3>
+          <div class="skill-list-header">
+            <span class="col-name">Skill</span>
+            <span class="col-attr">Attr</span>
+            <span class="col-pct">%</span>
+            <span class="col-adv">Adv</span>
+          </div>
+          {{#each combatSkills}}
+          <div class="skill-row">
+            <span class="skill-name skill-roll"
+              data-skill="{{this.key}}"
+              data-label="{{skillLabel this.key}}"
+              data-target="{{this.skill.value}}"
+              title="Click to roll {{skillLabel this.key}}">
+              {{skillLabel this.key}}
+            </span>
+            <span class="skill-attr">{{skillAttr this.key}}</span>
+            <input class="skill-value" type="number"
+              name="system.skills.{{this.key}}.value"
+              value="{{this.skill.value}}" min="0" max="200" />
+            <input class="skill-adv" type="checkbox"
+              name="system.skills.{{this.key}}.advancement"
+              {{#if this.skill.advancement}}checked{{/if}} />
+          </div>
+          {{/each}}
+        </div>
+
+      </div><!-- .skills-layout -->
+    </div><!-- .tab.skills -->
+
+    <!-- ===== TAB: ITEMS (EQUIPMENT) ===== -->
+    <div class="tab items" data-group="primary" data-tab="items">
+
+      <!-- WEAPONS -->
+      <div class="items-section panel">
+        <div class="section-header">
+          <h3 class="panel-title">Weapons</h3>
+          <a class="item-create" data-type="weapon" title="Add weapon">
+            <i class="fas fa-plus"></i>
+          </a>
+        </div>
+        <div class="item-list-header">
+          <span class="col-name">Name</span>
+          <span class="col-damage">Damage</span>
+          <span class="col-range">Range</span>
+          <span class="col-controls">Controls</span>
+        </div>
+        <ul class="item-list">
+          {{#each weapons}}
+          <li class="item flexrow" data-item-id="{{this.id}}">
+            <span class="item-name">{{this.name}}</span>
+            <span class="item-damage damage-roll" title="Roll damage">{{this.system.damage}}</span>
+            <span class="item-range">{{this.system.range}}</span>
+            <div class="item-controls">
+              <a class="item-edit" title="Edit"><i class="fas fa-edit"></i></a>
+              <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+            </div>
+          </li>
+          {{else}}
+          <li class="item-empty">No weapons</li>
+          {{/each}}
+        </ul>
+      </div>
+
+      <!-- EQUIPMENT -->
+      <div class="items-section panel">
+        <div class="section-header">
+          <h3 class="panel-title">Equipment</h3>
+          <a class="item-create" data-type="equipment" title="Add equipment">
+            <i class="fas fa-plus"></i>
+          </a>
+        </div>
+        <div class="item-list-header">
+          <span class="col-name">Name</span>
+          <span class="col-qty">Qty</span>
+          <span class="col-armor">Armor</span>
+          <span class="col-controls">Controls</span>
+        </div>
+        <ul class="item-list">
+          {{#each equipment}}
+          <li class="item flexrow" data-item-id="{{this.id}}">
+            <span class="item-name">{{this.name}}</span>
+            <span class="item-qty">{{this.system.quantity}}</span>
+            <span class="item-armor">{{this.system.armorValue}}</span>
+            <div class="item-controls">
+              <a class="item-edit" title="Edit"><i class="fas fa-edit"></i></a>
+              <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+            </div>
+          </li>
+          {{else}}
+          <li class="item-empty">No equipment</li>
+          {{/each}}
+        </ul>
+      </div>
+
+      <!-- ITEMS -->
+      <div class="items-section panel">
+        <div class="section-header">
+          <h3 class="panel-title">Items</h3>
+          <a class="item-create" data-type="item" title="Add item">
+            <i class="fas fa-plus"></i>
+          </a>
+        </div>
+        <div class="item-list-header">
+          <span class="col-name">Name</span>
+          <span class="col-qty">Qty</span>
+          <span class="col-weight">Weight</span>
+          <span class="col-controls">Controls</span>
+        </div>
+        <ul class="item-list">
+          {{#each items}}
+          <li class="item flexrow" data-item-id="{{this.id}}">
+            <span class="item-name">{{this.name}}</span>
+            <span class="item-qty">{{this.system.quantity}}</span>
+            <span class="item-weight">{{this.system.weight}}</span>
+            <div class="item-controls">
+              <a class="item-edit" title="Edit"><i class="fas fa-edit"></i></a>
+              <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+            </div>
+          </li>
+          {{else}}
+          <li class="item-empty">No items</li>
+          {{/each}}
+        </ul>
+      </div>
+
+    </div><!-- .tab.items -->
+
+    <!-- ===== TAB: BIOGRAPHY ===== -->
+    <div class="tab biography" data-group="primary" data-tab="biography">
+      <div class="bio-layout">
+
+        <div class="bio-fields panel">
+          <h3 class="panel-title">Background</h3>
+          <div class="bio-grid">
+            <div class="field-group">
+              <label>Father's Profession</label>
+              <input type="text" name="system.background.fathersProfession"
+                value="{{system.background.fathersProfession}}" placeholder="Father's Profession" />
+            </div>
+            <div class="field-group">
+              <label>Height</label>
+              <input type="number" name="system.background.height" value="{{system.background.height}}" />
+            </div>
+            <div class="field-group">
+              <label>Weight</label>
+              <input type="number" name="system.background.weight" value="{{system.background.weight}}" />
+            </div>
+          </div>
+          <div class="field-group full-width">
+            <label>Family</label>
+            <textarea name="system.background.family" rows="3">{{system.background.family}}</textarea>
+          </div>
+          <div class="field-group full-width">
+            <label>Biography</label>
+            {{editor system.background.biography target="system.background.biography" button=true owner=owner editable=editable}}
+          </div>
+        </div>
+
+      </div>
+    </div><!-- .tab.biography -->
+
+  </section><!-- .sheet-body -->
+
+</form>

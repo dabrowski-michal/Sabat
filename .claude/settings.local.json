@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Pliki\\\\Coding\\\\Aquelarre\\\\module\\\\actor\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Pliki\\\\Coding\\\\Aquelarre\\\\module\\\\item\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Pliki\\\\Coding\\\\Aquelarre\\\\templates\\\\actor\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Pliki\\\\Coding\\\\Aquelarre\\\\templates\\\\item\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Pliki\\\\Coding\\\\Aquelarre\\\\css\")",
+      "PowerShell(Get-ChildItem \"c:\\\\Pliki\\\\Coding\\\\Aquelarre\" -Recurse -File | Where-Object { $_.Extension -in \".json\",\".js\",\".html\",\".css\" } | Select-Object FullName | ForEach-Object { $_.FullName.Replace\\(\"c:\\\\Pliki\\\\Coding\\\\Aquelarre\\\\\",\"\"\\) })"
+    ]
+  }
+}

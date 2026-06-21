@@ -1,0 +1,69 @@
+<form class="aquelarre-sheet item-sheet weapon-sheet" autocomplete="off">
+  <header class="item-header">
+    <img class="item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    <div class="item-header-fields">
+      <h1><input type="text" name="name" value="{{item.name}}" placeholder="Weapon Name" /></h1>
+      <div class="item-type-label">Weapon</div>
+    </div>
+  </header>
+
+  <section class="item-body">
+    <div class="form-grid">
+
+      <div class="field-group">
+        <label>Alternative Name</label>
+        <input type="text" name="system.alternativeName" value="{{system.alternativeName}}" placeholder="e.g., Espadón" />
+      </div>
+
+      <div class="field-group">
+        <label>Damage Formula</label>
+        <input type="text" name="system.damage" value="{{system.damage}}" placeholder="1d6" />
+      </div>
+
+      <div class="field-group">
+        <label>Min. Strength</label>
+        <input type="number" name="system.minimumStrength" value="{{system.minimumStrength}}" min="0" max="20" />
+      </div>
+
+      <div class="field-group">
+        <label>Size</label>
+        <select name="system.size">
+          <option value="Small"  {{#if (eq system.size "Small")}}selected{{/if}}>Small</option>
+          <option value="Medium" {{#if (eq system.size "Medium")}}selected{{/if}}>Medium</option>
+          <option value="Large"  {{#if (eq system.size "Large")}}selected{{/if}}>Large</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label>Range</label>
+        <input type="text" name="system.range" value="{{system.range}}" placeholder="Melee" />
+      </div>
+
+      <div class="field-group">
+        <label>Reload (actions)</label>
+        <input type="number" name="system.reload" value="{{system.reload}}" min="0" />
+      </div>
+
+      <div class="field-group checkbox-group">
+        <label>Two-Handed</label>
+        <input type="checkbox" name="system.twoHanded" {{#if system.twoHanded}}checked{{/if}} />
+      </div>
+
+      <div class="field-group checkbox-group">
+        <label>Equipped</label>
+        <input type="checkbox" name="system.equipped" {{#if system.equipped}}checked{{/if}} />
+      </div>
+
+    </div>
+
+    <div class="field-group full-width">
+      <label>Description</label>
+      <textarea name="system.description" rows="3">{{system.description}}</textarea>
+    </div>
+
+    <div class="field-group full-width">
+      <label>Special Notes</label>
+      <textarea name="system.notes" rows="2">{{system.notes}}</textarea>
+    </div>
+  </section>
+</form>

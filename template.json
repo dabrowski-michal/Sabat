@@ -1,0 +1,169 @@
+{
+  "Actor": {
+    "types": ["character", "monster"],
+    "templates": {
+      "characteristics": {
+        "characteristics": {
+          "str": 10,
+          "agi": 10,
+          "dex": 10,
+          "vit": 10,
+          "per": 10,
+          "com": 10,
+          "cul": 10
+        }
+      }
+    },
+    "character": {
+      "templates": ["characteristics"],
+      "background": {
+        "kingdom": "",
+        "people": "",
+        "socialClass": "",
+        "profession": "",
+        "fathersProfession": "",
+        "age": 0,
+        "height": 0,
+        "weight": 0,
+        "family": "",
+        "biography": ""
+      },
+      "health": {
+        "value": 10,
+        "max": 10
+      },
+      "secondaryCharacteristics": {
+        "luckInitial": 0,
+        "luckCurrent": 0,
+        "temperance": 0,
+        "rr": 50,
+        "irr": 50,
+        "app": 10,
+        "concentrationPoints": {
+          "value": 0,
+          "max": 0
+        },
+        "faithPoints": {
+          "value": 0,
+          "max": 0
+        }
+      },
+      "armor": {
+        "head": 0,
+        "rightArm": 0,
+        "leftArm": 0,
+        "chest1": 0,
+        "chest2": 0,
+        "chest3": 0,
+        "abdomen1": 0,
+        "abdomen2": 0,
+        "rightLeg": 0,
+        "leftLeg": 0
+      },
+      "skills": {
+        "alchemy":          { "value": 0, "advancement": false },
+        "animalKnowledge":  { "value": 0, "advancement": false },
+        "areaKnowledge":    { "value": 0, "advancement": false },
+        "astrology":        { "value": 0, "advancement": false },
+        "climb":            { "value": 0, "advancement": false },
+        "command":          { "value": 0, "advancement": false },
+        "commerce":         { "value": 0, "advancement": false },
+        "conceal":          { "value": 0, "advancement": false },
+        "courtEtiquette":   { "value": 0, "advancement": false },
+        "craft":            { "value": 0, "advancement": false },
+        "discovery":        { "value": 0, "advancement": false },
+        "disguise":         { "value": 0, "advancement": false },
+        "dodge":            { "value": 0, "advancement": false },
+        "drive":            { "value": 0, "advancement": false },
+        "eloquence":        { "value": 0, "advancement": false },
+        "empathy":          { "value": 0, "advancement": false },
+        "games":            { "value": 0, "advancement": false },
+        "heal":             { "value": 0, "advancement": false },
+        "jump":             { "value": 0, "advancement": false },
+        "language":         { "value": 0, "advancement": false },
+        "legends":          { "value": 0, "advancement": false },
+        "listen":           { "value": 0, "advancement": false },
+        "magicalKnowledge": { "value": 0, "advancement": false },
+        "medicine":         { "value": 0, "advancement": false },
+        "memory":           { "value": 0, "advancement": false },
+        "mineralKnowledge": { "value": 0, "advancement": false },
+        "music":            { "value": 0, "advancement": false },
+        "pickLock":         { "value": 0, "advancement": false },
+        "plantKnowledge":   { "value": 0, "advancement": false },
+        "readWrite":        { "value": 0, "advancement": false },
+        "ride":             { "value": 0, "advancement": false },
+        "run":              { "value": 0, "advancement": false },
+        "seduction":        { "value": 0, "advancement": false },
+        "shipHandling":     { "value": 0, "advancement": false },
+        "singing":          { "value": 0, "advancement": false },
+        "sleightOfHand":    { "value": 0, "advancement": false },
+        "stealth":          { "value": 0, "advancement": false },
+        "swim":             { "value": 0, "advancement": false },
+        "taste":            { "value": 0, "advancement": false },
+        "teach":            { "value": 0, "advancement": false },
+        "theology":         { "value": 0, "advancement": false },
+        "throw":            { "value": 0, "advancement": false },
+        "torture":          { "value": 0, "advancement": false },
+        "track":            { "value": 0, "advancement": false },
+        "axes":             { "value": 0, "advancement": false },
+        "bows":             { "value": 0, "advancement": false },
+        "brawl":            { "value": 0, "advancement": false },
+        "clubs":            { "value": 0, "advancement": false },
+        "crossbows":        { "value": 0, "advancement": false },
+        "knives":           { "value": 0, "advancement": false },
+        "longswords":       { "value": 0, "advancement": false },
+        "maces":            { "value": 0, "advancement": false },
+        "shields":          { "value": 0, "advancement": false },
+        "slings":           { "value": 0, "advancement": false },
+        "spears":           { "value": 0, "advancement": false },
+        "swords":           { "value": 0, "advancement": false }
+      }
+    },
+    "monster": {
+      "templates": ["characteristics"],
+      "description": "",
+      "creatureType": "",
+      "health": {
+        "value": 20,
+        "max": 20
+      },
+      "specialAbilities": ""
+    }
+  },
+  "Item": {
+    "types": ["weapon", "equipment", "item", "spell"],
+    "templates": {},
+    "weapon": {
+      "alternativeName": "",
+      "description": "",
+      "minimumStrength": 0,
+      "damage": "1d6",
+      "size": "Medium",
+      "twoHanded": false,
+      "reload": 0,
+      "range": "Melee",
+      "equipped": false,
+      "notes": ""
+    },
+    "equipment": {
+      "description": "",
+      "weight": 0,
+      "quantity": 1,
+      "equipped": false,
+      "armorValue": 0
+    },
+    "item": {
+      "description": "",
+      "weight": 0,
+      "quantity": 1,
+      "notes": ""
+    },
+    "spell": {
+      "description": "",
+      "vis": "Prima",
+      "concentrationCost": 0,
+      "duration": "",
+      "notes": ""
+    }
+  }
+}
