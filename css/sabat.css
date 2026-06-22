@@ -169,6 +169,7 @@
 .sabat-sheet .char-slider-row {
   display: flex; align-items: center; gap: 0;
   height: 66px;
+  justify-content: center;
 }
 
 .sabat-sheet .char-slider-val {
@@ -187,9 +188,10 @@
   padding: 0 28px; font-style: italic;
 }
 
-/* Track container — no border */
+/* Track container — fixed 800px width */
 .sabat-sheet .slider-track-frame {
-  flex: 1;
+  width: 800px;
+  flex: none;
   position: relative;
   height: 66px;
   border: none;
