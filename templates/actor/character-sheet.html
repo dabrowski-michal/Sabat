@@ -1,6 +1,5 @@
 <form class="sabat-sheet character-sheet" autocomplete="off">
 
-  <!-- ===== HEADER ===== -->
   <header class="sheet-header">
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Character Name" /></h1>
@@ -66,17 +65,39 @@
             <img class="portrait-layer layer-portrait-bg" id="portrait-bg-layer" src="{{alignmentBackground}}" alt="" />
             <img class="portrait-layer layer-portrait-char" src="{{actor.img}}" alt="{{actor.name}}" />
           </div>
+
           <div class="primary-chars panel">
             <h3 class="panel-title">Primary Characteristics</h3>
             <div class="char-grid">
-              <div class="char-item"><label class="char-label">STR</label><span class="char-name">Strength</span><input class="char-value" type="number" name="system.characteristics.str" value="{{system.characteristics.str}}" min="1" max="20" /></div>
-              <div class="char-item"><label class="char-label">AGI</label><span class="char-name">Agility</span><input class="char-value" type="number" name="system.characteristics.agi" value="{{system.characteristics.agi}}" min="1" max="20" /></div>
-              <div class="char-item"><label class="char-label">DEX</label><span class="char-name">Dexterity</span><input class="char-value" type="number" name="system.characteristics.dex" value="{{system.characteristics.dex}}" min="1" max="20" /></div>
-              <div class="char-item"><label class="char-label">VIT</label><span class="char-name">Vitality</span><input class="char-value" type="number" name="system.characteristics.vit" value="{{system.characteristics.vit}}" min="1" max="20" /></div>
-              <div class="char-item"><label class="char-label">PER</label><span class="char-name">Perception</span><input class="char-value" type="number" name="system.characteristics.per" value="{{system.characteristics.per}}" min="1" max="20" /></div>
-              <div class="char-item"><label class="char-label">COM</label><span class="char-name">Communication</span><input class="char-value" type="number" name="system.characteristics.com" value="{{system.characteristics.com}}" min="1" max="20" /></div>
-              <div class="char-item"><label class="char-label">CUL</label><span class="char-name">Culture</span><input class="char-value" type="number" name="system.characteristics.cul" value="{{system.characteristics.cul}}" min="1" max="20" /></div>
-              <div class="char-item"><label class="char-label">APP</label><span class="char-name">Appearance</span><input class="char-value" type="number" name="system.secondaryCharacteristics.app" value="{{system.secondaryCharacteristics.app}}" min="0" /></div>
+              <div class="char-item"><span class="char-icon"><i class="fas fa-fist-raised"></i></span><span class="char-name">STRENGTH</span><input class="char-value" type="number" name="system.characteristics.str" value="{{system.characteristics.str}}" min="1" max="20" /></div>
+              <div class="char-item"><span class="char-icon"><i class="fas fa-running"></i></span><span class="char-name">AGILITY</span><input class="char-value" type="number" name="system.characteristics.agi" value="{{system.characteristics.agi}}" min="1" max="20" /></div>
+              <div class="char-item"><span class="char-icon"><i class="fas fa-hands"></i></span><span class="char-name">DEXTERITY</span><input class="char-value" type="number" name="system.characteristics.dex" value="{{system.characteristics.dex}}" min="1" max="20" /></div>
+              <div class="char-item"><span class="char-icon"><i class="fas fa-heartbeat"></i></span><span class="char-name">VITALITY</span><input class="char-value" type="number" name="system.characteristics.vit" value="{{system.characteristics.vit}}" min="1" max="20" /></div>
+              <div class="char-item"><span class="char-icon"><i class="fas fa-eye"></i></span><span class="char-name">PERCEPTION</span><input class="char-value" type="number" name="system.characteristics.per" value="{{system.characteristics.per}}" min="1" max="20" /></div>
+              <div class="char-item"><span class="char-icon"><i class="fas fa-comments"></i></span><span class="char-name">COMMUNICATION</span><input class="char-value" type="number" name="system.characteristics.com" value="{{system.characteristics.com}}" min="1" max="20" /></div>
+              <div class="char-item"><span class="char-icon"><i class="fas fa-book"></i></span><span class="char-name">CULTURE</span><input class="char-value" type="number" name="system.characteristics.cul" value="{{system.characteristics.cul}}" min="1" max="20" /></div>
+              <div class="char-item"><span class="char-icon"><i class="fas fa-gem"></i></span><span class="char-name">APPEARANCE</span><input class="char-value" type="number" name="system.secondaryCharacteristics.app" value="{{system.secondaryCharacteristics.app}}" min="0" /></div>
+            </div>
+          </div>
+
+          <!-- Experience / Temperance / Willpower -->
+          <div class="extras-panel panel">
+            <div class="extras-grid">
+              <div class="extras-item">
+                <span class="extras-icon"><i class="fas fa-scroll"></i></span>
+                <label>Experience</label>
+                <input type="number" name="system.experience" value="{{system.experience}}" min="0" />
+              </div>
+              <div class="extras-item">
+                <span class="extras-icon"><i class="fas fa-balance-scale"></i></span>
+                <label>Temperance</label>
+                <input type="number" name="system.secondaryCharacteristics.temperance" value="{{system.secondaryCharacteristics.temperance}}" min="0" max="100" />
+              </div>
+              <div class="extras-item">
+                <span class="extras-icon"><i class="fas fa-brain"></i></span>
+                <label>Willpower</label>
+                <input type="number" name="system.willpower" value="{{system.willpower}}" min="0" />
+              </div>
             </div>
           </div>
         </div>
@@ -84,74 +105,52 @@
         <div class="chars-right">
           <div class="secondary-chars panel">
             <h3 class="panel-title">Secondary Characteristics</h3>
-
             <div class="sliders-stack">
 
-              <!-- Life Points -->
-              <div class="char-slider" data-theme="hp">
+              <div class="char-slider">
                 <label class="char-slider-title">Life Points</label>
                 <div class="char-slider-row">
                   <span class="char-slider-val" id="hp-current-display">{{system.health.value}}</span>
-                  <input type="range" name="system.health.value" id="hp-slider"
-                    class="thick-slider slider-hp" min="0" max="{{system.health.max}}"
-                    value="{{system.health.value}}" />
+                  <input type="range" name="system.health.value" id="hp-slider" class="thick-slider" min="0" max="{{system.health.max}}" value="{{system.health.value}}" />
                   <span class="char-slider-val">{{system.health.max}}</span>
                 </div>
               </div>
 
-              <!-- Luck -->
-              <div class="char-slider" data-theme="luck">
+              <div class="char-slider">
                 <label class="char-slider-title">Luck</label>
                 <div class="char-slider-row">
                   <span class="char-slider-val" id="luck-current-display">{{system.secondaryCharacteristics.luckCurrent}}</span>
-                  <input type="range" name="system.secondaryCharacteristics.luckCurrent" id="luck-slider"
-                    class="thick-slider slider-luck" min="0" max="{{system.secondaryCharacteristics.luckInitial}}"
-                    value="{{system.secondaryCharacteristics.luckCurrent}}" />
+                  <input type="range" name="system.secondaryCharacteristics.luckCurrent" id="luck-slider" class="thick-slider" min="0" max="{{system.secondaryCharacteristics.luckInitial}}" value="{{system.secondaryCharacteristics.luckCurrent}}" />
                   <span class="char-slider-val">{{system.secondaryCharacteristics.luckInitial}}</span>
                 </div>
               </div>
 
-              <!-- Rationality / Irrationality -->
-              <div class="char-slider" data-theme="rr">
+              <div class="char-slider">
                 <label class="char-slider-title">Rationality</label>
                 <div class="char-slider-row">
                   <span class="char-slider-val" id="irr-display">{{system.secondaryCharacteristics.irr}}</span>
-                  <input type="range" name="system.secondaryCharacteristics.rr" id="rr-slider"
-                    class="thick-slider slider-rr" min="0" max="100"
-                    value="{{system.secondaryCharacteristics.rr}}" />
+                  <input type="range" name="system.secondaryCharacteristics.rr" id="rr-slider" class="thick-slider" min="0" max="100" value="{{system.secondaryCharacteristics.rr}}" />
                   <span class="char-slider-val" id="rr-display">{{system.secondaryCharacteristics.rr}}</span>
                 </div>
                 <div class="char-slider-labels"><span>Irrationality</span><span>Rationality</span></div>
               </div>
 
-              <!-- Concentration Points -->
-              <div class="char-slider" data-theme="cp">
+              <div class="char-slider">
                 <label class="char-slider-title">Concentration Points</label>
                 <div class="char-slider-row">
                   <span class="char-slider-val" id="cp-current-display">{{system.secondaryCharacteristics.concentrationPoints.value}}</span>
-                  <input type="range" name="system.secondaryCharacteristics.concentrationPoints.value" id="cp-slider"
-                    class="thick-slider slider-cp" min="0" max="{{system.secondaryCharacteristics.concentrationPoints.max}}"
-                    value="{{system.secondaryCharacteristics.concentrationPoints.value}}" />
+                  <input type="range" name="system.secondaryCharacteristics.concentrationPoints.value" id="cp-slider" class="thick-slider" min="0" max="{{system.secondaryCharacteristics.concentrationPoints.max}}" value="{{system.secondaryCharacteristics.concentrationPoints.value}}" />
                   <span class="char-slider-val">{{system.secondaryCharacteristics.concentrationPoints.max}}</span>
                 </div>
               </div>
 
-              <!-- Faith Points -->
-              <div class="char-slider" data-theme="fp">
+              <div class="char-slider">
                 <label class="char-slider-title">Faith Points</label>
                 <div class="char-slider-row">
                   <span class="char-slider-val" id="fp-current-display">{{system.secondaryCharacteristics.faithPoints.value}}</span>
-                  <input type="range" name="system.secondaryCharacteristics.faithPoints.value" id="fp-slider"
-                    class="thick-slider slider-fp" min="0" max="{{system.secondaryCharacteristics.faithPoints.max}}"
-                    value="{{system.secondaryCharacteristics.faithPoints.value}}" />
+                  <input type="range" name="system.secondaryCharacteristics.faithPoints.value" id="fp-slider" class="thick-slider" min="0" max="{{system.secondaryCharacteristics.faithPoints.max}}" value="{{system.secondaryCharacteristics.faithPoints.value}}" />
                   <span class="char-slider-val">{{system.secondaryCharacteristics.faithPoints.max}}</span>
                 </div>
-              </div>
-
-              <!-- Temperance -->
-              <div class="temperance-row">
-                <label>Temperance</label>
-                <input type="number" name="system.secondaryCharacteristics.temperance" value="{{system.secondaryCharacteristics.temperance}}" min="0" max="100" />
               </div>
 
             </div>
@@ -160,7 +159,6 @@
           <!-- FAVOURITES -->
           <div class="favourites-panel panel">
             <h3 class="panel-title">Favourites</h3>
-
             {{#if favSkillsList.length}}
             <div class="fav-section">
               <h4 class="fav-section-title">Skills</h4>
@@ -175,13 +173,12 @@
               {{/each}}
             </div>
             {{/if}}
-
             {{#if favWeaponsList.length}}
             <div class="fav-section">
               <h4 class="fav-section-title">Weapons</h4>
               {{#each favWeaponsList}}
               <div class="fav-row fav-weapon-row" data-item-id="{{this.id}}">
-                <a class="weapon-roll-btn" title="Roll attack"><i class="fas fa-dice-d20"></i></a>
+                <a class="weapon-roll-btn item-dmg-btn" title="Roll attack"><i class="fas fa-dice-d20"></i></a>
                 <a class="fav-toggle" data-fav-type="weapons" data-fav-key="{{this.id}}" title="Remove"><i class="fas fa-star fav-active"></i></a>
                 <span class="skill-name">{{this.name}}</span>
                 <span class="fav-val">{{this.skillLabel}} ({{this.skillValue}})</span>
@@ -190,7 +187,6 @@
               {{/each}}
             </div>
             {{/if}}
-
             {{#unless favSkillsList.length}}{{#unless favWeaponsList.length}}
             <p class="item-empty">No favourites yet. Click ★ on skills or weapons.</p>
             {{/unless}}{{/unless}}
@@ -200,46 +196,9 @@
       </div>
     </div>
 
-    <!-- ===== SKILLS ===== -->
+    <!-- ===== SKILLS (2-col flow, combat first) ===== -->
     <div class="tab skills" data-group="primary" data-tab="skills">
       <div class="skills-layout">
-
-        <div class="skills-general">
-          {{#each skillGroups}}
-          <div class="skill-group panel">
-            <div class="section-header">
-              <h3 class="panel-title">{{this.label}}</h3>
-              <a class="skill-add" data-attr="{{this.attrKey}}" title="Add skill"><i class="fas fa-plus"></i></a>
-            </div>
-            {{#each this.skills}}
-            <div class="skill-row">
-              <a class="skill-roll-btn" data-skill="{{this.key}}" data-label="{{this.label}}" data-target="{{this.skill.value}}" title="Roll"><i class="fas fa-dice-d20"></i></a>
-              <span class="skill-name">{{this.label}}</span>
-              <input class="skill-value" type="number" name="system.skills.{{this.key}}.value" value="{{this.skill.value}}" min="0" max="200" />
-              <input class="skill-adv" type="checkbox" name="system.skills.{{this.key}}.advancement" {{#if this.skill.advancement}}checked{{/if}} />
-              <div class="skill-controls">
-                <a class="fav-toggle" data-fav-type="skills" data-fav-key="{{this.key}}" title="Favourite"><i class="fas fa-star {{#if this.isFav}}fav-active{{else}}fav-inactive{{/if}}"></i></a>
-                <a class="skill-edit" data-skill="{{this.key}}" title="Edit"><i class="fas fa-edit"></i></a>
-                <a class="skill-delete" data-skill="{{this.key}}" title="Reset"><i class="fas fa-trash"></i></a>
-              </div>
-            </div>
-            {{/each}}
-            {{#each this.customSkills}}
-            <div class="skill-row custom-skill-row">
-              <a class="skill-roll-btn" data-custom-id="{{this.id}}" data-label="{{this.name}}" data-target="{{this.value}}" title="Roll"><i class="fas fa-dice-d20"></i></a>
-              <span class="skill-name">{{this.name}}</span>
-              <input class="skill-value" type="number" name="system.customSkills.{{this.id}}.value" value="{{this.value}}" min="0" max="200" />
-              <input class="skill-adv" type="checkbox" name="system.customSkills.{{this.id}}.advancement" {{#if this.advancement}}checked{{/if}} />
-              <div class="skill-controls">
-                <a class="fav-toggle" data-fav-type="skills" data-fav-key="custom.{{this.id}}" title="Favourite"><i class="fas fa-star {{#if this.isFav}}fav-active{{else}}fav-inactive{{/if}}"></i></a>
-                <a class="skill-edit" data-custom-id="{{this.id}}" title="Edit"><i class="fas fa-edit"></i></a>
-                <a class="custom-skill-delete" data-custom-id="{{this.id}}" title="Delete"><i class="fas fa-trash"></i></a>
-              </div>
-            </div>
-            {{/each}}
-          </div>
-          {{/each}}
-        </div>
 
         <div class="skill-column panel combat-skills">
           <h3 class="panel-title">Combat Skills</h3>
@@ -257,6 +216,41 @@
           </div>
           {{/each}}
         </div>
+
+        {{#each skillGroups}}
+        <div class="skill-group panel">
+          <div class="section-header">
+            <h3 class="panel-title">{{this.label}}</h3>
+            <a class="skill-add" data-attr="{{this.attrKey}}" title="Add skill"><i class="fas fa-plus"></i></a>
+          </div>
+          {{#each this.skills}}
+          <div class="skill-row">
+            <a class="skill-roll-btn" data-skill="{{this.key}}" data-label="{{this.label}}" data-target="{{this.skill.value}}" title="Roll"><i class="fas fa-dice-d20"></i></a>
+            <span class="skill-name">{{this.label}}</span>
+            <input class="skill-value" type="number" name="system.skills.{{this.key}}.value" value="{{this.skill.value}}" min="0" max="200" />
+            <input class="skill-adv" type="checkbox" name="system.skills.{{this.key}}.advancement" {{#if this.skill.advancement}}checked{{/if}} />
+            <div class="skill-controls">
+              <a class="fav-toggle" data-fav-type="skills" data-fav-key="{{this.key}}" title="Favourite"><i class="fas fa-star {{#if this.isFav}}fav-active{{else}}fav-inactive{{/if}}"></i></a>
+              <a class="skill-edit" data-skill="{{this.key}}" title="Edit"><i class="fas fa-edit"></i></a>
+              <a class="skill-delete" data-skill="{{this.key}}" title="Reset"><i class="fas fa-trash"></i></a>
+            </div>
+          </div>
+          {{/each}}
+          {{#each this.customSkills}}
+          <div class="skill-row custom-skill-row">
+            <a class="skill-roll-btn" data-custom-id="{{this.id}}" data-label="{{this.name}}" data-target="{{this.value}}" title="Roll"><i class="fas fa-dice-d20"></i></a>
+            <span class="skill-name">{{this.name}}</span>
+            <input class="skill-value" type="number" name="system.customSkills.{{this.id}}.value" value="{{this.value}}" min="0" max="200" />
+            <input class="skill-adv" type="checkbox" name="system.customSkills.{{this.id}}.advancement" {{#if this.advancement}}checked{{/if}} />
+            <div class="skill-controls">
+              <a class="fav-toggle" data-fav-type="skills" data-fav-key="custom.{{this.id}}" title="Favourite"><i class="fas fa-star {{#if this.isFav}}fav-active{{else}}fav-inactive{{/if}}"></i></a>
+              <a class="skill-edit" data-custom-id="{{this.id}}" title="Edit"><i class="fas fa-edit"></i></a>
+              <a class="custom-skill-delete" data-custom-id="{{this.id}}" title="Delete"><i class="fas fa-trash"></i></a>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+        {{/each}}
 
       </div>
     </div>
@@ -293,12 +287,9 @@
 
           <!-- WEAPONS -->
           <div class="items-section panel">
-            <div class="section-header">
-              <h3 class="panel-title">Weapons</h3>
-              <a class="item-create" data-type="weapon" title="Add weapon"><i class="fas fa-plus"></i></a>
-            </div>
+            <div class="section-header"><h3 class="panel-title">Weapons</h3><a class="item-create" data-type="weapon" title="Add weapon"><i class="fas fa-plus"></i></a></div>
             <div class="item-list-header weapon-list-header">
-              <span></span><span class="col-name">Name</span><span class="col-skill">Skill</span><span class="col-damage">Damage</span><span class="col-controls">Controls</span>
+              <span></span><span class="col-name">Name</span><span class="col-skill">Skill</span><span class="col-damage">Dmg</span><span class="col-controls"></span>
             </div>
             <ul class="item-list">
               {{#each weaponsData}}
@@ -314,20 +305,15 @@
                   <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>
                 </div>
               </li>
-              {{else}}
-              <li class="item-empty">No weapons</li>
-              {{/each}}
+              {{else}}<li class="item-empty">No weapons</li>{{/each}}
             </ul>
           </div>
 
           <!-- ARMOR -->
           <div class="items-section panel">
-            <div class="section-header">
-              <h3 class="panel-title">Armor</h3>
-              <a class="item-create" data-type="armor" title="Add armor"><i class="fas fa-plus"></i></a>
-            </div>
+            <div class="section-header"><h3 class="panel-title">Armor</h3><a class="item-create" data-type="armor" title="Add armor"><i class="fas fa-plus"></i></a></div>
             <div class="item-list-header armor-list-header">
-              <span class="col-name">Name</span><span class="col-prot">Prot</span><span class="col-price">Price</span><span class="col-controls">Controls</span>
+              <span class="col-name">Name</span><span class="col-prot">Prot</span><span class="col-price">Price</span><span class="col-controls"></span>
             </div>
             <ul class="item-list">
               {{#each armor}}
@@ -341,20 +327,37 @@
                   <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>
                 </div>
               </li>
-              {{else}}
-              <li class="item-empty">No armor</li>
-              {{/each}}
+              {{else}}<li class="item-empty">No armor</li>{{/each}}
             </ul>
+          </div>
+
+          <!-- PURSE -->
+          <div class="purse-panel panel">
+            <h3 class="panel-title"><i class="fas fa-coins"></i> Purse</h3>
+            <div class="purse-grid">
+              <div class="purse-item">
+                <span class="purse-icon"><i class="fas fa-coins"></i></span>
+                <label>Money</label>
+                <input type="number" name="system.purse.money" value="{{system.purse.money}}" min="0" />
+              </div>
+              <div class="purse-item">
+                <span class="purse-icon"><i class="fas fa-arrow-circle-down" style="color:#2d8a2d"></i></span>
+                <label>Weekly Income</label>
+                <input type="number" name="system.purse.weeklyIncome" value="{{system.purse.weeklyIncome}}" min="0" />
+              </div>
+              <div class="purse-item">
+                <span class="purse-icon"><i class="fas fa-arrow-circle-up" style="color:#c0392b"></i></span>
+                <label>Weekly Expenses</label>
+                <input type="number" name="system.purse.weeklyExpenses" value="{{system.purse.weeklyExpenses}}" min="0" />
+              </div>
+            </div>
           </div>
 
           <!-- ITEMS -->
           <div class="items-section panel">
-            <div class="section-header">
-              <h3 class="panel-title">Items</h3>
-              <a class="item-create" data-type="item" title="Add item"><i class="fas fa-plus"></i></a>
-            </div>
+            <div class="section-header"><h3 class="panel-title">Items</h3><a class="item-create" data-type="item" title="Add item"><i class="fas fa-plus"></i></a></div>
             <div class="item-list-header item-list-cols">
-              <span class="col-name">Name</span><span class="col-qty">Qty</span><span class="col-weight">Wt</span><span class="col-price">Price</span><span class="col-controls">Controls</span>
+              <span class="col-name">Name</span><span class="col-qty">Qty</span><span class="col-weight">Wt</span><span class="col-price">Price</span><span class="col-controls"></span>
             </div>
             <ul class="item-list">
               {{#each items}}
@@ -363,14 +366,9 @@
                 <span class="item-qty">{{this.system.quantity}}</span>
                 <span class="item-weight">{{this.system.weight}}</span>
                 <span class="item-price">{{this.system.price}}</span>
-                <div class="item-controls">
-                  <a class="item-edit" title="Edit"><i class="fas fa-edit"></i></a>
-                  <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>
-                </div>
+                <div class="item-controls"><a class="item-edit" title="Edit"><i class="fas fa-edit"></i></a><a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a></div>
               </li>
-              {{else}}
-              <li class="item-empty">No items</li>
-              {{/each}}
+              {{else}}<li class="item-empty">No items</li>{{/each}}
             </ul>
           </div>
 

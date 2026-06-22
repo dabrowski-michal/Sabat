@@ -1,9 +1,7 @@
 /* =========================================
    SABAT — Foundry VTT System Stylesheet
-   Medieval dark-fantasy aesthetic
    ========================================= */
 
-/* ---- Variables ---- */
 :root {
   --aq-parchment:   #f5ead6;
   --aq-parchment-d: #e8d9b8;
@@ -26,15 +24,15 @@
   font-family: var(--aq-font-body);
   color: var(--aq-text);
   background: var(--aq-parchment);
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  min-width: 800px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
 }
 
 .sabat-sheet input[type="text"],
 .sabat-sheet input[type="number"],
 .sabat-sheet select,
 .sabat-sheet textarea {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255,255,255,0.5);
   border: 1px solid var(--aq-border);
   border-radius: 2px;
   color: var(--aq-text);
@@ -53,741 +51,311 @@
 
 /* ---- Header ---- */
 .sabat-sheet .sheet-header {
-  display: flex;
-  gap: 12px;
-  padding: 10px 12px;
-  background: var(--aq-brown);
-  background-image: linear-gradient(135deg, var(--aq-brown-dark) 0%, var(--aq-brown) 100%);
+  display: flex; gap: 12px; padding: 10px 12px;
+  background: linear-gradient(135deg, var(--aq-brown-dark), var(--aq-brown));
   border-bottom: 3px solid var(--aq-gold);
   color: var(--aq-parchment);
 }
-
 .sabat-sheet .header-fields { flex: 1; }
-
 .sabat-sheet .charname input {
-  font-size: 1.5em;
-  font-family: var(--aq-font-label);
-  font-weight: bold;
-  color: var(--aq-parchment);
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--aq-gold);
-  width: 100%;
-  margin-bottom: 6px;
+  font-size: 1.5em; font-family: var(--aq-font-label); font-weight: bold;
+  color: var(--aq-parchment); background: transparent;
+  border: none; border-bottom: 1px solid var(--aq-gold);
+  width: 100%; margin-bottom: 6px;
 }
-
 .sabat-sheet .charname input::placeholder { color: rgba(245,234,214,0.5); }
-
-.sabat-sheet .header-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-items: flex-end;
-}
-
-.sabat-sheet .header-row .field-group {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.sabat-sheet .header-row label {
-  font-size: 0.65em;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--aq-gold);
-}
-
+.sabat-sheet .header-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; }
+.sabat-sheet .header-row .field-group { display: flex; flex-direction: column; gap: 2px; }
+.sabat-sheet .header-row label { font-size: 0.65em; text-transform: uppercase; letter-spacing: 0.05em; color: var(--aq-gold); }
 .sabat-sheet .header-row input,
-.sabat-sheet .header-row select {
-  background: rgba(0,0,0,0.25);
-  border: 1px solid var(--aq-gold);
-  color: var(--aq-parchment);
-  font-size: 0.85em;
-  padding: 2px 6px;
-  max-width: 140px;
-}
-
+.sabat-sheet .header-row select { background: rgba(0,0,0,0.25); border: 1px solid var(--aq-gold); color: var(--aq-parchment); font-size: 0.85em; padding: 2px 6px; max-width: 140px; }
 .sabat-sheet .header-row input[type="number"] { width: 60px; }
 
 /* ---- Tabs ---- */
-.sabat-sheet .sheet-tabs {
-  display: flex;
-  gap: 0;
-  border-bottom: 2px solid var(--aq-brown);
-  background: var(--aq-parchment-d);
-  padding: 0 8px;
-}
-
+.sabat-sheet .sheet-tabs { display: flex; border-bottom: 2px solid var(--aq-brown); background: var(--aq-parchment-d); padding: 0 8px; }
 .sabat-sheet .sheet-tabs .item {
-  padding: 6px 14px;
-  font-size: 0.85em;
-  font-family: var(--aq-font-label);
-  color: var(--aq-brown-light);
-  cursor: pointer;
-  border-bottom: 3px solid transparent;
-  transition: color 0.15s, border-color 0.15s;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-weight: bold;
-  margin-bottom: -2px;
+  padding: 6px 14px; font-size: 0.85em; font-family: var(--aq-font-label);
+  color: var(--aq-brown-light); cursor: pointer;
+  border-bottom: 3px solid transparent; transition: color 0.15s, border-color 0.15s;
+  text-transform: uppercase; letter-spacing: 0.04em; font-weight: bold; margin-bottom: -2px;
 }
-
 .sabat-sheet .sheet-tabs .item:hover { color: var(--aq-brown); }
-.sabat-sheet .sheet-tabs .item.active {
-  color: var(--aq-brown-dark);
-  border-bottom-color: var(--aq-gold);
-}
+.sabat-sheet .sheet-tabs .item.active { color: var(--aq-brown-dark); border-bottom-color: var(--aq-gold); }
 
-/* ---- Sheet Body ---- */
+/* ---- Body ---- */
 .sabat-sheet .sheet-body { padding: 10px 12px; overflow-y: auto; }
 .sabat-sheet .tab { display: none; }
 .sabat-sheet .tab.active { display: block; }
 
 /* ---- Panels ---- */
 .sabat-sheet .panel {
-  background: rgba(255,255,255,0.3);
-  border: 1px solid var(--aq-border);
-  border-radius: 4px;
-  padding: 10px 12px;
-  margin-bottom: 10px;
+  background: rgba(255,255,255,0.3); border: 1px solid var(--aq-border);
+  border-radius: 4px; padding: 10px 12px; margin-bottom: 10px;
 }
-
 .sabat-sheet .panel-title {
-  font-family: var(--aq-font-label);
-  font-size: 0.9em;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--aq-brown);
-  margin: 0 0 8px 0;
-  padding-bottom: 4px;
-  border-bottom: 1px solid var(--aq-gold);
+  font-family: var(--aq-font-label); font-size: 0.9em;
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--aq-brown);
+  margin: 0 0 8px; padding-bottom: 4px; border-bottom: 1px solid var(--aq-gold);
 }
 
 /* ---- Characteristics Tab ---- */
-.sabat-sheet .chars-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  align-items: start;
-}
-
+.sabat-sheet .chars-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: start; }
 .sabat-sheet .chars-left,
-.sabat-sheet .chars-right {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+.sabat-sheet .chars-right { display: flex; flex-direction: column; gap: 10px; }
 
-/* Character Portrait — borderless square */
+/* Portrait */
 .sabat-sheet .char-portrait-container {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  border: none !important;
-  box-shadow: none !important;
-  background: none !important;
+  position: relative; width: 100%; aspect-ratio: 1/1; overflow: hidden;
+  border: none !important; box-shadow: none !important; background: none !important;
 }
+.portrait-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+.layer-portrait-bg { z-index: 1; }
+.layer-portrait-char { z-index: 2; object-fit: contain; top: 50%; left: 50%; width: 90%; height: 90%; transform: translate(-50%,-50%); }
 
-.portrait-layer {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
+/* Primary chars — icons + UPPERCASE names */
+.sabat-sheet .char-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 10px; }
+.sabat-sheet .char-item { display: flex; align-items: center; gap: 6px; }
+.sabat-sheet .char-icon {
+  width: 26px; height: 26px; display: flex; align-items: center; justify-content: center;
+  background: var(--aq-brown); color: var(--aq-gold); border-radius: 4px;
+  font-size: 0.7em; flex-shrink: 0;
 }
-
-.layer-portrait-bg  { z-index: 1; }
-.layer-portrait-char {
-  z-index: 2;
-  object-fit: contain;
-  top: 50%; left: 50%;
-  width: 90%; height: 90%;
-  transform: translate(-50%, -50%);
-}
-
-/* Primary chars grid — 2 cols, horizontal items */
-.sabat-sheet .char-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5px 10px;
-}
-
-.sabat-sheet .char-item {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 6px;
-}
-
-.sabat-sheet .char-label {
-  font-family: var(--aq-font-label);
-  font-size: 0.75em;
-  font-weight: bold;
-  color: var(--aq-brown);
-  text-transform: uppercase;
-  width: 30px;
-  flex-shrink: 0;
-}
-
 .sabat-sheet .char-name {
-  font-size: 0.72em;
-  color: var(--aq-text-muted);
-  flex: 1;
+  font-size: 0.68em; color: var(--aq-brown); font-weight: bold;
+  text-transform: uppercase; letter-spacing: 0.03em; flex: 1;
 }
-
 .sabat-sheet .char-value {
-  width: 46px;
-  text-align: center;
-  font-family: var(--aq-font-number);
-  font-size: 1em;
-  font-weight: bold;
-  color: var(--aq-brown-dark);
-  border: 2px solid var(--aq-border) !important;
-  padding: 2px 3px !important;
-  flex-shrink: 0;
-}
-
-/* ---- Unified Thick Sliders ---- */
-.sabat-sheet .sliders-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.sabat-sheet .char-slider {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.sabat-sheet .char-slider-title {
-  font-size: 0.75em;
-  font-weight: bold;
-  color: var(--aq-brown);
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.sabat-sheet .char-slider-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.sabat-sheet .char-slider-val {
-  font-family: var(--aq-font-number);
-  font-weight: bold;
-  font-size: 0.95em;
-  color: var(--aq-brown-dark);
-  background: rgba(0,0,0,0.05);
-  border: 1px solid var(--aq-border);
-  border-radius: 3px;
-  padding: 2px 6px;
-  min-width: 32px;
-  text-align: center;
-  flex-shrink: 0;
-}
-
-.sabat-sheet .char-slider-labels {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.6em;
-  color: var(--aq-text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  padding: 0 38px;
-}
-
-/* Shared thick slider track */
-.sabat-sheet .thick-slider {
-  flex: 1;
-  -webkit-appearance: none;
-  appearance: none;
-  height: 18px;
-  border-radius: 9px;
-  outline: none;
-  cursor: pointer;
-  border: 1px solid rgba(0,0,0,0.2);
-}
-
-/* Shared thumb */
-.sabat-sheet .thick-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--aq-parchment);
-  border: 2px solid var(--aq-brown);
-  cursor: pointer;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
-}
-
-.sabat-sheet .thick-slider::-moz-range-thumb {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--aq-parchment);
-  border: 2px solid var(--aq-brown);
-  cursor: pointer;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
-}
-
-/* Life Points — red */
-.slider-hp {
-  background: linear-gradient(90deg, #5a0a0a, #c0392b, #e74c3c);
-}
-
-/* Luck — green */
-.slider-luck {
-  background: linear-gradient(90deg, #1a4a1a, #2d8a2d, #4abb4a);
-}
-
-/* Rationality — demonic (left) to celestial (right) */
-.slider-rr {
-  background: linear-gradient(90deg, #6a1b3a, #8b1a4a, #7b5ea7, #5b8dd9, #c9a227);
-}
-
-/* Concentration Points — demonic purple */
-.slider-cp {
-  background: linear-gradient(90deg, #2a0a2a, #6a1b5a, #9b3a8a);
-}
-
-/* Faith Points — celestial gold */
-.slider-fp {
-  background: linear-gradient(90deg, #5a4a0a, #c9a227, #e8d060);
-}
-
-/* Temperance row */
-.sabat-sheet .temperance-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding-top: 4px;
-  border-top: 1px solid rgba(0,0,0,0.08);
-}
-
-.sabat-sheet .temperance-row label {
-  font-size: 0.72em;
-  color: var(--aq-brown);
-  white-space: nowrap;
-  font-weight: bold;
-}
-
-.sabat-sheet .temperance-row input {
-  width: 56px;
-  text-align: center;
-}
-
-/* Legacy derived-value (still used in favourites etc.) */
-.sabat-sheet .derived-value {
-  font-family: var(--aq-font-number); font-weight: bold;
-  color: var(--aq-brown-dark);
-  background: rgba(0,0,0,0.05); border: 1px solid var(--aq-border);
-  border-radius: 2px; padding: 2px 6px;
-  min-width: 38px; text-align: center; display: inline-block;
-}
-
-/* Armor zones — 7 locations */
-.sabat-sheet .armor-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
-}
-
-.sabat-sheet .armor-item {
-  display: flex; flex-direction: column; align-items: center; gap: 2px;
-}
-
-.sabat-sheet .armor-item label {
-  font-size: 0.65em; color: var(--aq-text-muted); text-align: center;
-}
-
-.sabat-sheet .armor-item input {
   width: 42px; text-align: center; font-family: var(--aq-font-number);
+  font-size: 1em; font-weight: bold; color: var(--aq-brown-dark);
+  border: 2px solid var(--aq-border) !important; padding: 2px 3px !important; flex-shrink: 0;
 }
 
-/* ---- Favourite Toggle Star ---- */
-.fav-toggle {
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; font-size: 0.75em; transition: color 0.15s;
+/* Extras panel (Experience / Temperance / Willpower) */
+.sabat-sheet .extras-panel { padding: 8px 12px; }
+.sabat-sheet .extras-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+.sabat-sheet .extras-item { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.sabat-sheet .extras-icon {
+  width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+  background: var(--aq-brown); color: var(--aq-gold); border-radius: 50%;
+  font-size: 0.85em;
+}
+.sabat-sheet .extras-item label {
+  font-size: 0.65em; font-weight: bold; text-transform: uppercase;
+  letter-spacing: 0.04em; color: var(--aq-brown); text-align: center;
+}
+.sabat-sheet .extras-item input {
+  width: 52px; text-align: center; font-family: var(--aq-font-number);
+  font-weight: bold; font-size: 0.95em;
 }
 
-.fav-toggle .fav-active  { color: var(--aq-gold); }
+/* ---- Thick Sliders (fill = color, base = transparent / special) ---- */
+.sabat-sheet .sliders-stack { display: flex; flex-direction: column; gap: 10px; }
+.sabat-sheet .char-slider { display: flex; flex-direction: column; gap: 3px; }
+.sabat-sheet .char-slider-title {
+  font-size: 0.75em; font-weight: bold; color: var(--aq-brown);
+  text-align: center; text-transform: uppercase; letter-spacing: 0.04em;
+}
+.sabat-sheet .char-slider-row { display: flex; align-items: center; gap: 6px; }
+.sabat-sheet .char-slider-val {
+  font-family: var(--aq-font-number); font-weight: bold; font-size: 0.95em;
+  color: var(--aq-brown-dark); background: rgba(0,0,0,0.05);
+  border: 1px solid var(--aq-border); border-radius: 3px;
+  padding: 3px 6px; min-width: 32px; text-align: center; flex-shrink: 0;
+  line-height: 1;
+}
+.sabat-sheet .char-slider-labels {
+  display: flex; justify-content: space-between;
+  font-size: 0.6em; color: var(--aq-text-muted);
+  text-transform: uppercase; letter-spacing: 0.04em; padding: 0 38px;
+}
+
+.sabat-sheet .thick-slider {
+  flex: 1; -webkit-appearance: none; appearance: none;
+  height: 20px; border-radius: 10px; outline: none; cursor: pointer;
+  border: 1px solid rgba(0,0,0,0.15);
+  background: transparent;
+}
+.sabat-sheet .thick-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--aq-parchment); border: 2px solid var(--aq-brown);
+  cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,0.35);
+}
+.sabat-sheet .thick-slider::-moz-range-thumb {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--aq-parchment); border: 2px solid var(--aq-brown);
+  cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,0.35);
+}
+
+/* Legacy derived-value */
+.sabat-sheet .derived-value {
+  font-family: var(--aq-font-number); font-weight: bold; color: var(--aq-brown-dark);
+  background: rgba(0,0,0,0.05); border: 1px solid var(--aq-border);
+  border-radius: 2px; padding: 2px 6px; min-width: 38px; text-align: center; display: inline-block;
+}
+
+/* Armor zones */
+.sabat-sheet .armor-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.sabat-sheet .armor-item { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.sabat-sheet .armor-item label { font-size: 0.65em; color: var(--aq-text-muted); text-align: center; }
+.sabat-sheet .armor-item input { width: 42px; text-align: center; font-family: var(--aq-font-number); }
+
+/* ---- Favourite Star ---- */
+.fav-toggle { display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.75em; transition: color 0.15s; }
+.fav-toggle .fav-active { color: var(--aq-gold); }
 .fav-toggle .fav-inactive { color: var(--aq-border); opacity: 0.3; }
 .fav-toggle:hover .fav-inactive { opacity: 0.7; }
 
-/* ---- Favourites Panel (read-only) ---- */
+/* ---- Favourites Panel ---- */
 .sabat-sheet .favourites-panel .fav-section { margin-bottom: 8px; }
 .sabat-sheet .favourites-panel .fav-section:last-child { margin-bottom: 0; }
-
-.fav-section-title {
-  font-size: 0.72em; text-transform: uppercase; letter-spacing: 0.05em;
-  color: var(--aq-text-muted); margin: 0 0 4px; padding-bottom: 2px;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-}
-
-.sabat-sheet .fav-row {
-  display: grid; gap: 4px; align-items: center;
-  padding: 2px 4px; border-radius: 2px; transition: background 0.1s;
-}
-
+.fav-section-title { font-size: 0.72em; text-transform: uppercase; letter-spacing: 0.05em; color: var(--aq-text-muted); margin: 0 0 4px; padding-bottom: 2px; border-bottom: 1px solid rgba(0,0,0,0.1); }
+.sabat-sheet .fav-row { display: grid; gap: 4px; align-items: center; padding: 2px 4px; border-radius: 2px; transition: background 0.1s; }
 .sabat-sheet .fav-row:hover { background: rgba(201,162,39,0.15); }
-
-/* fav-skill: dice | star | name | value | adv-icon */
 .sabat-sheet .fav-skill-row { grid-template-columns: 18px 18px 1fr 36px 18px; }
-
-/* fav-weapon: dice | star | name | skill(val) | damage */
 .sabat-sheet .fav-weapon-row { grid-template-columns: 18px 18px 1fr 90px 50px; }
+.fav-val { font-family: var(--aq-font-number); font-size: 0.78em; color: var(--aq-brown-dark); text-align: center; font-weight: bold; }
+.fav-damage { font-family: var(--aq-font-number); font-size: 0.78em; color: var(--aq-red); text-align: center; font-weight: bold; }
+.fav-adv-icon { color: var(--aq-gold); font-size: 0.7em; text-align: center; display: inline-block; width: 18px; }
 
-.fav-val {
-  font-family: var(--aq-font-number); font-size: 0.78em;
-  color: var(--aq-brown-dark); text-align: center; font-weight: bold;
-}
-
-.fav-damage {
-  font-family: var(--aq-font-number); font-size: 0.78em;
-  color: var(--aq-red); text-align: center; font-weight: bold;
-}
-
-.fav-adv-icon {
-  color: var(--aq-gold); font-size: 0.7em; text-align: center;
-  display: inline-block; width: 18px;
-}
-
-/* (old green-slider and rr-slider replaced by .thick-slider system above) */
-
-/* ---- Skills Tab ---- */
-.sabat-sheet .skills-layout {
-  display: grid;
-  grid-template-columns: 1fr 260px;
-  gap: 10px; align-items: start;
-}
-
-.sabat-sheet .skills-general { column-count: 2; column-gap: 10px; }
-.sabat-sheet .skill-group { break-inside: avoid; margin-bottom: 10px; }
+/* ---- Skills Tab (2-column flow, combat first) ---- */
+.sabat-sheet .skills-layout { column-count: 2; column-gap: 10px; }
+.sabat-sheet .skills-layout > .panel,
+.sabat-sheet .skills-layout > .skill-group { break-inside: avoid; margin-bottom: 10px; }
 
 .sabat-sheet .col-name { text-align: left; }
 .sabat-sheet .col-attr, .sabat-sheet .col-pct, .sabat-sheet .col-adv { text-align: center; }
 
 /* General skill rows: dice | name | value | adv | controls */
 .sabat-sheet .skill-group .skill-row {
-  display: grid;
-  grid-template-columns: 18px 1fr 44px 22px 54px;
-  gap: 4px; align-items: center;
-  padding: 2px 4px; border-radius: 2px;
-  transition: background 0.1s;
+  display: grid; grid-template-columns: 18px 1fr 44px 22px 54px;
+  gap: 4px; align-items: center; padding: 2px 4px; border-radius: 2px; transition: background 0.1s;
 }
-
 /* Combat skill rows: dice | name | attr | value | adv | controls */
 .sabat-sheet .combat-skills .skill-row {
-  display: grid;
-  grid-template-columns: 18px 1fr 36px 44px 22px 40px;
-  gap: 4px; align-items: center;
-  padding: 2px 4px; border-radius: 2px;
-  transition: background 0.1s;
+  display: grid; grid-template-columns: 18px 1fr 36px 44px 22px 40px;
+  gap: 4px; align-items: center; padding: 2px 4px; border-radius: 2px; transition: background 0.1s;
 }
-
 .sabat-sheet .skill-row:nth-child(even) { background: rgba(0,0,0,0.04); }
 .sabat-sheet .skill-row:hover { background: rgba(201,162,39,0.15); }
 
 .sabat-sheet .skill-roll-btn {
   display: flex; align-items: center; justify-content: center;
-  color: var(--aq-brown-light); cursor: pointer;
-  font-size: 0.8em; transition: color 0.15s;
+  color: var(--aq-brown-light); cursor: pointer; font-size: 0.8em; transition: color 0.15s;
 }
-
 .sabat-sheet .skill-roll-btn:hover { color: var(--aq-gold); }
-
 .sabat-sheet .skill-name { font-size: 0.8em; color: var(--aq-brown); }
-
-.sabat-sheet .skill-attr {
-  font-size: 0.65em; text-align: center;
-  color: var(--aq-text-muted); font-family: var(--aq-font-number);
-}
-
-.sabat-sheet .skill-value {
-  width: 100%; text-align: center;
-  font-family: var(--aq-font-number);
-  font-size: 0.85em; padding: 1px 2px !important;
-}
-
+.sabat-sheet .skill-attr { font-size: 0.65em; text-align: center; color: var(--aq-text-muted); font-family: var(--aq-font-number); }
+.sabat-sheet .skill-value { width: 100%; text-align: center; font-family: var(--aq-font-number); font-size: 0.85em; padding: 1px 2px !important; }
 .sabat-sheet .skill-adv { justify-self: center; }
 
-/* Skill controls (fav + edit + delete) */
-.sabat-sheet .skill-controls {
-  display: flex; justify-content: flex-end; gap: 4px;
-}
-
-.sabat-sheet .skill-controls a {
-  color: var(--aq-brown-light); cursor: pointer;
-  font-size: 0.78em; transition: color 0.15s;
-}
-
+.sabat-sheet .skill-controls { display: flex; justify-content: flex-end; gap: 4px; }
+.sabat-sheet .skill-controls a { color: var(--aq-brown-light); cursor: pointer; font-size: 0.78em; transition: color 0.15s; }
 .sabat-sheet .skill-controls .skill-edit:hover { color: var(--aq-gold); }
 .sabat-sheet .skill-controls .skill-delete:hover,
 .sabat-sheet .skill-controls .custom-skill-delete:hover { color: var(--aq-red); }
 
-.sabat-sheet .skill-add {
-  color: var(--aq-brown-light); cursor: pointer;
-  transition: color 0.15s; font-size: 0.9em; padding: 2px 4px;
-}
-
+.sabat-sheet .skill-add { color: var(--aq-brown-light); cursor: pointer; transition: color 0.15s; font-size: 0.9em; padding: 2px 4px; }
 .sabat-sheet .skill-add:hover { color: var(--aq-gold); }
 
-/* ---- Items Tab ---- */
+/* ---- Equipment Tab ---- */
 .sabat-sheet .items-section { margin-bottom: 10px; }
-
-.sabat-sheet .section-header {
-  display: flex; align-items: center; justify-content: space-between;
-}
-
+.sabat-sheet .section-header { display: flex; align-items: center; justify-content: space-between; }
 .sabat-sheet .section-header .panel-title { margin-bottom: 0; border-bottom: none; }
-
-.sabat-sheet .section-header .item-create {
-  color: var(--aq-brown-light); cursor: pointer;
-  transition: color 0.15s; font-size: 0.9em; padding: 2px 4px;
-}
-
+.sabat-sheet .section-header .item-create { color: var(--aq-brown-light); cursor: pointer; transition: color 0.15s; font-size: 0.9em; padding: 2px 4px; }
 .sabat-sheet .section-header .item-create:hover { color: var(--aq-gold); }
 
 .sabat-sheet .item-list-header {
-  display: grid; gap: 4px;
-  padding: 3px 6px;
-  border-bottom: 1px solid var(--aq-border);
-  margin-bottom: 2px;
-  font-size: 0.65em; font-weight: bold;
-  text-transform: uppercase;
-  color: var(--aq-text-muted); letter-spacing: 0.04em;
+  display: grid; gap: 4px; padding: 3px 6px;
+  border-bottom: 1px solid var(--aq-border); margin-bottom: 2px;
+  font-size: 0.65em; font-weight: bold; text-transform: uppercase; color: var(--aq-text-muted); letter-spacing: 0.04em;
 }
 
-/* Weapons: dice | name | skill | damage | controls */
-.sabat-sheet .weapon-list-header,
-.sabat-sheet .weapon-row {
-  grid-template-columns: 22px 1fr 90px 56px 86px;
-}
+.sabat-sheet .weapon-list-header, .sabat-sheet .weapon-row { grid-template-columns: 22px 1fr 90px 50px 86px; }
+.sabat-sheet .armor-list-header, .sabat-sheet .armor-row { grid-template-columns: 1fr 44px 50px 68px; }
+.sabat-sheet .item-list-cols, .sabat-sheet .item-row { grid-template-columns: 1fr 36px 44px 50px 50px; }
 
-/* Armor: name | prot | price | controls */
-.sabat-sheet .armor-list-header,
-.sabat-sheet .armor-row {
-  grid-template-columns: 1fr 44px 50px 68px;
-}
-
-/* Items: name | qty | weight | price | controls */
-.sabat-sheet .item-list-cols,
-.sabat-sheet .item-row {
-  grid-template-columns: 1fr 36px 44px 50px 50px;
-}
-
-.sabat-sheet .item-skill {
-  font-family: var(--aq-font-number); font-size: 0.78em;
-  color: var(--aq-text-muted); text-align: center;
-}
-
-.sabat-sheet .item-dmg-btn {
-  display: flex; align-items: center; justify-content: center;
-  color: var(--aq-brown-light); cursor: pointer;
-  font-size: 0.9em; transition: color 0.15s;
-}
-
+.sabat-sheet .item-skill { font-family: var(--aq-font-number); font-size: 0.78em; color: var(--aq-text-muted); text-align: center; }
+.sabat-sheet .item-dmg-btn { display: flex; align-items: center; justify-content: center; color: var(--aq-brown-light); cursor: pointer; font-size: 0.9em; transition: color 0.15s; }
 .sabat-sheet .item-dmg-btn:hover { color: var(--aq-gold); }
 
 .sabat-sheet .item-list { list-style: none; margin: 0; padding: 0; }
-
-.sabat-sheet .item.flexrow {
-  display: grid; gap: 4px; align-items: center;
-  padding: 4px 6px; border-radius: 2px;
-  transition: background 0.1s; font-size: 0.83em;
-}
-
+.sabat-sheet .item.flexrow { display: grid; gap: 4px; align-items: center; padding: 4px 6px; border-radius: 2px; transition: background 0.1s; font-size: 0.83em; }
 .sabat-sheet .item.flexrow:nth-child(even) { background: rgba(0,0,0,0.04); }
 .sabat-sheet .item.flexrow:hover { background: rgba(201,162,39,0.12); }
-
 .sabat-sheet .item-name { font-weight: bold; color: var(--aq-brown-dark); }
-
-.sabat-sheet .item-damage {
-  font-family: var(--aq-font-number);
-  color: var(--aq-red); text-align: center; font-weight: bold;
-}
-
-.sabat-sheet .item-range,
-.sabat-sheet .item-qty,
-.sabat-sheet .item-armor,
-.sabat-sheet .item-weight,
-.sabat-sheet .item-price {
-  text-align: center; color: var(--aq-text-muted);
-  font-family: var(--aq-font-number);
-}
-
-.sabat-sheet .item-controls {
-  display: flex; justify-content: flex-end; gap: 6px;
-}
-
-.sabat-sheet .item-controls a {
-  color: var(--aq-brown-light); cursor: pointer;
-  font-size: 0.85em; transition: color 0.15s;
-}
-
+.sabat-sheet .item-damage { font-family: var(--aq-font-number); color: var(--aq-red); text-align: center; font-weight: bold; }
+.sabat-sheet .item-range, .sabat-sheet .item-qty, .sabat-sheet .item-weight, .sabat-sheet .item-price { text-align: center; color: var(--aq-text-muted); font-family: var(--aq-font-number); }
+.sabat-sheet .item-controls { display: flex; justify-content: flex-end; gap: 6px; }
+.sabat-sheet .item-controls a { color: var(--aq-brown-light); cursor: pointer; font-size: 0.85em; transition: color 0.15s; }
 .sabat-sheet .item-controls .item-edit:hover { color: var(--aq-gold); }
 .sabat-sheet .item-controls .item-delete:hover { color: var(--aq-red); }
+.sabat-sheet .item-empty { padding: 6px; font-size: 0.78em; color: var(--aq-text-muted); font-style: italic; text-align: center; }
+.sabat-sheet .item-prot, .sabat-sheet .item-eqp { text-align: center; font-family: var(--aq-font-number); color: var(--aq-text-muted); }
 
-.sabat-sheet .item-empty {
-  padding: 6px; font-size: 0.78em;
-  color: var(--aq-text-muted); font-style: italic; text-align: center;
-}
+/* Purse panel */
+.sabat-sheet .purse-panel .panel-title i { margin-right: 4px; color: var(--aq-gold); }
+.sabat-sheet .purse-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.sabat-sheet .purse-item { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.sabat-sheet .purse-icon { font-size: 1.2em; color: var(--aq-gold); }
+.sabat-sheet .purse-item label { font-size: 0.65em; font-weight: bold; text-transform: uppercase; color: var(--aq-brown); text-align: center; }
+.sabat-sheet .purse-item input { width: 64px; text-align: center; font-family: var(--aq-font-number); font-weight: bold; }
 
-.sabat-sheet .item-prot,
-.sabat-sheet .item-eqp {
-  text-align: center; font-family: var(--aq-font-number);
-  color: var(--aq-text-muted);
-}
-
-/* ---- Biography Tab ---- */
-.sabat-sheet .bio-grid {
-  display: grid;
-  grid-template-columns: 1fr 80px 80px;
-  gap: 8px; margin-bottom: 8px;
-}
-
+/* ---- Biography ---- */
+.sabat-sheet .bio-grid { display: grid; grid-template-columns: 1fr 80px 80px; gap: 8px; margin-bottom: 8px; }
 .sabat-sheet .field-group { display: flex; flex-direction: column; gap: 2px; }
-
-.sabat-sheet .field-group label {
-  font-size: 0.72em; font-weight: bold;
-  color: var(--aq-brown); text-transform: uppercase; letter-spacing: 0.04em;
-}
-
+.sabat-sheet .field-group label { font-size: 0.72em; font-weight: bold; color: var(--aq-brown); text-transform: uppercase; letter-spacing: 0.04em; }
 .sabat-sheet .field-group.full-width { margin-top: 8px; }
-
 .sabat-sheet textarea { resize: vertical; min-height: 60px; font-size: 0.85em; }
 .sabat-sheet .checkbox-group { flex-direction: row; align-items: center; }
 
 /* ---- Item Sheets ---- */
-.sabat-sheet.item-sheet .item-header {
-  display: flex; gap: 10px; padding: 10px 12px;
-  background: linear-gradient(135deg, var(--aq-brown-dark), var(--aq-brown));
-  border-bottom: 2px solid var(--aq-gold);
-}
-
-.sabat-sheet.item-sheet .item-img {
-  width: 60px; height: 60px; object-fit: cover;
-  border: 2px solid var(--aq-gold); border-radius: 4px; cursor: pointer;
-}
-
+.sabat-sheet.item-sheet .item-header { display: flex; gap: 10px; padding: 10px 12px; background: linear-gradient(135deg, var(--aq-brown-dark), var(--aq-brown)); border-bottom: 2px solid var(--aq-gold); }
+.sabat-sheet.item-sheet .item-img { width: 60px; height: 60px; object-fit: cover; border: 2px solid var(--aq-gold); border-radius: 4px; cursor: pointer; }
 .sabat-sheet.item-sheet .item-header-fields { flex: 1; }
-.sabat-sheet.item-sheet .item-header-fields h1 input {
-  font-size: 1.3em; font-family: var(--aq-font-label);
-  color: var(--aq-parchment); background: transparent;
-  border: none; border-bottom: 1px solid var(--aq-gold);
-  width: 100%; margin-bottom: 4px;
-}
-
-.sabat-sheet.item-sheet .item-type-label {
-  font-size: 0.7em; text-transform: uppercase;
-  color: var(--aq-gold); letter-spacing: 0.08em;
-}
-
+.sabat-sheet.item-sheet .item-header-fields h1 input { font-size: 1.3em; font-family: var(--aq-font-label); color: var(--aq-parchment); background: transparent; border: none; border-bottom: 1px solid var(--aq-gold); width: 100%; margin-bottom: 4px; }
+.sabat-sheet.item-sheet .item-type-label { font-size: 0.7em; text-transform: uppercase; color: var(--aq-gold); letter-spacing: 0.08em; }
 .sabat-sheet.item-sheet .item-body { padding: 12px; }
+.sabat-sheet .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; margin-bottom: 10px; }
 
-.sabat-sheet .form-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 8px 12px; margin-bottom: 10px;
-}
-
-/* ---- Chat Roll Results ---- */
+/* ---- Chat ---- */
 .sabat-roll { font-family: var(--aq-font-body); }
 .sabat-roll .roll-details { font-size: 0.85em; color: #555; margin: 2px 0; }
-.sabat-roll .roll-result {
-  font-weight: bold; font-size: 1.05em;
-  padding: 3px 6px; border-radius: 3px;
-  display: inline-block; margin-top: 4px;
-}
-
+.sabat-roll .roll-result { font-weight: bold; font-size: 1.05em; padding: 3px 6px; border-radius: 3px; display: inline-block; margin-top: 4px; }
 .roll-result.result-critical { background: #2d6a2d; color: #fff; }
 .roll-result.result-success  { background: #3a6b3a; color: #fff; }
 .roll-result.result-failure  { background: #6b3a3a; color: #fff; }
 .roll-result.result-blunder  { background: #4a0a0a; color: #fff; }
+.margin-text { font-size: 0.82em; font-weight: normal; opacity: 0.85; margin-left: 5px; }
 
-.margin-text {
-  font-size: 0.82em; font-weight: normal;
-  opacity: 0.85; margin-left: 5px;
+.chat-damage-btn, .apply-damage-btn {
+  display: block; width: 100%; margin-top: 7px; padding: 5px 10px;
+  border: 1px solid var(--aq-brown-dark); border-radius: 3px; cursor: pointer;
+  font-family: var(--aq-font-body); font-size: 0.85em; transition: background 0.15s;
 }
-
-/* Chat damage/apply buttons */
-.chat-damage-btn,
-.apply-damage-btn {
-  display: block; width: 100%;
-  margin-top: 7px; padding: 5px 10px;
-  border: 1px solid var(--aq-brown-dark);
-  border-radius: 3px; cursor: pointer;
-  font-family: var(--aq-font-body);
-  font-size: 0.85em; transition: background 0.15s;
-}
-
 .chat-damage-btn { background: var(--aq-brown); color: #fff; }
 .chat-damage-btn:hover { background: var(--aq-brown-dark); }
 .chat-damage-btn:disabled { opacity: 0.5; cursor: default; }
-
 .apply-damage-btn { background: var(--aq-red); color: #fff; }
 .apply-damage-btn:hover { background: #6a0f0f; }
 
-/* ---- Armor item sheet: location checkboxes ---- */
-.location-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 6px 16px; margin-top: 6px;
-}
-
-.location-item {
-  display: flex; align-items: center; gap: 6px;
-  font-size: 0.85em; color: var(--aq-text); cursor: pointer;
-}
-
+/* Armor item sheet locations */
+.location-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px 16px; margin-top: 6px; }
+.location-item { display: flex; align-items: center; gap: 6px; font-size: 0.85em; color: var(--aq-text); cursor: pointer; }
 .location-item input[type="checkbox"] { cursor: pointer; }
 
-/* ---- Equipment Tab: Paper Doll Layout ---- */
-.sabat-sheet .equipment-layout {
-  display: flex; gap: 16px; align-items: flex-start;
-}
-
-.sabat-sheet .paperdoll-column {
-  flex-shrink: 0; width: 300px;
-  display: flex; flex-direction: column; gap: 8px;
-}
-
+/* ---- Equipment Paper Doll ---- */
+.sabat-sheet .equipment-layout { display: flex; gap: 16px; align-items: flex-start; }
+.sabat-sheet .paperdoll-column { flex-shrink: 0; width: 300px; display: flex; flex-direction: column; gap: 8px; }
 .sabat-sheet .equipment-lists { flex: 1; min-width: 0; }
-
-.sabat-sheet .paperdoll-container {
-  position: relative; width: 300px; height: 360px;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid var(--aq-border);
-  border-radius: 4px; overflow: hidden;
-}
-
+.sabat-sheet .paperdoll-container { position: relative; width: 300px; height: 360px; margin: 0 auto; background: rgba(255,255,255,0.15); border: 1px solid var(--aq-border); border-radius: 4px; overflow: hidden; }
 .sabat-sheet .paperdoll-column .armor-zones { margin-bottom: 0; }
+.paperdoll-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; }
+.layer-weapon { z-index: 10; } .layer-base { z-index: 20; } .layer-legs { z-index: 30; }
+.layer-boots { z-index: 40; } .layer-chest { z-index: 50; } .layer-head { z-index: 60; } .layer-hands { z-index: 70; }
 
-.paperdoll-layer {
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 100%; object-fit: contain;
-}
-
-.layer-weapon { z-index: 10; }
-.layer-base   { z-index: 20; }
-.layer-legs   { z-index: 30; }
-.layer-boots  { z-index: 40; }
-.layer-chest  { z-index: 50; }
-.layer-head   { z-index: 60; }
-.layer-hands  { z-index: 70; }
-
-/* ---- Equip Toggle ---- */
-.item-equip-toggle {
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; font-size: 0.9em; transition: opacity 0.15s;
-}
-
+/* Equip toggle */
+.item-equip-toggle { display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.9em; transition: opacity 0.15s; }
 .item-equip-toggle:hover { opacity: 0.75; }
-.item-equip-toggle .equipped-active  { color: var(--aq-gold); }
+.item-equip-toggle .equipped-active { color: var(--aq-gold); }
 .item-equip-toggle .equipped-inactive { color: var(--aq-border); opacity: 0.45; }
-
-/* (old RR/IRR slider CSS removed — now uses .thick-slider.slider-rr) */

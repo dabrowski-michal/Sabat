@@ -70,7 +70,7 @@ export default class SabatActorSheet extends ActorSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["sabat", "sheet", "actor"],
       template: "systems/sabat/templates/actor/character-sheet.html",
-      width: 780,
+      width: 840,
       height: 880,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "characteristics" }],
       dragDrop: [{ dragSelector: ".item-list .item", dropSelector: null }]
@@ -209,7 +209,30 @@ export default class SabatActorSheet extends ActorSheet {
       if (item) await item.update({ "system.equipped": !item.system.equipped });
     });
 
-    // RR/IRR slider
+    // Slider fill helper — updates gradient to show filled portion
+    function updateFill(el, fillColor, baseColor) {
+      const pct = el.max > el.min ? ((el.value - el.min) / (el.max - el.min)) * 100 : 0;
+      const base = baseColor || "transparent";
+      el.style.background = `linear-gradient(to right, ${fillColor} ${pct}%, ${base} ${pct}%)`;
+    }
+
+    const SLIDER_FILLS = {
+      "hp-slider":   { fill: "#c0392b" },
+      "luck-slider": { fill: "#2d8a2d" },
+      "rr-slider":   { fill: "#d4a528", base: "#4a0a1a" },
+      "cp-slider":   { fill: "#6a1b3a" },
+      "fp-slider":   { fill: "#d4a528" }
+    };
+
+    // Init fills + bind live updates
+    for (const [id, colors] of Object.entries(SLIDER_FILLS)) {
+      const el = html.find(`#${id}`)[0];
+      if (!el) continue;
+      updateFill(el, colors.fill, colors.base);
+      el.addEventListener("input", () => updateFill(el, colors.fill, colors.base));
+    }
+
+    // RR slider extra: update display + portrait background
     const bgBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/";
     html.find("#rr-slider").on("input", function () {
       const rr = parseInt(this.value);
@@ -219,19 +242,11 @@ export default class SabatActorSheet extends ActorSheet {
       html.find("#portrait-bg-layer").attr("src", src);
     });
 
-    // All sliders — live display update
-    html.find("#hp-slider").on("input", function () {
-      html.find("#hp-current-display").text(this.value);
-    });
-    html.find("#luck-slider").on("input", function () {
-      html.find("#luck-current-display").text(this.value);
-    });
-    html.find("#cp-slider").on("input", function () {
-      html.find("#cp-current-display").text(this.value);
-    });
-    html.find("#fp-slider").on("input", function () {
-      html.find("#fp-current-display").text(this.value);
-    });
+    // Other sliders: update display values
+    html.find("#hp-slider").on("input", function () { html.find("#hp-current-display").text(this.value); });
+    html.find("#luck-slider").on("input", function () { html.find("#luck-current-display").text(this.value); });
+    html.find("#cp-slider").on("input", function () { html.find("#cp-current-display").text(this.value); });
+    html.find("#fp-slider").on("input", function () { html.find("#fp-current-display").text(this.value); });
   }
 
   // --- Skill roll ---

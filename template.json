@@ -29,6 +29,13 @@
         "biography": ""
       },
       "gender": "male",
+      "experience": 0,
+      "willpower": 0,
+      "purse": {
+        "money": 0,
+        "weeklyIncome": 0,
+        "weeklyExpenses": 0
+      },
       "health": {
         "value": 10,
         "max": 10
