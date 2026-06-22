@@ -268,29 +268,20 @@ export default class SabatActorSheet extends ActorSheet {
       if (item) await item.update({ "system.equipped": !item.system.equipped });
     });
 
-    // Flat muted pigment fills — ink on parchment
-    const SLIDER_FILLS = {
-      "hp-slider":   { fill: "#9e3a2a", base: null },
-      "luck-slider": { fill: "#4a7a3a", base: null },
-      "rr-slider":   { fill: "#b89a3a", base: "#5a1a1a" },
-      "cp-slider":   { fill: "#5a1a2a", base: null },
-      "fp-slider":   { fill: "#b89a3a", base: null }
-    };
-
-    function updateSliderFill(el, fillColor, baseColor) {
-      const pct = el.max > el.min ? ((el.value - el.min) / (el.max - el.min)) * 100 : 0;
-      if (baseColor) {
-        el.style.background = `linear-gradient(to right, ${fillColor} ${pct}%, ${baseColor} ${pct}%)`;
-      } else {
-        el.style.background = `linear-gradient(to right, ${fillColor} ${pct}%, transparent ${pct}%)`;
-      }
+    // Image-fill sliders — update the fill div width
+    const SLIDER_IDS = ["hp-slider", "luck-slider", "rr-slider", "cp-slider", "fp-slider"];
+    function updateImageFill(slider, fillEl) {
+      const pct = slider.max > slider.min
+        ? ((slider.value - slider.min) / (slider.max - slider.min)) * 100 : 0;
+      fillEl.style.width = pct + "%";
     }
 
-    for (const [id, colors] of Object.entries(SLIDER_FILLS)) {
-      const el = html.find(`#${id}`)[0];
-      if (!el) continue;
-      updateSliderFill(el, colors.fill, colors.base);
-      el.addEventListener("input", () => updateSliderFill(el, colors.fill, colors.base));
+    for (const id of SLIDER_IDS) {
+      const slider = html.find(`#${id}`)[0];
+      const fillEl = html.find(`#${id.replace("-slider", "-fill")}`)[0];
+      if (!slider || !fillEl) continue;
+      updateImageFill(slider, fillEl);
+      slider.addEventListener("input", () => updateImageFill(slider, fillEl));
     }
 
     // RR slider extra: update display + portrait background

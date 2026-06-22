@@ -72,7 +72,10 @@
                 <label class="char-slider-title">Life Points</label>
                 <div class="char-slider-row">
                   <span class="char-slider-val" id="hp-current-display">{{system.health.value}}</span>
-                  <input type="range" name="system.health.value" id="hp-slider" class="thick-slider" min="0" max="{{system.health.max}}" value="{{system.health.value}}" />
+                  <div class="slider-track-frame">
+                    <div class="slider-fill" id="hp-fill"></div>
+                    <input type="range" name="system.health.value" id="hp-slider" class="ghost-slider" min="0" max="{{system.health.max}}" value="{{system.health.value}}" />
+                  </div>
                   <span class="char-slider-val">{{system.health.max}}</span>
                 </div>
               </div>
@@ -81,7 +84,10 @@
                 <label class="char-slider-title">Luck</label>
                 <div class="char-slider-row">
                   <span class="char-slider-val" id="luck-current-display">{{system.secondaryCharacteristics.luckCurrent}}</span>
-                  <input type="range" name="system.secondaryCharacteristics.luckCurrent" id="luck-slider" class="thick-slider" min="0" max="{{system.secondaryCharacteristics.luckInitial}}" value="{{system.secondaryCharacteristics.luckCurrent}}" />
+                  <div class="slider-track-frame">
+                    <div class="slider-fill" id="luck-fill"></div>
+                    <input type="range" name="system.secondaryCharacteristics.luckCurrent" id="luck-slider" class="ghost-slider" min="0" max="{{system.secondaryCharacteristics.luckInitial}}" value="{{system.secondaryCharacteristics.luckCurrent}}" />
+                  </div>
                   <span class="char-slider-val">{{system.secondaryCharacteristics.luckInitial}}</span>
                 </div>
               </div>
@@ -90,7 +96,10 @@
                 <label class="char-slider-title">Rationality</label>
                 <div class="char-slider-row">
                   <span class="char-slider-val" id="irr-display">{{system.secondaryCharacteristics.irr}}</span>
-                  <input type="range" name="system.secondaryCharacteristics.rr" id="rr-slider" class="thick-slider" min="0" max="100" value="{{system.secondaryCharacteristics.rr}}" />
+                  <div class="slider-track-frame">
+                    <div class="slider-fill" id="rr-fill"></div>
+                    <input type="range" name="system.secondaryCharacteristics.rr" id="rr-slider" class="ghost-slider" min="0" max="100" value="{{system.secondaryCharacteristics.rr}}" />
+                  </div>
                   <span class="char-slider-val" id="rr-display">{{system.secondaryCharacteristics.rr}}</span>
                 </div>
                 <div class="char-slider-labels"><span>Irrationality</span><span>Rationality</span></div>
@@ -100,7 +109,10 @@
                 <label class="char-slider-title">Concentration Points</label>
                 <div class="char-slider-row">
                   <span class="char-slider-val" id="cp-current-display">{{system.secondaryCharacteristics.concentrationPoints.value}}</span>
-                  <input type="range" name="system.secondaryCharacteristics.concentrationPoints.value" id="cp-slider" class="thick-slider" min="0" max="{{system.secondaryCharacteristics.concentrationPoints.max}}" value="{{system.secondaryCharacteristics.concentrationPoints.value}}" />
+                  <div class="slider-track-frame">
+                    <div class="slider-fill" id="cp-fill"></div>
+                    <input type="range" name="system.secondaryCharacteristics.concentrationPoints.value" id="cp-slider" class="ghost-slider" min="0" max="{{system.secondaryCharacteristics.concentrationPoints.max}}" value="{{system.secondaryCharacteristics.concentrationPoints.value}}" />
+                  </div>
                   <span class="char-slider-val">{{system.secondaryCharacteristics.concentrationPoints.max}}</span>
                 </div>
               </div>
@@ -109,7 +121,10 @@
                 <label class="char-slider-title">Faith Points</label>
                 <div class="char-slider-row">
                   <span class="char-slider-val" id="fp-current-display">{{system.secondaryCharacteristics.faithPoints.value}}</span>
-                  <input type="range" name="system.secondaryCharacteristics.faithPoints.value" id="fp-slider" class="thick-slider" min="0" max="{{system.secondaryCharacteristics.faithPoints.max}}" value="{{system.secondaryCharacteristics.faithPoints.value}}" />
+                  <div class="slider-track-frame">
+                    <div class="slider-fill" id="fp-fill"></div>
+                    <input type="range" name="system.secondaryCharacteristics.faithPoints.value" id="fp-slider" class="ghost-slider" min="0" max="{{system.secondaryCharacteristics.faithPoints.max}}" value="{{system.secondaryCharacteristics.faithPoints.value}}" />
+                  </div>
                   <span class="char-slider-val">{{system.secondaryCharacteristics.faithPoints.max}}</span>
                 </div>
               </div>
