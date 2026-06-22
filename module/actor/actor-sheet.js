@@ -268,27 +268,36 @@ export default class SabatActorSheet extends ActorSheet {
       if (item) await item.update({ "system.equipped": !item.system.equipped });
     });
 
-    // Slider fill helper — updates gradient to show filled portion
-    function updateFill(el, fillColor, baseColor) {
-      const pct = el.max > el.min ? ((el.value - el.min) / (el.max - el.min)) * 100 : 0;
-      const base = baseColor || "transparent";
-      el.style.background = `linear-gradient(to right, ${fillColor} ${pct}%, ${base} ${pct}%)`;
-    }
-
+    // Slider fill — parchment-style faded gradients
     const SLIDER_FILLS = {
-      "hp-slider":   { fill: "#c0392b" },
-      "luck-slider": { fill: "#2d8a2d" },
-      "rr-slider":   { fill: "#d4a528", base: "#4a0a1a" },
-      "cp-slider":   { fill: "#6a1b3a" },
-      "fp-slider":   { fill: "#d4a528" }
+      "hp-slider":   { fill: "linear-gradient(180deg, #d4503a, #8b1a1a 40%, #6a0f0f)", base: "transparent" },
+      "luck-slider": { fill: "linear-gradient(180deg, #4a9e4a, #2d6a2d 40%, #1a4a1a)", base: "transparent" },
+      "rr-slider":   { fill: "linear-gradient(180deg, #e8d060, #c9a227 40%, #a0820a)", base: "linear-gradient(180deg, #7a2030, #4a0a1a 40%, #2a0510)" },
+      "cp-slider":   { fill: "linear-gradient(180deg, #9b3a6a, #6a1b3a 40%, #3a0a1a)", base: "transparent" },
+      "fp-slider":   { fill: "linear-gradient(180deg, #e8d060, #c9a227 40%, #a0820a)", base: "transparent" }
     };
 
-    // Init fills + bind live updates
+    function updateSliderFill(el, fillGrad, baseGrad) {
+      const pct = el.max > el.min ? ((el.value - el.min) / (el.max - el.min)) * 100 : 0;
+      const base = baseGrad || "transparent";
+      // Use a mask-like approach: colored fill up to pct%, then base after
+      if (baseGrad && baseGrad !== "transparent") {
+        el.style.background = `${fillGrad}, ${base}`;
+        el.style.backgroundSize = `${pct}% 100%, 100% 100%`;
+        el.style.backgroundRepeat = "no-repeat";
+        el.style.backgroundPosition = "left, left";
+      } else {
+        el.style.background = fillGrad;
+        el.style.backgroundSize = `${pct}% 100%`;
+        el.style.backgroundRepeat = "no-repeat";
+      }
+    }
+
     for (const [id, colors] of Object.entries(SLIDER_FILLS)) {
       const el = html.find(`#${id}`)[0];
       if (!el) continue;
-      updateFill(el, colors.fill, colors.base);
-      el.addEventListener("input", () => updateFill(el, colors.fill, colors.base));
+      updateSliderFill(el, colors.fill, colors.base);
+      el.addEventListener("input", () => updateSliderFill(el, colors.fill, colors.base));
     }
 
     // RR slider extra: update display + portrait background
