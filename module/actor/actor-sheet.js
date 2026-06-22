@@ -92,14 +92,64 @@ export default class SabatActorSheet extends ActorSheet {
     const favSkills = system.favorites?.skills ?? {};
     const favWeapons = system.favorites?.weapons ?? {};
 
-    // Header display labels
-    const KINGDOMS = { castile: "Crown of Castile", aragon: "Crown of Aragón", granada: "Kingdom of Granada", navarre: "Kingdom of Navarre", portugal: "Kingdom of Portugal" };
-    const PEOPLES = { arab: "Arab", aragonese: "Aragonese", castilian: "Castilian", basque: "Basque", catalan: "Catalan", galician: "Galician", jew: "Jew", navarrese: "Navarrese", portuguese: "Portuguese" };
+    // Header display labels + character title
+    const KINGDOMS = {
+      "lesser-poland": "Duchy of Lesser Poland", "silesia": "Duchies of Silesia", "masovia": "Duchy of Masovia",
+      "hungary": "Kingdom of Hungary", "rus": "Rus' Principalities", "greater-poland": "Duchy of Greater Poland",
+      "teutonic": "Teutonic Order", "bohemia": "Kingdom of Bohemia", "yotvingia": "Yotvingia",
+      "pomerania": "Duchy of Pomerania", "brandenburg": "Margraviate of Brandenburg",
+      "lithuania": "Grand Duchy of Lithuania", "venice": "Republic of Venice",
+      "scandinavia": "Scandinavian Kingdoms", "hre": "Holy Roman Empire", "papal": "Papal States",
+      "byzantium": "Byzantine Empire", "france": "Kingdom of France", "england": "Kingdom of England",
+      "golden-horde": "Golden Horde", "iberia": "Iberian Kingdoms", "arabia": "Arabian Emirates",
+      "jewish-diaspora": "Jewish Diaspora"
+    };
+    const PEOPLES = {
+      "lesser-polish": "Lesser Polish", "silesian": "Silesian", "masovian": "Masovian",
+      "hungarian": "Hungarian", "ruthenian": "Ruthenian", "greater-polish": "Greater Polish",
+      "teutonic": "Teutonic", "bohemian": "Bohemian", "yotvingian": "Yotvingian",
+      "pomeranian": "Pomeranian", "brandenburgian": "Brandenburgian", "lithuanian": "Lithuanian",
+      "venetian": "Venetian", "norse": "Norse", "german": "German", "italian": "Italian",
+      "greek": "Greek", "french": "French", "english": "English", "mongol": "Mongol",
+      "iberian": "Iberian", "saracen": "Saracen", "jewish": "Jewish"
+    };
     const CLASSES = { "upper-nobility": "Upper Nobility", "lower-nobility": "Lower Nobility", burgher: "Burgher", townsfolk: "Townsfolk", peasant: "Peasant", slave: "Slave" };
-    context.kingdomLabel = KINGDOMS[system.background.kingdom] ?? "";
-    context.peopleLabel = PEOPLES[system.background.people] ?? "";
+
+    const peopleLabel = PEOPLES[system.background.people] ?? "";
+    const kingdomLabel = KINGDOMS[system.background.kingdom] ?? "";
+    context.kingdomLabel = kingdomLabel;
+    context.peopleLabel = peopleLabel;
     context.socialClassLabel = CLASSES[system.background.socialClass] ?? "";
     context.genderLabel = system.gender === "female" ? "Female" : "Male";
+
+    // Nationality icon
+    const iconBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/rasy/";
+    context.nationalityIcon = peopleLabel ? iconBase + peopleLabel.replace(/ /g, "_") + ".png" : "";
+
+    // Character title
+    const bg = system.background;
+    const age = bg.age ?? 0;
+    const ageDesc = age > 100 ? "Dead" : age >= 76 ? "Decrepit" : age >= 56 ? "Old" : age >= 36 ? "Seasoned" : age >= 20 ? "Adult" : age >= 13 ? "Youthful" : "Childlike";
+    const h = bg.height ?? 0;
+    const heightDesc = h >= 191 ? "towering" : h >= 176 ? "tall" : h >= 156 ? "average-height" : h >= 131 ? "short" : "tiny";
+    const w = bg.weight ?? 0;
+    const weightDesc = w >= 116 ? "massive" : w >= 86 ? "stout" : w >= 66 ? "sturdy" : w >= 46 ? "slender" : "frail";
+    const genderWord = system.gender === "female" ? "woman" : "man";
+    const classDesc = { "upper-nobility": "of high noble birth", "lower-nobility": "of noble birth", burgher: "of the rich burgher class", townsfolk: "of the common townsfolk", peasant: "of peasant stock", slave: "bound as a slave" };
+    const socialPhrase = classDesc[bg.socialClass] ?? "";
+    const profession = bg.profession || "";
+
+    let title = "";
+    if (peopleLabel || profession) {
+      const parts = [age ? ageDesc : "", peopleLabel, profession].filter(Boolean).join(" ");
+      if (kingdomLabel) title = `${parts} from ${kingdomLabel}`;
+      else title = parts;
+      const article = /^[aeiou]/i.test(heightDesc) ? "an" : "a";
+      title += `, ${article} ${heightDesc} and ${weightDesc} ${genderWord}`;
+      if (socialPhrase) title += ` ${socialPhrase}`;
+      title += ".";
+    }
+    context.characterTitle = title;
 
     // Skill groups
     context.skillGroups = GENERAL_SKILL_GROUPS.map(group => ({

@@ -64,13 +64,22 @@
   width: 100%; margin-bottom: 6px;
 }
 .sabat-sheet .charname input::placeholder { color: rgba(245,234,214,0.5); }
-.sabat-sheet .header-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.sabat-sheet .header-tag {
-  font-size: 0.72em; color: var(--aq-parchment); background: rgba(0,0,0,0.25);
-  border: 1px solid rgba(201,162,39,0.3); border-radius: 3px;
-  padding: 2px 8px; display: inline-flex; align-items: center; gap: 4px;
+
+.sabat-sheet .header-nation-icon {
+  width: 56px; height: 56px;
+  object-fit: cover; border-radius: 50%;
+  border: 2px solid var(--aq-gold);
+  flex-shrink: 0;
+  background: rgba(0,0,0,0.2);
 }
-.sabat-sheet .header-tag i { color: var(--aq-gold); font-size: 0.85em; }
+
+.sabat-sheet .header-title {
+  font-size: 0.75em;
+  color: rgba(245,234,214,0.7);
+  font-style: italic;
+  margin: 0;
+  line-height: 1.3;
+}
 
 /* ---- Tabs ---- */
 .sabat-sheet .sheet-tabs { display: flex; border-bottom: 2px solid var(--aq-brown); background: var(--aq-parchment-d); padding: 0 8px; }
