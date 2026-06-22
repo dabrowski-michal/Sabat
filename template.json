@@ -51,15 +51,16 @@
       },
       "armor": {
         "head": 0,
-        "rightArm": 0,
         "leftArm": 0,
-        "chest1": 0,
-        "chest2": 0,
-        "chest3": 0,
-        "abdomen1": 0,
-        "abdomen2": 0,
-        "rightLeg": 0,
-        "leftLeg": 0
+        "rightArm": 0,
+        "chest": 0,
+        "abdomen": 0,
+        "leftLeg": 0,
+        "rightLeg": 0
+      },
+      "favorites": {
+        "skills": {},
+        "weapons": {}
       },
       "skills": {
         "alchemy":          { "value": 0, "advancement": false },
@@ -111,6 +112,7 @@
         "brawl":            { "value": 0, "advancement": false },
         "clubs":            { "value": 0, "advancement": false },
         "crossbows":        { "value": 0, "advancement": false },
+        "improvised":       { "value": 0, "advancement": false },
         "knives":           { "value": 0, "advancement": false },
         "longswords":       { "value": 0, "advancement": false },
         "maces":            { "value": 0, "advancement": false },
@@ -118,7 +120,8 @@
         "slings":           { "value": 0, "advancement": false },
         "spears":           { "value": 0, "advancement": false },
         "swords":           { "value": 0, "advancement": false }
-      }
+      },
+      "customSkills": {}
     },
     "monster": {
       "templates": ["characteristics"],
@@ -139,10 +142,12 @@
       "description": "",
       "minimumStrength": 0,
       "damage": "1d6",
+      "skill": "",
       "size": "Medium",
       "twoHanded": false,
       "reload": 0,
       "range": "Melee",
+      "price": 0,
       "equipped": false,
       "paperDollLayer": "",
       "notes": ""
@@ -150,6 +155,7 @@
     "armor": {
       "description": "",
       "protection": 0,
+      "price": 0,
       "equipped": false,
       "paperDollLayer": "",
       "locations": {
@@ -166,6 +172,7 @@
       "description": "",
       "weight": 0,
       "quantity": 1,
+      "price": 0,
       "notes": ""
     },
     "spell": {

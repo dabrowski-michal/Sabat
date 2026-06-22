@@ -81,7 +81,55 @@ const HIT_LOCATION_LABELS = {
   chest: "Chest", abdomen: "Abdomen", rightLeg: "Right Leg", leftLeg: "Left Leg"
 };
 
+function _chatHitLocationKey(d10) {
+  if (d10 === 1)  return "head";
+  if (d10 === 2)  return "rightArm";
+  if (d10 === 3)  return "leftArm";
+  if (d10 <= 6)  return "chest";
+  if (d10 <= 8)  return "abdomen";
+  if (d10 === 9)  return "rightLeg";
+  return "leftLeg";
+}
+
 Hooks.on("renderChatMessage", (_message, html) => {
+  // "Roll Damage" button from weapon skill check
+  html.find(".chat-damage-btn").click(async (ev) => {
+    const btn = ev.currentTarget;
+    const actor = game.actors.get(btn.dataset.actorId);
+    const item = actor?.items.get(btn.dataset.itemId);
+    if (!actor || !item) return ui.notifications.warn("Weapon or actor not found.");
+
+    const formula = item.system.damage || "1d6";
+    const [damageRoll, locRoll] = await Promise.all([
+      new Roll(formula).evaluate({ async: true }),
+      new Roll("1d10").evaluate({ async: true })
+    ]);
+
+    const locKey = _chatHitLocationKey(locRoll.total);
+    const locLabel = HIT_LOCATION_LABELS[locKey];
+
+    await ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor }),
+      rolls: [damageRoll],
+      content: `
+        <div class="sabat-roll sabat-damage-roll">
+          <strong>${item.name}</strong>
+          <div class="roll-details">
+            Damage: <strong>${damageRoll.total}</strong>
+            &nbsp;|&nbsp;
+            Hit Location (d10=${locRoll.total}): <strong>${locLabel}</strong>
+          </div>
+          <button class="apply-damage-btn"
+            data-damage="${damageRoll.total}"
+            data-location="${locKey}">
+            ⚔ Apply Damage to Selected Token(s)
+          </button>
+        </div>`
+    });
+
+    $(btn).prop("disabled", true).text("Damage Rolled");
+  });
+
   html.find(".apply-damage-btn").click(async (ev) => {
     const btn      = ev.currentTarget;
     const damage   = parseInt(btn.dataset.damage) || 0;
@@ -144,7 +192,7 @@ function _registerHandlebarsHelpers() {
       taste: "Taste", teach: "Teach", theology: "Theology",
       throw: "Throw", torture: "Torture", track: "Track",
       axes: "Axes", bows: "Bows", brawl: "Brawl", clubs: "Clubs",
-      crossbows: "Crossbows", knives: "Knives", longswords: "Longswords",
+      crossbows: "Crossbows", improvised: "Improvised", knives: "Knives", longswords: "Longswords",
       maces: "Maces", shields: "Shields", slings: "Slings",
       spears: "Spears", swords: "Swords"
     };
@@ -165,7 +213,7 @@ function _registerHandlebarsHelpers() {
       seduction: "APP", shipHandling: "AGI", singing: "COM",
       sleightOfHand: "DEX", stealth: "AGI", swim: "AGI", taste: "PER",
       teach: "COM", theology: "CUL", throw: "AGI", torture: "COM",
-      track: "PER", axes: "STR", bows: "PER", brawl: "AGI",
+      track: "PER", axes: "STR", bows: "PER", brawl: "AGI", improvised: "AGI",
       clubs: "AGI", crossbows: "PER", knives: "DEX", longswords: "STR",
       maces: "STR", shields: "STR", slings: "PER", spears: "AGI",
       swords: "DEX"

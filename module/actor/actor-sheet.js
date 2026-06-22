@@ -13,6 +13,42 @@ function _hitLocationKey(d10) {
   return "leftLeg";
 }
 
+const SKILL_LABELS = {
+  alchemy: "Alchemy", animalKnowledge: "Animal Knowledge",
+  areaKnowledge: "Area Knowledge", astrology: "Astrology",
+  climb: "Climb", command: "Command", commerce: "Commerce",
+  conceal: "Conceal", courtEtiquette: "Court Etiquette", craft: "Craft",
+  discovery: "Discovery", disguise: "Disguise", dodge: "Dodge",
+  drive: "Drive", eloquence: "Eloquence", empathy: "Empathy",
+  games: "Games", heal: "Heal", jump: "Jump", language: "Language",
+  legends: "Legends", listen: "Listen", magicalKnowledge: "Magical Knowledge",
+  medicine: "Medicine", memory: "Memory", mineralKnowledge: "Mineral Knowledge",
+  music: "Music", pickLock: "Pick Lock", plantKnowledge: "Plant Knowledge",
+  readWrite: "Read/Write", ride: "Ride", run: "Run",
+  seduction: "Seduction", shipHandling: "Ship Handling", singing: "Singing",
+  sleightOfHand: "Sleight of Hand", stealth: "Stealth", swim: "Swim",
+  taste: "Taste", teach: "Teach", theology: "Theology",
+  throw: "Throw", torture: "Torture", track: "Track",
+  axes: "Axes", bows: "Bows", brawl: "Brawl", clubs: "Clubs",
+  crossbows: "Crossbows", improvised: "Improvised", knives: "Knives",
+  longswords: "Longswords", maces: "Maces", shields: "Shields",
+  slings: "Slings", spears: "Spears", swords: "Swords"
+};
+
+const GENERAL_SKILL_GROUPS = [
+  { attrKey: "agi", label: "Agility", keys: ["climb","dodge","jump","ride","run","shipHandling","sleightOfHand","stealth","swim","throw"] },
+  { attrKey: "com", label: "Communication", keys: ["command","commerce","courtEtiquette","disguise","eloquence","singing","teach","torture"] },
+  { attrKey: "cul", label: "Culture", keys: ["alchemy","animalKnowledge","areaKnowledge","astrology","games","language","legends","magicalKnowledge","medicine","mineralKnowledge","music","plantKnowledge","readWrite","theology"] },
+  { attrKey: "dex", label: "Dexterity", keys: ["conceal","craft","drive","heal","pickLock"] },
+  { attrKey: "per", label: "Perception", keys: ["discovery","empathy","listen","memory","taste","track"] },
+  { attrKey: "app", label: "Appearance", keys: ["seduction"] }
+];
+
+const COMBAT_SKILL_KEYS = [
+  "axes", "bows", "brawl", "clubs", "crossbows", "improvised",
+  "knives", "longswords", "maces", "shields", "slings", "spears", "swords"
+];
+
 export default class SabatActorSheet extends ActorSheet {
 
   static get defaultOptions() {
@@ -21,11 +57,7 @@ export default class SabatActorSheet extends ActorSheet {
       template: "systems/sabat/templates/actor/character-sheet.html",
       width: 780,
       height: 880,
-      tabs: [{
-        navSelector: ".sheet-tabs",
-        contentSelector: ".sheet-body",
-        initial: "characteristics"
-      }],
+      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "characteristics" }],
       dragDrop: [{ dragSelector: ".item-list .item", dropSelector: null }]
     });
   }
@@ -35,78 +67,103 @@ export default class SabatActorSheet extends ActorSheet {
     const actorData = this.actor.toObject(false);
     context.system = actorData.system;
     context.flags = actorData.flags;
-
-    if (this.actor.type === "character") {
-      this._prepareCharacterContext(context);
-    }
-
+    if (this.actor.type === "character") this._prepareCharacterContext(context);
     return context;
   }
 
   _prepareCharacterContext(context) {
     const system = context.system;
+    const customSkills = system.customSkills ?? {};
+    const favSkills = system.favorites?.skills ?? {};
+    const favWeapons = system.favorites?.weapons ?? {};
 
-    // Split skills into general and combat groups
-    const generalSkillKeys = [
-      "alchemy", "animalKnowledge", "areaKnowledge", "astrology", "climb",
-      "command", "commerce", "conceal", "courtEtiquette", "craft",
-      "discovery", "disguise", "dodge", "drive", "eloquence", "empathy",
-      "games", "heal", "jump", "language", "legends", "listen",
-      "magicalKnowledge", "medicine", "memory", "mineralKnowledge", "music",
-      "pickLock", "plantKnowledge", "readWrite", "ride", "run", "seduction",
-      "shipHandling", "singing", "sleightOfHand", "stealth", "swim", "taste",
-      "teach", "theology", "throw", "torture", "track"
-    ];
-    const combatSkillKeys = [
-      "axes", "bows", "brawl", "clubs", "crossbows", "knives",
-      "longswords", "maces", "shields", "slings", "spears", "swords"
-    ];
-
-    context.generalSkills = generalSkillKeys.map(key => ({
-      key,
-      skill: system.skills[key]
-    }));
-    context.combatSkills = combatSkillKeys.map(key => ({
-      key,
-      skill: system.skills[key]
+    // Build skill groups
+    context.skillGroups = GENERAL_SKILL_GROUPS.map(group => ({
+      attrKey: group.attrKey,
+      label: group.label,
+      skills: group.keys.map(key => ({
+        key, label: SKILL_LABELS[key] ?? key,
+        skill: system.skills[key] ?? { value: 0, advancement: false },
+        isFav: !!favSkills[key]
+      })),
+      customSkills: Object.entries(customSkills)
+        .filter(([, v]) => v.attr === group.attrKey)
+        .map(([id, v]) => ({ id, ...v, isFav: !!favSkills[`custom.${id}`] }))
     }));
 
-    // Bucket items by type
+    context.combatSkills = COMBAT_SKILL_KEYS.map(key => ({
+      key,
+      skill: system.skills[key] ?? { value: 0, advancement: false },
+      isFav: !!favSkills[key]
+    }));
+
+    // Items by type
     context.weapons = this.actor.items.filter(i => i.type === "weapon");
     context.armor   = this.actor.items.filter(i => i.type === "armor");
     context.items   = this.actor.items.filter(i => i.type === "item");
     context.spells  = this.actor.items.filter(i => i.type === "spell");
 
-    // HP bar percentage
-    context.hpPct = system.health.max > 0
-      ? Math.round((system.health.value / system.health.max) * 100)
-      : 0;
+    // Favorite skills (built-in + custom, only those still flagged)
+    context.favSkillsList = [];
+    for (const [key, val] of Object.entries(favSkills)) {
+      if (!val) continue;
+      if (key.startsWith("custom.")) {
+        const csId = key.slice(7);
+        const cs = customSkills[csId];
+        if (cs) context.favSkillsList.push({ key, label: cs.name, skill: cs, isCustom: true, customId: csId });
+      } else {
+        const sk = system.skills[key];
+        if (sk) context.favSkillsList.push({ key, label: SKILL_LABELS[key] ?? key, skill: sk, isCustom: false });
+      }
+    }
 
-    // Paper doll base image (hosted on Forge)
+    // Favorite weapons (only those that still exist)
+    context.favWeaponsList = [];
+    for (const [itemId, val] of Object.entries(favWeapons)) {
+      if (!val) continue;
+      const item = this.actor.items.get(itemId);
+      if (item) context.favWeaponsList.push(item);
+    }
+
+    // HP bar percentage
+    context.hpPct = system.health.max > 0 ? Math.round((system.health.value / system.health.max) * 100) : 0;
+
+    // Paper doll
     const gender = system.gender ?? "male";
     context.bodyImage = gender === "female"
       ? "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/paperdoll/base_woman.png"
       : "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/paperdoll/base_man.png";
 
-    // Build paper doll layer map from equipped items
     const validLayers = new Set(["weapon", "legs", "boots", "chest", "head", "hands"]);
     const paperDoll = {};
     for (const item of this.actor.items) {
       const layer = item.system.paperDollLayer;
-      if (item.system.equipped && layer && validLayers.has(layer)) {
-        paperDoll[layer] = item.img;
-      }
+      if (item.system.equipped && layer && validLayers.has(layer)) paperDoll[layer] = item.img;
     }
     context.paperDoll = paperDoll;
+
+    // Alignment portrait background
+    const rr = system.secondaryCharacteristics.rr ?? 50;
+    const bgBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/";
+    context.alignmentBackground = rr >= 66 ? bgBase + "good.png" : rr >= 33 ? bgBase + "neutral.png" : bgBase + "evil.png";
   }
 
   activateListeners(html) {
     super.activateListeners(html);
-
     if (!this.isEditable) return;
 
     // Skill roll
-    html.find(".skill-roll").click(this._onSkillRoll.bind(this));
+    html.find(".skill-roll-btn").click(this._onSkillRollBtn.bind(this));
+
+    // Weapon roll (skill check first)
+    html.find(".weapon-roll-btn").click(this._onWeaponRoll.bind(this));
+
+    // Custom skill management
+    html.find(".skill-add").click(this._onAddCustomSkill.bind(this));
+    html.find(".custom-skill-delete").click(this._onDeleteCustomSkill.bind(this));
+
+    // Favorite toggle
+    html.find(".fav-toggle").click(this._onToggleFavorite.bind(this));
 
     // Item management
     html.find(".item-create").click(this._onItemCreate.bind(this));
@@ -121,59 +178,53 @@ export default class SabatActorSheet extends ActorSheet {
       item.delete();
     });
 
-    // Weapon damage roll
-    html.find(".damage-roll").click(this._onDamageRoll.bind(this));
-
-    // Equip/unequip toggle
+    // Equip/unequip
     html.find(".item-equip-toggle").click(async ev => {
       const li = $(ev.currentTarget).closest(".item");
       const item = this.actor.items.get(li.data("itemId"));
-      if (!item) return;
-      await item.update({ "system.equipped": !item.system.equipped });
+      if (item) await item.update({ "system.equipped": !item.system.equipped });
+    });
+
+    // RR/IRR slider
+    const bgBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/";
+    html.find("#rr-slider").on("input", function () {
+      const rr = parseInt(this.value);
+      html.find("#rr-display").text(rr);
+      html.find("#irr-display").text(100 - rr);
+      const src = rr >= 66 ? bgBase + "good.png" : rr >= 33 ? bgBase + "neutral.png" : bgBase + "evil.png";
+      html.find("#portrait-bg-layer").attr("src", src);
     });
   }
 
-  async _onSkillRoll(event) {
+  // --- Skill roll (d100 vs skill value) ---
+  async _onSkillRollBtn(event) {
     event.preventDefault();
     const el = event.currentTarget;
-    const skillKey = el.dataset.skill;
-    const skillLabel = el.dataset.label;
+    const label = el.dataset.label;
     const target = parseInt(el.dataset.target) || 0;
+    await this._rollSkillCheck(label, target);
+  }
 
+  async _rollSkillCheck(skillLabel, target) {
     const roll = await new Roll("1d100").evaluate({ async: true });
     const d = roll.total;
-
-    let resultLabel, resultClass, marginText;
     const margin = target - d;
+    let resultLabel, resultClass, marginText;
 
     if (d <= 5) {
-      resultLabel = "Auto-Success ★";
-      resultClass = "result-critical";
-      marginText  = "(Automatic)";
+      resultLabel = "Auto-Success ★"; resultClass = "result-critical"; marginText = "(Automatic)";
     } else if (d >= 96) {
-      resultLabel = "Auto-Failure ✗";
-      resultClass = "result-blunder";
-      marginText  = "(Automatic)";
+      resultLabel = "Auto-Failure ✗"; resultClass = "result-blunder"; marginText = "(Automatic)";
     } else if (d <= target) {
       const critThreshold = Math.max(1, Math.floor(target * 0.1));
-      if (d <= critThreshold) {
-        resultLabel = "Critical Success! ★★";
-        resultClass = "result-critical";
-      } else {
-        resultLabel = "Success ✓";
-        resultClass = "result-success";
-      }
+      if (d <= critThreshold) { resultLabel = "Critical Success! ★★"; resultClass = "result-critical"; }
+      else { resultLabel = "Success ✓"; resultClass = "result-success"; }
       marginText = `(Beat target by ${margin})`;
     } else {
       const failRange = 100 - target;
       const blunderThreshold = target + Math.floor(failRange * 0.9) + 1;
-      if (d >= blunderThreshold) {
-        resultLabel = "Blunder! ✗✗";
-        resultClass = "result-blunder";
-      } else {
-        resultLabel = "Failure ✗";
-        resultClass = "result-failure";
-      }
+      if (d >= blunderThreshold) { resultLabel = "Blunder! ✗✗"; resultClass = "result-blunder"; }
+      else { resultLabel = "Failure ✗"; resultClass = "result-failure"; }
       marginText = `(Missed target by ${Math.abs(margin)})`;
     }
 
@@ -189,54 +240,115 @@ export default class SabatActorSheet extends ActorSheet {
       flavor,
       rollMode: game.settings.get("core", "rollMode")
     });
+
+    return { roll, d, success: d <= 5 || (d < 96 && d <= target) };
   }
 
-  async _onDamageRoll(event) {
+  // --- Weapon roll: skill check → damage button ---
+  async _onWeaponRoll(event) {
     event.preventDefault();
     const li = $(event.currentTarget).closest(".item");
     const item = this.actor.items.get(li.data("itemId"));
     if (!item) return;
 
-    const formula = item.system.damage || "1d6";
-    const [damageRoll, locRoll] = await Promise.all([
-      new Roll(formula).evaluate({ async: true }),
-      new Roll("1d10").evaluate({ async: true })
-    ]);
+    const skillKey = item.system.skill || "improvised";
+    const skillData = this.actor.system.skills[skillKey] ?? { value: 0 };
+    const skillLabel = SKILL_LABELS[skillKey] ?? skillKey;
+    const target = skillData.value;
 
-    const locKey   = _hitLocationKey(locRoll.total);
-    const locLabel = HIT_LOCATION_LABELS[locKey];
+    const roll = await new Roll("1d100").evaluate({ async: true });
+    const d = roll.total;
+    const margin = target - d;
+    let resultLabel, resultClass, marginText;
 
-    await ChatMessage.create({
+    if (d <= 5) {
+      resultLabel = "Auto-Success ★"; resultClass = "result-critical"; marginText = "(Automatic)";
+    } else if (d >= 96) {
+      resultLabel = "Auto-Failure ✗"; resultClass = "result-blunder"; marginText = "(Automatic)";
+    } else if (d <= target) {
+      const critThreshold = Math.max(1, Math.floor(target * 0.1));
+      if (d <= critThreshold) { resultLabel = "Critical Success! ★★"; resultClass = "result-critical"; }
+      else { resultLabel = "Success ✓"; resultClass = "result-success"; }
+      marginText = `(Beat target by ${margin})`;
+    } else {
+      const failRange = 100 - target;
+      const blunderThreshold = target + Math.floor(failRange * 0.9) + 1;
+      if (d >= blunderThreshold) { resultLabel = "Blunder! ✗✗"; resultClass = "result-blunder"; }
+      else { resultLabel = "Failure ✗"; resultClass = "result-failure"; }
+      marginText = `(Missed target by ${Math.abs(margin)})`;
+    }
+
+    const flavor = `
+      <div class="sabat-roll">
+        <strong>${item.name}</strong> — <em>${skillLabel}</em>
+        <div class="roll-details">Rolled <strong>${d}</strong> vs target <strong>${target}%</strong></div>
+        <div class="roll-result ${resultClass}">${resultLabel} <span class="margin-text">${marginText}</span></div>
+        <button class="chat-damage-btn"
+          data-actor-id="${this.actor.id}"
+          data-item-id="${item.id}">
+          🗡 Roll Damage
+        </button>
+      </div>`;
+
+    await roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      rolls: [damageRoll],
-      content: `
-        <div class="sabat-roll sabat-damage-roll">
-          <strong>${item.name}</strong>
-          <div class="roll-details">
-            Damage: <strong>${damageRoll.total}</strong>
-            &nbsp;|&nbsp;
-            Hit Location (d10=${locRoll.total}): <strong>${locLabel}</strong>
-          </div>
-          <button class="apply-damage-btn"
-            data-damage="${damageRoll.total}"
-            data-location="${locKey}">
-            ⚔ Apply Damage to Selected Token(s)
-          </button>
-        </div>`
+      flavor,
+      rollMode: game.settings.get("core", "rollMode")
     });
   }
 
+  // --- Toggle favorite ---
+  async _onToggleFavorite(event) {
+    event.preventDefault();
+    const el = event.currentTarget;
+    const favType = el.dataset.favType;
+    const favKey = el.dataset.favKey;
+    const current = this.actor.system.favorites?.[favType]?.[favKey];
+    if (current) {
+      await this.actor.update({ [`system.favorites.${favType}.-=${favKey}`]: null });
+    } else {
+      await this.actor.update({ [`system.favorites.${favType}.${favKey}`]: true });
+    }
+  }
+
+  // --- Custom skills ---
+  async _onAddCustomSkill(event) {
+    event.preventDefault();
+    const attrKey = event.currentTarget.dataset.attr;
+    const attrLabel = attrKey.toUpperCase();
+    const name = await new Promise(resolve => {
+      new Dialog({
+        title: `Add Skill (${attrLabel})`,
+        content: `<div style="margin-bottom:8px"><label>Skill name:</label>
+          <input type="text" id="custom-skill-name" style="width:100%;margin-top:4px" autofocus /></div>`,
+        buttons: {
+          ok: { label: "Add", callback: html => resolve(html.find("#custom-skill-name").val().trim()) },
+          cancel: { label: "Cancel", callback: () => resolve(null) }
+        },
+        default: "ok"
+      }).render(true);
+    });
+    if (!name) return;
+    const id = `cs_${Date.now()}`;
+    await this.actor.update({ [`system.customSkills.${id}`]: { name, attr: attrKey, value: 0, advancement: false } });
+  }
+
+  async _onDeleteCustomSkill(event) {
+    event.preventDefault();
+    const id = event.currentTarget.dataset.customId;
+    await this.actor.update({
+      [`system.customSkills.-=${id}`]: null,
+      [`system.favorites.skills.-=custom.${id}`]: null
+    });
+  }
+
+  // --- Item create ---
   async _onItemCreate(event) {
     event.preventDefault();
     const type = event.currentTarget.dataset.type;
-    const itemData = {
-      name: `New ${type.charAt(0).toUpperCase() + type.slice(1)}`,
-      type
-    };
-    return await Item.create(itemData, { parent: this.actor });
+    return await Item.create({ name: `New ${type.charAt(0).toUpperCase() + type.slice(1)}`, type }, { parent: this.actor });
   }
 
-  // Allow dropping items onto the sheet
   async _onDropItemCreate(itemData) {
     return super._onDropItemCreate(itemData);
   }
