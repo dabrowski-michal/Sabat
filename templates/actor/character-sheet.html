@@ -96,7 +96,7 @@
                 <label class="char-slider-title">Rationality</label>
                 <div class="char-slider-row">
                   <span class="char-slider-val" id="irr-display">{{system.secondaryCharacteristics.irr}}</span>
-                  <div class="slider-track-frame">
+                  <div class="slider-track-frame rr-frame">
                     <div class="slider-fill" id="rr-fill"></div>
                     <input type="range" name="system.secondaryCharacteristics.rr" id="rr-slider" class="ghost-slider" min="0" max="100" value="{{system.secondaryCharacteristics.rr}}" />
                   </div>
@@ -257,6 +257,28 @@
               <div class="armor-item"><label>R. Leg</label><input type="number" name="system.armor.rightLeg" value="{{system.armor.rightLeg}}" min="0" /></div>
             </div>
           </div>
+
+          <!-- PURSE -->
+          <div class="purse-panel panel">
+            <h3 class="panel-title"><i class="fas fa-coins"></i> Purse</h3>
+            <div class="purse-grid">
+              <div class="purse-item">
+                <span class="purse-icon"><i class="fas fa-coins"></i></span>
+                <label>Money</label>
+                <input type="number" name="system.purse.money" value="{{system.purse.money}}" min="0" />
+              </div>
+              <div class="purse-item">
+                <span class="purse-icon"><i class="fas fa-arrow-circle-down" style="color:#2d8a2d"></i></span>
+                <label>Weekly Income</label>
+                <input type="number" name="system.purse.weeklyIncome" value="{{system.purse.weeklyIncome}}" min="0" />
+              </div>
+              <div class="purse-item">
+                <span class="purse-icon"><i class="fas fa-arrow-circle-up" style="color:#c0392b"></i></span>
+                <label>Weekly Expenses</label>
+                <input type="number" name="system.purse.weeklyExpenses" value="{{system.purse.weeklyExpenses}}" min="0" />
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="equipment-lists">
@@ -306,28 +328,6 @@
               </li>
               {{else}}<li class="item-empty">No armor</li>{{/each}}
             </ul>
-          </div>
-
-          <!-- PURSE -->
-          <div class="purse-panel panel">
-            <h3 class="panel-title"><i class="fas fa-coins"></i> Purse</h3>
-            <div class="purse-grid">
-              <div class="purse-item">
-                <span class="purse-icon"><i class="fas fa-coins"></i></span>
-                <label>Money</label>
-                <input type="number" name="system.purse.money" value="{{system.purse.money}}" min="0" />
-              </div>
-              <div class="purse-item">
-                <span class="purse-icon"><i class="fas fa-arrow-circle-down" style="color:#2d8a2d"></i></span>
-                <label>Weekly Income</label>
-                <input type="number" name="system.purse.weeklyIncome" value="{{system.purse.weeklyIncome}}" min="0" />
-              </div>
-              <div class="purse-item">
-                <span class="purse-icon"><i class="fas fa-arrow-circle-up" style="color:#c0392b"></i></span>
-                <label>Weekly Expenses</label>
-                <input type="number" name="system.purse.weeklyExpenses" value="{{system.purse.weeklyExpenses}}" min="0" />
-              </div>
-            </div>
           </div>
 
           <!-- ITEMS -->
