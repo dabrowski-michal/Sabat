@@ -268,28 +268,21 @@ export default class SabatActorSheet extends ActorSheet {
       if (item) await item.update({ "system.equipped": !item.system.equipped });
     });
 
-    // Slider fill — parchment-style faded gradients
+    // Flat muted pigment fills — ink on parchment
     const SLIDER_FILLS = {
-      "hp-slider":   { fill: "linear-gradient(180deg, #d4503a, #8b1a1a 40%, #6a0f0f)", base: "transparent" },
-      "luck-slider": { fill: "linear-gradient(180deg, #4a9e4a, #2d6a2d 40%, #1a4a1a)", base: "transparent" },
-      "rr-slider":   { fill: "linear-gradient(180deg, #e8d060, #c9a227 40%, #a0820a)", base: "linear-gradient(180deg, #7a2030, #4a0a1a 40%, #2a0510)" },
-      "cp-slider":   { fill: "linear-gradient(180deg, #9b3a6a, #6a1b3a 40%, #3a0a1a)", base: "transparent" },
-      "fp-slider":   { fill: "linear-gradient(180deg, #e8d060, #c9a227 40%, #a0820a)", base: "transparent" }
+      "hp-slider":   { fill: "#9e3a2a", base: null },
+      "luck-slider": { fill: "#4a7a3a", base: null },
+      "rr-slider":   { fill: "#b89a3a", base: "#5a1a1a" },
+      "cp-slider":   { fill: "#5a1a2a", base: null },
+      "fp-slider":   { fill: "#b89a3a", base: null }
     };
 
-    function updateSliderFill(el, fillGrad, baseGrad) {
+    function updateSliderFill(el, fillColor, baseColor) {
       const pct = el.max > el.min ? ((el.value - el.min) / (el.max - el.min)) * 100 : 0;
-      const base = baseGrad || "transparent";
-      // Use a mask-like approach: colored fill up to pct%, then base after
-      if (baseGrad && baseGrad !== "transparent") {
-        el.style.background = `${fillGrad}, ${base}`;
-        el.style.backgroundSize = `${pct}% 100%, 100% 100%`;
-        el.style.backgroundRepeat = "no-repeat";
-        el.style.backgroundPosition = "left, left";
+      if (baseColor) {
+        el.style.background = `linear-gradient(to right, ${fillColor} ${pct}%, ${baseColor} ${pct}%)`;
       } else {
-        el.style.background = fillGrad;
-        el.style.backgroundSize = `${pct}% 100%`;
-        el.style.backgroundRepeat = "no-repeat";
+        el.style.background = `linear-gradient(to right, ${fillColor} ${pct}%, transparent ${pct}%)`;
       }
     }
 

@@ -157,109 +157,92 @@
   font-weight: bold; font-size: 0.95em;
 }
 
-/* ---- Medieval Manuscript Sliders ---- */
+/* ---- Ink-on-Parchment Sliders ---- */
 .sabat-sheet .secondary-chars {
-  background:
-    linear-gradient(135deg, rgba(210,190,160,0.5) 0%, rgba(240,225,200,0.4) 50%, rgba(200,180,150,0.5) 100%),
-    rgba(255,255,255,0.3);
-  border: 2px solid var(--aq-brown-dark);
-  border-radius: 3px 5px 4px 6px;
-  box-shadow: inset 0 0 12px rgba(90,60,30,0.12), 0 2px 6px rgba(0,0,0,0.15);
+  border: 2px solid #3b2a1a;
+  border-radius: 3px 5px 2px 4px;
 }
 
 .sabat-sheet .secondary-chars .panel-title {
   font-size: 0.95em;
   letter-spacing: 0.1em;
-  color: var(--aq-brown-dark);
-  border-bottom: 2px solid var(--aq-brown-dark);
+  color: #2c1e16;
+  border-bottom: 2px solid #3b2a1a;
   padding-bottom: 6px;
-  text-shadow: 0 1px 0 rgba(201,162,39,0.3);
 }
 
 .sabat-sheet .sliders-stack { display: flex; flex-direction: column; gap: 12px; }
-
 .sabat-sheet .char-slider { display: flex; flex-direction: column; gap: 2px; }
 
 .sabat-sheet .char-slider-title {
-  font-size: 0.72em; font-weight: bold; color: var(--aq-brown-dark);
+  font-size: 0.72em; font-weight: bold; color: #2c1e16;
   text-align: center; text-transform: uppercase; letter-spacing: 0.08em;
-  text-shadow: 0 1px 0 rgba(201,162,39,0.2);
 }
 
 .sabat-sheet .char-slider-row {
   display: flex; align-items: center; gap: 0;
-  height: 28px;
+  height: 24px;
 }
 
+/* Value boxes — naked ink numerals on parchment */
 .sabat-sheet .char-slider-val {
-  font-family: var(--aq-font-number); font-weight: bold; font-size: 0.9em;
-  color: var(--aq-brown-dark);
-  background:
-    linear-gradient(180deg, rgba(230,215,185,0.9) 0%, rgba(210,195,165,0.9) 100%);
-  border: 2px solid var(--aq-brown-dark);
-  border-radius: 3px 4px 5px 3px;
-  padding: 0 6px; min-width: 32px; height: 28px;
+  font-family: var(--aq-font-number); font-weight: bold; font-size: 0.92em;
+  color: #2c1e16;
+  background: none; border: none; border-radius: 0;
+  padding: 0 7px; min-width: 30px; height: 24px;
   text-align: center; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.15);
-  text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+  box-shadow: none; text-shadow: none;
 }
 
 .sabat-sheet .char-slider-labels {
   display: flex; justify-content: space-between;
-  font-size: 0.58em; color: var(--aq-brown-light);
+  font-size: 0.58em; color: #5a4a38;
   text-transform: uppercase; letter-spacing: 0.06em;
-  padding: 0 34px; font-style: italic;
+  padding: 0 30px; font-style: italic;
 }
 
-/* Track — completely stripped, no visible base */
+/* Track — ink-bordered parchment frame, no internal decoration */
 .sabat-sheet .thick-slider {
   flex: 1; -webkit-appearance: none; appearance: none;
-  height: 28px; outline: none; cursor: pointer;
-  border: 2px solid var(--aq-brown-dark);
-  border-left: none; border-right: none;
-  border-radius: 0;
+  height: 24px; outline: none; cursor: pointer;
+  border: 2px solid #3b2a1a;
+  border-radius: 3px 5px 2px 4px;
   background: transparent;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
+  box-shadow: none;
+  margin: 0;
 }
 
 .sabat-sheet .thick-slider::-webkit-slider-container,
 .sabat-sheet .thick-slider::-webkit-slider-runnable-track {
   background: transparent !important;
+  border: none !important;
 }
 
-/* Wax-seal thumb — circular with depth */
+/* Flat wax-seal / ink-blot thumb */
 .sabat-sheet .thick-slider::-webkit-slider-thumb {
   -webkit-appearance: none; appearance: none;
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 35% 35%, rgba(255,255,255,0.5) 0%, transparent 50%),
-    radial-gradient(circle, #c9a227 0%, #a0820a 60%, #7a6208 100%);
-  border: 2px solid var(--aq-brown-dark);
+  width: 18px; height: 18px;
+  border-radius: 45% 55% 40% 60%;
+  background: #6a0a0a;
+  border: 2px solid #2c1e16;
   cursor: pointer;
-  box-shadow:
-    0 1px 3px rgba(0,0,0,0.4),
-    inset 0 -1px 2px rgba(0,0,0,0.2);
+  box-shadow: none;
 }
 
 .sabat-sheet .thick-slider::-moz-range-thumb {
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 35% 35%, rgba(255,255,255,0.5) 0%, transparent 50%),
-    radial-gradient(circle, #c9a227 0%, #a0820a 60%, #7a6208 100%);
-  border: 2px solid var(--aq-brown-dark);
+  width: 18px; height: 18px;
+  border-radius: 45% 55% 40% 60%;
+  background: #6a0a0a;
+  border: 2px solid #2c1e16;
   cursor: pointer;
-  box-shadow:
-    0 1px 3px rgba(0,0,0,0.4),
-    inset 0 -1px 2px rgba(0,0,0,0.2);
+  box-shadow: none;
 }
 
 .sabat-sheet .thick-slider::-moz-range-track {
   background: transparent;
   border: none;
-  height: 28px;
+  height: 24px;
 }
 
 /* Legacy derived-value */
