@@ -219,7 +219,10 @@ export default class SabatActorSheet extends ActorSheet {
       html.find("#portrait-bg-layer").attr("src", src);
     });
 
-    // Green sliders live display
+    // All sliders — live display update
+    html.find("#hp-slider").on("input", function () {
+      html.find("#hp-current-display").text(this.value);
+    });
     html.find("#luck-slider").on("input", function () {
       html.find("#luck-current-display").text(this.value);
     });

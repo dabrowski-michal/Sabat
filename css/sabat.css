@@ -248,50 +248,140 @@
   flex-shrink: 0;
 }
 
-/* HP Bar */
-.sabat-sheet .resource-bar-wrap { margin-bottom: 8px; }
-
-.sabat-sheet .resource-bar-wrap > label {
-  font-size: 0.75em; font-weight: bold;
-  color: var(--aq-brown); display: block; margin-bottom: 3px;
+/* ---- Unified Thick Sliders ---- */
+.sabat-sheet .sliders-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.sabat-sheet .hp-bar-track {
-  height: 12px; background: #c4a882;
+.sabat-sheet .char-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.sabat-sheet .char-slider-title {
+  font-size: 0.75em;
+  font-weight: bold;
+  color: var(--aq-brown);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sabat-sheet .char-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sabat-sheet .char-slider-val {
+  font-family: var(--aq-font-number);
+  font-weight: bold;
+  font-size: 0.95em;
+  color: var(--aq-brown-dark);
+  background: rgba(0,0,0,0.05);
   border: 1px solid var(--aq-border);
-  border-radius: 6px; overflow: hidden; margin-bottom: 4px;
+  border-radius: 3px;
+  padding: 2px 6px;
+  min-width: 32px;
+  text-align: center;
+  flex-shrink: 0;
 }
 
-.sabat-sheet .hp-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #8b1a1a, #c0392b);
-  border-radius: 6px; transition: width 0.3s ease;
+.sabat-sheet .char-slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6em;
+  color: var(--aq-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0 38px;
 }
 
-.sabat-sheet .resource-inputs {
-  display: flex; align-items: center; gap: 4px; font-size: 0.85em;
+/* Shared thick slider track */
+.sabat-sheet .thick-slider {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 18px;
+  border-radius: 9px;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,0.2);
 }
 
-.sabat-sheet .resource-inputs input { width: 48px; text-align: center; }
-.sabat-sheet .resource-max { font-weight: bold; color: var(--aq-brown); }
-
-/* Secondary grid */
-.sabat-sheet .secondary-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px 12px;
+/* Shared thumb */
+.sabat-sheet .thick-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--aq-parchment);
+  border: 2px solid var(--aq-brown);
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
 
-.sabat-sheet .sec-item {
-  display: flex; align-items: center; gap: 6px;
+.sabat-sheet .thick-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--aq-parchment);
+  border: 2px solid var(--aq-brown);
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
 
-.sabat-sheet .sec-item label {
-  font-size: 0.72em; color: var(--aq-brown); white-space: nowrap; flex: 1;
+/* Life Points — red */
+.slider-hp {
+  background: linear-gradient(90deg, #5a0a0a, #c0392b, #e74c3c);
 }
 
-.sabat-sheet .sec-item input[type="number"] { width: 52px; text-align: center; }
+/* Luck — green */
+.slider-luck {
+  background: linear-gradient(90deg, #1a4a1a, #2d8a2d, #4abb4a);
+}
 
+/* Rationality — demonic (left) to celestial (right) */
+.slider-rr {
+  background: linear-gradient(90deg, #6a1b3a, #8b1a4a, #7b5ea7, #5b8dd9, #c9a227);
+}
+
+/* Concentration Points — demonic purple */
+.slider-cp {
+  background: linear-gradient(90deg, #2a0a2a, #6a1b5a, #9b3a8a);
+}
+
+/* Faith Points — celestial gold */
+.slider-fp {
+  background: linear-gradient(90deg, #5a4a0a, #c9a227, #e8d060);
+}
+
+/* Temperance row */
+.sabat-sheet .temperance-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 4px;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+.sabat-sheet .temperance-row label {
+  font-size: 0.72em;
+  color: var(--aq-brown);
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.sabat-sheet .temperance-row input {
+  width: 56px;
+  text-align: center;
+}
+
+/* Legacy derived-value (still used in favourites etc.) */
 .sabat-sheet .derived-value {
   font-family: var(--aq-font-number); font-weight: bold;
   color: var(--aq-brown-dark);
@@ -299,9 +389,6 @@
   border-radius: 2px; padding: 2px 6px;
   min-width: 38px; text-align: center; display: inline-block;
 }
-
-.sabat-sheet .resource-pair { display: flex; align-items: center; gap: 3px; }
-.sabat-sheet .resource-pair input[type="number"] { width: 42px; }
 
 /* Armor zones — 7 locations */
 .sabat-sheet .armor-grid {
@@ -370,45 +457,7 @@
   display: inline-block; width: 18px;
 }
 
-/* ---- Green Slider (Luck, CP, FP) ---- */
-.sabat-sheet .slider-section {
-  grid-column: 1 / -1;
-  display: flex; flex-direction: column; gap: 2px;
-}
-
-.sabat-sheet .slider-label {
-  font-size: 0.72em; font-weight: bold; color: var(--aq-brown);
-}
-
-.sabat-sheet .slider-ends {
-  display: flex; justify-content: space-between; align-items: center;
-}
-
-.sabat-sheet .slider-end {
-  font-size: 0.68em; color: var(--aq-brown);
-  display: flex; align-items: center; gap: 4px;
-}
-
-.sabat-sheet .green-slider {
-  width: 100%; -webkit-appearance: none; appearance: none;
-  height: 6px;
-  background: linear-gradient(90deg, #2d6a2d, #4a9e4a);
-  border-radius: 3px; outline: none; cursor: pointer;
-  border: 1px solid var(--aq-border);
-}
-
-.sabat-sheet .green-slider::-webkit-slider-thumb {
-  -webkit-appearance: none; appearance: none;
-  width: 16px; height: 16px; border-radius: 50%;
-  background: var(--aq-parchment); border: 2px solid #2d6a2d;
-  cursor: pointer; box-shadow: 0 1px 3px var(--aq-shadow);
-}
-
-.sabat-sheet .green-slider::-moz-range-thumb {
-  width: 16px; height: 16px; border-radius: 50%;
-  background: var(--aq-parchment); border: 2px solid #2d6a2d;
-  cursor: pointer; box-shadow: 0 1px 3px var(--aq-shadow);
-}
+/* (old green-slider and rr-slider replaced by .thick-slider system above) */
 
 /* ---- Skills Tab ---- */
 .sabat-sheet .skills-layout {
@@ -741,41 +790,4 @@
 .item-equip-toggle .equipped-active  { color: var(--aq-gold); }
 .item-equip-toggle .equipped-inactive { color: var(--aq-border); opacity: 0.45; }
 
-/* ---- RR/IRR Slider ---- */
-.sabat-sheet .rr-slider-section { grid-column: 1 / -1; }
-
-.sabat-sheet .rr-irr-bar {
-  display: flex; flex-direction: column; gap: 4px; width: 100%;
-}
-
-.sabat-sheet .rr-irr-ends {
-  display: flex; justify-content: space-between; align-items: center;
-}
-
-.sabat-sheet .rr-irr-end {
-  font-size: 0.72em; color: var(--aq-brown);
-  display: flex; align-items: center; gap: 4px;
-}
-
-.sabat-sheet .rr-slider {
-  width: 100%; -webkit-appearance: none; appearance: none;
-  height: 6px;
-  background: linear-gradient(90deg, #8b1a1a 0%, #c9a227 50%, #2d6a2d 100%);
-  border-radius: 3px; outline: none; cursor: pointer;
-  border: 1px solid var(--aq-border);
-}
-
-.sabat-sheet .rr-slider::-webkit-slider-thumb {
-  -webkit-appearance: none; appearance: none;
-  width: 16px; height: 16px; border-radius: 50%;
-  background: var(--aq-parchment);
-  border: 2px solid var(--aq-brown);
-  cursor: pointer; box-shadow: 0 1px 3px var(--aq-shadow);
-}
-
-.sabat-sheet .rr-slider::-moz-range-thumb {
-  width: 16px; height: 16px; border-radius: 50%;
-  background: var(--aq-parchment);
-  border: 2px solid var(--aq-brown);
-  cursor: pointer; box-shadow: 0 1px 3px var(--aq-shadow);
-}
+/* (old RR/IRR slider CSS removed — now uses .thick-slider.slider-rr) */
