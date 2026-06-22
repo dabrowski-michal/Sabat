@@ -332,108 +332,110 @@
 .fav-toggle .fav-inactive { color: var(--aq-border); opacity: 0.3; }
 .fav-toggle:hover .fav-inactive { opacity: 0.7; }
 
-/* ---- Favourites Panel ---- */
+/* ---- Favourites Panel (read-only) ---- */
 .sabat-sheet .favourites-panel .fav-section { margin-bottom: 8px; }
 .sabat-sheet .favourites-panel .fav-section:last-child { margin-bottom: 0; }
 
 .fav-section-title {
-  font-size: 0.72em;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--aq-text-muted);
-  margin: 0 0 4px;
-  padding-bottom: 2px;
+  font-size: 0.72em; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--aq-text-muted); margin: 0 0 4px; padding-bottom: 2px;
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-.sabat-sheet .fav-skill-row {
-  display: grid;
-  grid-template-columns: 18px 18px 1fr 44px 22px;
-  gap: 4px; align-items: center;
-  padding: 2px 4px; border-radius: 2px;
-  transition: background 0.1s;
+.sabat-sheet .fav-row {
+  display: grid; gap: 4px; align-items: center;
+  padding: 2px 4px; border-radius: 2px; transition: background 0.1s;
 }
 
-.sabat-sheet .fav-weapon-row {
-  display: grid;
-  grid-template-columns: 18px 18px 1fr 50px;
-  gap: 4px; align-items: center;
-  padding: 2px 4px; border-radius: 2px;
-  transition: background 0.1s;
-}
+.sabat-sheet .fav-row:hover { background: rgba(201,162,39,0.15); }
 
-.sabat-sheet .fav-skill-row:hover,
-.sabat-sheet .fav-weapon-row:hover { background: rgba(201,162,39,0.15); }
+/* fav-skill: dice | star | name | value | adv-icon */
+.sabat-sheet .fav-skill-row { grid-template-columns: 18px 18px 1fr 36px 18px; }
+
+/* fav-weapon: dice | star | name | skill(val) | damage */
+.sabat-sheet .fav-weapon-row { grid-template-columns: 18px 18px 1fr 90px 50px; }
+
+.fav-val {
+  font-family: var(--aq-font-number); font-size: 0.78em;
+  color: var(--aq-brown-dark); text-align: center; font-weight: bold;
+}
 
 .fav-damage {
-  font-family: var(--aq-font-number);
-  font-size: 0.8em; color: var(--aq-red);
-  text-align: center; font-weight: bold;
+  font-family: var(--aq-font-number); font-size: 0.78em;
+  color: var(--aq-red); text-align: center; font-weight: bold;
+}
+
+.fav-adv-icon {
+  color: var(--aq-gold); font-size: 0.7em; text-align: center;
+  display: inline-block; width: 18px;
+}
+
+/* ---- Green Slider (Luck, CP, FP) ---- */
+.sabat-sheet .slider-section {
+  grid-column: 1 / -1;
+  display: flex; flex-direction: column; gap: 2px;
+}
+
+.sabat-sheet .slider-label {
+  font-size: 0.72em; font-weight: bold; color: var(--aq-brown);
+}
+
+.sabat-sheet .slider-ends {
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.sabat-sheet .slider-end {
+  font-size: 0.68em; color: var(--aq-brown);
+  display: flex; align-items: center; gap: 4px;
+}
+
+.sabat-sheet .green-slider {
+  width: 100%; -webkit-appearance: none; appearance: none;
+  height: 6px;
+  background: linear-gradient(90deg, #2d6a2d, #4a9e4a);
+  border-radius: 3px; outline: none; cursor: pointer;
+  border: 1px solid var(--aq-border);
+}
+
+.sabat-sheet .green-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--aq-parchment); border: 2px solid #2d6a2d;
+  cursor: pointer; box-shadow: 0 1px 3px var(--aq-shadow);
+}
+
+.sabat-sheet .green-slider::-moz-range-thumb {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--aq-parchment); border: 2px solid #2d6a2d;
+  cursor: pointer; box-shadow: 0 1px 3px var(--aq-shadow);
 }
 
 /* ---- Skills Tab ---- */
 .sabat-sheet .skills-layout {
   display: grid;
   grid-template-columns: 1fr 260px;
-  gap: 10px;
-  align-items: start;
+  gap: 10px; align-items: start;
 }
 
-.sabat-sheet .skills-general {
-  column-count: 2;
-  column-gap: 10px;
-}
-
-.sabat-sheet .skill-group {
-  break-inside: avoid;
-  margin-bottom: 10px;
-}
-
-/* Skill list headers */
-.sabat-sheet .skill-list-header {
-  display: grid; gap: 4px;
-  padding: 2px 4px 4px;
-  border-bottom: 1px solid var(--aq-border);
-  margin-bottom: 4px;
-}
-
-/* General group: dice | star | name | % | adv */
-.sabat-sheet .skill-group .skill-list-header {
-  grid-template-columns: 18px 18px 1fr 44px 22px;
-}
-
-/* Combat: dice | star | name | attr | % | adv */
-.sabat-sheet .combat-skills .skill-list-header {
-  grid-template-columns: 18px 18px 1fr 36px 44px 22px;
-}
-
-.sabat-sheet .skill-list-header span {
-  font-size: 0.65em; font-weight: bold;
-  text-transform: uppercase; letter-spacing: 0.05em;
-  color: var(--aq-text-muted);
-}
+.sabat-sheet .skills-general { column-count: 2; column-gap: 10px; }
+.sabat-sheet .skill-group { break-inside: avoid; margin-bottom: 10px; }
 
 .sabat-sheet .col-name { text-align: left; }
 .sabat-sheet .col-attr, .sabat-sheet .col-pct, .sabat-sheet .col-adv { text-align: center; }
 
-/* Skill rows — general group: dice | star | name | value | adv */
+/* General skill rows: dice | name | value | adv | controls */
 .sabat-sheet .skill-group .skill-row {
   display: grid;
-  grid-template-columns: 18px 18px 1fr 44px 22px;
+  grid-template-columns: 18px 1fr 44px 22px 54px;
   gap: 4px; align-items: center;
   padding: 2px 4px; border-radius: 2px;
   transition: background 0.1s;
 }
 
-/* Custom skill row: dice | star | name | value | adv | delete */
-.sabat-sheet .skill-group .custom-skill-row {
-  grid-template-columns: 18px 18px 1fr 44px 22px 18px;
-}
-
-/* Combat: dice | star | name | attr | value | adv */
+/* Combat skill rows: dice | name | attr | value | adv | controls */
 .sabat-sheet .combat-skills .skill-row {
   display: grid;
-  grid-template-columns: 18px 18px 1fr 36px 44px 22px;
+  grid-template-columns: 18px 1fr 36px 44px 22px 40px;
   gap: 4px; align-items: center;
   padding: 2px 4px; border-radius: 2px;
   transition: background 0.1s;
@@ -465,13 +467,19 @@
 
 .sabat-sheet .skill-adv { justify-self: center; }
 
-.sabat-sheet .custom-skill-delete {
-  display: flex; align-items: center; justify-content: center;
-  color: var(--aq-border); cursor: pointer;
-  font-size: 0.75em; transition: color 0.15s;
+/* Skill controls (fav + edit + delete) */
+.sabat-sheet .skill-controls {
+  display: flex; justify-content: flex-end; gap: 4px;
 }
 
-.sabat-sheet .custom-skill-delete:hover { color: var(--aq-red); }
+.sabat-sheet .skill-controls a {
+  color: var(--aq-brown-light); cursor: pointer;
+  font-size: 0.78em; transition: color 0.15s;
+}
+
+.sabat-sheet .skill-controls .skill-edit:hover { color: var(--aq-gold); }
+.sabat-sheet .skill-controls .skill-delete:hover,
+.sabat-sheet .skill-controls .custom-skill-delete:hover { color: var(--aq-red); }
 
 .sabat-sheet .skill-add {
   color: var(--aq-brown-light); cursor: pointer;
@@ -506,22 +514,27 @@
   color: var(--aq-text-muted); letter-spacing: 0.04em;
 }
 
-/* Weapons: dice | star | name | damage | price | controls */
+/* Weapons: dice | name | skill | damage | controls */
 .sabat-sheet .weapon-list-header,
 .sabat-sheet .weapon-row {
-  grid-template-columns: 22px 22px 1fr 62px 50px 76px;
+  grid-template-columns: 22px 1fr 90px 56px 86px;
 }
 
-/* Armor: name | prot | price | eqp | controls */
+/* Armor: name | prot | price | controls */
 .sabat-sheet .armor-list-header,
 .sabat-sheet .armor-row {
-  grid-template-columns: 1fr 44px 50px 40px 56px;
+  grid-template-columns: 1fr 44px 50px 68px;
 }
 
 /* Items: name | qty | weight | price | controls */
 .sabat-sheet .item-list-cols,
 .sabat-sheet .item-row {
-  grid-template-columns: 1fr 36px 44px 50px 56px;
+  grid-template-columns: 1fr 36px 44px 50px 50px;
+}
+
+.sabat-sheet .item-skill {
+  font-family: var(--aq-font-number); font-size: 0.78em;
+  color: var(--aq-text-muted); text-align: center;
 }
 
 .sabat-sheet .item-dmg-btn {

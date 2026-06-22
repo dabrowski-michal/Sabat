@@ -35,6 +35,21 @@ const SKILL_LABELS = {
   slings: "Slings", spears: "Spears", swords: "Swords"
 };
 
+const SKILL_ATTRS = {
+  alchemy: "CUL", animalKnowledge: "CUL", areaKnowledge: "CUL",
+  astrology: "CUL", climb: "AGI", command: "COM", commerce: "COM",
+  conceal: "DEX", courtEtiquette: "COM", craft: "DEX",
+  discovery: "PER", disguise: "COM", dodge: "AGI", drive: "DEX",
+  eloquence: "COM", empathy: "PER", games: "CUL", heal: "DEX",
+  jump: "AGI", language: "CUL", legends: "CUL", listen: "PER",
+  magicalKnowledge: "CUL", medicine: "CUL", memory: "PER",
+  mineralKnowledge: "CUL", music: "CUL", pickLock: "DEX",
+  plantKnowledge: "CUL", readWrite: "CUL", ride: "AGI", run: "AGI",
+  seduction: "APP", shipHandling: "AGI", singing: "COM",
+  sleightOfHand: "DEX", stealth: "AGI", swim: "AGI", taste: "PER",
+  teach: "COM", theology: "CUL", throw: "AGI", torture: "COM", track: "PER"
+};
+
 const GENERAL_SKILL_GROUPS = [
   { attrKey: "agi", label: "Agility", keys: ["climb","dodge","jump","ride","run","shipHandling","sleightOfHand","stealth","swim","throw"] },
   { attrKey: "com", label: "Communication", keys: ["command","commerce","courtEtiquette","disguise","eloquence","singing","teach","torture"] },
@@ -77,7 +92,7 @@ export default class SabatActorSheet extends ActorSheet {
     const favSkills = system.favorites?.skills ?? {};
     const favWeapons = system.favorites?.weapons ?? {};
 
-    // Build skill groups
+    // Skill groups
     context.skillGroups = GENERAL_SKILL_GROUPS.map(group => ({
       attrKey: group.attrKey,
       label: group.label,
@@ -98,34 +113,50 @@ export default class SabatActorSheet extends ActorSheet {
     }));
 
     // Items by type
-    context.weapons = this.actor.items.filter(i => i.type === "weapon");
-    context.armor   = this.actor.items.filter(i => i.type === "armor");
-    context.items   = this.actor.items.filter(i => i.type === "item");
-    context.spells  = this.actor.items.filter(i => i.type === "spell");
+    context.armor  = this.actor.items.filter(i => i.type === "armor");
+    context.items  = this.actor.items.filter(i => i.type === "item");
+    context.spells = this.actor.items.filter(i => i.type === "spell");
 
-    // Favorite skills (built-in + custom, only those still flagged)
+    // Weapons with linked skill info
+    context.weaponsData = this.actor.items.filter(i => i.type === "weapon").map(w => {
+      const sk = w.system.skill || "improvised";
+      return {
+        id: w.id, name: w.name, system: w.system,
+        skillLabel: SKILL_LABELS[sk] ?? sk,
+        skillValue: system.skills[sk]?.value ?? 0,
+        isFav: !!favWeapons[w.id]
+      };
+    });
+
+    // Favourite skills (read-only)
     context.favSkillsList = [];
     for (const [key, val] of Object.entries(favSkills)) {
       if (!val) continue;
       if (key.startsWith("custom.")) {
         const csId = key.slice(7);
         const cs = customSkills[csId];
-        if (cs) context.favSkillsList.push({ key, label: cs.name, skill: cs, isCustom: true, customId: csId });
+        if (cs) context.favSkillsList.push({ key, label: cs.name, value: cs.value, advancement: cs.advancement });
       } else {
         const sk = system.skills[key];
-        if (sk) context.favSkillsList.push({ key, label: SKILL_LABELS[key] ?? key, skill: sk, isCustom: false });
+        if (sk) context.favSkillsList.push({ key, label: SKILL_LABELS[key] ?? key, value: sk.value, advancement: sk.advancement });
       }
     }
 
-    // Favorite weapons (only those that still exist)
+    // Favourite weapons (read-only, with skill info)
     context.favWeaponsList = [];
     for (const [itemId, val] of Object.entries(favWeapons)) {
       if (!val) continue;
-      const item = this.actor.items.get(itemId);
-      if (item) context.favWeaponsList.push(item);
+      const w = this.actor.items.get(itemId);
+      if (!w) continue;
+      const sk = w.system.skill || "improvised";
+      context.favWeaponsList.push({
+        id: w.id, name: w.name, system: w.system,
+        skillLabel: SKILL_LABELS[sk] ?? sk,
+        skillValue: system.skills[sk]?.value ?? 0
+      });
     }
 
-    // HP bar percentage
+    // HP bar
     context.hpPct = system.health.max > 0 ? Math.round((system.health.value / system.health.max) * 100) : 0;
 
     // Paper doll
@@ -152,35 +183,28 @@ export default class SabatActorSheet extends ActorSheet {
     super.activateListeners(html);
     if (!this.isEditable) return;
 
-    // Skill roll
     html.find(".skill-roll-btn").click(this._onSkillRollBtn.bind(this));
-
-    // Weapon roll (skill check first)
     html.find(".weapon-roll-btn").click(this._onWeaponRoll.bind(this));
-
-    // Custom skill management
     html.find(".skill-add").click(this._onAddCustomSkill.bind(this));
+    html.find(".skill-delete").click(this._onSkillDelete.bind(this));
     html.find(".custom-skill-delete").click(this._onDeleteCustomSkill.bind(this));
-
-    // Favorite toggle
+    html.find(".skill-edit").click(this._onSkillEdit.bind(this));
     html.find(".fav-toggle").click(this._onToggleFavorite.bind(this));
 
-    // Item management
     html.find(".item-create").click(this._onItemCreate.bind(this));
     html.find(".item-edit").click(ev => {
-      const li = $(ev.currentTarget).closest(".item");
+      const li = $(ev.currentTarget).closest("[data-item-id]");
       const item = this.actor.items.get(li.data("itemId"));
-      item.sheet.render(true);
+      if (item) item.sheet.render(true);
     });
     html.find(".item-delete").click(ev => {
-      const li = $(ev.currentTarget).closest(".item");
+      const li = $(ev.currentTarget).closest("[data-item-id]");
       const item = this.actor.items.get(li.data("itemId"));
-      item.delete();
+      if (item) item.delete();
     });
 
-    // Equip/unequip
     html.find(".item-equip-toggle").click(async ev => {
-      const li = $(ev.currentTarget).closest(".item");
+      const li = $(ev.currentTarget).closest("[data-item-id]");
       const item = this.actor.items.get(li.data("itemId"));
       if (item) await item.update({ "system.equipped": !item.system.equipped });
     });
@@ -194,15 +218,24 @@ export default class SabatActorSheet extends ActorSheet {
       const src = rr >= 66 ? bgBase + "good.png" : rr >= 33 ? bgBase + "neutral.png" : bgBase + "evil.png";
       html.find("#portrait-bg-layer").attr("src", src);
     });
+
+    // Green sliders live display
+    html.find("#luck-slider").on("input", function () {
+      html.find("#luck-current-display").text(this.value);
+    });
+    html.find("#cp-slider").on("input", function () {
+      html.find("#cp-current-display").text(this.value);
+    });
+    html.find("#fp-slider").on("input", function () {
+      html.find("#fp-current-display").text(this.value);
+    });
   }
 
-  // --- Skill roll (d100 vs skill value) ---
+  // --- Skill roll ---
   async _onSkillRollBtn(event) {
     event.preventDefault();
     const el = event.currentTarget;
-    const label = el.dataset.label;
-    const target = parseInt(el.dataset.target) || 0;
-    await this._rollSkillCheck(label, target);
+    await this._rollSkillCheck(el.dataset.label, parseInt(el.dataset.target) || 0);
   }
 
   async _rollSkillCheck(skillLabel, target) {
@@ -211,43 +244,33 @@ export default class SabatActorSheet extends ActorSheet {
     const margin = target - d;
     let resultLabel, resultClass, marginText;
 
-    if (d <= 5) {
-      resultLabel = "Auto-Success ★"; resultClass = "result-critical"; marginText = "(Automatic)";
-    } else if (d >= 96) {
-      resultLabel = "Auto-Failure ✗"; resultClass = "result-blunder"; marginText = "(Automatic)";
-    } else if (d <= target) {
-      const critThreshold = Math.max(1, Math.floor(target * 0.1));
-      if (d <= critThreshold) { resultLabel = "Critical Success! ★★"; resultClass = "result-critical"; }
-      else { resultLabel = "Success ✓"; resultClass = "result-success"; }
+    if (d <= 5) { resultLabel = "Auto-Success ★"; resultClass = "result-critical"; marginText = "(Automatic)"; }
+    else if (d >= 96) { resultLabel = "Auto-Failure ✗"; resultClass = "result-blunder"; marginText = "(Automatic)"; }
+    else if (d <= target) {
+      const ct = Math.max(1, Math.floor(target * 0.1));
+      resultLabel = d <= ct ? "Critical Success! ★★" : "Success ✓";
+      resultClass = d <= ct ? "result-critical" : "result-success";
       marginText = `(Beat target by ${margin})`;
     } else {
-      const failRange = 100 - target;
-      const blunderThreshold = target + Math.floor(failRange * 0.9) + 1;
-      if (d >= blunderThreshold) { resultLabel = "Blunder! ✗✗"; resultClass = "result-blunder"; }
-      else { resultLabel = "Failure ✗"; resultClass = "result-failure"; }
+      const bt = target + Math.floor((100 - target) * 0.9) + 1;
+      resultLabel = d >= bt ? "Blunder! ✗✗" : "Failure ✗";
+      resultClass = d >= bt ? "result-blunder" : "result-failure";
       marginText = `(Missed target by ${Math.abs(margin)})`;
     }
 
-    const flavor = `
-      <div class="sabat-roll">
-        <strong>${skillLabel}</strong>
-        <div class="roll-details">Rolled <strong>${d}</strong> vs target <strong>${target}%</strong></div>
-        <div class="roll-result ${resultClass}">${resultLabel} <span class="margin-text">${marginText}</span></div>
-      </div>`;
-
     await roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      flavor,
+      flavor: `<div class="sabat-roll"><strong>${skillLabel}</strong>
+        <div class="roll-details">Rolled <strong>${d}</strong> vs target <strong>${target}%</strong></div>
+        <div class="roll-result ${resultClass}">${resultLabel} <span class="margin-text">${marginText}</span></div></div>`,
       rollMode: game.settings.get("core", "rollMode")
     });
-
-    return { roll, d, success: d <= 5 || (d < 96 && d <= target) };
   }
 
-  // --- Weapon roll: skill check → damage button ---
+  // --- Weapon roll: skill check then damage button ---
   async _onWeaponRoll(event) {
     event.preventDefault();
-    const li = $(event.currentTarget).closest(".item");
+    const li = $(event.currentTarget).closest("[data-item-id]");
     const item = this.actor.items.get(li.data("itemId"));
     if (!item) return;
 
@@ -261,64 +284,112 @@ export default class SabatActorSheet extends ActorSheet {
     const margin = target - d;
     let resultLabel, resultClass, marginText;
 
-    if (d <= 5) {
-      resultLabel = "Auto-Success ★"; resultClass = "result-critical"; marginText = "(Automatic)";
-    } else if (d >= 96) {
-      resultLabel = "Auto-Failure ✗"; resultClass = "result-blunder"; marginText = "(Automatic)";
-    } else if (d <= target) {
-      const critThreshold = Math.max(1, Math.floor(target * 0.1));
-      if (d <= critThreshold) { resultLabel = "Critical Success! ★★"; resultClass = "result-critical"; }
-      else { resultLabel = "Success ✓"; resultClass = "result-success"; }
+    if (d <= 5) { resultLabel = "Auto-Success ★"; resultClass = "result-critical"; marginText = "(Automatic)"; }
+    else if (d >= 96) { resultLabel = "Auto-Failure ✗"; resultClass = "result-blunder"; marginText = "(Automatic)"; }
+    else if (d <= target) {
+      const ct = Math.max(1, Math.floor(target * 0.1));
+      resultLabel = d <= ct ? "Critical Success! ★★" : "Success ✓";
+      resultClass = d <= ct ? "result-critical" : "result-success";
       marginText = `(Beat target by ${margin})`;
     } else {
-      const failRange = 100 - target;
-      const blunderThreshold = target + Math.floor(failRange * 0.9) + 1;
-      if (d >= blunderThreshold) { resultLabel = "Blunder! ✗✗"; resultClass = "result-blunder"; }
-      else { resultLabel = "Failure ✗"; resultClass = "result-failure"; }
+      const bt = target + Math.floor((100 - target) * 0.9) + 1;
+      resultLabel = d >= bt ? "Blunder! ✗✗" : "Failure ✗";
+      resultClass = d >= bt ? "result-blunder" : "result-failure";
       marginText = `(Missed target by ${Math.abs(margin)})`;
     }
 
-    const flavor = `
-      <div class="sabat-roll">
-        <strong>${item.name}</strong> — <em>${skillLabel}</em>
-        <div class="roll-details">Rolled <strong>${d}</strong> vs target <strong>${target}%</strong></div>
-        <div class="roll-result ${resultClass}">${resultLabel} <span class="margin-text">${marginText}</span></div>
-        <button class="chat-damage-btn"
-          data-actor-id="${this.actor.id}"
-          data-item-id="${item.id}">
-          🗡 Roll Damage
-        </button>
-      </div>`;
-
     await roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      flavor,
+      flavor: `<div class="sabat-roll"><strong>${item.name}</strong> — <em>${skillLabel}</em>
+        <div class="roll-details">Rolled <strong>${d}</strong> vs target <strong>${target}%</strong></div>
+        <div class="roll-result ${resultClass}">${resultLabel} <span class="margin-text">${marginText}</span></div>
+        <button class="chat-damage-btn" data-item-id="${item.id}">🗡 Roll Damage</button></div>`,
       rollMode: game.settings.get("core", "rollMode")
     });
   }
 
-  // --- Toggle favorite ---
+  // --- Favourites ---
   async _onToggleFavorite(event) {
     event.preventDefault();
     const el = event.currentTarget;
-    const favType = el.dataset.favType;
-    const favKey = el.dataset.favKey;
+    const { favType, favKey } = el.dataset;
     const current = this.actor.system.favorites?.[favType]?.[favKey];
-    if (current) {
-      await this.actor.update({ [`system.favorites.${favType}.-=${favKey}`]: null });
-    } else {
-      await this.actor.update({ [`system.favorites.${favType}.${favKey}`]: true });
+    if (current) await this.actor.update({ [`system.favorites.${favType}.-=${favKey}`]: null });
+    else await this.actor.update({ [`system.favorites.${favType}.${favKey}`]: true });
+  }
+
+  // --- Skill edit dialog ---
+  async _onSkillEdit(event) {
+    event.preventDefault();
+    const el = event.currentTarget;
+    const skillKey = el.dataset.skill;
+    const customId = el.dataset.customId;
+
+    if (customId) {
+      const cs = this.actor.system.customSkills[customId];
+      if (!cs) return;
+      new Dialog({
+        title: `Edit: ${cs.name}`,
+        content: `<div class="form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+          <div><label style="font-size:.8em;font-weight:bold">Name</label><input type="text" id="cs-name" value="${cs.name}" style="width:100%" /></div>
+          <div><label style="font-size:.8em;font-weight:bold">Value</label><input type="number" id="cs-val" value="${cs.value}" min="0" max="200" style="width:100%" /></div>
+          <div><label style="font-size:.8em;font-weight:bold"><input type="checkbox" id="cs-adv" ${cs.advancement ? "checked" : ""} /> Advancement</label></div>
+        </div>`,
+        buttons: {
+          save: { label: "Save", callback: html => {
+            const name = html.find("#cs-name").val().trim() || cs.name;
+            const value = parseInt(html.find("#cs-val").val()) || 0;
+            const advancement = html.find("#cs-adv").is(":checked");
+            this.actor.update({ [`system.customSkills.${customId}`]: { ...cs, name, value, advancement } });
+          }},
+          cancel: { label: "Cancel" }
+        },
+        default: "save"
+      }).render(true);
+    } else if (skillKey) {
+      const sk = this.actor.system.skills[skillKey] ?? { value: 0, advancement: false };
+      const label = SKILL_LABELS[skillKey] ?? skillKey;
+      const attr = SKILL_ATTRS[skillKey] ?? "—";
+      new Dialog({
+        title: `Edit: ${label}`,
+        content: `<div class="form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+          <div><label style="font-size:.8em;font-weight:bold">Name</label><input type="text" value="${label}" disabled style="width:100%" /></div>
+          <div><label style="font-size:.8em;font-weight:bold">Attribute</label><input type="text" value="${attr}" disabled style="width:100%" /></div>
+          <div><label style="font-size:.8em;font-weight:bold">Value</label><input type="number" id="sk-val" value="${sk.value}" min="0" max="200" style="width:100%" /></div>
+          <div><label style="font-size:.8em;font-weight:bold"><input type="checkbox" id="sk-adv" ${sk.advancement ? "checked" : ""} /> Advancement</label></div>
+        </div>`,
+        buttons: {
+          save: { label: "Save", callback: html => {
+            const value = parseInt(html.find("#sk-val").val()) || 0;
+            const advancement = html.find("#sk-adv").is(":checked");
+            this.actor.update({ [`system.skills.${skillKey}.value`]: value, [`system.skills.${skillKey}.advancement`]: advancement });
+          }},
+          cancel: { label: "Cancel" }
+        },
+        default: "save"
+      }).render(true);
     }
   }
 
-  // --- Custom skills ---
+  // --- Skill delete (reset built-in to 0) ---
+  async _onSkillDelete(event) {
+    event.preventDefault();
+    const key = event.currentTarget.dataset.skill;
+    if (!key) return;
+    await this.actor.update({
+      [`system.skills.${key}.value`]: 0,
+      [`system.skills.${key}.advancement`]: false,
+      [`system.favorites.skills.-=${key}`]: null
+    });
+  }
+
+  // --- Custom skill management ---
   async _onAddCustomSkill(event) {
     event.preventDefault();
     const attrKey = event.currentTarget.dataset.attr;
-    const attrLabel = attrKey.toUpperCase();
     const name = await new Promise(resolve => {
       new Dialog({
-        title: `Add Skill (${attrLabel})`,
+        title: `Add Skill (${attrKey.toUpperCase()})`,
         content: `<div style="margin-bottom:8px"><label>Skill name:</label>
           <input type="text" id="custom-skill-name" style="width:100%;margin-top:4px" autofocus /></div>`,
         buttons: {
@@ -329,27 +400,21 @@ export default class SabatActorSheet extends ActorSheet {
       }).render(true);
     });
     if (!name) return;
-    const id = `cs_${Date.now()}`;
-    await this.actor.update({ [`system.customSkills.${id}`]: { name, attr: attrKey, value: 0, advancement: false } });
+    await this.actor.update({ [`system.customSkills.cs_${Date.now()}`]: { name, attr: attrKey, value: 0, advancement: false } });
   }
 
   async _onDeleteCustomSkill(event) {
     event.preventDefault();
     const id = event.currentTarget.dataset.customId;
-    await this.actor.update({
-      [`system.customSkills.-=${id}`]: null,
-      [`system.favorites.skills.-=custom.${id}`]: null
-    });
+    await this.actor.update({ [`system.customSkills.-=${id}`]: null, [`system.favorites.skills.-=custom.${id}`]: null });
   }
 
-  // --- Item create ---
+  // --- Items ---
   async _onItemCreate(event) {
     event.preventDefault();
     const type = event.currentTarget.dataset.type;
     return await Item.create({ name: `New ${type.charAt(0).toUpperCase() + type.slice(1)}`, type }, { parent: this.actor });
   }
 
-  async _onDropItemCreate(itemData) {
-    return super._onDropItemCreate(itemData);
-  }
+  async _onDropItemCreate(itemData) { return super._onDropItemCreate(itemData); }
 }

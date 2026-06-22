@@ -91,11 +91,13 @@ function _chatHitLocationKey(d10) {
   return "leftLeg";
 }
 
-Hooks.on("renderChatMessage", (_message, html) => {
+Hooks.on("renderChatMessage", (message, html) => {
   // "Roll Damage" button from weapon skill check
   html.find(".chat-damage-btn").click(async (ev) => {
     const btn = ev.currentTarget;
-    const actor = game.actors.get(btn.dataset.actorId);
+    const speaker = message.speaker;
+    const tokenDoc = speaker.scene ? game.scenes.get(speaker.scene)?.tokens.get(speaker.token) : null;
+    const actor = tokenDoc?.actor ?? game.actors.get(speaker.actor);
     const item = actor?.items.get(btn.dataset.itemId);
     if (!actor || !item) return ui.notifications.warn("Weapon or actor not found.");
 
