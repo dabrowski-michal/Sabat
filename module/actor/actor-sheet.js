@@ -70,7 +70,7 @@ export default class SabatActorSheet extends ActorSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["sabat", "sheet", "actor"],
       template: "systems/sabat/templates/actor/character-sheet.html",
-      width: 840,
+      width: 820,
       height: 880,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "characteristics" }],
       dragDrop: [{ dragSelector: ".item-list .item", dropSelector: null }]
