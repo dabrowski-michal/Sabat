@@ -3,46 +3,13 @@
   <header class="sheet-header">
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Character Name" /></h1>
-      <div class="header-row">
-        <div class="field-group"><label>Kingdom</label>
-          <select name="system.background.kingdom">
-            <option value="" {{#unless system.background.kingdom}}selected{{/unless}}>—</option>
-            <option value="castile"  {{#if (eq system.background.kingdom "castile")}}selected{{/if}}>Crown of Castile</option>
-            <option value="aragon"   {{#if (eq system.background.kingdom "aragon")}}selected{{/if}}>Crown of Aragón</option>
-            <option value="granada"  {{#if (eq system.background.kingdom "granada")}}selected{{/if}}>Kingdom of Granada</option>
-            <option value="navarre"  {{#if (eq system.background.kingdom "navarre")}}selected{{/if}}>Kingdom of Navarre</option>
-            <option value="portugal" {{#if (eq system.background.kingdom "portugal")}}selected{{/if}}>Kingdom of Portugal</option>
-          </select></div>
-        <div class="field-group"><label>People</label>
-          <select name="system.background.people">
-            <option value="" {{#unless system.background.people}}selected{{/unless}}>—</option>
-            <option value="arab"       {{#if (eq system.background.people "arab")}}selected{{/if}}>Arab</option>
-            <option value="aragonese"  {{#if (eq system.background.people "aragonese")}}selected{{/if}}>Aragonese</option>
-            <option value="castilian"  {{#if (eq system.background.people "castilian")}}selected{{/if}}>Castilian</option>
-            <option value="basque"     {{#if (eq system.background.people "basque")}}selected{{/if}}>Basque</option>
-            <option value="catalan"    {{#if (eq system.background.people "catalan")}}selected{{/if}}>Catalan</option>
-            <option value="galician"   {{#if (eq system.background.people "galician")}}selected{{/if}}>Galician</option>
-            <option value="jew"        {{#if (eq system.background.people "jew")}}selected{{/if}}>Jew</option>
-            <option value="navarrese"  {{#if (eq system.background.people "navarrese")}}selected{{/if}}>Navarrese</option>
-            <option value="portuguese" {{#if (eq system.background.people "portuguese")}}selected{{/if}}>Portuguese</option>
-          </select></div>
-        <div class="field-group"><label>Social Class</label>
-          <select name="system.background.socialClass">
-            <option value="" {{#unless system.background.socialClass}}selected{{/unless}}>—</option>
-            <option value="upper-nobility" {{#if (eq system.background.socialClass "upper-nobility")}}selected{{/if}}>Upper Nobility</option>
-            <option value="lower-nobility" {{#if (eq system.background.socialClass "lower-nobility")}}selected{{/if}}>Lower Nobility</option>
-            <option value="burgher"        {{#if (eq system.background.socialClass "burgher")}}selected{{/if}}>Burgher</option>
-            <option value="townsfolk"      {{#if (eq system.background.socialClass "townsfolk")}}selected{{/if}}>Townsfolk</option>
-            <option value="peasant"        {{#if (eq system.background.socialClass "peasant")}}selected{{/if}}>Peasant</option>
-            <option value="slave"          {{#if (eq system.background.socialClass "slave")}}selected{{/if}}>Slave</option>
-          </select></div>
-        <div class="field-group"><label>Profession</label><input type="text" name="system.background.profession" value="{{system.background.profession}}" placeholder="Profession" /></div>
-        <div class="field-group"><label>Age</label><input type="number" name="system.background.age" value="{{system.background.age}}" min="0" /></div>
-        <div class="field-group"><label>Gender</label>
-          <select name="system.gender">
-            <option value="male" {{#if (eq system.gender "male")}}selected{{/if}}>Male</option>
-            <option value="female" {{#if (eq system.gender "female")}}selected{{/if}}>Female</option>
-          </select></div>
+      <div class="header-tags">
+        {{#if kingdomLabel}}<span class="header-tag"><i class="fas fa-crown"></i> {{kingdomLabel}}</span>{{/if}}
+        {{#if peopleLabel}}<span class="header-tag"><i class="fas fa-users"></i> {{peopleLabel}}</span>{{/if}}
+        {{#if socialClassLabel}}<span class="header-tag"><i class="fas fa-chess-rook"></i> {{socialClassLabel}}</span>{{/if}}
+        {{#if system.background.profession}}<span class="header-tag"><i class="fas fa-hammer"></i> {{system.background.profession}}</span>{{/if}}
+        {{#if system.background.age}}<span class="header-tag"><i class="fas fa-hourglass-half"></i> {{system.background.age}} yrs</span>{{/if}}
+        <span class="header-tag"><i class="fas fa-venus-mars"></i> {{genderLabel}}</span>
       </div>
     </div>
   </header>
@@ -379,6 +346,52 @@
     <!-- ===== BIOGRAPHY ===== -->
     <div class="tab biography" data-group="primary" data-tab="biography">
       <div class="bio-layout">
+
+        <div class="bio-fields panel">
+          <h3 class="panel-title">Identity</h3>
+          <div class="bio-identity-grid">
+            <div class="field-group"><label>Kingdom</label>
+              <select name="system.background.kingdom">
+                <option value="" {{#unless system.background.kingdom}}selected{{/unless}}>—</option>
+                <option value="castile"  {{#if (eq system.background.kingdom "castile")}}selected{{/if}}>Crown of Castile</option>
+                <option value="aragon"   {{#if (eq system.background.kingdom "aragon")}}selected{{/if}}>Crown of Aragón</option>
+                <option value="granada"  {{#if (eq system.background.kingdom "granada")}}selected{{/if}}>Kingdom of Granada</option>
+                <option value="navarre"  {{#if (eq system.background.kingdom "navarre")}}selected{{/if}}>Kingdom of Navarre</option>
+                <option value="portugal" {{#if (eq system.background.kingdom "portugal")}}selected{{/if}}>Kingdom of Portugal</option>
+              </select></div>
+            <div class="field-group"><label>People</label>
+              <select name="system.background.people">
+                <option value="" {{#unless system.background.people}}selected{{/unless}}>—</option>
+                <option value="arab"       {{#if (eq system.background.people "arab")}}selected{{/if}}>Arab</option>
+                <option value="aragonese"  {{#if (eq system.background.people "aragonese")}}selected{{/if}}>Aragonese</option>
+                <option value="castilian"  {{#if (eq system.background.people "castilian")}}selected{{/if}}>Castilian</option>
+                <option value="basque"     {{#if (eq system.background.people "basque")}}selected{{/if}}>Basque</option>
+                <option value="catalan"    {{#if (eq system.background.people "catalan")}}selected{{/if}}>Catalan</option>
+                <option value="galician"   {{#if (eq system.background.people "galician")}}selected{{/if}}>Galician</option>
+                <option value="jew"        {{#if (eq system.background.people "jew")}}selected{{/if}}>Jew</option>
+                <option value="navarrese"  {{#if (eq system.background.people "navarrese")}}selected{{/if}}>Navarrese</option>
+                <option value="portuguese" {{#if (eq system.background.people "portuguese")}}selected{{/if}}>Portuguese</option>
+              </select></div>
+            <div class="field-group"><label>Social Class</label>
+              <select name="system.background.socialClass">
+                <option value="" {{#unless system.background.socialClass}}selected{{/unless}}>—</option>
+                <option value="upper-nobility" {{#if (eq system.background.socialClass "upper-nobility")}}selected{{/if}}>Upper Nobility</option>
+                <option value="lower-nobility" {{#if (eq system.background.socialClass "lower-nobility")}}selected{{/if}}>Lower Nobility</option>
+                <option value="burgher"        {{#if (eq system.background.socialClass "burgher")}}selected{{/if}}>Burgher</option>
+                <option value="townsfolk"      {{#if (eq system.background.socialClass "townsfolk")}}selected{{/if}}>Townsfolk</option>
+                <option value="peasant"        {{#if (eq system.background.socialClass "peasant")}}selected{{/if}}>Peasant</option>
+                <option value="slave"          {{#if (eq system.background.socialClass "slave")}}selected{{/if}}>Slave</option>
+              </select></div>
+            <div class="field-group"><label>Profession</label><input type="text" name="system.background.profession" value="{{system.background.profession}}" placeholder="Profession" /></div>
+            <div class="field-group"><label>Age</label><input type="number" name="system.background.age" value="{{system.background.age}}" min="0" /></div>
+            <div class="field-group"><label>Gender</label>
+              <select name="system.gender">
+                <option value="male" {{#if (eq system.gender "male")}}selected{{/if}}>Male</option>
+                <option value="female" {{#if (eq system.gender "female")}}selected{{/if}}>Female</option>
+              </select></div>
+          </div>
+        </div>
+
         <div class="bio-fields panel">
           <h3 class="panel-title">Background</h3>
           <div class="bio-grid">
@@ -389,6 +402,7 @@
           <div class="field-group full-width"><label>Family</label><textarea name="system.background.family" rows="3">{{system.background.family}}</textarea></div>
           <div class="field-group full-width"><label>Biography</label>{{editor system.background.biography target="system.background.biography" button=true owner=owner editable=editable}}</div>
         </div>
+
       </div>
     </div>
 

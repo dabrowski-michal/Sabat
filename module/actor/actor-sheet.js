@@ -92,6 +92,15 @@ export default class SabatActorSheet extends ActorSheet {
     const favSkills = system.favorites?.skills ?? {};
     const favWeapons = system.favorites?.weapons ?? {};
 
+    // Header display labels
+    const KINGDOMS = { castile: "Crown of Castile", aragon: "Crown of Aragón", granada: "Kingdom of Granada", navarre: "Kingdom of Navarre", portugal: "Kingdom of Portugal" };
+    const PEOPLES = { arab: "Arab", aragonese: "Aragonese", castilian: "Castilian", basque: "Basque", catalan: "Catalan", galician: "Galician", jew: "Jew", navarrese: "Navarrese", portuguese: "Portuguese" };
+    const CLASSES = { "upper-nobility": "Upper Nobility", "lower-nobility": "Lower Nobility", burgher: "Burgher", townsfolk: "Townsfolk", peasant: "Peasant", slave: "Slave" };
+    context.kingdomLabel = KINGDOMS[system.background.kingdom] ?? "";
+    context.peopleLabel = PEOPLES[system.background.people] ?? "";
+    context.socialClassLabel = CLASSES[system.background.socialClass] ?? "";
+    context.genderLabel = system.gender === "female" ? "Female" : "Male";
+
     // Skill groups
     context.skillGroups = GENERAL_SKILL_GROUPS.map(group => ({
       attrKey: group.attrKey,
