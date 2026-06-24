@@ -432,16 +432,26 @@
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 
-/* ---- Spell Sheet: Latin Description ---- */
-.spell-latin .latin-desc-value {
-  font-family: var(--aq-font-label);
-  font-style: italic;
-  font-size: 1em;
-  color: var(--aq-brown-dark);
-  padding: 4px 8px;
-  background: rgba(201,162,39,0.08);
-  border-left: 3px solid var(--aq-gold);
-  display: block;
+/* ---- Spell Item Sheet Layout ---- */
+.spell-sheet .spell-selects-row {
+  display: flex; gap: 8px; align-items: flex-end;
+  margin-bottom: 8px;
+}
+.spell-sheet .spell-selects-row .field-group { flex: 1; }
+.spell-sheet .spell-selects-row .checkbox-group { flex: 0 0 auto; }
+
+.spell-sheet .spell-derived-row {
+  display: flex; flex-wrap: wrap; gap: 6px 14px;
+  font-size: 0.85em; color: var(--aq-brown);
+  padding: 6px 0; margin-bottom: 8px;
+  border-top: 1px solid var(--aq-border);
+  border-bottom: 1px solid var(--aq-border);
+}
+.spell-sheet .spell-derived-item strong { color: var(--aq-brown-dark); }
+
+.spell-sheet .spell-short-fields {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px; margin-bottom: 8px;
 }
 
 /* ---- Equipment Tab ---- */

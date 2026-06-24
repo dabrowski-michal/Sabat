@@ -8,13 +8,15 @@
   </header>
 
   <section class="item-body">
-    <div class="form-grid">
 
-      <div class="field-group">
-        <label>Latin Name</label>
-        <input type="text" name="system.latinName" value="{{system.latinName}}" placeholder="e.g., Ignis Sacer" />
-      </div>
+    <!-- Row 1: Latin Name (full width) -->
+    <div class="field-group full-width" style="margin-bottom:8px">
+      <label>Latin Name</label>
+      <input type="text" name="system.latinName" value="{{system.latinName}}" placeholder="e.g., Ignis Sacer" />
+    </div>
 
+    <!-- Row 2: Vis, Form, Nature, Origin, RR Allowed -->
+    <div class="spell-selects-row">
       <div class="field-group">
         <label>Vis</label>
         <select name="system.vis">
@@ -27,7 +29,6 @@
           <option value="7" {{#if (eq system.vis 7)}}selected{{/if}}>Septima</option>
         </select>
       </div>
-
       <div class="field-group">
         <label>Form</label>
         <select name="system.form">
@@ -39,7 +40,14 @@
           <option value="Potio"       {{#if (eq system.form "Potio")}}selected{{/if}}>Potio</option>
         </select>
       </div>
-
+      <div class="field-group">
+        <label>Nature</label>
+        <select name="system.nature">
+          <option value="" {{#unless system.nature}}selected{{/unless}}>—</option>
+          <option value="Black" {{#if (eq system.nature "Black")}}selected{{/if}}>Black</option>
+          <option value="White" {{#if (eq system.nature "White")}}selected{{/if}}>White</option>
+        </select>
+      </div>
       <div class="field-group">
         <label>Origin</label>
         <select name="system.origin">
@@ -50,60 +58,36 @@
           <option value="Forbidden"  {{#if (eq system.origin "Forbidden")}}selected{{/if}}>Forbidden</option>
         </select>
       </div>
-
-      <div class="field-group">
-        <label>Nature</label>
-        <select name="system.nature">
-          <option value="" {{#unless system.nature}}selected{{/unless}}>—</option>
-          <option value="Black" {{#if (eq system.nature "Black")}}selected{{/if}}>Black</option>
-          <option value="White" {{#if (eq system.nature "White")}}selected{{/if}}>White</option>
-        </select>
+      <div class="field-group checkbox-group">
+        <label>RR</label>
+        <input type="checkbox" name="system.rrAllowed" {{#if system.rrAllowed}}checked{{/if}} />
       </div>
+    </div>
 
+    <!-- Row 3: Derived read-only values in one line -->
+    <div class="spell-derived-row">
+      {{#if latinDescription}}<span class="spell-derived-item"><strong>Latin:</strong> <em>{{latinDescription}}</em></span>{{/if}}
+      <span class="spell-derived-item"><strong>CP Cost:</strong> {{cpCost}}</span>
+      <span class="spell-derived-item"><strong>Modifier:</strong> {{pctMod}}%</span>
+    </div>
+
+    <!-- Row 4: Short text fields -->
+    <div class="spell-short-fields">
       <div class="field-group">
-        <label>CP Cost</label>
-        <span class="derived-value">{{cpCost}}</span>
+        <label>Effect</label>
+        <input type="text" name="system.effect" value="{{system.effect}}" placeholder="Short effect description" />
       </div>
-
-      <div class="field-group">
-        <label>% Modifier</label>
-        <span class="derived-value">{{pctMod}}%</span>
-      </div>
-
       <div class="field-group">
         <label>Duration</label>
         <input type="text" name="system.duration" value="{{system.duration}}" placeholder="e.g., 1 hour" />
       </div>
-
       <div class="field-group">
         <label>Expiration</label>
         <input type="text" name="system.expiration" value="{{system.expiration}}" placeholder="e.g., Dawn" />
       </div>
-
-      <div class="field-group checkbox-group">
-        <label>RR Allowed</label>
-        <input type="checkbox" name="system.rrAllowed" {{#if system.rrAllowed}}checked{{/if}} />
-      </div>
-
     </div>
 
-    {{#if latinDescription}}
-    <div class="field-group full-width spell-latin">
-      <label>Latin Description</label>
-      <span class="latin-desc-value">{{latinDescription}}</span>
-    </div>
-    {{/if}}
-
-    <div class="field-group full-width">
-      <label>Effect</label>
-      <textarea name="system.effect" rows="2">{{system.effect}}</textarea>
-    </div>
-
-    <div class="field-group full-width">
-      <label>Duration</label>
-      <input type="text" name="system.duration" value="{{system.duration}}" placeholder="e.g., 1 hour" />
-    </div>
-
+    <!-- Row 5: Long text fields -->
     <div class="field-group full-width">
       <label>Components</label>
       <textarea name="system.components" rows="2">{{system.components}}</textarea>
@@ -116,7 +100,8 @@
 
     <div class="field-group full-width">
       <label>Description</label>
-      <textarea name="system.description" rows="6">{{system.description}}</textarea>
+      <textarea name="system.description" rows="8">{{system.description}}</textarea>
     </div>
+
   </section>
 </form>
