@@ -1,10 +1,36 @@
+const VIS_LABELS = { 1: "Prima", 2: "Secunda", 3: "Tertia", 4: "Quarta", 5: "Quinta", 6: "Sexta", 7: "Septima" };
+
+const FEMININE_FORMS = new Set(["Invocatio", "Potio"]);
+
+const NATURE_LATIN = {
+  Black: { F: "nigra", N: "nigrum" },
+  White: { F: "alba", N: "album" }
+};
+
+const ORIGIN_LATIN = {
+  Folk:       { F: "rustica",    N: "rusticum" },
+  Alchemical: { F: "alchemica",  N: "alchemicum" },
+  Infernal:   { F: "infernalis", N: "infernale" },
+  Forbidden:  { F: "vetita",     N: "vetitum" }
+};
+
+function computeLatinDescription(system) {
+  const { form, origin, nature } = system;
+  if (!form || !origin || !nature) return "";
+  const gender = FEMININE_FORMS.has(form) ? "F" : "N";
+  const natureLatin = NATURE_LATIN[nature]?.[gender] ?? "";
+  const originLatin = ORIGIN_LATIN[origin]?.[gender] ?? "";
+  if (!natureLatin || !originLatin) return "";
+  return `${form} ${natureLatin} ${originLatin}`;
+}
+
 export default class SabatItemSheet extends ItemSheet {
 
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["sabat", "sheet", "item"],
       width: 520,
-      height: 480,
+      height: 560,
       tabs: [{
         navSelector: ".sheet-tabs",
         contentSelector: ".sheet-body",
@@ -25,6 +51,12 @@ export default class SabatItemSheet extends ItemSheet {
     const itemData = this.item.toObject(false);
     context.system = itemData.system;
     context.flags = itemData.flags;
+
+    if (this.item.type === "spell") {
+      context.visLabel = VIS_LABELS[itemData.system.vis] ?? "Prima";
+      context.latinDescription = computeLatinDescription(itemData.system);
+    }
+
     return context;
   }
 

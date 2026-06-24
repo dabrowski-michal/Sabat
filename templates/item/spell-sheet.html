@@ -1,4 +1,4 @@
-﻿<form class="sabat-sheet item-sheet spell-sheet" autocomplete="off">
+<form class="sabat-sheet item-sheet spell-sheet" autocomplete="off">
   <header class="item-header">
     <img class="item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
     <div class="item-header-fields">
@@ -11,15 +11,52 @@
     <div class="form-grid">
 
       <div class="field-group">
-        <label>Vis (Power)</label>
+        <label>Latin Name</label>
+        <input type="text" name="system.latinName" value="{{system.latinName}}" placeholder="e.g., Ignis Sacer" />
+      </div>
+
+      <div class="field-group">
+        <label>Vis (Power Level)</label>
         <select name="system.vis">
-          <option value="Prima"   {{#if (eq system.vis "Prima")}}selected{{/if}}>Prima</option>
-          <option value="Secunda" {{#if (eq system.vis "Secunda")}}selected{{/if}}>Secunda</option>
-          <option value="Tertia"  {{#if (eq system.vis "Tertia")}}selected{{/if}}>Tertia</option>
-          <option value="Quarta"  {{#if (eq system.vis "Quarta")}}selected{{/if}}>Quarta</option>
-          <option value="Quinta"  {{#if (eq system.vis "Quinta")}}selected{{/if}}>Quinta</option>
-          <option value="Sexta"   {{#if (eq system.vis "Sexta")}}selected{{/if}}>Sexta</option>
-          <option value="Septima" {{#if (eq system.vis "Septima")}}selected{{/if}}>Septima</option>
+          <option value="1" {{#if (eq system.vis 1)}}selected{{/if}}>I — Prima</option>
+          <option value="2" {{#if (eq system.vis 2)}}selected{{/if}}>II — Secunda</option>
+          <option value="3" {{#if (eq system.vis 3)}}selected{{/if}}>III — Tertia</option>
+          <option value="4" {{#if (eq system.vis 4)}}selected{{/if}}>IV — Quarta</option>
+          <option value="5" {{#if (eq system.vis 5)}}selected{{/if}}>V — Quinta</option>
+          <option value="6" {{#if (eq system.vis 6)}}selected{{/if}}>VI — Sexta</option>
+          <option value="7" {{#if (eq system.vis 7)}}selected{{/if}}>VII — Septima</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label>Form</label>
+        <select name="system.form">
+          <option value="" {{#unless system.form}}selected{{/unless}}>—</option>
+          <option value="Invocatio"   {{#if (eq system.form "Invocatio")}}selected{{/if}}>Invocatio</option>
+          <option value="Maleficium"  {{#if (eq system.form "Maleficium")}}selected{{/if}}>Maleficium</option>
+          <option value="Unguentum"   {{#if (eq system.form "Unguentum")}}selected{{/if}}>Unguentum</option>
+          <option value="Amuletum"    {{#if (eq system.form "Amuletum")}}selected{{/if}}>Amuletum</option>
+          <option value="Potio"       {{#if (eq system.form "Potio")}}selected{{/if}}>Potio</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label>Origin</label>
+        <select name="system.origin">
+          <option value="" {{#unless system.origin}}selected{{/unless}}>—</option>
+          <option value="Folk"       {{#if (eq system.origin "Folk")}}selected{{/if}}>Folk</option>
+          <option value="Alchemical" {{#if (eq system.origin "Alchemical")}}selected{{/if}}>Alchemical</option>
+          <option value="Infernal"   {{#if (eq system.origin "Infernal")}}selected{{/if}}>Infernal</option>
+          <option value="Forbidden"  {{#if (eq system.origin "Forbidden")}}selected{{/if}}>Forbidden</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label>Nature</label>
+        <select name="system.nature">
+          <option value="" {{#unless system.nature}}selected{{/unless}}>—</option>
+          <option value="Black" {{#if (eq system.nature "Black")}}selected{{/if}}>Black</option>
+          <option value="White" {{#if (eq system.nature "White")}}selected{{/if}}>White</option>
         </select>
       </div>
 
@@ -33,16 +70,43 @@
         <input type="text" name="system.duration" value="{{system.duration}}" placeholder="e.g., 1 hour" />
       </div>
 
+      <div class="field-group">
+        <label>Expiration</label>
+        <input type="text" name="system.expiration" value="{{system.expiration}}" placeholder="e.g., Dawn" />
+      </div>
+
+      <div class="field-group checkbox-group">
+        <label>RR Allowed</label>
+        <input type="checkbox" name="system.rrAllowed" {{#if system.rrAllowed}}checked{{/if}} />
+      </div>
+
+    </div>
+
+    {{#if latinDescription}}
+    <div class="field-group full-width spell-latin">
+      <label>Latin Description</label>
+      <span class="latin-desc-value">{{latinDescription}}</span>
+    </div>
+    {{/if}}
+
+    <div class="field-group full-width">
+      <label>Effect</label>
+      <textarea name="system.effect" rows="2">{{system.effect}}</textarea>
+    </div>
+
+    <div class="field-group full-width">
+      <label>Components</label>
+      <textarea name="system.components" rows="2">{{system.components}}</textarea>
+    </div>
+
+    <div class="field-group full-width">
+      <label>Preparation</label>
+      <textarea name="system.preparation" rows="2">{{system.preparation}}</textarea>
     </div>
 
     <div class="field-group full-width">
       <label>Description</label>
-      <textarea name="system.description" rows="4">{{system.description}}</textarea>
-    </div>
-
-    <div class="field-group full-width">
-      <label>Notes</label>
-      <textarea name="system.notes" rows="2">{{system.notes}}</textarea>
+      <textarea name="system.description" rows="3">{{system.description}}</textarea>
     </div>
   </section>
 </form>

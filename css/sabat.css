@@ -348,6 +348,18 @@
 .sabat-sheet .skill-add { color: var(--aq-brown-light); cursor: pointer; transition: color 0.15s; font-size: 0.9em; padding: 2px 4px; }
 .sabat-sheet .skill-add:hover { color: var(--aq-gold); }
 
+/* ---- Spell Sheet: Latin Description ---- */
+.spell-latin .latin-desc-value {
+  font-family: var(--aq-font-label);
+  font-style: italic;
+  font-size: 1em;
+  color: var(--aq-brown-dark);
+  padding: 4px 8px;
+  background: rgba(201,162,39,0.08);
+  border-left: 3px solid var(--aq-gold);
+  display: block;
+}
+
 /* ---- Equipment Tab ---- */
 .sabat-sheet .items-section { margin-bottom: 10px; }
 .sabat-sheet .section-header { display: flex; align-items: center; justify-content: space-between; }

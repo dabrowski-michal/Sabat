@@ -183,11 +183,19 @@
       "notes": ""
     },
     "spell": {
-      "description": "",
-      "vis": "Prima",
-      "concentrationCost": 0,
+      "latinName": "",
+      "effect": "",
+      "vis": 1,
+      "form": "",
+      "origin": "",
+      "nature": "",
+      "expiration": "",
       "duration": "",
-      "notes": ""
+      "components": "",
+      "preparation": "",
+      "description": "",
+      "rrAllowed": false,
+      "concentrationCost": 0
     }
   }
 }
