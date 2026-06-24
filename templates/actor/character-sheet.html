@@ -470,7 +470,13 @@
             <div class="field-group"><label>Weight</label><input type="number" name="system.background.weight" value="{{system.background.weight}}" /></div>
           </div>
           <div class="field-group full-width"><label>Family</label><textarea name="system.background.family" rows="3">{{system.background.family}}</textarea></div>
-          <div class="field-group full-width"><label>Biography</label>{{editor system.background.biography target="system.background.biography" button=true owner=owner editable=editable}}</div>
+        </div>
+
+        <div class="bio-fields panel">
+          <h3 class="panel-title">Biography</h3>
+          <div class="field-group full-width">
+            {{editor system.background.biography target="system.background.biography" button=true owner=owner editable=editable}}
+          </div>
         </div>
 
       </div>
