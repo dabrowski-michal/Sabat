@@ -375,7 +375,10 @@
           {{#each this.spells}}
           <div class="spell-row" data-item-id="{{this.id}}">
             <a class="spell-post" title="Post to chat"><img class="spell-row-icon" src="{{this.img}}" /></a>
-            <span class="spell-row-name"><a class="item-edit" title="Open">{{this.system.latinName}}{{#unless this.system.latinName}}{{this.name}}{{/unless}}</a></span>
+            <div class="spell-row-name">
+              <a class="item-edit spell-name-main" title="Open">{{this.name}}</a>
+              {{#if this.system.latinName}}<span class="spell-name-latin">{{this.system.latinName}}</span>{{/if}}
+            </div>
             <span class="spell-row-nature">{{this.latinDesc}}</span>
             <span class="spell-row-effect">{{this.system.effect}}</span>
             <div class="item-controls">
