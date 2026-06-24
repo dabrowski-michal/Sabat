@@ -528,14 +528,14 @@ export default class SabatActorSheet extends ActorSheet {
     const mkVal = this.actor.system.skills.magicalKnowledge?.value ?? 0;
     const quickTarget = Math.max(1, mkVal + visPct);
 
-    // Build field sections
+    // Build field sections (new order: Effect, Duration, Expiration, Components, Preparation, Description)
     let fields = "";
     const fld = (label, val) => { if (val) fields += `<div class="spell-card-label">${label}</div><div class="spell-card-value">${val}</div>`; };
     fld("Effect", s.effect);
-    fld("Components", s.components);
-    fld("Preparation", s.preparation);
     fld("Duration", s.duration);
     fld("Expiration", s.expiration);
+    fld("Components", s.components);
+    fld("Preparation", s.preparation);
     fld("Description", s.description);
 
     // Latin description
@@ -555,38 +555,39 @@ export default class SabatActorSheet extends ActorSheet {
       ${s.latinName ? `<div class="spell-card-latin">${s.latinName}</div>` : ""}
     </div>
   </div>
+  <div class="spell-card-meta-bar">
+    <span>Vis: <strong>${visLabel}</strong></span>
+    <span>CP: <strong>${s.cpCost ?? 1}</strong></span>
+    <span>Form: <strong>${s.form || "—"}</strong></span>
+    <span>Origin: <strong>${s.origin || "—"}</strong></span>
+    <span>Nature: <strong>${s.nature || "—"}</strong></span>
+    ${s.rrAllowed ? "<span>RR Allowed</span>" : ""}
+  </div>
   <div class="spell-card-body">
-    <div class="spell-card-meta">
-      <span>Vis: <strong>${visLabel}</strong></span>
-      <span>CP: <strong>${s.cpCost ?? 1}</strong></span>
-      <span>Form: <strong>${s.form || "—"}</strong></span>
-      <span>Origin: <strong>${s.origin || "—"}</strong></span>
-      <span>Nature: <strong>${s.nature || "—"}</strong></span>
-      ${s.rrAllowed ? "<span>RR Allowed</span>" : ""}
-    </div>
     ${fields}
 
-    <button class="spell-mk-btn">🔮 Magical Knowledge (${mkVal}% ${visPct}% VIS = ${quickTarget}%)</button>
+    <details class="spell-card-limitations">
+      <summary class="spell-limits-toggle">⚙ Caster Limitations</summary>
+      <div class="spell-limits-content">
+        <div class="spell-card-label">Caster</div>
+        <label class="spell-limit-row"><input type="checkbox" class="spell-limit-check" data-mod="-25" /> Low Voice (-25%)</label>
+        <label class="spell-limit-row"><input type="checkbox" class="spell-limit-check" data-mod="-25" /> No Gestures (-25%)</label>
 
-    <div class="spell-card-limitations">
-      <div class="spell-card-label">Caster Limitations</div>
-      <label class="spell-limit-row"><input type="checkbox" class="spell-limit-check" data-mod="-25" /> Low Voice (-25%)</label>
-      <label class="spell-limit-row"><input type="checkbox" class="spell-limit-check" data-mod="-25" /> No Gestures (-25%)</label>
+        <div class="spell-card-label">Armor</div>
+        <label class="spell-limit-row"><input type="radio" name="armor-${item.id}" class="spell-limit-radio" value="0" checked /> No Armor (0%)</label>
+        <label class="spell-limit-row"><input type="radio" name="armor-${item.id}" class="spell-limit-radio" value="-25" /> Light Armor (-25%)</label>
+        <label class="spell-limit-row"><input type="radio" name="armor-${item.id}" class="spell-limit-radio" value="-50" /> Metal Armor (-50%)</label>
+        <label class="spell-limit-row"><input type="radio" name="armor-${item.id}" class="spell-limit-radio" value="-75" /> Arnés (-75%)</label>
 
-      <div class="spell-card-label">Armor</div>
-      <label class="spell-limit-row"><input type="radio" name="armor-${item.id}" class="spell-limit-radio" value="0" checked /> No Armor (0%)</label>
-      <label class="spell-limit-row"><input type="radio" name="armor-${item.id}" class="spell-limit-radio" value="-25" /> Light Armor (-25%)</label>
-      <label class="spell-limit-row"><input type="radio" name="armor-${item.id}" class="spell-limit-radio" value="-50" /> Metal Armor (-50%)</label>
-      <label class="spell-limit-row"><input type="radio" name="armor-${item.id}" class="spell-limit-radio" value="-75" /> Arnés (-75%)</label>
-
-      <div class="spell-card-label">Situational</div>
-      <label class="spell-limit-row"><input type="checkbox" class="spell-limit-check" data-mod="-10" /> Attacked, took no damage (-10%)</label>
-      <label class="spell-limit-row">LP lost this round: <input type="number" class="spell-limit-number spell-limit-lp" value="0" min="0" /> (×-10%)</label>
-      <label class="spell-limit-row">Target IRR above 100: <input type="number" class="spell-limit-number spell-limit-irr" value="0" min="0" /> (×-1%)</label>
-    </div>
+        <div class="spell-card-label">Situational</div>
+        <label class="spell-limit-row"><input type="checkbox" class="spell-limit-check" data-mod="-10" /> Attacked, took no damage (-10%)</label>
+        <label class="spell-limit-row">HP lost this round: <input type="number" class="spell-limit-number spell-limit-lp" value="0" min="0" /> (×-10%)</label>
+        <label class="spell-limit-row">Target IRR above 100: <input type="number" class="spell-limit-number spell-limit-irr" value="0" min="0" /> (×-1%)</label>
+      </div>
+    </details>
 
     <div class="spell-mod-summary">Total modifier: ${visPct}%</div>
-    <button class="spell-cast-btn">⚡ Cast Spell (Magical Knowledge with all modifiers)</button>
+    <button class="spell-cast-btn">⚡ Cast Spell — Magical Knowledge</button>
   </div>
 </div>`;
 

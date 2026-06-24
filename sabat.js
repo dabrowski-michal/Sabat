@@ -203,17 +203,6 @@ Hooks.on("renderChatMessage", (message, html) => {
     });
   }
 
-  // Quick MK button (VIS modifier only)
-  html.find(".spell-mk-btn").click(async (ev) => {
-    const card = $(ev.currentTarget).closest(".sabat-spell-card");
-    const visPct = parseInt(card.attr("data-vis-pct")) || 0;
-    const actor = _resolveActor(message);
-    if (!actor) return ui.notifications.warn("Actor not found.");
-    const mkVal = actor.system.skills.magicalKnowledge?.value ?? 0;
-    const target = Math.max(1, mkVal + visPct);
-    await _rollMK(actor, target, `Magical Knowledge (${mkVal}% + ${visPct}% VIS = ${target}%)`);
-  });
-
   // Compute total modifier from card inputs
   function _totalMod(card) {
     const visPct = parseInt(card.attr("data-vis-pct")) || 0;

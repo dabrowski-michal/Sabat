@@ -17,6 +17,13 @@ export default class SabatItem extends Item {
     if (this.type !== "spell") return;
 
     const sys = changed.system ?? {};
+
+    // Vis comes as string from <select>, force to int
+    if (sys.vis !== undefined) {
+      if (!changed.system) changed.system = {};
+      changed.system.vis = parseInt(sys.vis) || 1;
+    }
+
     const form = sys.form ?? this.system.form;
     const nature = sys.nature ?? this.system.nature;
 
