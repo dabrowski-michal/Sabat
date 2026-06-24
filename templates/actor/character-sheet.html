@@ -74,7 +74,7 @@
                 <label class="char-slider-title">Life Points</label>
                 <div class="char-slider-row">
                   <span class="char-slider-val" id="hp-current-display">{{system.health.value}}</span>
-                  <div class="slider-track-frame">
+                  <div class="slider-track-frame hp-frame">
                     <div class="slider-fill" id="hp-fill"></div>
                     <input type="range" name="system.health.value" id="hp-slider" class="ghost-slider" min="0" max="{{system.health.max}}" value="{{system.health.value}}" />
                   </div>
@@ -86,7 +86,7 @@
                 <label class="char-slider-title">Luck</label>
                 <div class="char-slider-row">
                   <span class="char-slider-val" id="luck-current-display">{{system.secondaryCharacteristics.luckCurrent}}</span>
-                  <div class="slider-track-frame">
+                  <div class="slider-track-frame luck-frame">
                     <div class="slider-fill" id="luck-fill"></div>
                     <input type="range" name="system.secondaryCharacteristics.luckCurrent" id="luck-slider" class="ghost-slider" min="0" max="{{system.secondaryCharacteristics.luckInitial}}" value="{{system.secondaryCharacteristics.luckCurrent}}" />
                   </div>

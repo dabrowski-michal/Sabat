@@ -268,7 +268,13 @@
   background: transparent;
 }
 
-/* Rationality gets a background image for the "empty" part */
+/* Per-slider background images (empty/base state) */
+.sabat-sheet .slider-track-frame.hp-frame {
+  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/lifeSliderBg.png") left center / auto 100% no-repeat;
+}
+.sabat-sheet .slider-track-frame.luck-frame {
+  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/luckSliderBg.png") left center / auto 100% no-repeat;
+}
 .sabat-sheet .slider-track-frame.rr-frame {
   background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/irrationalitySlider.png") left center / auto 100% no-repeat;
 }
