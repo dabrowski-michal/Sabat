@@ -14,9 +14,10 @@
   --aq-text:        #2a1a0a;
   --aq-text-muted:  #7a5c38;
   --aq-shadow:      rgba(58, 32, 16, 0.3);
-  --aq-font-body:   "Georgia", serif;
-  --aq-font-label:  "Georgia", serif;
-  --aq-font-number: "Courier New", monospace;
+  --aq-font:        "Palatino Linotype", "Palatino", "Book Antiqua", serif;
+  --aq-font-body:   var(--aq-font);
+  --aq-font-label:  var(--aq-font);
+  --aq-font-number: var(--aq-font);
 }
 
 /* ---- Base Sheet ---- */
@@ -413,7 +414,7 @@
 /* Grid: icon | name | nature | effect | controls */
 .sabat-sheet .spell-list-header {
   display: grid;
-  grid-template-columns: 48px 1.2fr 80px 80px 1.8fr 54px;
+  grid-template-columns: 48px 1.2fr 72px 72px 1fr 1.5fr 54px;
   gap: 6px; padding: 2px 4px 4px;
   border-bottom: 1px solid var(--aq-border); margin-bottom: 4px;
   font-size: 0.75em; font-weight: bold; text-transform: uppercase;
@@ -422,7 +423,7 @@
 
 .sabat-sheet .spell-row {
   display: grid;
-  grid-template-columns: 48px 1.2fr 80px 80px 1.8fr 54px;
+  grid-template-columns: 48px 1.2fr 72px 72px 1fr 1.5fr 54px;
   gap: 6px; align-items: center;
   padding: 4px; border-radius: 2px;
   transition: background 0.1s;
@@ -557,7 +558,7 @@
 
 /* ---- Roll Card ---- */
 .roll-card {
-  font-family: "Georgia", serif;
+  font-family: var(--aq-font);
   text-align: center;
   padding: 8px;
 }
@@ -587,7 +588,7 @@
 .roll-card-img-flip { transform: scaleX(-1); }
 
 .roll-card-number {
-  font-family: "Courier New", monospace;
+  font-family: var(--aq-font);
   font-size: 2.8em; font-weight: bold;
   color: var(--aq-brown-dark); line-height: 1;
 }
@@ -641,7 +642,7 @@
   border: 1px solid var(--aq-border);
   border-radius: 4px;
   overflow: hidden;
-  font-family: "Georgia", serif;
+  font-family: var(--aq-font);
 }
 
 /* Dark header: icon + name + latin */
@@ -726,7 +727,7 @@
   background: #f5ead6; color: #2a1a0a;
   border: 1px solid var(--aq-border);
   border-radius: 2px;
-  font-family: "Courier New", monospace;
+  font-family: var(--aq-font);
   font-size: 0.9em; padding: 2px 4px;
 }
 
