@@ -185,15 +185,15 @@ Hooks.on("renderChatMessage", (message, html) => {
     const img = isSuccess ? imgBase + "success/1.png" : imgBase + "failure/1.png";
 
     let resultText, resultClass;
-    if (d <= 5) { resultText = "★ AUTOMATIC SUCCESS ★"; resultClass = "roll-card-auto-success"; }
-    else if (d >= 96) { resultText = "💀 AUTOMATIC FAILURE 💀"; resultClass = "roll-card-auto-fail"; }
+    if (d <= 5) { resultText = "AUTOMATIC SUCCESS"; resultClass = "roll-card-auto-success"; }
+    else if (d >= 96) { resultText = "AUTOMATIC FAILURE"; resultClass = "roll-card-auto-fail"; }
     else if (d <= target) {
       const ct = Math.max(1, Math.floor(target * 0.1));
-      resultText = d <= ct ? "★★ CRITICAL SUCCESS ★★" : "SUCCESS ✓";
+      resultText = d <= ct ? "CRITICAL SUCCESS" : "SUCCESS";
       resultClass = d <= ct ? "roll-card-crit" : "roll-card-success";
     } else {
       const bt = target + Math.floor((100 - target) * 0.9) + 1;
-      resultText = d >= bt ? "💀 BLUNDER 💀" : "FAILURE ✗";
+      resultText = d >= bt ? "BLUNDER" : "FAILURE";
       resultClass = d >= bt ? "roll-card-blunder" : "roll-card-fail";
     }
 

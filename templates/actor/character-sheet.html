@@ -44,6 +44,7 @@
 
           <!-- Experience / Temperance / Willpower -->
           <div class="extras-panel panel">
+            <h3 class="panel-title">Attributes</h3>
             <div class="extras-grid">
               <div class="extras-item">
                 <span class="extras-icon"><i class="fas fa-scroll"></i></span>
@@ -106,29 +107,9 @@
                 <div class="char-slider-labels"><span>Irrationality</span><span>Rationality</span></div>
               </div>
 
-              <div class="char-slider">
-                <label class="char-slider-title">Concentration Points</label>
-                <div class="char-slider-row">
-                  <span class="char-slider-val" id="cp-current-display">{{system.secondaryCharacteristics.concentrationPoints.value}}</span>
-                  <div class="slider-track-frame">
-                    <div class="slider-fill" id="cp-fill"></div>
-                    <input type="range" name="system.secondaryCharacteristics.concentrationPoints.value" id="cp-slider" class="ghost-slider" min="0" max="{{system.secondaryCharacteristics.concentrationPoints.max}}" value="{{system.secondaryCharacteristics.concentrationPoints.value}}" />
-                  </div>
-                  <span class="char-slider-val">{{system.secondaryCharacteristics.concentrationPoints.max}}</span>
-                </div>
-              </div>
-
-              <div class="char-slider">
-                <label class="char-slider-title">Faith Points</label>
-                <div class="char-slider-row">
-                  <span class="char-slider-val" id="fp-current-display">{{system.secondaryCharacteristics.faithPoints.value}}</span>
-                  <div class="slider-track-frame">
-                    <div class="slider-fill" id="fp-fill"></div>
-                    <input type="range" name="system.secondaryCharacteristics.faithPoints.value" id="fp-slider" class="ghost-slider" min="0" max="{{system.secondaryCharacteristics.faithPoints.max}}" value="{{system.secondaryCharacteristics.faithPoints.value}}" />
-                  </div>
-                  <span class="char-slider-val">{{system.secondaryCharacteristics.faithPoints.max}}</span>
-                </div>
-              </div>
+              <!-- CP and FP as hidden inputs (data preserved for spells) -->
+              <input type="hidden" name="system.secondaryCharacteristics.concentrationPoints.value" value="{{system.secondaryCharacteristics.concentrationPoints.value}}" />
+              <input type="hidden" name="system.secondaryCharacteristics.faithPoints.value" value="{{system.secondaryCharacteristics.faithPoints.value}}" />
 
             </div>
           </div>

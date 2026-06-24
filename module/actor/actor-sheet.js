@@ -304,7 +304,7 @@ export default class SabatActorSheet extends ActorSheet {
     });
 
     // Image-fill sliders — update the fill div width
-    const SLIDER_IDS = ["hp-slider", "luck-slider", "rr-slider", "cp-slider", "fp-slider"];
+    const SLIDER_IDS = ["hp-slider", "luck-slider", "rr-slider"];
     function updateImageFill(slider, fillEl) {
       const pct = slider.max > slider.min
         ? ((slider.value - slider.min) / (slider.max - slider.min)) * 100 : 0;
@@ -332,8 +332,6 @@ export default class SabatActorSheet extends ActorSheet {
     // Other sliders: update display values
     html.find("#hp-slider").on("input", function () { html.find("#hp-current-display").text(this.value); });
     html.find("#luck-slider").on("input", function () { html.find("#luck-current-display").text(this.value); });
-    html.find("#cp-slider").on("input", function () { html.find("#cp-current-display").text(this.value); });
-    html.find("#fp-slider").on("input", function () { html.find("#fp-current-display").text(this.value); });
   }
 
   // --- Skill roll ---
@@ -350,15 +348,15 @@ export default class SabatActorSheet extends ActorSheet {
     const img = isSuccess ? imgBase + "success/1.png" : imgBase + "failure/1.png";
 
     let resultText, resultClass;
-    if (d <= 5) { resultText = "★ AUTOMATIC SUCCESS ★"; resultClass = "roll-card-auto-success"; }
-    else if (d >= 96) { resultText = "💀 AUTOMATIC FAILURE 💀"; resultClass = "roll-card-auto-fail"; }
+    if (d <= 5) { resultText = "AUTOMATIC SUCCESS"; resultClass = "roll-card-auto-success"; }
+    else if (d >= 96) { resultText = "AUTOMATIC FAILURE"; resultClass = "roll-card-auto-fail"; }
     else if (d <= target) {
       const ct = Math.max(1, Math.floor(target * 0.1));
-      resultText = d <= ct ? "★★ CRITICAL SUCCESS ★★" : "SUCCESS ✓";
+      resultText = d <= ct ? "CRITICAL SUCCESS" : "SUCCESS";
       resultClass = d <= ct ? "roll-card-crit" : "roll-card-success";
     } else {
       const bt = target + Math.floor((100 - target) * 0.9) + 1;
-      resultText = d >= bt ? "💀 BLUNDER 💀" : "FAILURE ✗";
+      resultText = d >= bt ? "BLUNDER" : "FAILURE";
       resultClass = d >= bt ? "roll-card-blunder" : "roll-card-fail";
     }
 
@@ -368,7 +366,7 @@ export default class SabatActorSheet extends ActorSheet {
 
     let extra = "";
     if (modBreakdown) extra += `<div class="roll-card-mods">${modBreakdown}</div>`;
-    if (damageItemId) extra += `<button class="chat-damage-btn" data-item-id="${damageItemId}">🗡 Roll Damage</button>`;
+    if (damageItemId) extra += `<button class="chat-damage-btn" data-item-id="${damageItemId}">Roll Damage</button>`;
 
     return `
 <div class="roll-card">
@@ -577,7 +575,7 @@ export default class SabatActorSheet extends ActorSheet {
     ${fields}
 
     <details class="spell-card-limitations">
-      <summary class="spell-limits-toggle">⚙ Caster Limitations</summary>
+      <summary class="spell-limits-toggle">Caster Limitations</summary>
       <div class="spell-limits-content">
         <div class="spell-card-label">Caster</div>
         <label class="spell-limit-row"><input type="checkbox" class="spell-limit-check" data-mod="-25" /> Low Voice (-25%)</label>
@@ -597,7 +595,7 @@ export default class SabatActorSheet extends ActorSheet {
     </details>
 
     <div class="spell-mod-summary">Total modifier: ${visPct}%</div>
-    <button class="spell-cast-btn">⚡ Cast Spell — Magical Knowledge</button>
+    <button class="spell-cast-btn">Cast Spell</button>
   </div>
 </div>`;
 

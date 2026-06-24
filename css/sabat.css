@@ -103,10 +103,12 @@
 .sabat-sheet .tab { display: none; }
 .sabat-sheet .tab.active { display: block; }
 
-/* ---- Panels — borderless, ink on parchment ---- */
+/* ---- Panels ---- */
 .sabat-sheet .panel {
-  background: none; border: none;
-  border-radius: 0; padding: 6px 0; margin-bottom: 8px;
+  background: none;
+  border: 1px solid rgba(90,60,30,0.25);
+  border-radius: 0;
+  padding: 8px 10px; margin-bottom: 8px;
 }
 .sabat-sheet .panel-title {
   font-family: var(--aq-font-label); font-size: 0.95em;
@@ -183,10 +185,10 @@
 }
 
 .sabat-sheet .char-slider-val {
-  font-family: var(--aq-font-number); font-weight: bold; font-size: 0.92em;
-  color: #3b2a1a;
+  font-family: var(--aq-font-number); font-weight: bold; font-size: 1.6em;
+  color: var(--aq-brown-dark);
   background: none; border: none;
-  padding: 0 4px; width: 34px; height: 50px;
+  padding: 0 6px; width: 40px; height: 50px;
   text-align: center; flex: none;
   display: flex; align-items: center; justify-content: center;
 }
@@ -443,6 +445,14 @@
 }
 
 /* ---- Spell Item Sheet Layout ---- */
+.spell-sheet .spell-top-row {
+  display: flex; gap: 8px; align-items: flex-end; margin-bottom: 8px;
+}
+.spell-sheet .spell-derived-inline {
+  font-size: 0.9em; color: var(--aq-brown-dark); font-weight: bold;
+  display: block; padding: 2px 0;
+}
+
 .spell-sheet .spell-selects-row {
   display: flex; gap: 8px; align-items: flex-end;
   margin-bottom: 8px;
@@ -550,7 +560,7 @@
 }
 
 .roll-card-img {
-  width: 56px; height: 56px; object-fit: contain;
+  width: 80px; height: 80px; object-fit: contain;
   border: none !important; outline: none !important;
 }
 
@@ -563,9 +573,9 @@
 }
 
 .roll-card-result {
-  font-size: 1em; font-weight: bold;
-  text-transform: uppercase; letter-spacing: 0.08em;
-  padding: 4px 8px; margin: 4px 0;
+  font-size: 1.2em; font-weight: bold;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 4px 8px; margin: 6px 0;
 }
 
 .roll-card-success, .roll-card-crit, .roll-card-auto-success { color: #2d6a2d; }
@@ -590,15 +600,14 @@
 .sabat-roll .roll-details { font-size: 0.85em; color: #555; margin: 2px 0; }
 
 .chat-damage-btn, .apply-damage-btn {
-  display: block; width: 100%; margin-top: 7px; padding: 5px 10px;
-  border: 1px solid var(--aq-brown-dark); border-radius: 3px; cursor: pointer;
-  font-family: var(--aq-font-body); font-size: 0.85em; transition: background 0.15s;
+  display: block; width: 100%; margin-top: 7px; padding: 4px 8px;
+  border: 2px groove #6e6e6e; border-radius: 0; cursor: pointer;
+  font-family: var(--aq-font-body); font-size: 0.85em; line-height: 1.6;
+  color: #191813; text-align: center;
+  background: rgba(0,0,0,0.05);
 }
-.chat-damage-btn { background: var(--aq-brown); color: #fff; }
-.chat-damage-btn:hover { background: var(--aq-brown-dark); }
+.chat-damage-btn:hover, .apply-damage-btn:hover { background: rgba(0,0,0,0.1); }
 .chat-damage-btn:disabled { opacity: 0.5; cursor: default; }
-.apply-damage-btn { background: var(--aq-red); color: #fff; }
-.apply-damage-btn:hover { background: #6a0f0f; }
 
 /* ---- Spell Chat Card ---- */
 .sabat-spell-card {
@@ -634,10 +643,10 @@
 }
 .spell-card-meta-bar strong { color: #c9a227; }
 
-/* Light body */
+/* Light body — no background */
 .spell-card-body {
   padding: 10px 14px;
-  background: var(--aq-parchment);
+  background: none;
   color: var(--aq-text);
 }
 
@@ -652,16 +661,16 @@
   line-height: 1.4; margin-bottom: 2px;
 }
 
-/* Cast button */
+/* Cast button — Foundry style */
 .spell-cast-btn {
-  display: block; width: 100%; padding: 7px 10px;
-  border: 1px solid var(--aq-brown-dark); border-radius: 3px;
-  cursor: pointer; font-family: "Georgia", serif;
-  font-size: 0.88em; transition: background 0.15s;
-  color: #fff; text-align: center;
-  background: var(--aq-brown); margin-top: 8px;
+  display: block; width: 100%; padding: 4px 8px;
+  border: 2px groove #6e6e6e; border-radius: 0;
+  cursor: pointer; font-family: var(--aq-font-body);
+  font-size: 0.85em; line-height: 1.6;
+  color: #191813; text-align: center;
+  background: rgba(0,0,0,0.05); margin-top: 8px;
 }
-.spell-cast-btn:hover { background: var(--aq-brown-dark); }
+.spell-cast-btn:hover { background: rgba(0,0,0,0.1); }
 
 /* Collapsible limitations (dark inset) */
 .spell-card-limitations {
@@ -678,14 +687,13 @@
 .spell-limits-toggle::-webkit-details-marker { display: none; }
 
 .spell-limits-content {
-  background: #2a1a0a; color: #f5ead6;
-  border-radius: 0 0 3px 3px;
+  background: none; color: var(--aq-text);
   padding: 8px 10px; margin-top: 4px;
 }
 
 .spell-limit-row {
   display: flex; align-items: center; gap: 6px;
-  font-size: 0.82em; color: #f5ead6;
+  font-size: 0.82em; color: var(--aq-text);
   padding: 2px 0; cursor: pointer;
 }
 
