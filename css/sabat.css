@@ -159,21 +159,20 @@
 /* Primary chars — icons + UPPERCASE names */
 .sabat-sheet .char-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 10px; }
 .sabat-sheet .char-item { display: flex; align-items: center; gap: 6px; }
-.sabat-sheet .char-icon {
-  width: 22px; display: flex; align-items: center; justify-content: center;
-  background: none; color: var(--aq-brown); border: none;
-  font-size: 0.9em; flex-shrink: 0;
-}
+/* char-icon removed — no icons in primary chars */
 .sabat-sheet .char-name {
   font-size: 0.78em; color: var(--aq-brown); font-weight: bold;
   text-transform: none; letter-spacing: 0.03em; flex: 1;
 }
 .sabat-sheet .char-value {
-  width: 38px; text-align: center; font-family: var(--aq-font-number);
-  font-size: 1.15em; font-weight: bold; color: var(--aq-brown-dark);
-  background: none !important; border: none !important;
-  border-bottom: 1px solid rgba(90,60,30,0.3) !important;
-  border-radius: 0 !important; padding: 2px 2px !important; flex-shrink: 0;
+  width: 40px; height: 40px; text-align: center;
+  font-family: var(--aq-font-number); font-size: 1.15em; font-weight: bold;
+  color: #f7c05c;
+  text-shadow: 0 1px 2px #a64329, 0 0 4px #a64329;
+  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/checkEmpty.png") center / contain no-repeat !important;
+  border: none !important; border-radius: 0 !important;
+  padding: 0 !important; flex-shrink: 0;
+  line-height: 40px;
 }
 
 /* Extras panel (Experience / Temperance / Willpower) */
