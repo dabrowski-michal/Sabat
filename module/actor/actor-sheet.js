@@ -363,11 +363,18 @@ export default class SabatActorSheet extends ActorSheet {
 
       const container = html.find("#rr-points-checkboxes");
       container.empty();
-      for (let i = 0; i < max; i++) {
-        const filled = i < clamped;
-        const img = filled ? filledImg : emptyImg;
-        container.append(`<img class="rr-point-box" data-index="${i}" src="${img}" />`);
+      const topCount = Math.ceil(max / 2);
+      const botCount = max - topCount;
+      let html1 = '<div class="rr-points-row">';
+      for (let i = 0; i < topCount; i++) {
+        html1 += `<img class="rr-point-box" data-index="${i}" src="${i < clamped ? filledImg : emptyImg}" />`;
       }
+      html1 += '</div><div class="rr-points-row">';
+      for (let i = topCount; i < max; i++) {
+        html1 += `<img class="rr-point-box" data-index="${i}" src="${i < clamped ? filledImg : emptyImg}" />`;
+      }
+      html1 += '</div>';
+      container.append(html1);
     }
 
     renderRRPoints();
