@@ -154,6 +154,7 @@
       "twoHanded": false,
       "reload": 0,
       "range": "Melee",
+      "weight": 0,
       "price": 0,
       "equipped": false,
       "paperDollLayer": "",
@@ -162,6 +163,7 @@
     "armor": {
       "description": "",
       "protection": 0,
+      "weight": 0,
       "price": 0,
       "equipped": false,
       "paperDollLayer": "",
@@ -178,7 +180,6 @@
     "item": {
       "description": "",
       "weight": 0,
-      "quantity": 1,
       "price": 0,
       "notes": ""
     },
