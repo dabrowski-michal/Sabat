@@ -16,15 +16,15 @@
       </div>
 
       <div class="field-group">
-        <label>Vis (Power Level)</label>
+        <label>Vis</label>
         <select name="system.vis">
-          <option value="1" {{#if (eq system.vis 1)}}selected{{/if}}>I — Prima</option>
-          <option value="2" {{#if (eq system.vis 2)}}selected{{/if}}>II — Secunda</option>
-          <option value="3" {{#if (eq system.vis 3)}}selected{{/if}}>III — Tertia</option>
-          <option value="4" {{#if (eq system.vis 4)}}selected{{/if}}>IV — Quarta</option>
-          <option value="5" {{#if (eq system.vis 5)}}selected{{/if}}>V — Quinta</option>
-          <option value="6" {{#if (eq system.vis 6)}}selected{{/if}}>VI — Sexta</option>
-          <option value="7" {{#if (eq system.vis 7)}}selected{{/if}}>VII — Septima</option>
+          <option value="1" {{#if (eq system.vis 1)}}selected{{/if}}>Prima</option>
+          <option value="2" {{#if (eq system.vis 2)}}selected{{/if}}>Secunda</option>
+          <option value="3" {{#if (eq system.vis 3)}}selected{{/if}}>Tertia</option>
+          <option value="4" {{#if (eq system.vis 4)}}selected{{/if}}>Quarta</option>
+          <option value="5" {{#if (eq system.vis 5)}}selected{{/if}}>Quinta</option>
+          <option value="6" {{#if (eq system.vis 6)}}selected{{/if}}>Sexta</option>
+          <option value="7" {{#if (eq system.vis 7)}}selected{{/if}}>Septima</option>
         </select>
       </div>
 
@@ -62,7 +62,12 @@
 
       <div class="field-group">
         <label>CP Cost</label>
-        <input type="number" name="system.concentrationCost" value="{{system.concentrationCost}}" min="0" />
+        <span class="derived-value">{{cpCost}}</span>
+      </div>
+
+      <div class="field-group">
+        <label>% Modifier</label>
+        <span class="derived-value">{{pctMod}}%</span>
       </div>
 
       <div class="field-group">

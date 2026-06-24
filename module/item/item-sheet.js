@@ -55,6 +55,8 @@ export default class SabatItemSheet extends ItemSheet {
     if (this.item.type === "spell") {
       context.visLabel = VIS_LABELS[itemData.system.vis] ?? "Prima";
       context.latinDescription = computeLatinDescription(itemData.system);
+      context.cpCost = this.item.system.cpCost ?? 1;
+      context.pctMod = this.item.system.pctMod ?? 0;
     }
 
     return context;
