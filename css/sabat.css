@@ -157,11 +157,15 @@
   -webkit-appearance: none; appearance: none;
 }
 
-/* Keep char-value background in locked mode */
+/* Primary characteristics identical in both modes */
 .edit-locked .char-value {
   background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/checkEmpty.png") center / contain no-repeat !important;
   color: #f7c05c !important;
+  text-shadow: 0 1px 2px #a64329, 0 0 4px #a64329 !important;
+  -webkit-text-fill-color: #f7c05c !important;
 }
+.edit-locked .char-name { color: var(--aq-brown) !important; }
+.edit-locked .char-item { opacity: 1 !important; }
 
 /* Keep charname gold */
 .edit-locked .charname input { color: #f7c05c !important; }
