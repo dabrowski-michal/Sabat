@@ -23,9 +23,9 @@
 .sabat-sheet {
   font-family: var(--aq-font-body);
   color: var(--aq-text);
-  background: var(--aq-parchment);
+  background: var(--aq-parchment) url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/parchment.jpg") repeat;
+  background-size: 360px 360px;
   min-width: 700px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
 }
 
 .sabat-sheet input[type="text"],
