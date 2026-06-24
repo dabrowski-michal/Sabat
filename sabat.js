@@ -229,14 +229,20 @@ Hooks.on("renderChatMessage", (message, html) => {
     const visPct = parseInt(card.attr("data-vis-pct")) || 0;
     let total = visPct;
     card.find(".spell-limit-check:checked").each(function () { total += parseInt($(this).attr("data-mod")) || 0; });
-    total += parseInt(card.find(".spell-limit-radio:checked").val()) || 0;
     total += (parseInt(card.find(".spell-limit-lp").val()) || 0) * -10;
     total += (parseInt(card.find(".spell-limit-irr").val()) || 0) * -1;
     return total;
   }
 
+  // Armor checkboxes: mutual exclusion (only one at a time)
+  html.find(".spell-armor-check").on("change", function () {
+    if (this.checked) {
+      $(this).closest(".spell-limits-content").find(".spell-armor-check").not(this).prop("checked", false);
+    }
+  });
+
   // Live update modifier summary
-  html.find(".spell-limit-check, .spell-limit-radio, .spell-limit-number").on("change input", (ev) => {
+  html.find(".spell-limit-check, .spell-limit-number").on("change input", (ev) => {
     const card = $(ev.currentTarget).closest(".sabat-spell-card");
     card.find(".spell-mod-summary").text(`Total modifier: ${_totalMod(card)}%`);
   });

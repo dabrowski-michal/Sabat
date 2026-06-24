@@ -49,18 +49,20 @@
 }
 
 /* Custom checkboxes — square, brown circle fill */
-.sabat-sheet input[type="checkbox"] {
+.sabat-sheet input[type="checkbox"],
+.spell-limit-row input[type="checkbox"] {
   -webkit-appearance: none; appearance: none;
   width: 14px; height: 14px;
-  border: 2px solid var(--aq-brown); border-radius: 0;
+  border: 2px solid #5c3d1e; border-radius: 0;
   background: transparent; cursor: pointer;
   position: relative; vertical-align: middle;
   flex-shrink: 0;
 }
-.sabat-sheet input[type="checkbox"]:checked::after {
+.sabat-sheet input[type="checkbox"]:checked::after,
+.spell-limit-row input[type="checkbox"]:checked::after {
   content: ""; position: absolute;
   top: 2px; left: 2px; width: 6px; height: 6px;
-  background: var(--aq-brown); border-radius: 50%;
+  background: #5c3d1e; border-radius: 50%;
 }
 
 .sabat-sheet input[type="text"]:focus,
@@ -561,7 +563,7 @@
 
 /* ---- Roll Card ---- */
 .roll-card {
-  font-family: var(--aq-font);
+  font-family: "Palatino Linotype", "Palatino", "Book Antiqua", serif;
   text-align: center;
   padding: 8px;
 }
@@ -645,7 +647,7 @@
   border: 1px solid var(--aq-border);
   border-radius: 4px;
   overflow: hidden;
-  font-family: var(--aq-font);
+  font-family: "Palatino Linotype", "Palatino", "Book Antiqua", serif;
 }
 
 /* Dark header: icon + name + latin */

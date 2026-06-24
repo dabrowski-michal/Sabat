@@ -587,10 +587,9 @@ export default class SabatActorSheet extends ActorSheet {
         <label class="spell-limit-row"><input type="checkbox" class="spell-limit-check" data-mod="-25" /> No Gestures (-25%)</label>
 
         <div class="spell-card-label">Armor</div>
-        <label class="spell-limit-row"><input type="radio" name="armor-${item.id}" class="spell-limit-radio" value="0" checked /> No Armor (0%)</label>
-        <label class="spell-limit-row"><input type="radio" name="armor-${item.id}" class="spell-limit-radio" value="-25" /> Light Armor (-25%)</label>
-        <label class="spell-limit-row"><input type="radio" name="armor-${item.id}" class="spell-limit-radio" value="-50" /> Metal Armor (-50%)</label>
-        <label class="spell-limit-row"><input type="radio" name="armor-${item.id}" class="spell-limit-radio" value="-75" /> Arnés (-75%)</label>
+        <label class="spell-limit-row"><input type="checkbox" class="spell-limit-check spell-armor-check" data-mod="-25" /> Light Armor (-25%)</label>
+        <label class="spell-limit-row"><input type="checkbox" class="spell-limit-check spell-armor-check" data-mod="-50" /> Metal Armor (-50%)</label>
+        <label class="spell-limit-row"><input type="checkbox" class="spell-limit-check spell-armor-check" data-mod="-75" /> Arnés (-75%)</label>
 
         <div class="spell-card-label">Situational</div>
         <label class="spell-limit-row"><input type="checkbox" class="spell-limit-check" data-mod="-10" /> Attacked, took no damage (-10%)</label>
