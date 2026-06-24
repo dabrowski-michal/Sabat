@@ -129,13 +129,15 @@
 
 /* ---- Edit Toggle ---- */
 .sabat-sheet .edit-toggle {
+  position: absolute; top: 8px; right: 8px;
   display: flex; align-items: center; justify-content: center;
-  width: 36px; height: 36px;
-  color: #f7c05c; font-size: 1.1em;
+  width: 32px; height: 32px;
+  color: #f7c05c; font-size: 1em;
   cursor: pointer; flex-shrink: 0;
-  transition: color 0.15s;
+  transition: color 0.15s; z-index: 10;
 }
 .sabat-sheet .edit-toggle:hover { color: #fff; }
+.sabat-sheet .sheet-header { position: relative; }
 
 /* ---- Edit Locked Mode ---- */
 .edit-locked input[type="text"],
@@ -143,28 +145,44 @@
 .edit-locked select,
 .edit-locked textarea {
   border: none !important; border-bottom: none !important;
-  background: none !important; pointer-events: none;
-  opacity: 1; color: var(--aq-brown) !important;
+  pointer-events: none; opacity: 1;
   -webkit-appearance: none; appearance: none;
 }
 
+/* Keep char-value background in locked mode */
+.edit-locked .char-value {
+  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/checkEmpty.png") center / contain no-repeat !important;
+  color: #f7c05c !important;
+}
+
+/* Keep charname gold */
+.edit-locked .charname input { color: #f7c05c !important; }
+
+/* Hide edit-only elements */
 .edit-locked .item-controls,
 .edit-locked .skill-controls .skill-edit,
 .edit-locked .skill-controls .skill-delete,
 .edit-locked .skill-controls .custom-skill-delete,
 .edit-locked .skill-add,
 .edit-locked .item-create,
-.edit-locked .fav-toggle,
-.edit-locked .skill-adv { display: none !important; }
+.edit-locked .fav-toggle { display: none !important; }
 
-/* Keep sliders and checkboxes interactive */
+/* Keep equip toggles always visible */
+.edit-locked .item-use-col { display: flex !important; }
+
+/* Keep skill checkboxes visible */
+.edit-locked .skill-adv { display: inline !important; pointer-events: none; }
+
+/* Keep sliders and point checkboxes interactive */
 .edit-locked .ghost-slider,
 .edit-locked .rr-point-box { pointer-events: auto !important; }
 
-/* Skill roll buttons stay visible */
+/* Keep roll/use buttons interactive */
 .edit-locked .skill-roll-btn,
 .edit-locked .weapon-roll-btn,
-.edit-locked .spell-post { pointer-events: auto !important; }
+.edit-locked .spell-post,
+.edit-locked .item-equip-toggle,
+.edit-locked .item-name { pointer-events: auto !important; }
 
 /* ---- Body ---- */
 .sabat-sheet .sheet-body { padding: 10px 12px; overflow-y: auto; }
@@ -627,10 +645,14 @@
   font-size: 0.78em; font-weight: bold; text-transform: none; color: var(--aq-brown); letter-spacing: 0.02em;
 }
 
-/* Weapons: dice | name | skill | damage | weight | price | controls */
-.sabat-sheet .weapon-list-header, .sabat-sheet .weapon-row { grid-template-columns: 22px 1fr 80px 50px 50px 50px 80px; }
-/* Armor: name | protection | weight | price | controls */
-.sabat-sheet .armor-list-header, .sabat-sheet .armor-row { grid-template-columns: 1fr 60px 50px 50px 80px; }
+/* Weapons: dice | name | skill | damage | weight | price | use | controls */
+.sabat-sheet .weapon-list-header, .sabat-sheet .weapon-row { grid-template-columns: 22px 1fr 80px 50px 50px 50px 28px 80px; }
+/* Armor: name | protection | weight | price | use | controls */
+.sabat-sheet .armor-list-header, .sabat-sheet .armor-row { grid-template-columns: 1fr 60px 50px 50px 28px 80px; }
+
+.sabat-sheet .item-use-col {
+  display: flex; align-items: center; justify-content: center;
+}
 /* Items: name | weight | price | controls */
 .sabat-sheet .item-list-cols, .sabat-sheet .item-row { grid-template-columns: 1fr 50px 50px 80px; }
 
