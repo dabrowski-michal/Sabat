@@ -32,21 +32,28 @@
 .sabat-sheet input[type="number"],
 .sabat-sheet select,
 .sabat-sheet textarea {
-  background: rgba(255,255,255,0.5);
-  border: 1px solid var(--aq-border);
-  border-radius: 2px;
-  color: var(--aq-text);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(90,60,30,0.25);
+  border-radius: 0;
+  color: var(--aq-brown-dark);
   font-family: var(--aq-font-body);
   padding: 2px 4px;
+}
+
+.sabat-sheet input[type="number"] {
+  font-family: var(--aq-font-number);
+  font-weight: bold;
+  font-size: 1.05em;
 }
 
 .sabat-sheet input[type="text"]:focus,
 .sabat-sheet input[type="number"]:focus,
 .sabat-sheet select:focus,
 .sabat-sheet textarea:focus {
-  border-color: var(--aq-brown);
+  border-bottom-color: var(--aq-brown);
   outline: none;
-  box-shadow: 0 0 3px var(--aq-shadow);
+  box-shadow: none;
 }
 
 /* ---- Header ---- */
@@ -96,15 +103,17 @@
 .sabat-sheet .tab { display: none; }
 .sabat-sheet .tab.active { display: block; }
 
-/* ---- Panels ---- */
+/* ---- Panels — borderless, ink on parchment ---- */
 .sabat-sheet .panel {
-  background: rgba(255,255,255,0.3); border: 1px solid var(--aq-border);
-  border-radius: 4px; padding: 10px 12px; margin-bottom: 10px;
+  background: none; border: none;
+  border-radius: 0; padding: 6px 0; margin-bottom: 8px;
 }
 .sabat-sheet .panel-title {
-  font-family: var(--aq-font-label); font-size: 0.9em;
-  text-transform: uppercase; letter-spacing: 0.06em; color: var(--aq-brown);
-  margin: 0 0 8px; padding-bottom: 4px; border-bottom: 1px solid var(--aq-gold);
+  font-family: var(--aq-font-label); font-size: 0.95em;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--aq-brown-dark); font-weight: bold;
+  margin: 0 0 6px; padding-bottom: 4px;
+  border-bottom: 2px solid var(--aq-brown-dark);
 }
 
 /* ---- Characteristics Tab ---- */
@@ -134,27 +143,28 @@
   text-transform: uppercase; letter-spacing: 0.03em; flex: 1;
 }
 .sabat-sheet .char-value {
-  width: 42px; text-align: center; font-family: var(--aq-font-number);
-  font-size: 1em; font-weight: bold; color: var(--aq-brown-dark);
-  border: 2px solid var(--aq-border) !important; padding: 2px 3px !important; flex-shrink: 0;
+  width: 38px; text-align: center; font-family: var(--aq-font-number);
+  font-size: 1.15em; font-weight: bold; color: var(--aq-brown-dark);
+  background: none !important; border: none !important;
+  border-bottom: 1px solid rgba(90,60,30,0.3) !important;
+  border-radius: 0 !important; padding: 2px 2px !important; flex-shrink: 0;
 }
 
 /* Extras panel (Experience / Temperance / Willpower) */
-.sabat-sheet .extras-panel { padding: 8px 12px; }
+.sabat-sheet .extras-panel { padding: 6px 0; }
 .sabat-sheet .extras-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-.sabat-sheet .extras-item { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.sabat-sheet .extras-item { display: flex; flex-direction: column; align-items: center; gap: 2px; }
 .sabat-sheet .extras-icon {
-  width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
-  background: var(--aq-brown); color: var(--aq-gold); border-radius: 50%;
-  font-size: 0.85em;
+  width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+  color: var(--aq-brown-dark); font-size: 1em;
 }
 .sabat-sheet .extras-item label {
   font-size: 0.65em; font-weight: bold; text-transform: uppercase;
-  letter-spacing: 0.04em; color: var(--aq-brown); text-align: center;
+  letter-spacing: 0.04em; color: var(--aq-brown-dark); text-align: center;
 }
 .sabat-sheet .extras-item input {
-  width: 52px; text-align: center; font-family: var(--aq-font-number);
-  font-weight: bold; font-size: 0.95em;
+  width: 48px; text-align: center; font-family: var(--aq-font-number);
+  font-weight: bold; font-size: 1.15em;
 }
 
 /* ---- Image-Fill Sliders (350×50, per-slider assets) ---- */
@@ -490,12 +500,12 @@
 .sabat-sheet .item-prot, .sabat-sheet .item-eqp { text-align: center; font-family: var(--aq-font-number); color: var(--aq-text-muted); }
 
 /* Purse panel */
-.sabat-sheet .purse-panel .panel-title i { margin-right: 4px; color: var(--aq-gold); }
+.sabat-sheet .purse-panel .panel-title i { margin-right: 4px; color: var(--aq-brown-dark); }
 .sabat-sheet .purse-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-.sabat-sheet .purse-item { display: flex; flex-direction: column; align-items: center; gap: 3px; }
-.sabat-sheet .purse-icon { font-size: 1.2em; color: var(--aq-gold); }
-.sabat-sheet .purse-item label { font-size: 0.65em; font-weight: bold; text-transform: uppercase; color: var(--aq-brown); text-align: center; }
-.sabat-sheet .purse-item input { width: 64px; text-align: center; font-family: var(--aq-font-number); font-weight: bold; }
+.sabat-sheet .purse-item { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.sabat-sheet .purse-icon { font-size: 1em; color: var(--aq-brown-dark); }
+.sabat-sheet .purse-item label { font-size: 0.65em; font-weight: bold; text-transform: uppercase; color: var(--aq-brown-dark); text-align: center; }
+.sabat-sheet .purse-item input { width: 56px; text-align: center; font-family: var(--aq-font-number); font-weight: bold; font-size: 1.15em; }
 
 /* ---- Biography ---- */
 .sabat-sheet .bio-identity-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 8px; }
