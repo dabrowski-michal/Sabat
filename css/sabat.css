@@ -348,6 +348,64 @@
 .sabat-sheet .skill-add { color: var(--aq-brown-light); cursor: pointer; transition: color 0.15s; font-size: 0.9em; padding: 2px 4px; }
 .sabat-sheet .skill-add:hover { color: var(--aq-gold); }
 
+/* ---- Spells Tab ---- */
+.sabat-sheet .spells-header {
+  display: flex; justify-content: flex-end; margin-bottom: 8px;
+}
+.sabat-sheet .spells-header .item-create {
+  color: var(--aq-brown-light); cursor: pointer; font-size: 0.85em;
+  transition: color 0.15s; display: flex; align-items: center; gap: 4px;
+}
+.sabat-sheet .spells-header .item-create:hover { color: var(--aq-gold); }
+
+.sabat-sheet .spell-vis-group { margin-bottom: 8px; }
+
+.sabat-sheet .spell-list-header {
+  display: grid;
+  grid-template-columns: 28px 1fr 60px 120px 1.5fr 44px;
+  gap: 4px; padding: 2px 4px 4px;
+  border-bottom: 1px solid var(--aq-border); margin-bottom: 4px;
+  font-size: 0.65em; font-weight: bold; text-transform: uppercase;
+  color: var(--aq-text-muted); letter-spacing: 0.04em;
+}
+
+.sabat-sheet .spell-row {
+  display: grid;
+  grid-template-columns: 28px 1fr 60px 120px 1.5fr 44px;
+  gap: 4px; align-items: center;
+  padding: 3px 4px; border-radius: 2px;
+  transition: background 0.1s; font-size: 0.83em;
+}
+
+.sabat-sheet .spell-row:nth-child(even) { background: rgba(0,0,0,0.04); }
+.sabat-sheet .spell-row:hover { background: rgba(201,162,39,0.12); }
+
+.sabat-sheet .spell-row-icon {
+  width: 24px; height: 24px; object-fit: cover;
+  border-radius: 3px; cursor: pointer;
+  border: 1px solid var(--aq-border);
+}
+
+.sabat-sheet .spell-row-name a {
+  color: var(--aq-brown-dark); font-weight: bold;
+  cursor: pointer; transition: color 0.15s;
+}
+.sabat-sheet .spell-row-name a:hover { color: var(--aq-gold); text-decoration: underline; }
+
+.sabat-sheet .spell-row-vis {
+  font-family: var(--aq-font-number); font-size: 0.85em;
+  color: var(--aq-brown); text-align: center;
+}
+
+.sabat-sheet .spell-row-nature {
+  font-style: italic; font-size: 0.8em; color: var(--aq-brown-light);
+}
+
+.sabat-sheet .spell-row-effect {
+  font-size: 0.78em; color: var(--aq-text-muted);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
 /* ---- Spell Sheet: Latin Description ---- */
 .spell-latin .latin-desc-value {
   font-family: var(--aq-font-label);

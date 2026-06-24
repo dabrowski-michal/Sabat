@@ -12,6 +12,7 @@
     <a class="item" data-tab="characteristics">Characteristics</a>
     <a class="item" data-tab="skills">Skills</a>
     <a class="item" data-tab="items">Equipment</a>
+    <a class="item" data-tab="spells">Spells</a>
     <a class="item" data-tab="biography">Biography</a>
   </nav>
 
@@ -351,6 +352,42 @@
 
         </div>
       </div>
+    </div>
+
+    <!-- ===== SPELLS ===== -->
+    <div class="tab spells" data-group="primary" data-tab="spells">
+      <div class="spells-header">
+        <a class="item-create" data-type="spell" title="Add spell"><i class="fas fa-plus"></i> Add Spell</a>
+      </div>
+
+      {{#each spellsByVis}}
+      <div class="spell-vis-group panel">
+        <h3 class="panel-title">Vis {{this.label}}</h3>
+        <div class="spell-list-header">
+          <span></span>
+          <span class="col-name">Name</span>
+          <span>Vis</span>
+          <span>Nature</span>
+          <span>Effect</span>
+          <span></span>
+        </div>
+        {{#each this.spells}}
+        <div class="spell-row" data-item-id="{{this.id}}">
+          <a class="spell-post" title="Post to chat"><img class="spell-row-icon" src="{{this.img}}" /></a>
+          <span class="spell-row-name item-name"><a class="item-edit" title="Open">{{this.system.latinName}}{{#unless this.system.latinName}}{{this.name}}{{/unless}}</a></span>
+          <span class="spell-row-vis">{{this.visLabel}}</span>
+          <span class="spell-row-nature">{{this.latinDesc}}</span>
+          <span class="spell-row-effect">{{this.system.effect}}</span>
+          <div class="item-controls">
+            <a class="item-edit" title="Edit"><i class="fas fa-edit"></i></a>
+            <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      {{else}}
+      <p class="item-empty">No spells. Drag spells onto this sheet or click + to create one.</p>
+      {{/each}}
     </div>
 
     <!-- ===== BIOGRAPHY ===== -->

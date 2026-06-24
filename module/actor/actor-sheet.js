@@ -174,7 +174,33 @@ export default class SabatActorSheet extends ActorSheet {
     // Items by type
     context.armor  = this.actor.items.filter(i => i.type === "armor");
     context.items  = this.actor.items.filter(i => i.type === "item");
-    context.spells = this.actor.items.filter(i => i.type === "spell");
+
+    // Spells grouped by Vis level
+    const VIS_LABELS = { 1: "Prima", 2: "Secunda", 3: "Tertia", 4: "Quarta", 5: "Quinta", 6: "Sexta", 7: "Septima" };
+    const FEMININE = new Set(["Invocatio", "Potio"]);
+    const NAT_LAT = { Black: { F: "nigra", N: "nigrum" }, White: { F: "alba", N: "album" } };
+    const ORI_LAT = { Folk: { F: "rustica", N: "rusticum" }, Alchemical: { F: "alchemica", N: "alchemicum" }, Infernal: { F: "infernalis", N: "infernale" }, Forbidden: { F: "vetita", N: "vetitum" } };
+
+    const allSpells = this.actor.items.filter(i => i.type === "spell").map(s => {
+      const g = FEMININE.has(s.system.form) ? "F" : "N";
+      const natL = NAT_LAT[s.system.nature]?.[g] ?? "";
+      const oriL = ORI_LAT[s.system.origin]?.[g] ?? "";
+      const latinDesc = (s.system.form && natL && oriL) ? `${s.system.form} ${natL} ${oriL}` : "";
+      return {
+        id: s.id, name: s.name, img: s.img, system: s.system,
+        visLabel: VIS_LABELS[s.system.vis] ?? "Prima",
+        latinDesc
+      };
+    });
+
+    const spellsByVis = {};
+    for (const sp of allSpells) {
+      const vis = sp.system.vis ?? 1;
+      const label = sp.visLabel;
+      if (!spellsByVis[vis]) spellsByVis[vis] = { vis, label, spells: [] };
+      spellsByVis[vis].spells.push(sp);
+    }
+    context.spellsByVis = Object.values(spellsByVis).sort((a, b) => a.vis - b.vis);
 
     // Weapons with linked skill info
     context.weaponsData = this.actor.items.filter(i => i.type === "weapon").map(w => {
@@ -249,6 +275,9 @@ export default class SabatActorSheet extends ActorSheet {
     html.find(".custom-skill-delete").click(this._onDeleteCustomSkill.bind(this));
     html.find(".skill-edit").click(this._onSkillEdit.bind(this));
     html.find(".fav-toggle").click(this._onToggleFavorite.bind(this));
+
+    // Spell: post full description to chat
+    html.find(".spell-post").click(this._onSpellPost.bind(this));
 
     html.find(".item-create").click(this._onItemCreate.bind(this));
     html.find(".item-edit").click(ev => {
@@ -480,6 +509,27 @@ export default class SabatActorSheet extends ActorSheet {
   }
 
   // --- Items ---
+  async _onSpellPost(event) {
+    event.preventDefault();
+    const li = $(event.currentTarget).closest("[data-item-id]");
+    const item = this.actor.items.get(li.data("itemId"));
+    if (!item) return;
+    const s = item.system;
+    const VL = { 1: "Prima", 2: "Secunda", 3: "Tertia", 4: "Quarta", 5: "Quinta", 6: "Sexta", 7: "Septima" };
+    const parts = [`<strong>${item.name}</strong>`];
+    if (s.latinName) parts.push(`<em>${s.latinName}</em>`);
+    parts.push(`<div class="roll-details">Vis: <strong>${VL[s.vis] ?? s.vis}</strong> · Form: ${s.form || "—"} · Origin: ${s.origin || "—"} · Nature: ${s.nature || "—"}</div>`);
+    if (s.effect) parts.push(`<div class="roll-details"><strong>Effect:</strong> ${s.effect}</div>`);
+    if (s.components) parts.push(`<div class="roll-details"><strong>Components:</strong> ${s.components}</div>`);
+    if (s.preparation) parts.push(`<div class="roll-details"><strong>Preparation:</strong> ${s.preparation}</div>`);
+    if (s.duration) parts.push(`<div class="roll-details"><strong>Duration:</strong> ${s.duration}</div>`);
+    if (s.description) parts.push(`<div class="roll-details">${s.description}</div>`);
+    await ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      content: `<div class="sabat-roll">${parts.join("")}</div>`
+    });
+  }
+
   async _onItemCreate(event) {
     event.preventDefault();
     const type = event.currentTarget.dataset.type;
