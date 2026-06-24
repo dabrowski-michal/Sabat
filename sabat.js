@@ -167,6 +167,80 @@ Hooks.on("renderChatMessage", (message, html) => {
       });
     }
   });
+
+  // --- Spell card: resolve actor helper ---
+  function _resolveActor(msg) {
+    const sp = msg.speaker;
+    const td = sp.scene ? game.scenes.get(sp.scene)?.tokens.get(sp.token) : null;
+    return td?.actor ?? game.actors.get(sp.actor);
+  }
+
+  // Shared MK roll logic
+  async function _rollMK(actor, target, label) {
+    const roll = await new Roll("1d100").evaluate({ async: true });
+    const d = roll.total;
+    const margin = target - d;
+    let rl, rc, mt;
+    if (d <= 5) { rl = "Auto-Success ★"; rc = "result-critical"; mt = "(Automatic)"; }
+    else if (d >= 96) { rl = "Auto-Failure ✗"; rc = "result-blunder"; mt = "(Automatic)"; }
+    else if (d <= target) {
+      const ct = Math.max(1, Math.floor(target * 0.1));
+      rl = d <= ct ? "Critical Success! ★★" : "Success ✓";
+      rc = d <= ct ? "result-critical" : "result-success";
+      mt = `(Beat target by ${margin})`;
+    } else {
+      const bt = target + Math.floor((100 - target) * 0.9) + 1;
+      rl = d >= bt ? "Blunder! ✗✗" : "Failure ✗";
+      rc = d >= bt ? "result-blunder" : "result-failure";
+      mt = `(Missed target by ${Math.abs(margin)})`;
+    }
+    await roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor }),
+      flavor: `<div class="sabat-roll"><strong>${label}</strong>
+        <div class="roll-details">Rolled <strong>${d}</strong> vs target <strong>${target}%</strong></div>
+        <div class="roll-result ${rc}">${rl} <span class="margin-text">${mt}</span></div></div>`,
+      rollMode: game.settings.get("core", "rollMode")
+    });
+  }
+
+  // Quick MK button (VIS modifier only)
+  html.find(".spell-mk-btn").click(async (ev) => {
+    const card = $(ev.currentTarget).closest(".sabat-spell-card");
+    const visPct = parseInt(card.attr("data-vis-pct")) || 0;
+    const actor = _resolveActor(message);
+    if (!actor) return ui.notifications.warn("Actor not found.");
+    const mkVal = actor.system.skills.magicalKnowledge?.value ?? 0;
+    const target = Math.max(1, mkVal + visPct);
+    await _rollMK(actor, target, `Magical Knowledge (${mkVal}% + ${visPct}% VIS = ${target}%)`);
+  });
+
+  // Compute total modifier from card inputs
+  function _totalMod(card) {
+    const visPct = parseInt(card.attr("data-vis-pct")) || 0;
+    let total = visPct;
+    card.find(".spell-limit-check:checked").each(function () { total += parseInt($(this).attr("data-mod")) || 0; });
+    total += parseInt(card.find(".spell-limit-radio:checked").val()) || 0;
+    total += (parseInt(card.find(".spell-limit-lp").val()) || 0) * -10;
+    total += (parseInt(card.find(".spell-limit-irr").val()) || 0) * -1;
+    return total;
+  }
+
+  // Live update modifier summary
+  html.find(".spell-limit-check, .spell-limit-radio, .spell-limit-number").on("change input", (ev) => {
+    const card = $(ev.currentTarget).closest(".sabat-spell-card");
+    card.find(".spell-mod-summary").text(`Total modifier: ${_totalMod(card)}%`);
+  });
+
+  // Cast Spell button (all modifiers)
+  html.find(".spell-cast-btn").click(async (ev) => {
+    const card = $(ev.currentTarget).closest(".sabat-spell-card");
+    const actor = _resolveActor(message);
+    if (!actor) return ui.notifications.warn("Actor not found.");
+    const mkVal = actor.system.skills.magicalKnowledge?.value ?? 0;
+    const mod = _totalMod(card);
+    const target = Math.max(1, mkVal + mod);
+    await _rollMK(actor, target, `Cast Spell — Magical Knowledge (${mkVal}% + ${mod}% = ${target}%)`);
+  });
 });
 
 function _registerHandlebarsHelpers() {

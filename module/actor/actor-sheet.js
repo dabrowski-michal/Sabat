@@ -522,17 +522,77 @@ export default class SabatActorSheet extends ActorSheet {
     if (!item) return;
     const s = item.system;
     const VL = { 1: "Prima", 2: "Secunda", 3: "Tertia", 4: "Quarta", 5: "Quinta", 6: "Sexta", 7: "Septima" };
-    const parts = [`<strong>${item.name}</strong>`];
-    if (s.latinName) parts.push(`<em>${s.latinName}</em>`);
-    parts.push(`<div class="roll-details">Vis: <strong>${VL[s.vis] ?? s.vis}</strong> · Form: ${s.form || "—"} · Origin: ${s.origin || "—"} · Nature: ${s.nature || "—"}</div>`);
-    if (s.effect) parts.push(`<div class="roll-details"><strong>Effect:</strong> ${s.effect}</div>`);
-    if (s.components) parts.push(`<div class="roll-details"><strong>Components:</strong> ${s.components}</div>`);
-    if (s.preparation) parts.push(`<div class="roll-details"><strong>Preparation:</strong> ${s.preparation}</div>`);
-    if (s.duration) parts.push(`<div class="roll-details"><strong>Duration:</strong> ${s.duration}</div>`);
-    if (s.description) parts.push(`<div class="roll-details">${s.description}</div>`);
+    const VP = { 1: 0, 2: -15, 3: -35, 4: -50, 5: -75, 6: -100, 7: -150 };
+    const visLabel = VL[s.vis] ?? "Prima";
+    const visPct = VP[s.vis] ?? 0;
+    const mkVal = this.actor.system.skills.magicalKnowledge?.value ?? 0;
+    const quickTarget = Math.max(1, mkVal + visPct);
+
+    // Build field sections
+    let fields = "";
+    const fld = (label, val) => { if (val) fields += `<div class="spell-card-label">${label}</div><div class="spell-card-value">${val}</div>`; };
+    fld("Effect", s.effect);
+    fld("Components", s.components);
+    fld("Preparation", s.preparation);
+    fld("Duration", s.duration);
+    fld("Expiration", s.expiration);
+    fld("Description", s.description);
+
+    // Latin description
+    const FEMININE = new Set(["Invocatio", "Potio"]);
+    const NL = { Black: { F: "nigra", N: "nigrum" }, White: { F: "alba", N: "album" } };
+    const OL = { Folk: { F: "rustica", N: "rusticum" }, Alchemical: { F: "alchemica", N: "alchemicum" }, Infernal: { F: "infernalis", N: "infernale" }, Forbidden: { F: "vetita", N: "vetitum" } };
+    const g = FEMININE.has(s.form) ? "F" : "N";
+    const latinDesc = (s.form && NL[s.nature]?.[g] && OL[s.origin]?.[g]) ? `${s.form} ${NL[s.nature][g]} ${OL[s.origin][g]}` : "";
+
+    const content = `
+<div class="sabat-spell-card" data-vis-pct="${visPct}">
+  <div class="spell-card-header">
+    <img class="spell-card-icon" src="${item.img}" />
+    <div>
+      <div class="spell-card-name">${item.name}</div>
+      ${latinDesc ? `<div class="spell-card-latin">${latinDesc}</div>` : ""}
+      ${s.latinName ? `<div class="spell-card-latin">${s.latinName}</div>` : ""}
+    </div>
+  </div>
+  <div class="spell-card-body">
+    <div class="spell-card-meta">
+      <span>Vis: <strong>${visLabel}</strong></span>
+      <span>CP: <strong>${s.cpCost ?? 1}</strong></span>
+      <span>Form: <strong>${s.form || "—"}</strong></span>
+      <span>Origin: <strong>${s.origin || "—"}</strong></span>
+      <span>Nature: <strong>${s.nature || "—"}</strong></span>
+      ${s.rrAllowed ? "<span>RR Allowed</span>" : ""}
+    </div>
+    ${fields}
+
+    <button class="spell-mk-btn">🔮 Magical Knowledge (${mkVal}% ${visPct}% VIS = ${quickTarget}%)</button>
+
+    <div class="spell-card-limitations">
+      <div class="spell-card-label">Caster Limitations</div>
+      <label class="spell-limit-row"><input type="checkbox" class="spell-limit-check" data-mod="-25" /> Low Voice (-25%)</label>
+      <label class="spell-limit-row"><input type="checkbox" class="spell-limit-check" data-mod="-25" /> No Gestures (-25%)</label>
+
+      <div class="spell-card-label">Armor</div>
+      <label class="spell-limit-row"><input type="radio" name="armor-${item.id}" class="spell-limit-radio" value="0" checked /> No Armor (0%)</label>
+      <label class="spell-limit-row"><input type="radio" name="armor-${item.id}" class="spell-limit-radio" value="-25" /> Light Armor (-25%)</label>
+      <label class="spell-limit-row"><input type="radio" name="armor-${item.id}" class="spell-limit-radio" value="-50" /> Metal Armor (-50%)</label>
+      <label class="spell-limit-row"><input type="radio" name="armor-${item.id}" class="spell-limit-radio" value="-75" /> Arnés (-75%)</label>
+
+      <div class="spell-card-label">Situational</div>
+      <label class="spell-limit-row"><input type="checkbox" class="spell-limit-check" data-mod="-10" /> Attacked, took no damage (-10%)</label>
+      <label class="spell-limit-row">LP lost this round: <input type="number" class="spell-limit-number spell-limit-lp" value="0" min="0" /> (×-10%)</label>
+      <label class="spell-limit-row">Target IRR above 100: <input type="number" class="spell-limit-number spell-limit-irr" value="0" min="0" /> (×-1%)</label>
+    </div>
+
+    <div class="spell-mod-summary">Total modifier: ${visPct}%</div>
+    <button class="spell-cast-btn">⚡ Cast Spell (Magical Knowledge with all modifiers)</button>
+  </div>
+</div>`;
+
     await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      content: `<div class="sabat-roll">${parts.join("")}</div>`
+      content
     });
   }
 
