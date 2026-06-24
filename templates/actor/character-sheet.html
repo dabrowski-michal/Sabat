@@ -94,23 +94,36 @@
                 </div>
               </div>
 
-              <div class="char-slider">
-                <label class="char-slider-title">Rationality</label>
-                <div class="char-slider-row">
-                  <span class="char-slider-val" id="irr-display">{{system.secondaryCharacteristics.irr}}</span>
-                  <div class="slider-track-frame rr-frame">
-                    <div class="slider-fill" id="rr-fill"></div>
-                    <input type="range" name="system.secondaryCharacteristics.rr" id="rr-slider" class="ghost-slider" min="0" max="100" value="{{system.secondaryCharacteristics.rr}}" />
-                  </div>
-                  <span class="char-slider-val" id="rr-display">{{system.secondaryCharacteristics.rr}}</span>
+            </div>
+          </div>
+
+          <!-- RATIONALITY PANEL -->
+          <div class="rationality-panel panel">
+            <h3 class="panel-title">Rationality</h3>
+            <div class="char-slider">
+              <div class="char-slider-row">
+                <span class="char-slider-val" id="irr-display">{{system.secondaryCharacteristics.irr}}</span>
+                <div class="slider-track-frame rr-frame">
+                  <div class="slider-fill" id="rr-fill"></div>
+                  <input type="range" name="system.secondaryCharacteristics.rr" id="rr-slider" class="ghost-slider" min="0" max="100" value="{{system.secondaryCharacteristics.rr}}" />
                 </div>
-                <div class="char-slider-labels"><span>Irrationality</span><span>Rationality</span></div>
+                <span class="char-slider-val" id="rr-display">{{system.secondaryCharacteristics.rr}}</span>
               </div>
+              <div class="char-slider-labels"><span>Irrationality</span><span>Rationality</span></div>
+            </div>
 
-              <!-- CP and FP as hidden inputs (data preserved for spells) -->
-              <input type="hidden" name="system.secondaryCharacteristics.concentrationPoints.value" value="{{system.secondaryCharacteristics.concentrationPoints.value}}" />
-              <input type="hidden" name="system.secondaryCharacteristics.faithPoints.value" value="{{system.secondaryCharacteristics.faithPoints.value}}" />
-
+            <!-- Faith or Concentration points as checkboxes -->
+            <div class="rr-points-section" id="rr-points-section">
+              <div class="rr-points-header">
+                <span class="rr-points-current" id="rr-points-current">{{rrPointsCurrent}}</span>
+                <span class="rr-points-label" id="rr-points-label">{{rrPointsLabel}}</span>
+                <span class="rr-points-max" id="rr-points-max">{{rrPointsMax}}</span>
+              </div>
+              <div class="rr-points-checkboxes" id="rr-points-checkboxes">
+                <!-- Rendered by JS -->
+              </div>
+              <input type="hidden" id="cp-hidden" name="system.secondaryCharacteristics.concentrationPoints.value" value="{{system.secondaryCharacteristics.concentrationPoints.value}}" />
+              <input type="hidden" id="fp-hidden" name="system.secondaryCharacteristics.faithPoints.value" value="{{system.secondaryCharacteristics.faithPoints.value}}" />
             </div>
           </div>
 

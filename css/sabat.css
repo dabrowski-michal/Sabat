@@ -224,6 +224,40 @@
   padding: 0 34px; font-style: italic;
 }
 
+/* ---- Rationality Points (Faith / Concentration checkboxes) ---- */
+.sabat-sheet .rr-points-section {
+  margin-top: 10px;
+}
+
+.sabat-sheet .rr-points-header {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  margin-bottom: 6px;
+}
+
+.sabat-sheet .rr-points-current,
+.sabat-sheet .rr-points-max {
+  font-family: var(--aq-font-number); font-weight: bold; font-size: 1.3em;
+  color: var(--aq-brown-dark);
+}
+
+.sabat-sheet .rr-points-label {
+  font-size: 0.85em; color: var(--aq-brown); font-weight: bold;
+}
+
+.sabat-sheet .rr-points-checkboxes {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 4px;
+}
+
+.sabat-sheet .rr-point-box {
+  width: 22px; height: 22px;
+  cursor: pointer; border: none !important; outline: none !important;
+  transition: transform 0.1s;
+}
+
+.sabat-sheet .rr-point-box:hover {
+  transform: scale(1.15);
+}
+
 /* Track container — fixed 350×50 */
 .sabat-sheet .slider-track-frame {
   width: 350px; height: 50px;

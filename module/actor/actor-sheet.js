@@ -171,6 +171,13 @@ export default class SabatActorSheet extends ActorSheet {
       isFav: !!favSkills[key]
     }));
 
+    // Rationality points (Faith or Concentration)
+    const rr = system.secondaryCharacteristics.rr ?? 50;
+    const isFaith = rr >= 50;
+    context.rrPointsLabel = isFaith ? "Faith points" : "Concentration points";
+    context.rrPointsMax = isFaith ? system.secondaryCharacteristics.faithPoints.max : system.secondaryCharacteristics.concentrationPoints.max;
+    context.rrPointsCurrent = isFaith ? system.secondaryCharacteristics.faithPoints.value : system.secondaryCharacteristics.concentrationPoints.value;
+
     // Items by type
     context.armor  = this.actor.items.filter(i => i.type === "armor");
     context.items  = this.actor.items.filter(i => i.type === "item");
@@ -332,6 +339,50 @@ export default class SabatActorSheet extends ActorSheet {
     // Other sliders: update display values
     html.find("#hp-slider").on("input", function () { html.find("#hp-current-display").text(this.value); });
     html.find("#luck-slider").on("input", function () { html.find("#luck-current-display").text(this.value); });
+
+    // Rationality points checkboxes
+    const self = this;
+    const faithImg = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/checkFaith.png";
+    const concImg = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/checkConcentration.png";
+    const emptyImg = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/checkEmpty.png";
+
+    function renderRRPoints() {
+      const rr = self.actor.system.secondaryCharacteristics.rr ?? 50;
+      const isFaith = rr >= 50;
+      const sec = self.actor.system.secondaryCharacteristics;
+      const max = isFaith ? sec.faithPoints.max : sec.concentrationPoints.max;
+      const current = isFaith ? sec.faithPoints.value : sec.concentrationPoints.value;
+      const filledImg = isFaith ? faithImg : concImg;
+      const label = isFaith ? "Faith points" : "Concentration points";
+      const clamped = Math.min(current, max);
+
+      html.find("#rr-points-label").text(label);
+      html.find("#rr-points-current").text(clamped);
+      html.find("#rr-points-max").text(max);
+
+      const container = html.find("#rr-points-checkboxes");
+      container.empty();
+      for (let i = 0; i < max; i++) {
+        const filled = i < clamped;
+        const img = filled ? filledImg : emptyImg;
+        container.append(`<img class="rr-point-box" data-index="${i}" src="${img}" />`);
+      }
+    }
+
+    renderRRPoints();
+
+    html.find("#rr-points-checkboxes").on("click", ".rr-point-box", async function () {
+      const idx = parseInt($(this).data("index"));
+      const rr = self.actor.system.secondaryCharacteristics.rr ?? 50;
+      const isFaith = rr >= 50;
+      const sec = self.actor.system.secondaryCharacteristics;
+      const current = isFaith ? sec.faithPoints.value : sec.concentrationPoints.value;
+      const newVal = (idx + 1 === current) ? idx : idx + 1;
+      const path = isFaith
+        ? "system.secondaryCharacteristics.faithPoints.value"
+        : "system.secondaryCharacteristics.concentrationPoints.value";
+      await self.actor.update({ [path]: newVal });
+    });
   }
 
   // --- Skill roll ---
