@@ -160,9 +160,7 @@
 
 /* Hide edit-only elements */
 .edit-locked .item-controls,
-.edit-locked .skill-controls .skill-edit,
-.edit-locked .skill-controls .skill-delete,
-.edit-locked .skill-controls .custom-skill-delete,
+.edit-locked .skill-controls,
 .edit-locked .skill-add,
 .edit-locked .item-create,
 .edit-locked .fav-toggle { display: none !important; }
@@ -172,6 +170,14 @@
 
 /* Keep skill checkboxes visible */
 .edit-locked .skill-adv { display: inline !important; pointer-events: none; }
+
+/* Redistribute grid columns when Controls hidden */
+.edit-locked .weapon-list-header, .edit-locked .weapon-row { grid-template-columns: 28px 22px 1fr 80px 50px 50px 50px !important; }
+.edit-locked .armor-list-header, .edit-locked .armor-row { grid-template-columns: 28px 1fr 60px 50px 50px !important; }
+.edit-locked .item-list-cols, .edit-locked .item-row { grid-template-columns: 1fr 50px 50px !important; }
+.edit-locked .spell-list-header, .edit-locked .spell-row { grid-template-columns: 48px 1.2fr 72px 72px 1fr 1.5fr !important; }
+.edit-locked .skill-group .skill-row { grid-template-columns: 18px 1fr 44px 22px !important; }
+.edit-locked .combat-skills .skill-row { grid-template-columns: 18px 1fr 36px 44px 22px !important; }
 
 /* Keep sliders and point checkboxes interactive */
 .edit-locked .ghost-slider,
@@ -504,7 +510,10 @@
   color: var(--aq-brown); cursor: pointer; font-size: 0.9em; transition: color 0.15s;
 }
 .sabat-sheet .skill-roll-btn:hover { color: var(--aq-gold); }
-.sabat-sheet .skill-name { font-size: 0.88em; color: var(--aq-brown); }
+.sabat-sheet .skill-name { font-size: 0.88em; color: var(--aq-brown); cursor: pointer; }
+.sabat-sheet .skill-name:hover { color: var(--aq-gold); }
+.sabat-sheet .weapon-roll-name { cursor: pointer; }
+.sabat-sheet .weapon-roll-name:hover { color: var(--aq-gold) !important; }
 .sabat-sheet .skill-attr { font-size: 0.78em; text-align: center; color: var(--aq-brown); font-family: var(--aq-font-number); }
 .sabat-sheet .skill-value { width: 100%; text-align: center; font-family: var(--aq-font-number); font-size: 0.95em; padding: 1px 2px !important; color: var(--aq-brown); }
 .sabat-sheet .skill-adv { justify-self: center; }
@@ -645,10 +654,10 @@
   font-size: 0.78em; font-weight: bold; text-transform: none; color: var(--aq-brown); letter-spacing: 0.02em;
 }
 
-/* Weapons: dice | name | skill | damage | weight | price | use | controls */
-.sabat-sheet .weapon-list-header, .sabat-sheet .weapon-row { grid-template-columns: 22px 1fr 80px 50px 50px 50px 28px 80px; }
-/* Armor: name | protection | weight | price | use | controls */
-.sabat-sheet .armor-list-header, .sabat-sheet .armor-row { grid-template-columns: 1fr 60px 50px 50px 28px 80px; }
+/* Weapons: use | dice | name | skill | damage | weight | price | controls */
+.sabat-sheet .weapon-list-header, .sabat-sheet .weapon-row { grid-template-columns: 28px 22px 1fr 80px 50px 50px 50px 80px; }
+/* Armor: use | name | protection | weight | price | controls */
+.sabat-sheet .armor-list-header, .sabat-sheet .armor-row { grid-template-columns: 28px 1fr 60px 50px 50px 80px; }
 
 .sabat-sheet .item-use-col {
   display: flex; align-items: center; justify-content: center;

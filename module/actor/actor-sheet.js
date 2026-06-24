@@ -24,7 +24,7 @@ const SKILL_LABELS = {
   legends: "Legends", listen: "Listen", magicalKnowledge: "Magical Knowledge",
   medicine: "Medicine", memory: "Memory", mineralKnowledge: "Mineral Knowledge",
   music: "Music", pickLock: "Pick Lock", plantKnowledge: "Plant Knowledge",
-  readWrite: "Read/Write", ride: "Ride", run: "Run",
+  read: "Read", write: "Write", ride: "Ride", run: "Run",
   seduction: "Seduction", shipHandling: "Ship Handling", singing: "Singing",
   sleightOfHand: "Sleight of Hand", stealth: "Stealth", swim: "Swim",
   taste: "Taste", teach: "Teach", theology: "Theology",
@@ -44,7 +44,7 @@ const SKILL_ATTRS = {
   jump: "AGI", language: "CUL", legends: "CUL", listen: "PER",
   magicalKnowledge: "CUL", medicine: "CUL", memory: "PER",
   mineralKnowledge: "CUL", music: "CUL", pickLock: "DEX",
-  plantKnowledge: "CUL", readWrite: "CUL", ride: "AGI", run: "AGI",
+  plantKnowledge: "CUL", read: "CUL", write: "CUL", ride: "AGI", run: "AGI",
   seduction: "APP", shipHandling: "AGI", singing: "COM",
   sleightOfHand: "DEX", stealth: "AGI", swim: "AGI", taste: "PER",
   teach: "COM", theology: "CUL", throw: "AGI", torture: "COM", track: "PER"
@@ -53,7 +53,7 @@ const SKILL_ATTRS = {
 const GENERAL_SKILL_GROUPS = [
   { attrKey: "agi", label: "Agility", keys: ["climb","dodge","jump","ride","run","shipHandling","sleightOfHand","stealth","swim","throw"] },
   { attrKey: "com", label: "Communication", keys: ["command","commerce","courtEtiquette","disguise","eloquence","singing","teach","torture"] },
-  { attrKey: "cul", label: "Culture", keys: ["alchemy","animalKnowledge","areaKnowledge","astrology","games","language","legends","magicalKnowledge","medicine","mineralKnowledge","music","plantKnowledge","readWrite","theology"] },
+  { attrKey: "cul", label: "Culture", keys: ["alchemy","animalKnowledge","areaKnowledge","astrology","games","language","legends","magicalKnowledge","medicine","mineralKnowledge","music","plantKnowledge","read","write","theology"] },
   { attrKey: "dex", label: "Dexterity", keys: ["conceal","craft","drive","heal","pickLock"] },
   { attrKey: "per", label: "Perception", keys: ["discovery","empathy","listen","memory","taste","track"] },
   { attrKey: "app", label: "Appearance", keys: ["seduction"] }
@@ -302,6 +302,18 @@ export default class SabatActorSheet extends ActorSheet {
 
     html.find(".skill-roll-btn").click(this._onSkillRollBtn.bind(this));
     html.find(".weapon-roll-btn").click(this._onWeaponRoll.bind(this));
+
+    // Clicking skill name also triggers roll
+    html.find(".skill-row .skill-name").click(ev => {
+      const row = $(ev.currentTarget).closest(".skill-row");
+      row.find(".skill-roll-btn").trigger("click");
+    });
+
+    // Clicking weapon name also triggers weapon roll
+    html.find(".weapon-roll-name").click(ev => {
+      const row = $(ev.currentTarget).closest("[data-item-id]");
+      row.find(".weapon-roll-btn").trigger("click");
+    });
     html.find(".skill-add").click(this._onAddCustomSkill.bind(this));
     html.find(".skill-delete").click(this._onSkillDelete.bind(this));
     html.find(".custom-skill-delete").click(this._onDeleteCustomSkill.bind(this));
