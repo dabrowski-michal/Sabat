@@ -505,15 +505,69 @@
 .sabat-sheet.item-sheet .item-body { padding: 12px; }
 .sabat-sheet .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; margin-bottom: 10px; }
 
-/* ---- Chat ---- */
+/* ---- Roll Card ---- */
+.roll-card {
+  font-family: "Georgia", serif;
+  text-align: center;
+  padding: 8px;
+}
+
+.roll-card-title {
+  font-size: 1.1em; font-weight: bold;
+  color: var(--aq-brown-dark);
+  text-transform: uppercase; letter-spacing: 0.06em;
+  margin-bottom: 2px;
+}
+
+.roll-card-subtitle {
+  font-size: 0.85em; color: var(--aq-text-muted);
+  margin-bottom: 6px;
+}
+
+.roll-card-display {
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px; margin: 8px 0;
+}
+
+.roll-card-img {
+  width: 56px; height: 56px; object-fit: contain;
+  border: none !important; outline: none !important;
+}
+
+.roll-card-img-flip { transform: scaleX(-1); }
+
+.roll-card-number {
+  font-family: "Courier New", monospace;
+  font-size: 2.8em; font-weight: bold;
+  color: var(--aq-brown-dark); line-height: 1;
+}
+
+.roll-card-result {
+  font-size: 1em; font-weight: bold;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 4px 8px; margin: 4px 0;
+}
+
+.roll-card-success, .roll-card-crit, .roll-card-auto-success { color: #2d6a2d; }
+.roll-card-fail, .roll-card-blunder, .roll-card-auto-fail { color: #8b1a1a; }
+
+.roll-card-stats {
+  display: flex; justify-content: center; gap: 20px;
+  font-size: 0.85em; color: var(--aq-text-muted);
+  text-transform: uppercase; letter-spacing: 0.04em;
+  margin: 6px 0;
+}
+
+.roll-card-stats strong { color: var(--aq-brown-dark); }
+
+.roll-card-mods {
+  font-size: 0.78em; color: var(--aq-text-muted);
+  margin: 4px 0; font-style: italic;
+}
+
+/* Legacy roll styles (keep for damage messages) */
 .sabat-roll { font-family: var(--aq-font-body); }
 .sabat-roll .roll-details { font-size: 0.85em; color: #555; margin: 2px 0; }
-.sabat-roll .roll-result { font-weight: bold; font-size: 1.05em; padding: 3px 6px; border-radius: 3px; display: inline-block; margin-top: 4px; }
-.roll-result.result-critical { background: #2d6a2d; color: #fff; }
-.roll-result.result-success  { background: #3a6b3a; color: #fff; }
-.roll-result.result-failure  { background: #6b3a3a; color: #fff; }
-.roll-result.result-blunder  { background: #4a0a0a; color: #fff; }
-.margin-text { font-size: 0.82em; font-weight: normal; opacity: 0.85; margin-left: 5px; }
 
 .chat-damage-btn, .apply-damage-btn {
   display: block; width: 100%; margin-top: 7px; padding: 5px 10px;

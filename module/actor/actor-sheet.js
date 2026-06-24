@@ -343,36 +343,62 @@ export default class SabatActorSheet extends ActorSheet {
     await this._rollSkillCheck(el.dataset.label, parseInt(el.dataset.target) || 0);
   }
 
-  async _rollSkillCheck(skillLabel, target) {
-    const roll = await new Roll("1d100").evaluate({ async: true });
-    const d = roll.total;
+  _buildRollCard(skillLabel, d, target, { subtitle, damageItemId, modBreakdown } = {}) {
     const margin = target - d;
-    let resultLabel, resultClass, marginText;
+    const isSuccess = d <= 5 || (d < 96 && d <= target);
+    const imgBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/rolls/";
+    const img = isSuccess ? imgBase + "success/1.png" : imgBase + "failure/1.png";
 
-    if (d <= 5) { resultLabel = "Auto-Success ★"; resultClass = "result-critical"; marginText = "(Automatic)"; }
-    else if (d >= 96) { resultLabel = "Auto-Failure ✗"; resultClass = "result-blunder"; marginText = "(Automatic)"; }
+    let resultText, resultClass;
+    if (d <= 5) { resultText = "★ AUTOMATIC SUCCESS ★"; resultClass = "roll-card-auto-success"; }
+    else if (d >= 96) { resultText = "💀 AUTOMATIC FAILURE 💀"; resultClass = "roll-card-auto-fail"; }
     else if (d <= target) {
       const ct = Math.max(1, Math.floor(target * 0.1));
-      resultLabel = d <= ct ? "Critical Success! ★★" : "Success ✓";
-      resultClass = d <= ct ? "result-critical" : "result-success";
-      marginText = `(Beat target by ${margin})`;
+      resultText = d <= ct ? "★★ CRITICAL SUCCESS ★★" : "SUCCESS ✓";
+      resultClass = d <= ct ? "roll-card-crit" : "roll-card-success";
     } else {
       const bt = target + Math.floor((100 - target) * 0.9) + 1;
-      resultLabel = d >= bt ? "Blunder! ✗✗" : "Failure ✗";
-      resultClass = d >= bt ? "result-blunder" : "result-failure";
-      marginText = `(Missed target by ${Math.abs(margin)})`;
+      resultText = d >= bt ? "💀 BLUNDER 💀" : "FAILURE ✗";
+      resultClass = d >= bt ? "roll-card-blunder" : "roll-card-fail";
     }
 
-    await roll.toMessage({
+    const marginLabel = isSuccess ? "BEAT BY" : "MISSED BY";
+    const marginVal = Math.abs(margin);
+    const isAuto = d <= 5 || d >= 96;
+
+    let extra = "";
+    if (modBreakdown) extra += `<div class="roll-card-mods">${modBreakdown}</div>`;
+    if (damageItemId) extra += `<button class="chat-damage-btn" data-item-id="${damageItemId}">🗡 Roll Damage</button>`;
+
+    return `
+<div class="roll-card">
+  <div class="roll-card-title">${skillLabel}</div>
+  ${subtitle ? `<div class="roll-card-subtitle">${subtitle}</div>` : ""}
+  <div class="roll-card-display">
+    <img class="roll-card-img" src="${img}" />
+    <span class="roll-card-number">${d}</span>
+    <img class="roll-card-img roll-card-img-flip" src="${img}" />
+  </div>
+  <div class="roll-card-result ${resultClass}">${resultText}</div>
+  ${isAuto ? "" : `<div class="roll-card-stats">
+    <span>TARGET: <strong>${target}</strong></span>
+    <span>${marginLabel}: <strong>${marginVal}</strong></span>
+  </div>`}
+  ${extra}
+</div>`;
+  }
+
+  async _rollSkillCheck(skillLabel, target) {
+    const roll = await new Roll("1d100").evaluate({ async: true });
+    const content = this._buildRollCard(skillLabel, roll.total, target);
+    await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      flavor: `<div class="sabat-roll"><strong>${skillLabel}</strong>
-        <div class="roll-details">Rolled <strong>${d}</strong> vs target <strong>${target}%</strong></div>
-        <div class="roll-result ${resultClass}">${resultLabel} <span class="margin-text">${marginText}</span></div></div>`,
+      rolls: [roll],
+      content,
       rollMode: game.settings.get("core", "rollMode")
     });
   }
 
-  // --- Weapon roll: skill check then damage button ---
   async _onWeaponRoll(event) {
     event.preventDefault();
     const li = $(event.currentTarget).closest("[data-item-id]");
@@ -385,30 +411,14 @@ export default class SabatActorSheet extends ActorSheet {
     const target = skillData.value;
 
     const roll = await new Roll("1d100").evaluate({ async: true });
-    const d = roll.total;
-    const margin = target - d;
-    let resultLabel, resultClass, marginText;
-
-    if (d <= 5) { resultLabel = "Auto-Success ★"; resultClass = "result-critical"; marginText = "(Automatic)"; }
-    else if (d >= 96) { resultLabel = "Auto-Failure ✗"; resultClass = "result-blunder"; marginText = "(Automatic)"; }
-    else if (d <= target) {
-      const ct = Math.max(1, Math.floor(target * 0.1));
-      resultLabel = d <= ct ? "Critical Success! ★★" : "Success ✓";
-      resultClass = d <= ct ? "result-critical" : "result-success";
-      marginText = `(Beat target by ${margin})`;
-    } else {
-      const bt = target + Math.floor((100 - target) * 0.9) + 1;
-      resultLabel = d >= bt ? "Blunder! ✗✗" : "Failure ✗";
-      resultClass = d >= bt ? "result-blunder" : "result-failure";
-      marginText = `(Missed target by ${Math.abs(margin)})`;
-    }
-
-    await roll.toMessage({
+    const content = this._buildRollCard(skillLabel, roll.total, target, {
+      subtitle: item.name,
+      damageItemId: item.id
+    });
+    await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      flavor: `<div class="sabat-roll"><strong>${item.name}</strong> — <em>${skillLabel}</em>
-        <div class="roll-details">Rolled <strong>${d}</strong> vs target <strong>${target}%</strong></div>
-        <div class="roll-result ${resultClass}">${resultLabel} <span class="margin-text">${marginText}</span></div>
-        <button class="chat-damage-btn" data-item-id="${item.id}">🗡 Roll Damage</button></div>`,
+      rolls: [roll],
+      content,
       rollMode: game.settings.get("core", "rollMode")
     });
   }

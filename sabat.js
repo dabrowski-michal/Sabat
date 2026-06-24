@@ -175,30 +175,46 @@ Hooks.on("renderChatMessage", (message, html) => {
     return td?.actor ?? game.actors.get(sp.actor);
   }
 
-  // Shared MK roll logic
-  async function _rollMK(actor, target, label) {
+  // Shared MK roll — uses same card format
+  async function _rollMK(actor, target, label, modBreakdown) {
     const roll = await new Roll("1d100").evaluate({ async: true });
     const d = roll.total;
     const margin = target - d;
-    let rl, rc, mt;
-    if (d <= 5) { rl = "Auto-Success ★"; rc = "result-critical"; mt = "(Automatic)"; }
-    else if (d >= 96) { rl = "Auto-Failure ✗"; rc = "result-blunder"; mt = "(Automatic)"; }
+    const isSuccess = d <= 5 || (d < 96 && d <= target);
+    const imgBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/rolls/";
+    const img = isSuccess ? imgBase + "success/1.png" : imgBase + "failure/1.png";
+
+    let resultText, resultClass;
+    if (d <= 5) { resultText = "★ AUTOMATIC SUCCESS ★"; resultClass = "roll-card-auto-success"; }
+    else if (d >= 96) { resultText = "💀 AUTOMATIC FAILURE 💀"; resultClass = "roll-card-auto-fail"; }
     else if (d <= target) {
       const ct = Math.max(1, Math.floor(target * 0.1));
-      rl = d <= ct ? "Critical Success! ★★" : "Success ✓";
-      rc = d <= ct ? "result-critical" : "result-success";
-      mt = `(Beat target by ${margin})`;
+      resultText = d <= ct ? "★★ CRITICAL SUCCESS ★★" : "SUCCESS ✓";
+      resultClass = d <= ct ? "roll-card-crit" : "roll-card-success";
     } else {
       const bt = target + Math.floor((100 - target) * 0.9) + 1;
-      rl = d >= bt ? "Blunder! ✗✗" : "Failure ✗";
-      rc = d >= bt ? "result-blunder" : "result-failure";
-      mt = `(Missed target by ${Math.abs(margin)})`;
+      resultText = d >= bt ? "💀 BLUNDER 💀" : "FAILURE ✗";
+      resultClass = d >= bt ? "roll-card-blunder" : "roll-card-fail";
     }
-    await roll.toMessage({
+
+    const marginLabel = isSuccess ? "BEAT BY" : "MISSED BY";
+    const isAuto = d <= 5 || d >= 96;
+
+    await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor }),
-      flavor: `<div class="sabat-roll"><strong>${label}</strong>
-        <div class="roll-details">Rolled <strong>${d}</strong> vs target <strong>${target}%</strong></div>
-        <div class="roll-result ${rc}">${rl} <span class="margin-text">${mt}</span></div></div>`,
+      rolls: [roll],
+      content: `
+<div class="roll-card">
+  <div class="roll-card-title">${label}</div>
+  <div class="roll-card-display">
+    <img class="roll-card-img" src="${img}" />
+    <span class="roll-card-number">${d}</span>
+    <img class="roll-card-img roll-card-img-flip" src="${img}" />
+  </div>
+  <div class="roll-card-result ${resultClass}">${resultText}</div>
+  ${isAuto ? "" : `<div class="roll-card-stats"><span>TARGET: <strong>${target}</strong></span><span>${marginLabel}: <strong>${Math.abs(margin)}</strong></span></div>`}
+  ${modBreakdown ? `<div class="roll-card-mods">${modBreakdown}</div>` : ""}
+</div>`,
       rollMode: game.settings.get("core", "rollMode")
     });
   }
@@ -228,7 +244,8 @@ Hooks.on("renderChatMessage", (message, html) => {
     const mkVal = actor.system.skills.magicalKnowledge?.value ?? 0;
     const mod = _totalMod(card);
     const target = Math.max(1, mkVal + mod);
-    await _rollMK(actor, target, `Cast Spell — Magical Knowledge (${mkVal}% + ${mod}% = ${target}%)`);
+    const breakdown = `Magical Knowledge: ${mkVal}% · Modifiers: ${mod}%`;
+    await _rollMK(actor, target, "Magical Knowledge", breakdown);
   });
 });
 
