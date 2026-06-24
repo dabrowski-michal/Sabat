@@ -182,7 +182,12 @@ Hooks.on("renderChatMessage", (message, html) => {
     const margin = target - d;
     const isSuccess = d <= 5 || (d < 96 && d <= target);
     const imgBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/rolls/";
-    const img = isSuccess ? imgBase + "success/1.png" : imgBase + "failure/1.png";
+    const folder = isSuccess ? "success" : "failure";
+    const n1 = Math.floor(Math.random() * 21) + 1;
+    let n2 = Math.floor(Math.random() * 20) + 1;
+    if (n2 >= n1) n2++;
+    const imgL = `${imgBase}${folder}/${n1}.png`;
+    const imgR = `${imgBase}${folder}/${n2}.png`;
 
     let resultText, resultClass;
     if (d <= 5) { resultText = "AUTOMATIC SUCCESS"; resultClass = "roll-card-auto-success"; }
@@ -207,9 +212,9 @@ Hooks.on("renderChatMessage", (message, html) => {
 <div class="roll-card">
   <div class="roll-card-title">${label}</div>
   <div class="roll-card-display">
-    <img class="roll-card-img" src="${img}" />
+    <img class="roll-card-img" src="${imgL}" />
     <span class="roll-card-number">${d}</span>
-    <img class="roll-card-img roll-card-img-flip" src="${img}" />
+    <img class="roll-card-img roll-card-img-flip" src="${imgR}" />
   </div>
   <div class="roll-card-result ${resultClass}">${resultText}</div>
   ${isAuto ? "" : `<div class="roll-card-stats"><span>TARGET: <strong>${target}</strong></span><span>${marginLabel}: <strong>${Math.abs(margin)}</strong></span></div>`}

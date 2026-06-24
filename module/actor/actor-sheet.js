@@ -345,7 +345,12 @@ export default class SabatActorSheet extends ActorSheet {
     const margin = target - d;
     const isSuccess = d <= 5 || (d < 96 && d <= target);
     const imgBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/rolls/";
-    const img = isSuccess ? imgBase + "success/1.png" : imgBase + "failure/1.png";
+    const folder = isSuccess ? "success" : "failure";
+    const n1 = Math.floor(Math.random() * 21) + 1;
+    let n2 = Math.floor(Math.random() * 20) + 1;
+    if (n2 >= n1) n2++;
+    const imgL = `${imgBase}${folder}/${n1}.png`;
+    const imgR = `${imgBase}${folder}/${n2}.png`;
 
     let resultText, resultClass;
     if (d <= 5) { resultText = "AUTOMATIC SUCCESS"; resultClass = "roll-card-auto-success"; }
@@ -373,9 +378,9 @@ export default class SabatActorSheet extends ActorSheet {
   <div class="roll-card-title">${skillLabel}</div>
   ${subtitle ? `<div class="roll-card-subtitle">${subtitle}</div>` : ""}
   <div class="roll-card-display">
-    <img class="roll-card-img" src="${img}" />
+    <img class="roll-card-img" src="${imgL}" />
     <span class="roll-card-number">${d}</span>
-    <img class="roll-card-img roll-card-img-flip" src="${img}" />
+    <img class="roll-card-img roll-card-img-flip" src="${imgR}" />
   </div>
   <div class="roll-card-result ${resultClass}">${resultText}</div>
   ${isAuto ? "" : `<div class="roll-card-stats">
