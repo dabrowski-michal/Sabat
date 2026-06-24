@@ -131,7 +131,7 @@
 .sabat-sheet .sheet-tabs .item.active {
   color: #f7c05c;
   text-shadow: 0 1px 2px #a64329, 0 0 4px #a64329;
-  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/button.png") center / 100% 100% no-repeat;
+  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/button.png") center / contain no-repeat;
   border: none;
 }
 
@@ -183,13 +183,19 @@
 /* Keep skill checkboxes visible */
 .edit-locked .skill-adv { display: inline !important; pointer-events: none; }
 
-/* Redistribute grid columns when Controls hidden */
+/* Redistribute grid columns when Controls hidden — hide Controls header text too */
 .edit-locked .weapon-list-header, .edit-locked .weapon-row { grid-template-columns: 28px 22px 1fr 80px 50px 50px 50px !important; }
 .edit-locked .armor-list-header, .edit-locked .armor-row { grid-template-columns: 28px 1fr 60px 50px 50px !important; }
 .edit-locked .item-list-cols, .edit-locked .item-row { grid-template-columns: 1fr 50px 50px !important; }
 .edit-locked .spell-list-header, .edit-locked .spell-row { grid-template-columns: 48px 1.2fr 72px 72px 1fr 1.5fr !important; }
 .edit-locked .skill-group .skill-row { grid-template-columns: 18px 1fr 44px 22px !important; }
 .edit-locked .combat-skills .skill-row { grid-template-columns: 18px 1fr 36px 44px 22px !important; }
+
+/* Hide the Controls header label and .item-controls in locked mode */
+.edit-locked .weapon-list-header > :last-child,
+.edit-locked .armor-list-header > :last-child,
+.edit-locked .item-list-cols > :last-child,
+.edit-locked .spell-list-header > :last-child { display: none !important; }
 
 /* Keep sliders and point checkboxes interactive */
 .edit-locked .ghost-slider,
