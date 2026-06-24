@@ -124,7 +124,7 @@ Hooks.on("renderChatMessage", (message, html) => {
           <button class="apply-damage-btn"
             data-damage="${damageRoll.total}"
             data-location="${locKey}">
-            ⚔ Apply Damage to Selected Token(s)
+            Apply Damage
           </button>
         </div>`
     });
