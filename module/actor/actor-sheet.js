@@ -171,12 +171,13 @@ export default class SabatActorSheet extends ActorSheet {
       isFav: !!favSkills[key]
     }));
 
-    // Rationality points (Faith or Concentration)
-    const rr = system.secondaryCharacteristics.rr ?? 50;
-    const isFaith = rr >= 50;
+    // Rationality points (Faith or Concentration) — use live actor data for derived max
+    const liveSec = this.actor.system.secondaryCharacteristics;
+    const rrVal = liveSec.rr ?? 50;
+    const isFaith = rrVal >= 50;
     context.rrPointsLabel = isFaith ? "Faith points" : "Concentration points";
-    context.rrPointsMax = isFaith ? system.secondaryCharacteristics.faithPoints.max : system.secondaryCharacteristics.concentrationPoints.max;
-    context.rrPointsCurrent = isFaith ? system.secondaryCharacteristics.faithPoints.value : system.secondaryCharacteristics.concentrationPoints.value;
+    context.rrPointsMax = isFaith ? (liveSec.faithPoints?.max ?? 0) : (liveSec.concentrationPoints?.max ?? 0);
+    context.rrPointsCurrent = isFaith ? (liveSec.faithPoints?.value ?? 0) : (liveSec.concentrationPoints?.value ?? 0);
 
     // Items by type
     context.armor  = this.actor.items.filter(i => i.type === "armor");
