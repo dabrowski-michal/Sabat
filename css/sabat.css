@@ -78,7 +78,10 @@
 
 /* ---- Header — social class background ---- */
 .sabat-sheet .sheet-header {
-  display: flex; gap: 12px; padding: 10px 12px;
+  display: flex; gap: 12px;
+  padding: 20px 12px;
+  height: 140px; box-sizing: border-box;
+  align-items: center;
   background: var(--aq-brown-dark);
   border-bottom: none;
   color: #f5ead6;
