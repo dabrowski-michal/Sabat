@@ -177,6 +177,8 @@ export default class SabatActorSheet extends ActorSheet {
 
     // Spells grouped by Vis level
     const VIS_LABELS = { 1: "Prima", 2: "Secunda", 3: "Tertia", 4: "Quarta", 5: "Quinta", 6: "Sexta", 7: "Septima" };
+    const VIS_CP = { 1: 1, 2: 1, 3: 2, 4: 3, 5: 5, 6: 5, 7: 10 };
+    const VIS_PCT = { 1: 0, 2: -15, 3: -35, 4: -50, 5: -75, 6: -100, 7: -150 };
     const FEMININE = new Set(["Invocatio", "Potio"]);
     const NAT_LAT = { Black: { F: "nigra", N: "nigrum" }, White: { F: "alba", N: "album" } };
     const ORI_LAT = { Folk: { F: "rustica", N: "rusticum" }, Alchemical: { F: "alchemica", N: "alchemicum" }, Infernal: { F: "infernalis", N: "infernale" }, Forbidden: { F: "vetita", N: "vetitum" } };
@@ -197,7 +199,7 @@ export default class SabatActorSheet extends ActorSheet {
     for (const sp of allSpells) {
       const vis = sp.system.vis ?? 1;
       const label = sp.visLabel;
-      if (!spellsByVis[vis]) spellsByVis[vis] = { vis, label, spells: [] };
+      if (!spellsByVis[vis]) spellsByVis[vis] = { vis, label, cpCost: VIS_CP[vis] ?? 1, pctMod: VIS_PCT[vis] ?? 0, spells: [] };
       spellsByVis[vis].spells.push(sp);
     }
     context.spellsByVis = Object.values(spellsByVis).sort((a, b) => a.vis - b.vis);
@@ -276,8 +278,12 @@ export default class SabatActorSheet extends ActorSheet {
     html.find(".skill-edit").click(this._onSkillEdit.bind(this));
     html.find(".fav-toggle").click(this._onToggleFavorite.bind(this));
 
-    // Spell: post full description to chat
+    // Spell: post full description to chat + collapsible panels
     html.find(".spell-post").click(this._onSpellPost.bind(this));
+    html.find(".spell-vis-toggle").click(ev => {
+      const panel = $(ev.currentTarget).closest(".spell-vis-group");
+      panel.toggleClass("collapsed");
+    });
 
     html.find(".item-create").click(this._onItemCreate.bind(this));
     html.find(".item-edit").click(ev => {
