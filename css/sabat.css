@@ -127,6 +127,45 @@
 .sabat-sheet .sheet-tabs .item:hover { color: var(--aq-brown-dark); }
 .sabat-sheet .sheet-tabs .item.active { color: var(--aq-brown-dark); border-bottom-color: var(--aq-brown-dark); }
 
+/* ---- Edit Toggle ---- */
+.sabat-sheet .edit-toggle {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px;
+  color: #f7c05c; font-size: 1.1em;
+  cursor: pointer; flex-shrink: 0;
+  transition: color 0.15s;
+}
+.sabat-sheet .edit-toggle:hover { color: #fff; }
+
+/* ---- Edit Locked Mode ---- */
+.edit-locked input[type="text"],
+.edit-locked input[type="number"],
+.edit-locked select,
+.edit-locked textarea {
+  border: none !important; border-bottom: none !important;
+  background: none !important; pointer-events: none;
+  opacity: 1; color: var(--aq-brown) !important;
+  -webkit-appearance: none; appearance: none;
+}
+
+.edit-locked .item-controls,
+.edit-locked .skill-controls .skill-edit,
+.edit-locked .skill-controls .skill-delete,
+.edit-locked .skill-controls .custom-skill-delete,
+.edit-locked .skill-add,
+.edit-locked .item-create,
+.edit-locked .fav-toggle,
+.edit-locked .skill-adv { display: none !important; }
+
+/* Keep sliders and checkboxes interactive */
+.edit-locked .ghost-slider,
+.edit-locked .rr-point-box { pointer-events: auto !important; }
+
+/* Skill roll buttons stay visible */
+.edit-locked .skill-roll-btn,
+.edit-locked .weapon-roll-btn,
+.edit-locked .spell-post { pointer-events: auto !important; }
+
 /* ---- Body ---- */
 .sabat-sheet .sheet-body { padding: 10px 12px; overflow-y: auto; }
 .sabat-sheet .tab { display: none; }

@@ -274,9 +274,31 @@ export default class SabatActorSheet extends ActorSheet {
     context.alignmentBackground = rr >= 66 ? bgBase + "good.png" : rr >= 33 ? bgBase + "neutral.png" : bgBase + "evil.png";
   }
 
+  _editMode = true;
+
   activateListeners(html) {
     super.activateListeners(html);
     if (!this.isEditable) return;
+
+    // Edit mode toggle
+    const form = html.closest("form");
+    const toggleBtn = html.find(".edit-toggle");
+
+    const applyEditMode = () => {
+      form.toggleClass("edit-locked", !this._editMode);
+      toggleBtn.find("i").attr("class", this._editMode ? "fas fa-lock-open" : "fas fa-lock");
+      toggleBtn.attr("title", this._editMode ? "Lock sheet" : "Unlock sheet");
+      // Disable/enable all text/number inputs and selects (but not range sliders)
+      form.find("input[type='text'], input[type='number'], select, textarea").not(".ghost-slider").prop("disabled", !this._editMode);
+    };
+
+    toggleBtn.click(ev => {
+      ev.preventDefault();
+      this._editMode = !this._editMode;
+      applyEditMode();
+    });
+
+    applyEditMode();
 
     html.find(".skill-roll-btn").click(this._onSkillRollBtn.bind(this));
     html.find(".weapon-roll-btn").click(this._onWeaponRoll.bind(this));
