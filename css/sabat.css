@@ -111,21 +111,29 @@
   line-height: 1.3;
 }
 
-/* ---- Tabs — same as panels, no special background ---- */
+/* ---- Tabs ---- */
 .sabat-sheet .sheet-tabs {
-  display: flex; padding: 0 8px;
+  display: flex; padding: 4px 8px;
   background: none;
   border-bottom: 1px solid rgba(90,60,30,0.25);
+  gap: 4px;
 }
 .sabat-sheet .sheet-tabs .item {
   flex: 1; text-align: center;
-  padding: 6px 4px; font-size: 0.85em; font-family: var(--aq-font-label);
+  padding: 4px 4px; font-size: 0.82em; font-family: var(--aq-font);
   color: var(--aq-brown); cursor: pointer;
-  border-bottom: 3px solid transparent; transition: color 0.15s, border-color 0.15s;
-  text-transform: none; letter-spacing: 0.04em; font-weight: bold; margin-bottom: -1px;
+  border: none; border-bottom: none;
+  text-transform: none; letter-spacing: 0.03em; font-weight: bold;
+  background: none; transition: color 0.15s;
+  line-height: 1.4;
 }
 .sabat-sheet .sheet-tabs .item:hover { color: var(--aq-brown-dark); }
-.sabat-sheet .sheet-tabs .item.active { color: var(--aq-brown-dark); border-bottom-color: var(--aq-brown-dark); }
+.sabat-sheet .sheet-tabs .item.active {
+  color: #f7c05c;
+  text-shadow: 0 1px 2px #a64329, 0 0 4px #a64329;
+  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/button.png") center / 100% 100% no-repeat;
+  border: none;
+}
 
 /* ---- Edit Toggle ---- */
 .sabat-sheet .edit-toggle {
@@ -695,8 +703,10 @@
 .sabat-sheet .field-group { display: flex; flex-direction: column; gap: 2px; }
 .sabat-sheet .field-group label { font-size: 0.72em; font-weight: bold; color: var(--aq-brown); text-transform: none; letter-spacing: 0.04em; }
 .sabat-sheet .field-group.full-width { margin-top: 8px; }
-.sabat-sheet textarea { resize: vertical; min-height: 60px; font-size: 0.85em; }
+.sabat-sheet textarea { resize: vertical; min-height: 60px; font-size: 0.85em; font-family: var(--aq-font); }
 .sabat-sheet .checkbox-group { flex-direction: row; align-items: center; }
+.sabat-sheet .editor-content, .sabat-sheet .editor { font-family: var(--aq-font) !important; }
+.sabat-sheet select { font-family: var(--aq-font); }
 
 /* ---- Item Sheets ---- */
 .sabat-sheet.item-sheet .item-header { position: relative; }
