@@ -124,6 +124,7 @@
               <div class="fav-row fav-skill-row">
                 <a class="skill-roll-btn" data-skill="{{this.key}}" data-label="{{this.label}}" data-target="{{this.value}}" title="Roll"><i class="fas fa-dice-d20"></i></a>
                 <span class="skill-name">{{this.label}}</span>
+                <span class="fav-attr">{{this.attr}}</span>
                 <span class="fav-val">{{this.value}}</span>
                 {{#if this.advancement}}<i class="fas fa-check-circle fav-adv-icon"></i>{{else}}<span class="fav-adv-icon"></span>{{/if}}
                 <div class="item-controls">
@@ -232,37 +233,25 @@
             {{#if paperDoll.hands}}<img src="{{paperDoll.hands}}" class="paperdoll-layer layer-hands" alt="" />{{/if}}
           </div>
           <div class="armor-zones panel">
-            <h3 class="panel-title">Armor (Base Values)</h3>
+            <h3 class="panel-title">Armor</h3>
             <div class="armor-grid">
               <div class="armor-item"><label>Head</label><input type="number" name="system.armor.head" value="{{system.armor.head}}" min="0" /></div>
-              <div class="armor-item"><label>L. Arm</label><input type="number" name="system.armor.leftArm" value="{{system.armor.leftArm}}" min="0" /></div>
-              <div class="armor-item"><label>R. Arm</label><input type="number" name="system.armor.rightArm" value="{{system.armor.rightArm}}" min="0" /></div>
+              <div class="armor-item"><label>Left Arm</label><input type="number" name="system.armor.leftArm" value="{{system.armor.leftArm}}" min="0" /></div>
+              <div class="armor-item"><label>Right Arm</label><input type="number" name="system.armor.rightArm" value="{{system.armor.rightArm}}" min="0" /></div>
               <div class="armor-item"><label>Chest</label><input type="number" name="system.armor.chest" value="{{system.armor.chest}}" min="0" /></div>
               <div class="armor-item"><label>Abdomen</label><input type="number" name="system.armor.abdomen" value="{{system.armor.abdomen}}" min="0" /></div>
-              <div class="armor-item"><label>L. Leg</label><input type="number" name="system.armor.leftLeg" value="{{system.armor.leftLeg}}" min="0" /></div>
-              <div class="armor-item"><label>R. Leg</label><input type="number" name="system.armor.rightLeg" value="{{system.armor.rightLeg}}" min="0" /></div>
+              <div class="armor-item"><label>Left Leg</label><input type="number" name="system.armor.leftLeg" value="{{system.armor.leftLeg}}" min="0" /></div>
+              <div class="armor-item"><label>Right Leg</label><input type="number" name="system.armor.rightLeg" value="{{system.armor.rightLeg}}" min="0" /></div>
             </div>
           </div>
 
           <!-- PURSE -->
           <div class="purse-panel panel">
-            <h3 class="panel-title"><i class="fas fa-coins"></i> Purse</h3>
+            <h3 class="panel-title">Purse</h3>
             <div class="purse-grid">
-              <div class="purse-item">
-                <span class="purse-icon"><i class="fas fa-coins"></i></span>
-                <label>Money</label>
-                <input type="number" name="system.purse.money" value="{{system.purse.money}}" min="0" />
-              </div>
-              <div class="purse-item">
-                <span class="purse-icon"><i class="fas fa-arrow-circle-down" style="color:#2d8a2d"></i></span>
-                <label>Weekly Income</label>
-                <input type="number" name="system.purse.weeklyIncome" value="{{system.purse.weeklyIncome}}" min="0" />
-              </div>
-              <div class="purse-item">
-                <span class="purse-icon"><i class="fas fa-arrow-circle-up" style="color:#c0392b"></i></span>
-                <label>Weekly Expenses</label>
-                <input type="number" name="system.purse.weeklyExpenses" value="{{system.purse.weeklyExpenses}}" min="0" />
-              </div>
+              <div class="purse-item"><label>Money</label><input type="number" name="system.purse.money" value="{{system.purse.money}}" min="0" /></div>
+              <div class="purse-item"><label>Weekly Income</label><input type="number" name="system.purse.weeklyIncome" value="{{system.purse.weeklyIncome}}" min="0" /></div>
+              <div class="purse-item"><label>Weekly Expenses</label><input type="number" name="system.purse.weeklyExpenses" value="{{system.purse.weeklyExpenses}}" min="0" /></div>
             </div>
           </div>
         </div>
@@ -470,13 +459,7 @@
             <div class="field-group"><label>Weight</label><input type="number" name="system.background.weight" value="{{system.background.weight}}" /></div>
           </div>
           <div class="field-group full-width"><label>Family</label><textarea name="system.background.family" rows="3">{{system.background.family}}</textarea></div>
-        </div>
-
-        <div class="bio-fields panel">
-          <h3 class="panel-title">Biography</h3>
-          <div class="field-group full-width">
-            {{editor system.background.biography target="system.background.biography" button=true owner=owner editable=editable}}
-          </div>
+          <div class="field-group full-width"><label>Biography</label><textarea name="system.background.biography" rows="12">{{system.background.biography}}</textarea></div>
         </div>
 
       </div>
