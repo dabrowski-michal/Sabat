@@ -141,7 +141,7 @@
   font-size: 0.7em; flex-shrink: 0;
 }
 .sabat-sheet .char-name {
-  font-size: 0.68em; color: var(--aq-brown); font-weight: bold;
+  font-size: 0.78em; color: var(--aq-brown); font-weight: bold;
   text-transform: uppercase; letter-spacing: 0.03em; flex: 1;
 }
 .sabat-sheet .char-value {
@@ -161,7 +161,7 @@
   color: var(--aq-brown-dark); font-size: 1em;
 }
 .sabat-sheet .extras-item label {
-  font-size: 0.65em; font-weight: bold; text-transform: uppercase;
+  font-size: 0.75em; font-weight: bold; text-transform: uppercase;
   letter-spacing: 0.04em; color: var(--aq-brown-dark); text-align: center;
 }
 .sabat-sheet .extras-item input {
@@ -299,26 +299,28 @@
 /* Armor zones */
 .sabat-sheet .armor-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
 .sabat-sheet .armor-item { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-.sabat-sheet .armor-item label { font-size: 0.65em; color: var(--aq-text-muted); text-align: center; }
+.sabat-sheet .armor-item label { font-size: 0.75em; color: var(--aq-brown); text-align: center; font-weight: bold; }
 .sabat-sheet .armor-item input { width: 42px; text-align: center; font-family: var(--aq-font-number); }
 
 /* ---- Favourite Star ---- */
-.fav-toggle { display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.75em; transition: color 0.15s; }
+.fav-toggle { display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.9em; transition: color 0.15s; }
 .fav-toggle .fav-active { color: var(--aq-gold); }
-.fav-toggle .fav-inactive { color: var(--aq-border); opacity: 0.3; }
+.fav-toggle .fav-inactive { color: var(--aq-brown); opacity: 0.3; }
 .fav-toggle:hover .fav-inactive { opacity: 0.7; }
 
 /* ---- Favourites Panel ---- */
 .sabat-sheet .favourites-panel .fav-section { margin-bottom: 8px; }
 .sabat-sheet .favourites-panel .fav-section:last-child { margin-bottom: 0; }
-.fav-section-title { font-size: 0.72em; text-transform: uppercase; letter-spacing: 0.05em; color: var(--aq-text-muted); margin: 0 0 4px; padding-bottom: 2px; border-bottom: 1px solid rgba(0,0,0,0.1); }
+.fav-section-title { font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: var(--aq-brown); font-weight: bold; margin: 0 0 4px; padding-bottom: 2px; border-bottom: 1px solid rgba(0,0,0,0.1); }
 .sabat-sheet .fav-row { display: grid; gap: 4px; align-items: center; padding: 2px 4px; border-radius: 2px; transition: background 0.1s; }
 .sabat-sheet .fav-row:hover { background: rgba(201,162,39,0.15); }
-.sabat-sheet .fav-skill-row { grid-template-columns: 18px 18px 1fr 36px 18px; }
-.sabat-sheet .fav-weapon-row { grid-template-columns: 18px 18px 1fr 90px 50px; }
-.fav-val { font-family: var(--aq-font-number); font-size: 0.78em; color: var(--aq-brown-dark); text-align: center; font-weight: bold; }
-.fav-damage { font-family: var(--aq-font-number); font-size: 0.78em; color: var(--aq-red); text-align: center; font-weight: bold; }
-.fav-adv-icon { color: var(--aq-gold); font-size: 0.7em; text-align: center; display: inline-block; width: 18px; }
+/* fav-skill: dice | name | value | adv | controls */
+.sabat-sheet .fav-skill-row { grid-template-columns: 22px 1fr 36px 18px 28px; }
+/* fav-weapon: dice | name | skill(val) | damage | controls */
+.sabat-sheet .fav-weapon-row { grid-template-columns: 22px 1fr 90px 50px 28px; }
+.fav-val { font-family: var(--aq-font-number); font-size: 0.88em; color: var(--aq-brown); text-align: center; font-weight: bold; }
+.fav-damage { font-family: var(--aq-font-number); font-size: 0.88em; color: var(--aq-brown); text-align: center; font-weight: bold; }
+.fav-adv-icon { color: var(--aq-gold); font-size: 0.8em; text-align: center; display: inline-block; width: 18px; }
 
 /* ---- Skills Tab (2-column flow, combat first) ---- */
 .sabat-sheet .skills-layout { column-count: 2; column-gap: 10px; }
@@ -343,16 +345,16 @@
 
 .sabat-sheet .skill-roll-btn {
   display: flex; align-items: center; justify-content: center;
-  color: var(--aq-brown-light); cursor: pointer; font-size: 0.8em; transition: color 0.15s;
+  color: var(--aq-brown); cursor: pointer; font-size: 0.9em; transition: color 0.15s;
 }
 .sabat-sheet .skill-roll-btn:hover { color: var(--aq-gold); }
-.sabat-sheet .skill-name { font-size: 0.8em; color: var(--aq-brown); }
-.sabat-sheet .skill-attr { font-size: 0.65em; text-align: center; color: var(--aq-text-muted); font-family: var(--aq-font-number); }
-.sabat-sheet .skill-value { width: 100%; text-align: center; font-family: var(--aq-font-number); font-size: 0.85em; padding: 1px 2px !important; }
+.sabat-sheet .skill-name { font-size: 0.88em; color: var(--aq-brown); }
+.sabat-sheet .skill-attr { font-size: 0.78em; text-align: center; color: var(--aq-brown); font-family: var(--aq-font-number); }
+.sabat-sheet .skill-value { width: 100%; text-align: center; font-family: var(--aq-font-number); font-size: 0.95em; padding: 1px 2px !important; color: var(--aq-brown); }
 .sabat-sheet .skill-adv { justify-self: center; }
 
-.sabat-sheet .skill-controls { display: flex; justify-content: flex-end; gap: 4px; }
-.sabat-sheet .skill-controls a { color: var(--aq-brown-light); cursor: pointer; font-size: 0.78em; transition: color 0.15s; }
+.sabat-sheet .skill-controls { display: flex; justify-content: flex-end; gap: 5px; }
+.sabat-sheet .skill-controls a { color: var(--aq-brown); cursor: pointer; font-size: 0.9em; transition: color 0.15s; }
 .sabat-sheet .skill-controls .skill-edit:hover { color: var(--aq-gold); }
 .sabat-sheet .skill-controls .skill-delete:hover,
 .sabat-sheet .skill-controls .custom-skill-delete:hover { color: var(--aq-red); }
@@ -491,30 +493,30 @@
 .sabat-sheet .armor-list-header, .sabat-sheet .armor-row { grid-template-columns: 1fr 44px 50px 68px; }
 .sabat-sheet .item-list-cols, .sabat-sheet .item-row { grid-template-columns: 1fr 36px 44px 50px 50px; }
 
-.sabat-sheet .item-skill { font-family: var(--aq-font-number); font-size: 0.78em; color: var(--aq-text-muted); text-align: center; }
-.sabat-sheet .item-dmg-btn { display: flex; align-items: center; justify-content: center; color: var(--aq-brown-light); cursor: pointer; font-size: 0.9em; transition: color 0.15s; }
+.sabat-sheet .item-skill { font-family: var(--aq-font-number); font-size: 0.88em; color: var(--aq-brown); text-align: center; }
+.sabat-sheet .item-dmg-btn { display: flex; align-items: center; justify-content: center; color: var(--aq-brown); cursor: pointer; font-size: 0.9em; transition: color 0.15s; }
 .sabat-sheet .item-dmg-btn:hover { color: var(--aq-gold); }
 
 .sabat-sheet .item-list { list-style: none; margin: 0; padding: 0; }
-.sabat-sheet .item.flexrow { display: grid; gap: 4px; align-items: center; padding: 4px 6px; border-radius: 2px; transition: background 0.1s; font-size: 0.83em; }
+.sabat-sheet .item.flexrow { display: grid; gap: 4px; align-items: center; padding: 4px 6px; border-radius: 2px; transition: background 0.1s; font-size: 0.88em; color: var(--aq-brown); }
 .sabat-sheet .item.flexrow:nth-child(even) { background: rgba(0,0,0,0.04); }
 .sabat-sheet .item.flexrow:hover { background: rgba(201,162,39,0.12); }
-.sabat-sheet .item-name { font-weight: bold; color: var(--aq-brown-dark); }
-.sabat-sheet .item-damage { font-family: var(--aq-font-number); color: var(--aq-red); text-align: center; font-weight: bold; }
-.sabat-sheet .item-range, .sabat-sheet .item-qty, .sabat-sheet .item-weight, .sabat-sheet .item-price { text-align: center; color: var(--aq-text-muted); font-family: var(--aq-font-number); }
-.sabat-sheet .item-controls { display: flex; justify-content: flex-end; gap: 6px; }
-.sabat-sheet .item-controls a { color: var(--aq-brown-light); cursor: pointer; font-size: 0.85em; transition: color 0.15s; }
+.sabat-sheet .item-name { font-weight: bold; color: var(--aq-brown); }
+.sabat-sheet .item-damage { font-family: var(--aq-font-number); color: var(--aq-brown); text-align: center; font-weight: bold; }
+.sabat-sheet .item-range, .sabat-sheet .item-qty, .sabat-sheet .item-weight, .sabat-sheet .item-price { text-align: center; color: var(--aq-brown); font-family: var(--aq-font-number); }
+.sabat-sheet .item-controls { display: flex; justify-content: flex-end; gap: 5px; }
+.sabat-sheet .item-controls a { color: var(--aq-brown); cursor: pointer; font-size: 0.9em; transition: color 0.15s; }
 .sabat-sheet .item-controls .item-edit:hover { color: var(--aq-gold); }
 .sabat-sheet .item-controls .item-delete:hover { color: var(--aq-red); }
 .sabat-sheet .item-empty { padding: 6px; font-size: 0.78em; color: var(--aq-text-muted); font-style: italic; text-align: center; }
 .sabat-sheet .item-prot, .sabat-sheet .item-eqp { text-align: center; font-family: var(--aq-font-number); color: var(--aq-text-muted); }
 
 /* Purse panel */
-.sabat-sheet .purse-panel .panel-title i { margin-right: 4px; color: var(--aq-brown-dark); }
+.sabat-sheet .purse-panel .panel-title i { margin-right: 4px; color: var(--aq-brown); }
 .sabat-sheet .purse-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
 .sabat-sheet .purse-item { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-.sabat-sheet .purse-icon { font-size: 1em; color: var(--aq-brown-dark); }
-.sabat-sheet .purse-item label { font-size: 0.65em; font-weight: bold; text-transform: uppercase; color: var(--aq-brown-dark); text-align: center; }
+.sabat-sheet .purse-icon { font-size: 1em; color: var(--aq-brown); }
+.sabat-sheet .purse-item label { font-size: 0.75em; font-weight: bold; text-transform: uppercase; color: var(--aq-brown); text-align: center; }
 .sabat-sheet .purse-item input { width: 56px; text-align: center; font-family: var(--aq-font-number); font-weight: bold; font-size: 1.15em; }
 
 /* ---- Biography ---- */

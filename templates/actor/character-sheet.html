@@ -122,11 +122,13 @@
               <h4 class="fav-section-title">Skills</h4>
               {{#each favSkillsList}}
               <div class="fav-row fav-skill-row">
-                <a class="skill-roll-btn" data-skill="{{this.key}}" data-label="{{this.label}}" data-target="{{this.value}}" title="Roll {{this.label}}"><i class="fas fa-dice-d20"></i></a>
-                <a class="fav-toggle" data-fav-type="skills" data-fav-key="{{this.key}}" title="Remove"><i class="fas fa-star fav-active"></i></a>
+                <a class="skill-roll-btn" data-skill="{{this.key}}" data-label="{{this.label}}" data-target="{{this.value}}" title="Roll"><i class="fas fa-dice-d20"></i></a>
                 <span class="skill-name">{{this.label}}</span>
                 <span class="fav-val">{{this.value}}</span>
                 {{#if this.advancement}}<i class="fas fa-check-circle fav-adv-icon"></i>{{else}}<span class="fav-adv-icon"></span>{{/if}}
+                <div class="item-controls">
+                  <a class="fav-toggle" data-fav-type="skills" data-fav-key="{{this.key}}" title="Remove"><i class="fas fa-star fav-active"></i></a>
+                </div>
               </div>
               {{/each}}
             </div>
@@ -137,10 +139,12 @@
               {{#each favWeaponsList}}
               <div class="fav-row fav-weapon-row" data-item-id="{{this.id}}">
                 <a class="weapon-roll-btn item-dmg-btn" title="Roll attack"><i class="fas fa-dice-d20"></i></a>
-                <a class="fav-toggle" data-fav-type="weapons" data-fav-key="{{this.id}}" title="Remove"><i class="fas fa-star fav-active"></i></a>
                 <span class="skill-name">{{this.name}}</span>
                 <span class="fav-val">{{this.skillLabel}} ({{this.skillValue}})</span>
                 <span class="fav-damage">{{this.system.damage}}</span>
+                <div class="item-controls">
+                  <a class="fav-toggle" data-fav-type="weapons" data-fav-key="{{this.id}}" title="Remove"><i class="fas fa-star fav-active"></i></a>
+                </div>
               </div>
               {{/each}}
             </div>
@@ -280,8 +284,8 @@
                 <span class="item-damage">{{this.system.damage}}</span>
                 <span class="item-price">{{this.system.price}}</span>
                 <div class="item-controls">
-                  <a class="fav-toggle" data-fav-type="weapons" data-fav-key="{{this.id}}" title="Favourite"><i class="fas fa-star {{#if this.isFav}}fav-active{{else}}fav-inactive{{/if}}"></i></a>
                   <a class="item-equip-toggle" title="Equip"><i class="fas fa-hand-paper {{#if this.system.equipped}}equipped-active{{else}}equipped-inactive{{/if}}"></i></a>
+                  <a class="fav-toggle" data-fav-type="weapons" data-fav-key="{{this.id}}" title="Favourite"><i class="fas fa-star {{#if this.isFav}}fav-active{{else}}fav-inactive{{/if}}"></i></a>
                   <a class="item-edit" title="Edit"><i class="fas fa-edit"></i></a>
                   <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>
                 </div>
