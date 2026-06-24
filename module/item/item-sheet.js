@@ -62,7 +62,26 @@ export default class SabatItemSheet extends ItemSheet {
     return context;
   }
 
+  _editMode = true;
+
   activateListeners(html) {
     super.activateListeners(html);
+
+    const form = html.closest("form");
+    const toggleBtn = html.find(".edit-toggle");
+
+    const applyEditMode = () => {
+      form.toggleClass("edit-locked", !this._editMode);
+      toggleBtn.find("i").attr("class", this._editMode ? "fas fa-lock-open" : "fas fa-lock");
+      form.find("input[type='text'], input[type='number'], select, textarea").prop("disabled", !this._editMode);
+    };
+
+    toggleBtn.click(ev => {
+      ev.preventDefault();
+      this._editMode = !this._editMode;
+      applyEditMode();
+    });
+
+    applyEditMode();
   }
 }

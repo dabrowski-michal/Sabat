@@ -362,7 +362,7 @@ export default class SabatActorSheet extends ActorSheet {
     const headerBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/headers/";
 
     function updateHeaderBg(rr) {
-      const color = rr >= 66 ? "#19397a" : rr >= 33 ? "#3a2010" : "#8b1a1a";
+      const color = rr >= 66 ? "#19397a" : rr >= 33 ? "#3a2010" : "#701014";
       if (headerImg) {
         html.find(".sheet-header").css("background", `url("${headerBase}${headerImg}") repeat, ${color}`);
       } else {

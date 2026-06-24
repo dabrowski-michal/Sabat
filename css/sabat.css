@@ -690,6 +690,14 @@
 .sabat-sheet .checkbox-group { flex-direction: row; align-items: center; }
 
 /* ---- Item Sheets ---- */
+.sabat-sheet.item-sheet .item-header { position: relative; }
+.sabat-sheet.item-sheet .edit-toggle {
+  position: absolute; top: 8px; right: 8px;
+  color: var(--aq-gold); font-size: 0.9em;
+  cursor: pointer; z-index: 10;
+}
+.sabat-sheet.item-sheet .edit-toggle:hover { color: #fff; }
+
 .sabat-sheet.item-sheet .item-header { display: flex; gap: 10px; padding: 10px 12px; background: linear-gradient(135deg, var(--aq-brown-dark), var(--aq-brown)); border-bottom: 2px solid var(--aq-gold); }
 .sabat-sheet.item-sheet .item-img { width: 60px; height: 60px; object-fit: cover; border: 2px solid var(--aq-gold); border-radius: 4px; cursor: pointer; }
 .sabat-sheet.item-sheet .item-header-fields { flex: 1; }
