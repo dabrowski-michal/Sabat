@@ -327,23 +327,27 @@ export default class SabatActorSheet extends ActorSheet {
       slider.addEventListener("input", () => updateImageFill(slider, fillEl));
     }
 
-    // RR slider extra: update display + portrait background
+    // RR slider: update display + portrait background
     const bgBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/";
-    function updateHeaderColor(rr) {
-      html.find(".sheet-header").css("background-color", rr >= 50 ? "#1d3c7c" : "#70191b");
-    }
-
     html.find("#rr-slider").on("input", function () {
       const rr = parseInt(this.value);
       html.find("#rr-display").text(rr);
       html.find("#irr-display").text(100 - rr);
       const src = rr >= 66 ? bgBase + "good.png" : rr >= 33 ? bgBase + "neutral.png" : bgBase + "evil.png";
       html.find("#portrait-bg-layer").attr("src", src);
-      updateHeaderColor(rr);
     });
 
-    // Set initial header color
-    updateHeaderColor(this.actor.system.secondaryCharacteristics.rr ?? 50);
+    // Header background from social class
+    const HEADER_BGS = {
+      "upper-nobility": "UpperNobility.png", "lower-nobility": "LowerNobility.png",
+      "burgher": "Burgher.png", "townsfolk": "Townsfolk.png",
+      "peasant": "Peasant.png", "slave": "Slave.png"
+    };
+    const sc = this.actor.system.background?.socialClass ?? "";
+    const headerImg = HEADER_BGS[sc];
+    if (headerImg) {
+      html.find(".sheet-header").css("background", `url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/headers/${headerImg}") repeat`);
+    }
 
     // Other sliders: update display values
     html.find("#hp-slider").on("input", function () { html.find("#hp-current-display").text(this.value); });

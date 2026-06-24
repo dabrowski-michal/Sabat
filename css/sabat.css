@@ -76,10 +76,10 @@
   box-shadow: none;
 }
 
-/* ---- Header — colored bg based on RR ---- */
+/* ---- Header — social class background ---- */
 .sabat-sheet .sheet-header {
   display: flex; gap: 12px; padding: 10px 12px;
-  background-color: #1d3c7c;
+  background: var(--aq-brown-dark);
   border-bottom: none;
   color: #f5ead6;
 }
