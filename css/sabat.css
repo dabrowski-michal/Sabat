@@ -49,20 +49,22 @@
 }
 
 /* Custom checkboxes — square, brown circle fill */
+/* Checkboxes — image-based */
 .sabat-sheet input[type="checkbox"],
 .spell-limit-row input[type="checkbox"] {
   -webkit-appearance: none; appearance: none;
-  width: 14px; height: 14px;
-  border: 2px solid #5c3d1e; border-radius: 0;
-  background: transparent; cursor: pointer;
-  position: relative; vertical-align: middle;
-  flex-shrink: 0;
+  width: 18px; height: 18px;
+  border: none; border-radius: 0;
+  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/checkEmpty.png") center / contain no-repeat;
+  cursor: pointer; position: relative; vertical-align: middle; flex-shrink: 0;
+}
+.sabat-sheet input[type="checkbox"]:checked,
+.spell-limit-row input[type="checkbox"]:checked {
+  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/checkFull.png") center / contain no-repeat;
 }
 .sabat-sheet input[type="checkbox"]:checked::after,
 .spell-limit-row input[type="checkbox"]:checked::after {
-  content: ""; position: absolute;
-  top: 2px; left: 2px; width: 6px; height: 6px;
-  background: #5c3d1e; border-radius: 50%;
+  content: none;
 }
 
 .sabat-sheet input[type="text"]:focus,
@@ -627,18 +629,18 @@
 
 .chat-damage-btn, .apply-damage-btn, .spell-cast-btn {
   display: block; width: 100%; margin-top: 7px; padding: 6px 10px;
-  border: 1px solid var(--aq-brown);
-  border-radius: 3px; cursor: pointer;
-  font-family: var(--aq-font-body); font-size: 0.88em; font-weight: bold;
-  color: var(--aq-brown-dark); text-align: center;
-  background: linear-gradient(180deg, rgba(255,255,255,0.4), rgba(0,0,0,0.06));
-  box-shadow: 0 1px 2px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.3);
+  border: none; border-radius: 0; cursor: pointer;
+  font-family: "Palatino Linotype", "Palatino", "Book Antiqua", serif;
+  font-size: 0.88em; font-weight: bold;
+  color: #3a2010; text-align: center;
+  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/button.png") center / cover no-repeat;
+  min-height: 32px;
 }
 .chat-damage-btn:hover, .apply-damage-btn:hover, .spell-cast-btn:hover {
-  background: linear-gradient(180deg, rgba(255,255,255,0.5), rgba(0,0,0,0.1));
+  filter: brightness(1.1);
 }
 .chat-damage-btn:active, .apply-damage-btn:active, .spell-cast-btn:active {
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+  filter: brightness(0.9);
 }
 .chat-damage-btn:disabled { opacity: 0.5; cursor: default; }
 
