@@ -729,11 +729,26 @@
 }
 .sabat-sheet.item-sheet .edit-toggle:hover { color: #fff; }
 
-.sabat-sheet.item-sheet .item-header { display: flex; gap: 10px; padding: 10px 12px; background: linear-gradient(135deg, var(--aq-brown-dark), var(--aq-brown)); border-bottom: 2px solid var(--aq-gold); }
-.sabat-sheet.item-sheet .item-img { width: 60px; height: 60px; object-fit: cover; border: 2px solid var(--aq-gold); border-radius: 4px; cursor: pointer; }
+.sabat-sheet.item-sheet .item-header {
+  display: flex; gap: 12px; align-items: center;
+  height: 140px; box-sizing: border-box; padding: 20px 12px;
+  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/header/neutral.png") repeat;
+  border-bottom: none;
+}
+.sabat-sheet.item-sheet .item-img { width: 80px; height: 80px; object-fit: cover; border: 2px solid rgba(245,234,214,0.5); border-radius: 4px; cursor: pointer; }
 .sabat-sheet.item-sheet .item-header-fields { flex: 1; }
-.sabat-sheet.item-sheet .item-header-fields h1 input { font-size: 1.3em; font-family: var(--aq-font-label); color: var(--aq-parchment); background: transparent; border: none; border-bottom: 1px solid var(--aq-gold); width: 100%; margin-bottom: 4px; }
-.sabat-sheet.item-sheet .item-type-label { font-size: 0.7em; text-transform: none; color: var(--aq-gold); letter-spacing: 0.08em; }
+.sabat-sheet.item-sheet .item-header-fields h1 input {
+  font-size: 1.4em; font-family: var(--aq-font-label); font-weight: bold;
+  color: #f7c05c; background: transparent;
+  text-shadow: 0 1px 2px #a64329, 0 0 4px #a64329;
+  border: none; border-bottom: 1px solid rgba(245,234,214,0.3);
+  width: 100%; margin-bottom: 4px;
+}
+.sabat-sheet.item-sheet .item-type-label {
+  font-size: 0.8em; text-transform: none;
+  color: #f7c05c; letter-spacing: 0.06em;
+  text-shadow: 0 1px 2px #a64329, 0 0 3px #a64329;
+}
 .sabat-sheet.item-sheet .item-body { padding: 12px; }
 .sabat-sheet .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; margin-bottom: 10px; }
 
