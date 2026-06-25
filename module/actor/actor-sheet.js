@@ -129,7 +129,7 @@ export default class SabatActorSheet extends ActorSheet {
     // Character title
     const bg = system.background;
     const age = bg.age ?? 0;
-    const ageDesc = age > 100 ? "Dead" : age >= 76 ? "Decrepit" : age >= 56 ? "Old" : age >= 36 ? "Seasoned" : age >= 20 ? "Adult" : age >= 13 ? "Youthful" : "Childlike";
+    const ageDesc = age > 100 ? "Dead" : age >= 76 ? "Decrepit" : age >= 56 ? "Old" : age >= 36 ? "Seasoned" : age >= 30 ? "Adult" : age >= 20 ? "Young" : age >= 13 ? "Youthful" : "Childlike";
     const h = bg.height ?? 0;
     const heightDesc = h >= 191 ? "towering" : h >= 176 ? "tall" : h >= 156 ? "average-height" : h >= 131 ? "short" : "tiny";
     const w = bg.weight ?? 0;
