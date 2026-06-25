@@ -83,6 +83,7 @@
   height: 140px; box-sizing: border-box;
   align-items: center;
   background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/header.png") repeat;
+  background-color: #3a2010;
   border-bottom: none;
   color: #f5ead6;
 }
@@ -240,7 +241,8 @@
 }
 .portrait-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border: none !important; outline: none !important; }
 .layer-portrait-bg { z-index: 1; border: none !important; }
-.layer-portrait-char { z-index: 2; object-fit: contain; top: 50%; left: 50%; width: 90%; height: 90%; transform: translate(-50%,-50%); cursor: pointer; border: none !important; outline: none !important; }
+.layer-portrait-char { z-index: 2; object-fit: contain; top: 50%; left: 50%; width: 70%; height: 70%; transform: translate(-50%,-50%); cursor: pointer; border: none !important; outline: none !important; }
+.layer-portrait-frame { z-index: 3; object-fit: cover; border: none !important; outline: none !important; pointer-events: none; }
 
 /* Primary chars — icons + UPPERCASE names */
 .sabat-sheet .char-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 10px; }
