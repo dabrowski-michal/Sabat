@@ -136,6 +136,10 @@ export default class SabatActorSheet extends ActorSheet {
     context.items  = this.actor.items.filter(i => i.type === "item");
     context.boons  = this.actor.items.filter(i => i.type === "trait" && i.system.traitType === "boon");
     context.banes  = this.actor.items.filter(i => i.type === "trait" && i.system.traitType === "bane");
+    context.afflictions = this.actor.items.filter(i => i.type === "affliction");
+
+    // Computed armor protection per location
+    context.protection = this.actor.system.protection ?? {};
 
     // Spells grouped by Vis level
     const VIS_LABELS = { 1: "Prima", 2: "Secunda", 3: "Tertia", 4: "Quarta", 5: "Quinta", 6: "Sexta", 7: "Septima" };
@@ -321,11 +325,65 @@ export default class SabatActorSheet extends ActorSheet {
       const li = $(ev.currentTarget).closest("[data-item-id]");
       const item = this.actor.items.get(li.data("itemId"));
       if (!item) return;
+      const s = item.system;
+      const isBoon = s.traitType === "boon";
+      const typeLabel = isBoon ? "Boon" : "Bane";
+      const headerBg = isBoon ? "frameGood" : "frameEvil";
+      const content = `
+<div class="sabat-trait-card">
+  <div class="trait-card-header" style="background: url('https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/${headerBg}.png') repeat;">
+    <img class="trait-card-icon" src="${item.img}" />
+    <div>
+      <div class="trait-card-name">${item.name}</div>
+      <div class="trait-card-type">${typeLabel} · ${s.points} pts</div>
+    </div>
+  </div>
+  ${s.description ? `<div class="trait-card-body"><div class="trait-card-desc">${s.description}</div></div>` : ""}
+</div>`;
       await ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-        content: `<div class="sabat-roll"><strong>${item.name}</strong> (${item.system.traitType === "boon" ? "Boon" : "Bane"}, ${item.system.points} pts)<div class="roll-details">${item.system.description}</div></div>`
+        content
       });
     });
+    html.find(".affliction-post").click(async ev => {
+      ev.preventDefault();
+      const li = $(ev.currentTarget).closest("[data-item-id]");
+      const item = this.actor.items.get(li.data("itemId"));
+      if (!item) return;
+      const s = item.system;
+      let fields = "";
+      if (s.severity) fields += `<div class="trait-card-field"><strong>Severity:</strong> ${s.severity}</div>`;
+      if (s.infection) fields += `<div class="trait-card-field"><strong>Infection:</strong> ${s.infection}%</div>`;
+      if (s.description) fields += `<div class="trait-card-field"><strong>Description:</strong> ${s.description}</div>`;
+      if (s.infectionDescription) fields += `<div class="trait-card-field"><strong>Infection:</strong> ${s.infectionDescription}</div>`;
+      const content = `
+<div class="sabat-trait-card">
+  <div class="trait-card-header" style="background: url('https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/frameEvil.png') repeat;">
+    <img class="trait-card-icon" src="${item.img}" />
+    <div>
+      <div class="trait-card-name">${item.name}</div>
+      <div class="trait-card-type">Affliction${s.severity ? " · " + s.severity : ""}</div>
+    </div>
+  </div>
+  ${fields ? `<div class="trait-card-body">${fields}</div>` : ""}
+</div>`;
+      await ChatMessage.create({
+        speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+        content
+      });
+    });
+    html.find(".char-shield").click(async ev => {
+      if (this._editMode) return;
+      ev.preventDefault();
+      const el = $(ev.currentTarget);
+      const label = el.data("charLabel");
+      const value = el.find(".char-shield-value").val();
+      await ChatMessage.create({
+        speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+        content: `<div class="sabat-roll"><strong>${this.actor.name}</strong> — ${label}: <strong>${value}</strong></div>`
+      });
+    });
+
     html.find(".spell-vis-toggle").click(ev => {
       const panel = $(ev.currentTarget).closest(".spell-vis-group");
       panel.toggleClass("collapsed");

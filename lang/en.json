@@ -8,7 +8,11 @@
       "weapon": "Weapon",
       "armor": "Armor",
       "item": "Item",
-      "spell": "Spell"
+      "spell": "Spell",
+      "ritual": "Ritual",
+      "trait": "Trait",
+      "skill": "Skill",
+      "affliction": "Affliction"
     }
   }
 }

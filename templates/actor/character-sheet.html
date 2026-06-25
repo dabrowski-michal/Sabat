@@ -30,20 +30,6 @@
             <img class="portrait-layer layer-portrait-frame" src="{{portraitFrame}}" alt="" />
           </div>
 
-          <div class="primary-chars panel">
-            <h3 class="panel-title">Primary characteristics</h3>
-            <div class="char-grid">
-              <div class="char-item"><input class="char-value" type="number" name="system.characteristics.str" value="{{system.characteristics.str}}" min="1" max="20" /><span class="char-name">Strength</span></div>
-              <div class="char-item"><input class="char-value" type="number" name="system.characteristics.agi" value="{{system.characteristics.agi}}" min="1" max="20" /><span class="char-name">Agility</span></div>
-              <div class="char-item"><input class="char-value" type="number" name="system.characteristics.dex" value="{{system.characteristics.dex}}" min="1" max="20" /><span class="char-name">Dexterity</span></div>
-              <div class="char-item"><input class="char-value" type="number" name="system.characteristics.vit" value="{{system.characteristics.vit}}" min="1" max="20" /><span class="char-name">Vitality</span></div>
-              <div class="char-item"><input class="char-value" type="number" name="system.characteristics.per" value="{{system.characteristics.per}}" min="1" max="20" /><span class="char-name">Perception</span></div>
-              <div class="char-item"><input class="char-value" type="number" name="system.characteristics.com" value="{{system.characteristics.com}}" min="1" max="20" /><span class="char-name">Communication</span></div>
-              <div class="char-item"><input class="char-value" type="number" name="system.characteristics.cul" value="{{system.characteristics.cul}}" min="1" max="20" /><span class="char-name">Culture</span></div>
-              <div class="char-item"><input class="char-value" type="number" name="system.secondaryCharacteristics.app" value="{{system.secondaryCharacteristics.app}}" min="0" /><span class="char-name">Appearance</span></div>
-            </div>
-          </div>
-
           <!-- Experience / Temperance / Willpower -->
           <div class="extras-panel panel">
             <h3 class="panel-title">Attributes</h3>
@@ -90,21 +76,93 @@
                 </div>
                 {{else}}<p class="item-empty">No banes</p>{{/each}}
               </div>
+              <div class="traits-col">
+                <h4 class="traits-col-title">Afflictions</h4>
+                {{#each afflictions}}
+                <div class="trait-row" data-item-id="{{this.id}}">
+                  <a class="affliction-post" title="Post to chat"><img class="trait-row-icon" src="{{this.img}}" /></a>
+                  <span class="trait-row-name"><a class="item-edit" title="Open">{{this.name}}</a></span>
+                  <div class="item-controls"><a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a></div>
+                </div>
+                {{else}}<p class="item-empty">No afflictions</p>{{/each}}
+              </div>
             </div>
           </div>
         </div>
 
         <div class="chars-right">
+          <div class="primary-chars panel">
+            <h3 class="panel-title">Primary characteristics</h3>
+            <div class="char-grid">
+              <div class="char-shield" data-char-key="str" data-char-label="Strength">
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/specific/shield.png" />
+                  <input class="char-shield-value" type="number" name="system.characteristics.str" value="{{system.characteristics.str}}" min="1" max="20" />
+                </div>
+                <span class="char-shield-label">Strength</span>
+              </div>
+              <div class="char-shield" data-char-key="agi" data-char-label="Agility">
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/specific/shield.png" />
+                  <input class="char-shield-value" type="number" name="system.characteristics.agi" value="{{system.characteristics.agi}}" min="1" max="20" />
+                </div>
+                <span class="char-shield-label">Agility</span>
+              </div>
+              <div class="char-shield" data-char-key="dex" data-char-label="Dexterity">
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/specific/shield.png" />
+                  <input class="char-shield-value" type="number" name="system.characteristics.dex" value="{{system.characteristics.dex}}" min="1" max="20" />
+                </div>
+                <span class="char-shield-label">Dexterity</span>
+              </div>
+              <div class="char-shield" data-char-key="vit" data-char-label="Vitality">
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/specific/shield.png" />
+                  <input class="char-shield-value" type="number" name="system.characteristics.vit" value="{{system.characteristics.vit}}" min="1" max="20" />
+                </div>
+                <span class="char-shield-label">Vitality</span>
+              </div>
+              <div class="char-shield" data-char-key="per" data-char-label="Perception">
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/specific/shield.png" />
+                  <input class="char-shield-value" type="number" name="system.characteristics.per" value="{{system.characteristics.per}}" min="1" max="20" />
+                </div>
+                <span class="char-shield-label">Perception</span>
+              </div>
+              <div class="char-shield" data-char-key="com" data-char-label="Communication">
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/specific/shield.png" />
+                  <input class="char-shield-value" type="number" name="system.characteristics.com" value="{{system.characteristics.com}}" min="1" max="20" />
+                </div>
+                <span class="char-shield-label">Communication</span>
+              </div>
+              <div class="char-shield" data-char-key="cul" data-char-label="Culture">
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/specific/shield.png" />
+                  <input class="char-shield-value" type="number" name="system.characteristics.cul" value="{{system.characteristics.cul}}" min="1" max="20" />
+                </div>
+                <span class="char-shield-label">Culture</span>
+              </div>
+              <div class="char-shield" data-char-key="app" data-char-label="Appearance">
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/specific/shield.png" />
+                  <input class="char-shield-value" type="number" name="system.secondaryCharacteristics.app" value="{{system.secondaryCharacteristics.app}}" min="0" />
+                </div>
+                <span class="char-shield-label">Appearance</span>
+              </div>
+            </div>
+          </div>
+
           <!-- Life Points -->
           <div class="panel">
             <h3 class="panel-title">Life points</h3>
             <div class="char-slider-row">
-              <span class="char-slider-val" id="hp-current-display">{{system.health.value}}</span>
+              <span class="char-slider-val icon-number" id="hp-current-display">{{system.health.value}}</span>
               <div class="slider-track-frame hp-frame">
                 <div class="slider-fill" id="hp-fill"></div>
                 <input type="range" name="system.health.value" id="hp-slider" class="ghost-slider" min="0" max="{{system.health.max}}" value="{{system.health.value}}" />
               </div>
-              <span class="char-slider-val">{{system.health.max}}</span>
+              <span class="char-slider-val icon-number">{{system.health.max}}</span>
             </div>
           </div>
 
@@ -112,12 +170,12 @@
           <div class="panel">
             <h3 class="panel-title">Luck</h3>
             <div class="char-slider-row">
-              <span class="char-slider-val" id="luck-current-display">{{system.secondaryCharacteristics.luckCurrent}}</span>
+              <span class="char-slider-val icon-number" id="luck-current-display">{{system.secondaryCharacteristics.luckCurrent}}</span>
               <div class="slider-track-frame luck-frame">
                 <div class="slider-fill" id="luck-fill"></div>
                 <input type="range" name="system.secondaryCharacteristics.luckCurrent" id="luck-slider" class="ghost-slider" min="0" max="{{system.secondaryCharacteristics.luckInitial}}" value="{{system.secondaryCharacteristics.luckCurrent}}" />
               </div>
-              <span class="char-slider-val">{{system.secondaryCharacteristics.luckInitial}}</span>
+              <span class="char-slider-val icon-number">{{system.secondaryCharacteristics.luckInitial}}</span>
             </div>
           </div>
 
@@ -125,12 +183,12 @@
           <div class="panel">
             <h3 class="panel-title">Rationality</h3>
             <div class="char-slider-row">
-              <span class="char-slider-val" id="irr-display">{{system.secondaryCharacteristics.irr}}</span>
+              <span class="char-slider-val icon-number" id="irr-display">{{system.secondaryCharacteristics.irr}}</span>
               <div class="slider-track-frame rr-frame">
                 <div class="slider-fill" id="rr-fill"></div>
                 <input type="range" name="system.secondaryCharacteristics.rr" id="rr-slider" class="ghost-slider" min="0" max="100" value="{{system.secondaryCharacteristics.rr}}" />
               </div>
-              <span class="char-slider-val" id="rr-display">{{system.secondaryCharacteristics.rr}}</span>
+              <span class="char-slider-val icon-number" id="rr-display">{{system.secondaryCharacteristics.rr}}</span>
             </div>
             <div class="char-slider-labels"><span>Irrationality</span><span>Rationality</span></div>
             <input type="hidden" name="system.secondaryCharacteristics.concentrationPoints.value" value="{{system.secondaryCharacteristics.concentrationPoints.value}}" />
@@ -188,6 +246,14 @@
 
         <div class="skill-column panel combat-skills">
           <h3 class="panel-title">Combat skills</h3>
+          <div class="skill-row skill-list-header">
+            <span></span>
+            <span>Name</span>
+            <span>Attr</span>
+            <span>Value</span>
+            <span>Adv</span>
+            <span></span>
+          </div>
           {{#each combatSkills}}
           <div class="skill-row" data-item-id="{{this.id}}">
             <a class="skill-roll-btn" data-label="{{this.name}}" data-target="{{this.system.value}}" title="Roll"><i class="fas fa-dice-d20"></i></a>
@@ -206,6 +272,13 @@
         {{#each skillGroups}}
         <div class="skill-group panel">
           <h3 class="panel-title">{{this.label}}</h3>
+          <div class="skill-row skill-list-header">
+            <span></span>
+            <span>Name</span>
+            <span>Value</span>
+            <span>Adv</span>
+            <span></span>
+          </div>
           {{#each this.skills}}
           <div class="skill-row" data-item-id="{{this.id}}">
             <a class="skill-roll-btn" data-label="{{this.name}}" data-target="{{this.system.value}}" title="Roll"><i class="fas fa-dice-d20"></i></a>
@@ -242,13 +315,13 @@
           <div class="armor-zones panel">
             <h3 class="panel-title">Armor</h3>
             <div class="armor-grid">
-              <div class="armor-item"><label>Head</label><input type="number" name="system.armor.head" value="{{system.armor.head}}" min="0" /></div>
-              <div class="armor-item"><label>Left Arm</label><input type="number" name="system.armor.leftArm" value="{{system.armor.leftArm}}" min="0" /></div>
-              <div class="armor-item"><label>Right Arm</label><input type="number" name="system.armor.rightArm" value="{{system.armor.rightArm}}" min="0" /></div>
-              <div class="armor-item"><label>Chest</label><input type="number" name="system.armor.chest" value="{{system.armor.chest}}" min="0" /></div>
-              <div class="armor-item"><label>Abdomen</label><input type="number" name="system.armor.abdomen" value="{{system.armor.abdomen}}" min="0" /></div>
-              <div class="armor-item"><label>Left Leg</label><input type="number" name="system.armor.leftLeg" value="{{system.armor.leftLeg}}" min="0" /></div>
-              <div class="armor-item"><label>Right Leg</label><input type="number" name="system.armor.rightLeg" value="{{system.armor.rightLeg}}" min="0" /></div>
+              <div class="armor-item"><label>Head</label><span class="armor-prot-value">{{protection.head}}</span></div>
+              <div class="armor-item"><label>Left Arm</label><span class="armor-prot-value">{{protection.leftArm}}</span></div>
+              <div class="armor-item"><label>Right Arm</label><span class="armor-prot-value">{{protection.rightArm}}</span></div>
+              <div class="armor-item"><label>Chest</label><span class="armor-prot-value">{{protection.chest}}</span></div>
+              <div class="armor-item"><label>Abdomen</label><span class="armor-prot-value">{{protection.abdomen}}</span></div>
+              <div class="armor-item"><label>Left Leg</label><span class="armor-prot-value">{{protection.leftLeg}}</span></div>
+              <div class="armor-item"><label>Right Leg</label><span class="armor-prot-value">{{protection.rightLeg}}</span></div>
             </div>
           </div>
 
@@ -295,7 +368,7 @@
           <div class="items-section panel">
             <div class="section-header"><h3 class="panel-title">Armor</h3><a class="item-create" data-type="armor" title="Add armor"><i class="fas fa-plus"></i></a></div>
             <div class="item-list-header armor-list-header">
-              <span>Use</span><span>Name</span><span>Protection</span><span>Weight</span><span>Price</span><span>Controls</span>
+              <span>Use</span><span>Name</span><span>Prot</span><span>Dur</span><span>Weight</span><span>Price</span><span>Controls</span>
             </div>
             <ul class="item-list">
               {{#each armor}}
@@ -303,6 +376,7 @@
                 <span class="item-use-col"><input type="checkbox" class="item-equip-check" {{#if this.system.equipped}}checked{{/if}} /></span>
                 <span class="item-name">{{this.name}}</span>
                 <span class="item-prot">{{this.system.protection}}</span>
+                <span class="item-dur">{{this.system.durability}}</span>
                 <span class="item-weight">{{this.system.weight}}</span>
                 <span class="item-price">{{this.system.price}}</span>
                 <div class="item-controls">
@@ -343,9 +417,9 @@
       <div class="spell-points-panel panel">
         <h3 class="panel-title" id="spell-points-title">{{rrPointsLabel}}</h3>
         <div class="spell-points-row">
-          <span class="spell-points-val spell-points-current" id="spell-points-current">{{rrPointsCurrent}}</span>
+          <span class="spell-points-val icon-number spell-points-current" id="spell-points-current">{{rrPointsCurrent}}</span>
           <div class="spell-points-boxes" id="spell-points-boxes"></div>
-          <span class="spell-points-val spell-points-max" id="spell-points-max">{{rrPointsMax}}</span>
+          <span class="spell-points-val icon-number spell-points-max" id="spell-points-max">{{rrPointsMax}}</span>
         </div>
       </div>
 
@@ -357,20 +431,22 @@
           <span class="spell-vis-meta">Faith: {{this.fpRequired}} · Mod: {{this.pctMod}}%</span>
         </h3>
         <div class="spell-vis-body">
-          <div class="spell-list-header">
+          <div class="spell-list-header ritual-list-header">
             <span></span>
             <span class="col-name">Name</span>
             <span>Effect</span>
+            <span>Duration</span>
             <span>Controls</span>
           </div>
           {{#each this.rituals}}
-          <div class="spell-row" data-item-id="{{this.id}}">
+          <div class="spell-row ritual-row" data-item-id="{{this.id}}">
             <a class="ritual-post" title="Post to chat"><img class="spell-row-icon" src="{{this.img}}" /></a>
             <div class="spell-row-name">
               <a class="item-edit spell-name-main" title="Open">{{this.name}}</a>
               {{#if this.system.latinName}}<span class="spell-name-latin">{{this.system.latinName}}</span>{{/if}}
             </div>
             <span class="spell-row-effect">{{this.system.shortDescription}}</span>
+            <span class="spell-row-effect">{{this.system.duration}}</span>
             <div class="item-controls">
               <a class="item-edit" title="Edit"><i class="fas fa-edit"></i></a>
               <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>

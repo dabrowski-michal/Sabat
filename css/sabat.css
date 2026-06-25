@@ -3,21 +3,24 @@
    ========================================= */
 
 :root {
-  --aq-parchment:   #f5ead6;
-  --aq-parchment-d: #e8d9b8;
-  --aq-brown:       #5c3d1e;
-  --aq-brown-dark:  #3a2010;
-  --aq-brown-light: #8b6344;
-  --aq-red:         #8b1a1a;
-  --aq-gold:        #c9a227;
-  --aq-border:      #8b6344;
-  --aq-text:        #2a1a0a;
-  --aq-text-muted:  #7a5c38;
-  --aq-shadow:      rgba(58, 32, 16, 0.3);
-  --aq-font:        "Palatino Linotype", "Palatino", "Book Antiqua", serif;
-  --aq-font-body:   var(--aq-font);
-  --aq-font-label:  var(--aq-font);
-  --aq-font-number: var(--aq-font);
+  --aq-parchment:     #f5ead6;
+  --aq-parchment-d:   #e8d9b8;
+  --aq-brown:         #5c3d1e;
+  --aq-brown-dark:    #3a2010;
+  --aq-brown-light:   #8b6344;
+  --aq-red:           #8b1a1a;
+  --aq-gold:          #c9a227;
+  --aq-accent:        #f7c05c;
+  --aq-accent-shadow: #a64329;
+  --aq-border:        #8b6344;
+  --aq-text:          #2a1a0a;
+  --aq-text-muted:    #7a5c38;
+  --aq-input-border:  rgba(90, 60, 30, 0.25);
+  --aq-shadow:        rgba(58, 32, 16, 0.3);
+  --aq-font:          "Palatino Linotype", "Palatino", "Book Antiqua", serif;
+  --aq-font-body:     var(--aq-font);
+  --aq-font-label:    var(--aq-font);
+  --aq-font-number:   var(--aq-font);
 }
 
 /* ---- Base Sheet ---- */
@@ -35,7 +38,7 @@
 .sabat-sheet textarea {
   background: transparent;
   border: none;
-  border-bottom: 1px solid rgba(90,60,30,0.25);
+  border-bottom: 1px solid var(--aq-input-border);
   border-radius: 0;
   color: var(--aq-brown-dark);
   font-family: var(--aq-font-body);
@@ -48,7 +51,6 @@
   font-size: 1.05em;
 }
 
-/* Custom checkboxes — square, brown circle fill */
 /* Checkboxes — image-based */
 .sabat-sheet input[type="checkbox"],
 .spell-limit-row input[type="checkbox"] {
@@ -82,14 +84,14 @@
   padding: 20px 16px;
   min-height: 140px; box-sizing: border-box;
   align-items: center;
-  background: #3a2010;
+  background: var(--aq-brown-dark);
   border-bottom: none;
-  color: #f5ead6;
+  color: var(--aq-parchment);
 }
 .sabat-sheet .header-fields { flex: 1; }
 .sabat-sheet .charname input {
   font-size: 1.5em; font-family: var(--aq-font-label); font-weight: bold;
-  color: #f7c05c; background: transparent;
+  color: var(--aq-accent); background: transparent;
   text-shadow: 0 1px 3px rgba(0,0,0,0.5);
   border: none; border-bottom: 1px solid rgba(245,234,214,0.3);
   width: 100%; margin-bottom: 6px;
@@ -105,7 +107,7 @@
 
 .sabat-sheet .header-title {
   font-size: 0.95em;
-  color: #f7c05c;
+  color: var(--aq-accent);
   text-shadow: 0 1px 3px rgba(0,0,0,0.5);
   margin: 0;
   line-height: 1.3;
@@ -115,7 +117,7 @@
 .sabat-sheet .sheet-tabs {
   display: flex; padding: 4px 8px;
   background: none;
-  border-bottom: 1px solid rgba(90,60,30,0.25);
+  border-bottom: 1px solid var(--aq-input-border);
   gap: 4px;
 }
 .sabat-sheet .sheet-tabs .item {
@@ -129,8 +131,8 @@
 }
 .sabat-sheet .sheet-tabs .item:hover { color: var(--aq-brown-dark); }
 .sabat-sheet .sheet-tabs .item.active {
-  color: #f7c05c;
-  text-shadow: 0 1px 2px #a64329, 0 0 4px #a64329;
+  color: var(--aq-accent);
+  text-shadow: 0 1px 2px var(--aq-accent-shadow), 0 0 4px var(--aq-accent-shadow);
   background: var(--aq-btn-img, url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/buttonGood.png")) center / contain no-repeat;
   border: none;
 }
@@ -140,7 +142,7 @@
   position: absolute; top: 50%; right: 12px; transform: translateY(-50%);
   display: flex; align-items: center; justify-content: center;
   width: 32px; height: 32px;
-  color: #f7c05c; font-size: 1em;
+  color: var(--aq-accent); font-size: 1em;
   cursor: pointer; flex-shrink: 0;
   transition: color 0.15s; z-index: 10;
 }
@@ -157,18 +159,16 @@
   -webkit-appearance: none; appearance: none;
 }
 
-/* Primary characteristics identical in both modes */
-.edit-locked .char-value {
-  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/checkEmpty.png") center / contain no-repeat !important;
-  color: var(--aq-brown) !important;
-  text-shadow: none !important;
-  -webkit-text-fill-color: var(--aq-brown) !important;
+/* In locked mode, shields become clickable buttons */
+.edit-locked .char-shield { cursor: pointer; }
+.edit-locked .char-shield:hover { filter: brightness(1.1); }
+.edit-locked .char-shield-value {
+  pointer-events: none !important;
+  -webkit-appearance: none; appearance: none;
 }
-.edit-locked .char-name { color: var(--aq-brown) !important; }
-.edit-locked .char-item { opacity: 1 !important; }
 
 /* Keep charname yellow */
-.edit-locked .charname input { color: #f7c05c !important; }
+.edit-locked .charname input { color: var(--aq-accent) !important; }
 
 /* Hide edit-only elements */
 .edit-locked .item-controls,
@@ -186,11 +186,12 @@
 
 /* Redistribute grid columns when Controls hidden — hide Controls header text too */
 .edit-locked .weapon-list-header, .edit-locked .weapon-row { grid-template-columns: 28px 22px 1fr 80px 50px 50px 50px !important; }
-.edit-locked .armor-list-header, .edit-locked .armor-row { grid-template-columns: 28px 1fr 60px 50px 50px !important; }
+.edit-locked .armor-list-header, .edit-locked .armor-row { grid-template-columns: 28px 1fr 50px 50px 50px 50px !important; }
 .edit-locked .item-list-cols, .edit-locked .item-row { grid-template-columns: 1fr 50px 50px !important; }
 .edit-locked .spell-list-header, .edit-locked .spell-row { grid-template-columns: 48px 1fr 1.2fr 1.5fr !important; }
+.edit-locked .ritual-list-header, .edit-locked .ritual-row { grid-template-columns: 48px 1fr 1.2fr 1fr !important; }
 .edit-locked .skill-group .skill-row { grid-template-columns: 18px 1fr 44px 22px !important; }
-.edit-locked .combat-skills .skill-row { grid-template-columns: 18px 1fr 36px 44px 22px !important; }
+.edit-locked .combat-skills .skill-row { grid-template-columns: 18px 1fr 50px 44px 22px !important; }
 
 /* Hide the Controls header label and .item-controls in locked mode */
 .edit-locked .weapon-list-header > :last-child,
@@ -206,7 +207,10 @@
 .edit-locked .skill-roll-btn,
 .edit-locked .weapon-roll-btn,
 .edit-locked .spell-post,
-.edit-locked .item-name { pointer-events: auto !important; }
+.edit-locked .trait-post,
+.edit-locked .affliction-post,
+.edit-locked .item-name,
+.edit-locked .char-shield { pointer-events: auto !important; }
 
 /* ---- Body ---- */
 .sabat-sheet .sheet-body { padding: 10px 12px; overflow-y: auto; }
@@ -216,7 +220,7 @@
 /* ---- Panels ---- */
 .sabat-sheet .panel {
   background: none;
-  border: 1px solid rgba(90,60,30,0.25);
+  border: 1px solid var(--aq-input-border);
   border-radius: 0;
   padding: 8px 10px; margin-bottom: 8px;
 }
@@ -243,25 +247,63 @@
 .layer-portrait-char { z-index: 2; object-fit: cover; top: 55%; left: 50%; width: 70%; height: 70%; transform: translate(-50%,-50%); cursor: pointer; border: none !important; outline: none !important; aspect-ratio: 1/1; }
 .layer-portrait-frame { z-index: 3; object-fit: cover; border: none !important; outline: none !important; pointer-events: none; }
 
-/* Primary chars — icons + UPPERCASE names */
-.sabat-sheet .char-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 10px; }
-.sabat-sheet .char-item { display: flex; align-items: center; gap: 6px; }
-/* char-icon removed — no icons in primary chars */
-.sabat-sheet .char-name {
-  font-size: 0.78em; color: var(--aq-brown); font-weight: bold;
-  text-transform: none; letter-spacing: 0.03em; flex: 1;
+/* Primary chars — shield cards, 8 in one row */
+.sabat-sheet .char-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; }
+
+.sabat-sheet .char-shield {
+  display: flex; flex-direction: column; align-items: center;
+  cursor: pointer;
+  text-decoration: none;
 }
-.sabat-sheet .char-value {
-  width: 40px; height: 40px; text-align: center;
-  font-family: var(--aq-font-number); font-size: 1.15em; font-weight: bold;
-  color: var(--aq-brown) !important;
-  text-shadow: none !important;
-  -webkit-text-fill-color: var(--aq-brown) !important;
-  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/checkEmpty.png") center / contain no-repeat !important;
-  border: none !important; border-radius: 0 !important;
-  padding: 0 !important; flex-shrink: 0;
-  line-height: 40px;
+
+.sabat-sheet .char-shield-img-wrap {
+  position: relative;
+  width: 100%;
+  container-type: inline-size;
 }
+
+.sabat-sheet .char-shield-bg {
+  display: block; width: 100%; height: auto;
+  border: none !important; outline: none !important;
+}
+
+.sabat-sheet .char-shield-label {
+  display: block;
+  font-family: var(--aq-font-body);
+  font-size: 0.68em;
+  color: var(--aq-brown);
+  text-align: center;
+  white-space: nowrap; overflow: hidden;
+  margin-top: 1px; line-height: 1.3;
+}
+
+.sabat-sheet .char-shield-value {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex; align-items: center; justify-content: center;
+  width: 100%;
+  font-family: var(--aq-font-number); font-weight: bold;
+  font-size: 22cqi;
+  color: var(--aq-accent) !important;
+  text-shadow: 0 1px 3px var(--aq-accent-shadow), 0 0 6px var(--aq-accent-shadow);
+  -webkit-text-fill-color: var(--aq-accent) !important;
+  background: transparent !important;
+  border: none !important; border-bottom: none !important;
+  text-align: center; padding: 0 !important;
+  pointer-events: none;
+}
+
+/* Hide number spinners on shield values */
+.sabat-sheet .char-shield-value::-webkit-inner-spin-button,
+.sabat-sheet .char-shield-value::-webkit-outer-spin-button { -webkit-appearance: none; appearance: none; margin: 0; }
+.sabat-sheet .char-shield-value { -moz-appearance: textfield; }
+
+/* In edit mode, value input is editable */
+.sabat-sheet:not(.edit-locked) .char-shield-value {
+  pointer-events: auto;
+  cursor: text;
+}
+.sabat-sheet:not(.edit-locked) .char-shield { cursor: default; }
 
 /* Extras panel (Experience / Temperance / Willpower) */
 .sabat-sheet .extras-panel { padding: 6px 0; }
@@ -278,6 +320,17 @@
 .sabat-sheet .extras-item input {
   width: 48px; text-align: center; font-family: var(--aq-font-number);
   font-weight: bold; font-size: 1.15em;
+}
+
+/* ---- Shared golden icon-number (50×50 with bg image) ---- */
+.sabat-sheet .icon-number {
+  font-family: var(--aq-font-number); font-weight: bold; font-size: 1.4em;
+  color: var(--aq-accent);
+  text-shadow: 0 1px 2px var(--aq-accent-shadow), 0 0 4px var(--aq-accent-shadow);
+  width: 50px; height: 50px;
+  display: flex; align-items: center; justify-content: center;
+  background-size: contain; background-repeat: no-repeat; background-position: center;
+  border: none; padding: 0; flex-shrink: 0;
 }
 
 /* ---- Image-Fill Sliders (350×50, per-slider assets) ---- */
@@ -297,14 +350,7 @@
 }
 
 .sabat-sheet .char-slider-val {
-  font-family: var(--aq-font-number); font-weight: bold; font-size: 1.4em;
-  color: #f7c05c;
-  text-shadow: 0 1px 2px #a64329, 0 0 4px #a64329;
-  border: none;
-  padding: 0; width: 50px; height: 50px;
   text-align: center; flex: none;
-  display: flex; align-items: center; justify-content: center;
-  background-size: contain; background-repeat: no-repeat; background-position: center;
 }
 
 .sabat-sheet .char-slider-row .char-slider-val:first-child {
@@ -330,16 +376,6 @@
 .sabat-sheet .rr-points-header {
   display: flex; align-items: center; justify-content: center; gap: 8px;
   margin-bottom: 6px;
-}
-
-.sabat-sheet .rr-points-current,
-.sabat-sheet .rr-points-max {
-  font-family: var(--aq-font-number); font-weight: bold; font-size: 1.4em;
-  color: #f7c05c;
-  text-shadow: 0 1px 2px #a64329, 0 0 4px #a64329;
-  width: 50px; height: 50px;
-  display: flex; align-items: center; justify-content: center;
-  background-size: contain; background-repeat: no-repeat; background-position: center;
 }
 
 .sabat-sheet .rr-points-current {
@@ -521,9 +557,15 @@
 }
 /* Combat skill rows: dice | name | attr | value | adv | controls */
 .sabat-sheet .combat-skills .skill-row {
-  display: grid; grid-template-columns: 18px 1fr 36px 44px 22px 40px;
+  display: grid; grid-template-columns: 18px 1fr 50px 44px 22px 40px;
   gap: 4px; align-items: center; padding: 2px 4px; border-radius: 2px; transition: background 0.1s;
 }
+.sabat-sheet .skill-list-header {
+  font-size: 0.72em; font-weight: bold; color: var(--aq-brown);
+  text-transform: none; letter-spacing: 0.02em;
+  border-bottom: 1px solid var(--aq-border); margin-bottom: 2px; padding-bottom: 3px;
+}
+.sabat-sheet .skill-list-header:hover { background: none !important; }
 .sabat-sheet .skill-row:nth-child(even) { background: rgba(0,0,0,0.04); }
 .sabat-sheet .skill-row:hover { background: rgba(201,162,39,0.15); }
 
@@ -536,7 +578,7 @@
 .sabat-sheet .skill-name:hover { color: var(--aq-gold); }
 .sabat-sheet .weapon-roll-name { cursor: pointer; }
 .sabat-sheet .weapon-roll-name:hover { color: var(--aq-gold) !important; }
-.sabat-sheet .skill-attr { font-size: 0.78em; text-align: center; color: var(--aq-brown); font-family: var(--aq-font-number); }
+.sabat-sheet .skill-attr { font-size: 0.72em; text-align: center; color: var(--aq-brown); font-family: var(--aq-font-number); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sabat-sheet .skill-value { width: 100%; text-align: center; font-family: var(--aq-font-number); font-size: 0.95em; padding: 1px 2px !important; color: var(--aq-brown); }
 .sabat-sheet .skill-adv { justify-self: center; }
 
@@ -550,8 +592,8 @@
 .sabat-sheet .skill-add:hover { color: var(--aq-gold); }
 
 /* ---- Traits Panel (Boons & Banes) ---- */
-.sabat-sheet .traits-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.sabat-sheet .traits-col-title { font-size: 0.82em; font-weight: bold; color: var(--aq-brown); margin: 0 0 4px; padding-bottom: 3px; border-bottom: 1px solid rgba(90,60,30,0.25); }
+.sabat-sheet .traits-columns { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.sabat-sheet .traits-col-title { font-size: 0.82em; font-weight: bold; color: var(--aq-brown); margin: 0 0 4px; padding-bottom: 3px; border-bottom: 1px solid var(--aq-input-border); }
 .sabat-sheet .trait-row { display: grid; grid-template-columns: 28px 1fr 28px; gap: 4px; align-items: center; padding: 2px 4px; transition: background 0.1s; }
 .sabat-sheet .trait-row:hover { background: rgba(201,162,39,0.12); }
 .sabat-sheet .trait-row-icon { width: 24px; height: 24px; object-fit: contain; cursor: pointer; border: none !important; }
@@ -566,11 +608,6 @@
 }
 
 .sabat-sheet .spell-points-val {
-  font-family: var(--aq-font-number); font-weight: bold; font-size: 1.4em;
-  color: #f7c05c; text-shadow: 0 1px 2px #a64329, 0 0 4px #a64329;
-  width: 50px; height: 50px;
-  display: flex; align-items: center; justify-content: center;
-  background-size: contain; background-repeat: no-repeat; background-position: center;
   flex-shrink: 0;
 }
 
@@ -588,7 +625,9 @@
 }
 
 .sabat-sheet .spell-point-box {
-  width: 50px; height: 50px; min-width: 0; flex-shrink: 1;
+  width: 50px; height: 50px; min-width: 30px; flex-shrink: 1;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
   cursor: pointer; border: none !important; outline: none !important;
   transition: transform 0.1s;
 }
@@ -682,10 +721,9 @@
   line-height: 1.2;
 }
 
-/* Ritual rows: icon | name | effect | controls (4 cols) */
-.sabat-sheet .spell-vis-group .spell-list-header:has(> :nth-child(4):last-child),
-.sabat-sheet .spell-vis-group .spell-row:has(> :nth-child(4):last-child) {
-  grid-template-columns: 48px 1fr 1.5fr 54px;
+/* Ritual rows: icon | name | effect | duration | controls (5 cols) */
+.sabat-sheet .ritual-list-header, .sabat-sheet .ritual-row {
+  grid-template-columns: 48px 1fr 1.2fr 1fr 54px;
 }
 
 .sabat-sheet .spell-row-effect {
@@ -738,8 +776,8 @@
 
 /* Weapons: use | dice | name | skill | damage | weight | price | controls */
 .sabat-sheet .weapon-list-header, .sabat-sheet .weapon-row { grid-template-columns: 28px 22px 1fr 80px 50px 50px 50px 80px; }
-/* Armor: use | name | protection | weight | price | controls */
-.sabat-sheet .armor-list-header, .sabat-sheet .armor-row { grid-template-columns: 28px 1fr 60px 50px 50px 80px; }
+/* Armor: use | name | protection | durability | weight | price | controls */
+.sabat-sheet .armor-list-header, .sabat-sheet .armor-row { grid-template-columns: 28px 1fr 50px 50px 50px 50px 80px; }
 
 .sabat-sheet .item-use-col {
   display: flex; align-items: center; justify-content: center;
@@ -763,7 +801,8 @@
 .sabat-sheet .item-controls .item-edit:hover { color: var(--aq-gold); }
 .sabat-sheet .item-controls .item-delete:hover { color: var(--aq-red); }
 .sabat-sheet .item-empty { padding: 6px; font-size: 0.78em; color: var(--aq-text-muted); font-style: italic; text-align: center; }
-.sabat-sheet .item-prot, .sabat-sheet .item-eqp { text-align: center; font-family: var(--aq-font-number); color: var(--aq-text-muted); }
+.sabat-sheet .item-prot, .sabat-sheet .item-dur, .sabat-sheet .item-eqp { text-align: center; font-family: var(--aq-font-number); color: var(--aq-text-muted); }
+.sabat-sheet .armor-prot-value { font-family: var(--aq-font-number); font-weight: bold; font-size: 1.15em; text-align: center; color: var(--aq-brown); }
 
 /* Purse panel */
 .sabat-sheet .purse-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
@@ -783,28 +822,31 @@
 .sabat-sheet select { font-family: var(--aq-font); }
 
 /* ---- Item Sheets ---- */
-.sabat-sheet.item-sheet .item-header { position: relative; }
-.sabat-sheet.item-sheet .edit-toggle {
-  position: absolute; top: 50%; right: 12px; transform: translateY(-50%);
-  color: #f7c05c; font-size: 1em;
-  cursor: pointer; z-index: 10;
-}
-.sabat-sheet.item-sheet .edit-toggle:hover { color: #fff; }
-
 .sabat-sheet.item-sheet .item-header {
+  position: relative;
   display: flex; gap: 12px; align-items: center;
   min-height: 140px; box-sizing: border-box; padding: 20px 16px;
   background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/frameGood.png") repeat;
   border-bottom: none;
 }
+.sabat-sheet.item-sheet .edit-toggle {
+  position: absolute; top: 50%; right: 12px; transform: translateY(-50%);
+  color: var(--aq-accent); font-size: 1em;
+  cursor: pointer; z-index: 10;
+}
+.sabat-sheet.item-sheet .edit-toggle:hover { color: #fff; }
 .sabat-sheet.item-sheet .item-img { width: 80px; height: 80px; object-fit: cover; border: 2px solid rgba(245,234,214,0.5); border-radius: 4px; cursor: pointer; }
-.sabat-sheet.item-sheet .item-header-fields { flex: 1; }
+.sabat-sheet.item-sheet .item-header-fields { flex: 1; min-width: 0; }
+.sabat-sheet.item-sheet .item-header-fields h1 {
+  margin: 0; padding: 0; line-height: 1;
+}
 .sabat-sheet.item-sheet .item-header-fields h1 input {
   font-size: 1.4em; font-family: var(--aq-font-label); font-weight: bold;
   color: #fff; background: transparent;
   text-shadow: 0 1px 3px rgba(0,0,0,0.5);
   border: none; border-bottom: 1px solid rgba(245,234,214,0.3);
   width: 100%; margin-bottom: 4px;
+  height: auto; line-height: 1.3;
 }
 .sabat-sheet.item-sheet .item-type-label {
   font-size: 0.8em; text-transform: none;
@@ -821,7 +863,7 @@
 
 /* ---- Roll Card ---- */
 .roll-card {
-  font-family: "Palatino Linotype", "Palatino", "Book Antiqua", serif;
+  font-family: var(--aq-font);
   text-align: center;
   padding: 8px;
 }
@@ -863,7 +905,7 @@
 }
 
 .roll-card-success, .roll-card-crit, .roll-card-auto-success { color: #2d6a2d; }
-.roll-card-fail, .roll-card-blunder, .roll-card-auto-fail { color: #8b1a1a; }
+.roll-card-fail, .roll-card-blunder, .roll-card-auto-fail { color: var(--aq-red); }
 
 .roll-card-stats {
   display: flex; justify-content: center; gap: 20px;
@@ -888,16 +930,16 @@
   width: 200px; height: 50px;
   border: none !important; border-radius: 0; cursor: pointer;
   outline: none !important; box-shadow: none !important;
-  font-family: "Palatino Linotype", "Palatino", "Book Antiqua", serif;
+  font-family: var(--aq-font);
   font-size: 0.85em; font-weight: bold;
-  color: #f7c05c; text-align: center;
-  text-shadow: 0 1px 2px #a64329, 0 0 4px #a64329;
+  color: var(--aq-accent); text-align: center;
+  text-shadow: 0 1px 2px var(--aq-accent-shadow), 0 0 4px var(--aq-accent-shadow);
   background: var(--aq-btn-img, url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/buttonGood.png")) center / 100% 100% no-repeat;
   line-height: 50px;
 }
 .chat-damage-btn:hover, .apply-damage-btn:hover, .spell-cast-btn:hover {
   color: #fff;
-  text-shadow: 0 1px 3px #a64329, 0 0 6px #a64329;
+  text-shadow: 0 1px 3px var(--aq-accent-shadow), 0 0 6px var(--aq-accent-shadow);
   border: none !important; outline: none !important; box-shadow: none !important;
 }
 .chat-damage-btn:focus, .apply-damage-btn:focus, .spell-cast-btn:focus {
@@ -914,23 +956,23 @@
   border: 1px solid var(--aq-border);
   border-radius: 4px;
   overflow: hidden;
-  font-family: "Palatino Linotype", "Palatino", "Book Antiqua", serif;
+  font-family: var(--aq-font);
 }
 
 /* Dark header: icon + name + latin */
 .spell-card-header {
   display: flex; gap: 12px; padding: 12px;
   background: linear-gradient(135deg, #1a0e05, #2a1a0a);
-  align-items: center; color: #f5ead6;
+  align-items: center; color: var(--aq-parchment);
 }
 
 .spell-card-icon {
   width: 64px; height: 64px;
   object-fit: cover; border-radius: 4px;
-  border: 2px solid #c9a227; flex-shrink: 0;
+  border: 2px solid var(--aq-gold); flex-shrink: 0;
 }
 
-.spell-card-name { font-size: 1.3em; font-weight: bold; color: #c9a227; line-height: 1.2; }
+.spell-card-name { font-size: 1.3em; font-weight: bold; color: var(--aq-gold); line-height: 1.2; }
 .spell-card-latin { font-style: italic; font-size: 0.85em; color: rgba(245,234,214,0.65); margin-top: 2px; }
 
 /* Dark meta bar with gold underline */
@@ -939,9 +981,9 @@
   font-size: 0.82em; color: rgba(245,234,214,0.8);
   padding: 8px 14px;
   background: #1e120a;
-  border-bottom: 2px solid #c9a227;
+  border-bottom: 2px solid var(--aq-gold);
 }
-.spell-card-meta-bar strong { color: #c9a227; }
+.spell-card-meta-bar strong { color: var(--aq-gold); }
 
 /* Light body — no background */
 .spell-card-body {
@@ -991,12 +1033,12 @@
 
 .spell-limit-row input[type="checkbox"],
 .spell-limit-row input[type="radio"] {
-  accent-color: #c9a227; cursor: pointer;
+  accent-color: var(--aq-gold); cursor: pointer;
 }
 
 .spell-limit-number {
   width: 48px; text-align: center;
-  background: #f5ead6; color: #2a1a0a;
+  background: var(--aq-parchment); color: var(--aq-text);
   border: 1px solid var(--aq-border);
   border-radius: 2px;
   font-family: var(--aq-font);
@@ -1007,6 +1049,53 @@
   font-size: 0.85em; text-align: center;
   color: var(--aq-brown-dark); margin-top: 8px;
   font-weight: bold;
+}
+
+/* ---- Trait / Affliction Chat Card ---- */
+.sabat-trait-card {
+  border: 1px solid var(--aq-border);
+  border-radius: 4px;
+  overflow: hidden;
+  font-family: var(--aq-font);
+}
+
+.trait-card-header {
+  display: flex; gap: 12px; padding: 12px;
+  align-items: center; color: var(--aq-parchment);
+}
+
+.trait-card-icon {
+  width: 56px; height: 56px;
+  object-fit: cover; border-radius: 4px;
+  border: 2px solid var(--aq-gold); flex-shrink: 0;
+}
+
+.trait-card-name {
+  font-size: 1.2em; font-weight: bold;
+  color: var(--aq-gold); line-height: 1.2;
+}
+
+.trait-card-type {
+  font-size: 0.82em;
+  color: rgba(245,234,214,0.75);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  margin-top: 2px;
+}
+
+.trait-card-body {
+  padding: 10px 14px;
+  color: var(--aq-brown);
+  font-size: 0.88em; line-height: 1.5;
+}
+
+.trait-card-desc { color: var(--aq-text); }
+
+.trait-card-field {
+  margin-bottom: 4px;
+}
+
+.trait-card-field strong {
+  color: var(--aq-brown-dark);
 }
 
 /* Armor item sheet locations */

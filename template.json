@@ -84,7 +84,7 @@
     }
   },
   "Item": {
-    "types": ["weapon", "armor", "item", "spell", "ritual", "trait", "skill"],
+    "types": ["weapon", "armor", "item", "spell", "ritual", "trait", "skill", "affliction"],
     "templates": {},
     "weapon": {
       "alternativeName": "",
@@ -104,7 +104,9 @@
     },
     "armor": {
       "description": "",
+      "durability": 0,
       "protection": 0,
+      "minimumStrength": 0,
       "weight": 0,
       "price": 0,
       "equipped": false,
@@ -160,6 +162,12 @@
       "advancement": false,
       "value": 0,
       "description": ""
+    },
+    "affliction": {
+      "description": "",
+      "infection": 0,
+      "infectionDescription": "",
+      "severity": ""
     }
   }
 }

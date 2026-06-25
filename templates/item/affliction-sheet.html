@@ -1,0 +1,36 @@
+<form class="sabat-sheet item-sheet affliction-sheet" autocomplete="off">
+  <header class="item-header">
+    <img class="item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    <div class="item-header-fields">
+      <h1><input type="text" name="name" value="{{item.name}}" placeholder="Affliction Name" /></h1>
+      <div class="item-type-label">Affliction</div>
+    </div>
+    <a class="edit-toggle" title="Toggle edit mode"><i class="fas fa-lock-open"></i></a>
+  </header>
+
+  <section class="item-body">
+    <div class="form-grid">
+
+      <div class="field-group">
+        <label>Infection</label>
+        <input type="number" name="system.infection" value="{{system.infection}}" min="0" max="100" />
+      </div>
+
+      <div class="field-group">
+        <label>Severity</label>
+        <input type="text" name="system.severity" value="{{system.severity}}" placeholder="e.g. Mild, Moderate, Severe" />
+      </div>
+
+    </div>
+
+    <div class="field-group full-width">
+      <label>Description</label>
+      <textarea name="system.description" rows="3">{{system.description}}</textarea>
+    </div>
+
+    <div class="field-group full-width">
+      <label>Infection Description</label>
+      <textarea name="system.infectionDescription" rows="3">{{system.infectionDescription}}</textarea>
+    </div>
+  </section>
+</form>

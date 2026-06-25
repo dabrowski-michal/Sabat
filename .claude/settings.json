@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "Bash(git commit -m ' *)",
-      "Bash(git commit -m 'fix: UpperClass.png -> UpperNobility.png *)"
+      "Bash(git commit -m 'fix: UpperClass.png -> UpperNobility.png *)",
+      "Read(//c/Users/micha/AppData/Local/FoundryVTT/Data/**)",
+      "Read(//c/Users/micha/AppData/Roaming/FoundryVTT/Data/**)",
+      "Bash(find /c/Users/micha -maxdepth 5 -name \"world.json\" -path \"*/worlds/*\" 2>/dev/null | head -10)",
+      "Read(//c/Users/micha/**)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\micha\" -Filter \"world.json\" -Recurse -Depth 6 -ErrorAction SilentlyContinue | Where-Object { $_.FullName -match 'worlds' } | Select-Object -ExpandProperty FullName -First 10)",
+      "Read(//c/Pliki/**)",
+      "Read(//d//**)"
     ]
   }
 }
