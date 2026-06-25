@@ -271,14 +271,15 @@ export default class SabatActorSheet extends ActorSheet {
     // Portrait: background (RR-based), frame (social class)
     const sheetBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/";
     const rrVal2 = system.secondaryCharacteristics.rr ?? 50;
-    context.portraitBackground = rrVal2 >= 66 ? sheetBase + "good.png" : rrVal2 >= 33 ? sheetBase + "neutral.png" : sheetBase + "evil.png";
+    const rrBg = rrVal2 >= 66 ? "good" : rrVal2 >= 33 ? "neutral" : "evil";
+    context.portraitBackground = sheetBase + "frame/" + rrBg + ".png";
 
     const FRAME_MAP = {
-      "upper-nobility": "Upper.png", "lower-nobility": "Upper.png",
-      "burgher": "Middle.png", "townsfolk": "Middle.png",
-      "peasant": "Lower.png", "slave": "Lower.png"
+      "upper-nobility": "upper.png", "lower-nobility": "upper.png",
+      "burgher": "middle.png", "townsfolk": "middle.png",
+      "peasant": "lower.png", "slave": "lower.png"
     };
-    const frameFile = FRAME_MAP[system.background?.socialClass] ?? "Lower.png";
+    const frameFile = FRAME_MAP[system.background?.socialClass] ?? "lower.png";
     context.portraitFrame = sheetBase + "frame/" + frameFile;
   }
 
@@ -369,21 +370,20 @@ export default class SabatActorSheet extends ActorSheet {
       slider.addEventListener("input", () => updateImageFill(slider, fillEl));
     }
 
-    // RR slider: update display, portrait bg, header color
+    // RR slider: update display, portrait bg, header bg
     const sheetImgBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/";
-    function updateHeaderColor(rr) {
-      const color = rr >= 66 ? "#19397a" : rr >= 33 ? "#3a2010" : "#701014";
-      html.find(".sheet-header").css("background-color", color);
+    function updateRRVisuals(rr) {
+      const alignment = rr >= 66 ? "good" : rr >= 33 ? "neutral" : "evil";
+      html.find("#portrait-bg-layer").attr("src", sheetImgBase + "frame/" + alignment + ".png");
+      html.find(".sheet-header").css("background-image", `url("${sheetImgBase}header/${alignment}.png")`);
     }
     html.find("#rr-slider").on("input", function () {
       const rr = parseInt(this.value);
       html.find("#rr-display").text(rr);
       html.find("#irr-display").text(100 - rr);
-      const bgSrc = rr >= 66 ? sheetImgBase + "good.png" : rr >= 33 ? sheetImgBase + "neutral.png" : sheetImgBase + "evil.png";
-      html.find("#portrait-bg-layer").attr("src", bgSrc);
-      updateHeaderColor(rr);
+      updateRRVisuals(rr);
     });
-    updateHeaderColor(this.actor.system.secondaryCharacteristics.rr ?? 50);
+    updateRRVisuals(this.actor.system.secondaryCharacteristics.rr ?? 50);
 
     // Other sliders: update display values
     html.find("#hp-slider").on("input", function () { html.find("#hp-current-display").text(this.value); });
