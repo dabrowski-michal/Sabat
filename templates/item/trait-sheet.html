@@ -1,0 +1,27 @@
+<form class="sabat-sheet item-sheet trait-sheet {{#if (eq system.traitType 'bane')}}trait-bane{{else}}trait-boon{{/if}}" autocomplete="off">
+  <header class="item-header">
+    <img class="item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    <div class="item-header-fields">
+      <h1><input type="text" name="name" value="{{item.name}}" placeholder="Trait Name" /></h1>
+      <div class="item-type-label">Trait</div>
+    </div>
+    <a class="edit-toggle" title="Toggle edit mode"><i class="fas fa-lock-open"></i></a>
+  </header>
+
+  <section class="item-body">
+    <div class="form-grid">
+      <div class="field-group">
+        <label>Type</label>
+        <select name="system.traitType">
+          <option value="boon" {{#if (eq system.traitType "boon")}}selected{{/if}}>Boon</option>
+          <option value="bane" {{#if (eq system.traitType "bane")}}selected{{/if}}>Bane</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Points</label>
+        <input type="number" name="system.points" value="{{system.points}}" min="0" />
+      </div>
+    </div>
+    <div class="field-group full-width"><label>Description</label><textarea name="system.description" rows="10">{{system.description}}</textarea></div>
+  </section>
+</form>

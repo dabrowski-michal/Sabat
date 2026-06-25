@@ -43,5 +43,12 @@ export default class SabatItem extends Item {
         changed.system.ordo = parseInt(sys.ordo) || 1;
       }
     }
+
+    if (this.type === "trait") {
+      const traitType = sys.traitType ?? this.system.traitType;
+      if (sys.traitType !== undefined && traitType) {
+        changed.img = `https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/specific/${traitType}.png`;
+      }
+    }
   }
 }
