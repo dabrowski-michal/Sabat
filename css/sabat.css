@@ -539,6 +539,12 @@
 /* fav-skill: dice | name | attr | value | adv | controls */
 .sabat-sheet .fav-skill-row { grid-template-columns: 22px 1fr 36px 36px 22px 28px; }
 .edit-locked .fav-skill-row { grid-template-columns: 22px 1fr 36px 36px 22px !important; }
+.sabat-sheet .fav-list-header {
+  font-size: 0.72em; font-weight: bold; color: var(--aq-brown);
+  text-transform: none; letter-spacing: 0.02em;
+  border-bottom: 1px solid var(--aq-border); margin-bottom: 2px; padding-bottom: 3px;
+}
+.sabat-sheet .fav-list-header:hover { background: none !important; }
 .fav-attr { font-family: var(--aq-font-number); font-size: 0.8em; color: var(--aq-brown); text-align: center; }
 /* fav-weapon: dice | name | skill(val) | damage | controls */
 .sabat-sheet .fav-weapon-row { grid-template-columns: 22px 1fr 90px 50px 28px; }

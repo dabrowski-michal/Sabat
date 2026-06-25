@@ -200,6 +200,14 @@
             {{#if favSkillsList.length}}
             <div class="fav-section">
               <h4 class="fav-section-title">Skills</h4>
+              <div class="fav-row fav-skill-row fav-list-header">
+                <span></span>
+                <span>Name</span>
+                <span>Attribute</span>
+                <span>Value</span>
+                <span>Advancement</span>
+                <span>Controls</span>
+              </div>
               {{#each favSkillsList}}
               <div class="fav-row fav-skill-row" data-item-id="{{this.id}}">
                 <a class="skill-roll-btn" data-label="{{this.name}}" data-target="{{this.system.value}}" title="Roll"><i class="fas fa-dice-d20"></i></a>
@@ -217,6 +225,13 @@
             {{#if favWeaponsList.length}}
             <div class="fav-section">
               <h4 class="fav-section-title">Weapons</h4>
+              <div class="fav-row fav-weapon-row fav-list-header">
+                <span></span>
+                <span>Name</span>
+                <span>Skill</span>
+                <span>Damage</span>
+                <span>Controls</span>
+              </div>
               {{#each favWeaponsList}}
               <div class="fav-row fav-weapon-row" data-item-id="{{this.id}}">
                 <a class="weapon-roll-btn item-dmg-btn" title="Roll attack"><i class="fas fa-dice-d20"></i></a>
@@ -248,10 +263,10 @@
           <div class="skill-row skill-list-header">
             <span></span>
             <span>Name</span>
-            <span>Attr</span>
+            <span>Attribute</span>
             <span>Value</span>
-            <span>Adv</span>
-            <span></span>
+            <span>Advancement</span>
+            <span>Controls</span>
           </div>
           {{#each combatSkills}}
           <div class="skill-row" data-item-id="{{this.id}}">
@@ -275,8 +290,8 @@
             <span></span>
             <span>Name</span>
             <span>Value</span>
-            <span>Adv</span>
-            <span></span>
+            <span>Advancement</span>
+            <span>Controls</span>
           </div>
           {{#each this.skills}}
           <div class="skill-row" data-item-id="{{this.id}}">
