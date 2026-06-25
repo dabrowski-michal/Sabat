@@ -575,7 +575,7 @@
 }
 
 .sabat-sheet .spell-point-box {
-  width: 22px; height: 22px;
+  width: 50px; height: 50px;
   cursor: pointer; border: none !important; outline: none !important;
   transition: transform 0.1s;
 }

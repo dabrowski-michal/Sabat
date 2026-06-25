@@ -400,58 +400,11 @@ export default class SabatActorSheet extends ActorSheet {
     html.find("#hp-slider").on("input", function () { html.find("#hp-current-display").text(this.value); });
     html.find("#luck-slider").on("input", function () { html.find("#luck-current-display").text(this.value); });
 
-    // Rationality points checkboxes
+    // Spell tab points panel
     const self = this;
     const faithImg = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/specific/checkFaith.png";
     const concImg = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/specific/checkConcentration.png";
     const emptyImg = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/checkEmpty.png";
-
-    function renderRRPoints() {
-      const rr = self.actor.system.secondaryCharacteristics.rr ?? 50;
-      const isFaith = rr >= 50;
-      const sec = self.actor.system.secondaryCharacteristics;
-      const max = isFaith ? sec.faithPoints.max : sec.concentrationPoints.max;
-      const current = isFaith ? sec.faithPoints.value : sec.concentrationPoints.value;
-      const filledImg = isFaith ? faithImg : concImg;
-      const label = isFaith ? "Faith points" : "Concentration points";
-      const clamped = Math.min(current, max);
-
-      html.find("#rr-points-label").text(label);
-      html.find("#rr-points-current").text(clamped);
-      html.find("#rr-points-max").text(max);
-
-      const container = html.find("#rr-points-checkboxes");
-      container.empty();
-      const topCount = Math.ceil(max / 2);
-      const botCount = max - topCount;
-      let html1 = '<div class="rr-points-row">';
-      for (let i = 0; i < topCount; i++) {
-        html1 += `<img class="rr-point-box" data-index="${i}" src="${i < clamped ? filledImg : emptyImg}" />`;
-      }
-      html1 += '</div><div class="rr-points-row">';
-      for (let i = topCount; i < max; i++) {
-        html1 += `<img class="rr-point-box" data-index="${i}" src="${i < clamped ? filledImg : emptyImg}" />`;
-      }
-      html1 += '</div>';
-      container.append(html1);
-    }
-
-    renderRRPoints();
-
-    html.find("#rr-points-checkboxes").on("click", ".rr-point-box", async function () {
-      const idx = parseInt($(this).data("index"));
-      const rr = self.actor.system.secondaryCharacteristics.rr ?? 50;
-      const isFaith = rr >= 50;
-      const sec = self.actor.system.secondaryCharacteristics;
-      const current = isFaith ? sec.faithPoints.value : sec.concentrationPoints.value;
-      const newVal = (idx + 1 === current) ? idx : idx + 1;
-      const path = isFaith
-        ? "system.secondaryCharacteristics.faithPoints.value"
-        : "system.secondaryCharacteristics.concentrationPoints.value";
-      await self.actor.update({ [path]: newVal });
-    });
-
-    // Spell tab points panel (same data, single row)
     function renderSpellPoints() {
       const rr = self.actor.system.secondaryCharacteristics.rr ?? 50;
       const isFaith = rr >= 50;
