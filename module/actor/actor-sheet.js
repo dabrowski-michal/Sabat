@@ -450,6 +450,45 @@ export default class SabatActorSheet extends ActorSheet {
         : "system.secondaryCharacteristics.concentrationPoints.value";
       await self.actor.update({ [path]: newVal });
     });
+
+    // Spell tab points panel (same data, single row)
+    function renderSpellPoints() {
+      const rr = self.actor.system.secondaryCharacteristics.rr ?? 50;
+      const isFaith = rr >= 50;
+      const sec = self.actor.system.secondaryCharacteristics;
+      const max = isFaith ? sec.faithPoints.max : sec.concentrationPoints.max;
+      const current = isFaith ? sec.faithPoints.value : sec.concentrationPoints.value;
+      const filledImg = isFaith ? faithImg : concImg;
+      const label = isFaith ? "Faith points" : "Concentration points";
+      const clamped = Math.min(current, max);
+
+      html.find("#spell-points-title").text(label);
+      html.find("#spell-points-current").text(clamped);
+      html.find("#spell-points-max").text(max);
+
+      const container = html.find("#spell-points-boxes");
+      container.empty();
+      let boxHtml = "";
+      for (let i = 0; i < max; i++) {
+        boxHtml += `<img class="spell-point-box" data-index="${i}" src="${i < clamped ? filledImg : emptyImg}" />`;
+      }
+      container.append(boxHtml);
+    }
+
+    renderSpellPoints();
+
+    html.find("#spell-points-boxes").on("click", ".spell-point-box", async function () {
+      const idx = parseInt($(this).data("index"));
+      const rr = self.actor.system.secondaryCharacteristics.rr ?? 50;
+      const isFaith = rr >= 50;
+      const sec = self.actor.system.secondaryCharacteristics;
+      const current = isFaith ? sec.faithPoints.value : sec.concentrationPoints.value;
+      const newVal = (idx + 1 === current) ? idx : idx + 1;
+      const path = isFaith
+        ? "system.secondaryCharacteristics.faithPoints.value"
+        : "system.secondaryCharacteristics.concentrationPoints.value";
+      await self.actor.update({ [path]: newVal });
+    });
   }
 
   // --- Skill roll ---

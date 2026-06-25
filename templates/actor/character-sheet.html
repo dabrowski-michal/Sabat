@@ -347,6 +347,16 @@
     <!-- ===== SPELLS ===== -->
     <div class="tab spells" data-group="primary" data-tab="spells">
 
+      <!-- Points panel -->
+      <div class="spell-points-panel panel">
+        <h3 class="panel-title" id="spell-points-title">{{rrPointsLabel}}</h3>
+        <div class="spell-points-row">
+          <span class="spell-points-val spell-points-current" id="spell-points-current">{{rrPointsCurrent}}</span>
+          <div class="spell-points-boxes" id="spell-points-boxes"></div>
+          <span class="spell-points-val spell-points-max" id="spell-points-max">{{rrPointsMax}}</span>
+        </div>
+      </div>
+
       {{#each spellsByVis}}
       <div class="spell-vis-group panel">
         <h3 class="panel-title spell-vis-toggle">

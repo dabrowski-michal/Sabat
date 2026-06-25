@@ -79,8 +79,8 @@
 /* ---- Header — social class background ---- */
 .sabat-sheet .sheet-header {
   display: flex; gap: 12px;
-  padding: 20px 12px;
-  height: 140px; box-sizing: border-box;
+  padding: 20px 16px;
+  min-height: 140px; box-sizing: border-box;
   align-items: center;
   background: #3a2010;
   border-bottom: none;
@@ -547,6 +547,41 @@
 .sabat-sheet .skill-add { color: var(--aq-brown-light); cursor: pointer; transition: color 0.15s; font-size: 0.9em; padding: 2px 4px; }
 .sabat-sheet .skill-add:hover { color: var(--aq-gold); }
 
+/* ---- Spell Points Panel ---- */
+.sabat-sheet .spell-points-row {
+  display: flex; align-items: center; gap: 0;
+}
+
+.sabat-sheet .spell-points-val {
+  font-family: var(--aq-font-number); font-weight: bold; font-size: 1.4em;
+  color: #f7c05c; text-shadow: 0 1px 2px #a64329, 0 0 4px #a64329;
+  width: 50px; height: 50px;
+  display: flex; align-items: center; justify-content: center;
+  background-size: contain; background-repeat: no-repeat; background-position: center;
+  flex-shrink: 0;
+}
+
+.sabat-sheet .spell-points-current {
+  background-image: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/checkEvil.png");
+}
+
+.sabat-sheet .spell-points-max {
+  background-image: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/checkGood.png");
+}
+
+.sabat-sheet .spell-points-boxes {
+  flex: 1; display: flex; justify-content: center; gap: 3px;
+  flex-wrap: wrap;
+}
+
+.sabat-sheet .spell-point-box {
+  width: 22px; height: 22px;
+  cursor: pointer; border: none !important; outline: none !important;
+  transition: transform 0.1s;
+}
+
+.sabat-sheet .spell-point-box:hover { transform: scale(1.15); }
+
 /* ---- Spells Tab ---- */
 .sabat-sheet .spell-vis-group { margin-bottom: 8px; }
 
@@ -731,15 +766,15 @@
 /* ---- Item Sheets ---- */
 .sabat-sheet.item-sheet .item-header { position: relative; }
 .sabat-sheet.item-sheet .edit-toggle {
-  position: absolute; top: 8px; right: 8px;
-  color: var(--aq-gold); font-size: 0.9em;
+  position: absolute; top: 50%; right: 12px; transform: translateY(-50%);
+  color: #f7c05c; font-size: 1em;
   cursor: pointer; z-index: 10;
 }
 .sabat-sheet.item-sheet .edit-toggle:hover { color: #fff; }
 
 .sabat-sheet.item-sheet .item-header {
   display: flex; gap: 12px; align-items: center;
-  height: 140px; box-sizing: border-box; padding: 20px 12px;
+  min-height: 140px; box-sizing: border-box; padding: 20px 16px;
   background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/frameGood.png") repeat;
   border-bottom: none;
 }
