@@ -143,7 +143,7 @@
     }
   },
   "Item": {
-    "types": ["weapon", "armor", "item", "spell", "ritual"],
+    "types": ["weapon", "armor", "item", "spell", "ritual", "boon", "bane"],
     "templates": {},
     "weapon": {
       "alternativeName": "",
@@ -207,6 +207,14 @@
       "duration": "",
       "effects": "",
       "rrAllowed": false
+    },
+    "boon": {
+      "points": 0,
+      "description": ""
+    },
+    "bane": {
+      "points": 0,
+      "description": ""
     }
   }
 }
