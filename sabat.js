@@ -181,7 +181,7 @@ Hooks.on("renderChatMessage", (message, html) => {
     const d = roll.total;
     const margin = target - d;
     const isSuccess = d <= 5 || (d < 96 && d <= target);
-    const imgBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/rolls/";
+    const imgBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/rolls/";
     const folder = isSuccess ? "success" : "failure";
     const n1 = Math.floor(Math.random() * 21) + 1;
     let n2 = Math.floor(Math.random() * 20) + 1;

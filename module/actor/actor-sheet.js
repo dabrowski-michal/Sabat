@@ -269,7 +269,7 @@ export default class SabatActorSheet extends ActorSheet {
     context.paperDoll = paperDoll;
 
     // Portrait: background (RR-based), frame (social class)
-    const sheetBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/";
+    const sheetBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/";
     const rrVal2 = system.secondaryCharacteristics.rr ?? 50;
     const rrBg = rrVal2 >= 50 ? "good" : "evil";
     context.portraitBackground = sheetBase + "frame/" + rrBg + ".png";
@@ -371,12 +371,13 @@ export default class SabatActorSheet extends ActorSheet {
     }
 
     // RR slider: update display, portrait bg, header bg
-    const sheetImgBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/";
+    const sheetImgBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/";
     function updateRRVisuals(rr) {
       const alignment = rr >= 50 ? "good" : "evil";
+      const alignCap = rr >= 50 ? "Good" : "Evil";
       html.find("#portrait-bg-layer").attr("src", sheetImgBase + "frame/" + alignment + ".png");
-      html.find(".sheet-header").css("background-image", `url("${sheetImgBase}header/${alignment}.png")`);
-      const btnImg = sheetImgBase + (rr >= 50 ? "buttonGood.png" : "buttonEvil.png");
+      html.find(".sheet-header").css("background-image", `url("${sheetImgBase}elements/frame${alignCap}.png")`);
+      const btnImg = sheetImgBase + "elements/button" + alignCap + ".png";
       html.find(".sheet-tabs .item.active").css("background-image", `url("${btnImg}")`);
       document.documentElement.style.setProperty("--aq-btn-img", `url("${btnImg}")`);
     }
@@ -394,9 +395,9 @@ export default class SabatActorSheet extends ActorSheet {
 
     // Rationality points checkboxes
     const self = this;
-    const faithImg = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/checkFaith.png";
-    const concImg = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/checkConcentration.png";
-    const emptyImg = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/checkEmpty.png";
+    const faithImg = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/specific/checkFaith.png";
+    const concImg = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/specific/checkConcentration.png";
+    const emptyImg = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/checkEmpty.png";
 
     function renderRRPoints() {
       const rr = self.actor.system.secondaryCharacteristics.rr ?? 50;
@@ -454,7 +455,7 @@ export default class SabatActorSheet extends ActorSheet {
   _buildRollCard(skillLabel, d, target, { subtitle, damageItemId, modBreakdown } = {}) {
     const margin = target - d;
     const isSuccess = d <= 5 || (d < 96 && d <= target);
-    const imgBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/rolls/";
+    const imgBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/rolls/";
     const folder = isSuccess ? "success" : "failure";
     const n1 = Math.floor(Math.random() * 21) + 1;
     let n2 = Math.floor(Math.random() * 20) + 1;
