@@ -196,10 +196,12 @@ export default class SabatActorSheet extends ActorSheet {
       const natL = NAT_LAT[s.system.nature]?.[g] ?? "";
       const oriL = ORI_LAT[s.system.origin]?.[g] ?? "";
       const latinDesc = (s.system.form && natL && oriL) ? `${s.system.form} ${natL} ${oriL}` : "";
+      const natureEng = (s.system.nature && s.system.form && s.system.origin)
+        ? `${s.system.nature} ${s.system.form} of ${s.system.origin} origin` : "";
       return {
         id: s.id, name: s.name, img: s.img, system: s.system,
         visLabel: VIS_LABELS[s.system.vis] ?? "Prima",
-        latinDesc
+        latinDesc, natureEng
       };
     });
 

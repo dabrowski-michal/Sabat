@@ -188,7 +188,7 @@
 .edit-locked .weapon-list-header, .edit-locked .weapon-row { grid-template-columns: 28px 22px 1fr 80px 50px 50px 50px !important; }
 .edit-locked .armor-list-header, .edit-locked .armor-row { grid-template-columns: 28px 1fr 60px 50px 50px !important; }
 .edit-locked .item-list-cols, .edit-locked .item-row { grid-template-columns: 1fr 50px 50px !important; }
-.edit-locked .spell-list-header, .edit-locked .spell-row { grid-template-columns: 48px 1.2fr 72px 72px 1fr 1.5fr !important; }
+.edit-locked .spell-list-header, .edit-locked .spell-row { grid-template-columns: 48px 1fr 1.2fr 1.5fr !important; }
 .edit-locked .skill-group .skill-row { grid-template-columns: 18px 1fr 44px 22px !important; }
 .edit-locked .combat-skills .skill-row { grid-template-columns: 18px 1fr 36px 44px 22px !important; }
 
@@ -578,7 +578,7 @@
 /* Grid: icon | name | nature | effect | controls */
 .sabat-sheet .spell-list-header {
   display: grid;
-  grid-template-columns: 48px 1.2fr 72px 72px 1fr 1.5fr 54px;
+  grid-template-columns: 48px 1fr 1.2fr 1.5fr 54px;
   gap: 6px; padding: 2px 4px 4px;
   border-bottom: 1px solid var(--aq-border); margin-bottom: 4px;
   font-size: 0.78em; font-weight: bold; text-transform: none;
@@ -587,7 +587,7 @@
 
 .sabat-sheet .spell-row {
   display: grid;
-  grid-template-columns: 48px 1.2fr 72px 72px 1fr 1.5fr 54px;
+  grid-template-columns: 48px 1fr 1.2fr 1.5fr 54px;
   gap: 6px; align-items: center;
   padding: 4px; border-radius: 2px;
   transition: background 0.1s;
@@ -622,8 +622,16 @@
   line-height: 1.2;
 }
 
-.sabat-sheet .spell-row-detail {
-  font-size: 0.85em; color: var(--aq-text);
+.sabat-sheet .spell-row-nature {
+  display: flex; flex-direction: column; gap: 0; min-width: 0;
+}
+.sabat-sheet .spell-nature-eng {
+  font-size: 0.88em; color: var(--aq-brown); font-weight: bold;
+  line-height: 1.2;
+}
+.sabat-sheet .spell-nature-latin {
+  font-size: 0.78em; color: var(--aq-text-muted);
+  line-height: 1.2;
 }
 
 .sabat-sheet .spell-row-effect {
