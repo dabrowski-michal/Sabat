@@ -182,6 +182,8 @@ export default class SabatActorSheet extends ActorSheet {
     // Items by type
     context.armor  = this.actor.items.filter(i => i.type === "armor");
     context.items  = this.actor.items.filter(i => i.type === "item");
+    context.boons  = this.actor.items.filter(i => i.type === "trait" && i.system.traitType === "boon");
+    context.banes  = this.actor.items.filter(i => i.type === "trait" && i.system.traitType === "bane");
 
     // Spells grouped by Vis level
     const VIS_LABELS = { 1: "Prima", 2: "Secunda", 3: "Tertia", 4: "Quarta", 5: "Quinta", 6: "Sexta", 7: "Septima" };
@@ -356,6 +358,16 @@ export default class SabatActorSheet extends ActorSheet {
     // Spell/Ritual: post to chat + collapsible panels
     html.find(".spell-post").click(this._onSpellPost.bind(this));
     html.find(".ritual-post").click(this._onRitualPost.bind(this));
+    html.find(".trait-post").click(async ev => {
+      ev.preventDefault();
+      const li = $(ev.currentTarget).closest("[data-item-id]");
+      const item = this.actor.items.get(li.data("itemId"));
+      if (!item) return;
+      await ChatMessage.create({
+        speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+        content: `<div class="sabat-roll"><strong>${item.name}</strong> (${item.system.traitType === "boon" ? "Boon" : "Bane"}, ${item.system.points} pts)<div class="roll-details">${item.system.description}</div></div>`
+      });
+    });
     html.find(".spell-vis-toggle").click(ev => {
       const panel = $(ev.currentTarget).closest(".spell-vis-group");
       panel.toggleClass("collapsed");

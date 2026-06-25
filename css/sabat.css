@@ -547,6 +547,17 @@
 .sabat-sheet .skill-add { color: var(--aq-brown-light); cursor: pointer; transition: color 0.15s; font-size: 0.9em; padding: 2px 4px; }
 .sabat-sheet .skill-add:hover { color: var(--aq-gold); }
 
+/* ---- Traits Panel (Boons & Banes) ---- */
+.sabat-sheet .traits-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.sabat-sheet .traits-col-title { font-size: 0.82em; font-weight: bold; color: var(--aq-brown); margin: 0 0 4px; padding-bottom: 3px; border-bottom: 1px solid rgba(90,60,30,0.25); }
+.sabat-sheet .trait-row { display: grid; grid-template-columns: 28px 1fr 28px; gap: 4px; align-items: center; padding: 2px 4px; transition: background 0.1s; }
+.sabat-sheet .trait-row:hover { background: rgba(201,162,39,0.12); }
+.sabat-sheet .trait-row-icon { width: 24px; height: 24px; object-fit: contain; cursor: pointer; border: none !important; }
+.sabat-sheet .trait-row-name a { font-size: 0.88em; color: var(--aq-brown); font-weight: bold; cursor: pointer; transition: color 0.15s; }
+.sabat-sheet .trait-row-name a:hover { color: var(--aq-gold); }
+.edit-locked .traits-panel .item-controls { display: none !important; }
+.edit-locked .trait-row { grid-template-columns: 28px 1fr !important; }
+
 /* ---- Spell Points Panel ---- */
 .sabat-sheet .spell-points-row {
   display: flex; align-items: center; gap: 0;

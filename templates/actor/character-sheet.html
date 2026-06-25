@@ -65,6 +65,33 @@
               </div>
             </div>
           </div>
+
+          <!-- Traits: Boons & Banes -->
+          <div class="traits-panel panel">
+            <h3 class="panel-title">Traits</h3>
+            <div class="traits-columns">
+              <div class="traits-col">
+                <h4 class="traits-col-title">Boons</h4>
+                {{#each boons}}
+                <div class="trait-row" data-item-id="{{this.id}}">
+                  <a class="trait-post" title="Post to chat"><img class="trait-row-icon" src="{{this.img}}" /></a>
+                  <span class="trait-row-name"><a class="item-edit" title="Open">{{this.name}}</a></span>
+                  <div class="item-controls"><a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a></div>
+                </div>
+                {{else}}<p class="item-empty">No boons</p>{{/each}}
+              </div>
+              <div class="traits-col">
+                <h4 class="traits-col-title">Banes</h4>
+                {{#each banes}}
+                <div class="trait-row" data-item-id="{{this.id}}">
+                  <a class="trait-post" title="Post to chat"><img class="trait-row-icon" src="{{this.img}}" /></a>
+                  <span class="trait-row-name"><a class="item-edit" title="Open">{{this.name}}</a></span>
+                  <div class="item-controls"><a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a></div>
+                </div>
+                {{else}}<p class="item-empty">No banes</p>{{/each}}
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="chars-right">
