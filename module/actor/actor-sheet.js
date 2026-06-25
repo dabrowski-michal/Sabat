@@ -214,6 +214,28 @@ export default class SabatActorSheet extends ActorSheet {
     }
     context.spellsByVis = Object.values(spellsByVis).sort((a, b) => a.vis - b.vis);
 
+    // Rituals grouped by Ordo
+    const ORDO_LABELS = { 1: "Primus", 2: "Secundus", 3: "Tertius", 4: "Quartus", 5: "Quintus", 6: "Sextus" };
+    const ORDO_PCT = { 1: 0, 2: -20, 3: -40, 4: -60, 5: -80, 6: -100 };
+    const ORDO_FP = { 1: 10, 2: 13, 3: 15, 4: 18, 5: 20, 6: 20 };
+
+    const allRituals = this.actor.items.filter(i => i.type === "ritual").map(r => ({
+      id: r.id, name: r.name, img: r.img, system: r.system,
+      ordoLabel: ORDO_LABELS[r.system.ordo] ?? "Primus"
+    }));
+
+    const ritualsByOrdo = {};
+    for (const r of allRituals) {
+      const ordo = r.system.ordo ?? 1;
+      if (!ritualsByOrdo[ordo]) ritualsByOrdo[ordo] = {
+        ordo, label: ORDO_LABELS[ordo] ?? "Primus",
+        pctMod: ORDO_PCT[ordo] ?? 0, fpRequired: ORDO_FP[ordo] ?? 10,
+        rituals: []
+      };
+      ritualsByOrdo[ordo].rituals.push(r);
+    }
+    context.ritualsByOrdo = Object.values(ritualsByOrdo).sort((a, b) => a.ordo - b.ordo);
+
     // Weapons with linked skill info
     context.weaponsData = this.actor.items.filter(i => i.type === "weapon").map(w => {
       const sk = w.system.skill || "improvised";
@@ -331,8 +353,9 @@ export default class SabatActorSheet extends ActorSheet {
     html.find(".skill-edit").click(this._onSkillEdit.bind(this));
     html.find(".fav-toggle").click(this._onToggleFavorite.bind(this));
 
-    // Spell: post full description to chat + collapsible panels
+    // Spell/Ritual: post to chat + collapsible panels
     html.find(".spell-post").click(this._onSpellPost.bind(this));
+    html.find(".ritual-post").click(this._onRitualPost.bind(this));
     html.find(".spell-vis-toggle").click(ev => {
       const panel = $(ev.currentTarget).closest(".spell-vis-group");
       panel.toggleClass("collapsed");
@@ -710,6 +733,76 @@ export default class SabatActorSheet extends ActorSheet {
 
     <div class="spell-mod-summary">Total modifier: ${visPct}%</div>
     <button class="spell-cast-btn">Cast Spell</button>
+  </div>
+</div>`;
+
+    await ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      content
+    });
+  }
+
+  async _onRitualPost(event) {
+    event.preventDefault();
+    const li = $(event.currentTarget).closest("[data-item-id]");
+    const item = this.actor.items.get(li.data("itemId"));
+    if (!item) return;
+    const s = item.system;
+    const OL = { 1: "Primus", 2: "Secundus", 3: "Tertius", 4: "Quartus", 5: "Quintus", 6: "Sextus" };
+    const OP = { 1: 0, 2: -20, 3: -40, 4: -60, 5: -80, 6: -100 };
+    const OF = { 1: 10, 2: 13, 3: 15, 4: 18, 5: 20, 6: 20 };
+    const ordoLabel = OL[s.ordo] ?? "Primus";
+    const pctMod = OP[s.ordo] ?? 0;
+    const fpReq = OF[s.ordo] ?? 10;
+    const mkVal = this.actor.system.skills.theology?.value ?? 0;
+
+    let fields = "";
+    const fld = (label, val) => { if (val) fields += `<div class="spell-card-label">${label}</div><div class="spell-card-value">${val}</div>`; };
+    fld("Effects", s.effects);
+    fld("Duration", s.duration);
+    fld("Ceremony", s.ceremony);
+    fld("Description", s.description);
+
+    const content = `
+<div class="sabat-spell-card sabat-ritual-card" data-vis-pct="${pctMod}">
+  <div class="spell-card-header">
+    <img class="spell-card-icon" src="${item.img}" />
+    <div>
+      <div class="spell-card-name">${item.name}</div>
+      ${s.latinName ? `<div class="spell-card-latin">${s.latinName}</div>` : ""}
+    </div>
+  </div>
+  <div class="spell-card-meta-bar">
+    <span>Ordo: <strong>${ordoLabel}</strong></span>
+    <span>Faith required: <strong>${fpReq}</strong></span>
+    <span>Modifier: <strong>${pctMod}%</strong></span>
+    ${s.rrAllowed ? "<span>RR Allowed</span>" : ""}
+  </div>
+  <div class="spell-card-body">
+    ${s.shortDescription ? `<div class="spell-card-value"><em>${s.shortDescription}</em></div>` : ""}
+    ${fields}
+
+    <details class="spell-card-limitations">
+      <summary class="spell-limits-toggle">Caster Limitations</summary>
+      <div class="spell-limits-content">
+        <div class="spell-card-label">Caster</div>
+        <label class="spell-limit-row"><input type="checkbox" class="spell-limit-check" data-mod="-25" /> Low Voice (-25%)</label>
+        <label class="spell-limit-row"><input type="checkbox" class="spell-limit-check" data-mod="-25" /> No Gestures (-25%)</label>
+
+        <div class="spell-card-label">Armor</div>
+        <label class="spell-limit-row"><input type="checkbox" class="spell-limit-check spell-armor-check" data-mod="-25" /> Light Armor (-25%)</label>
+        <label class="spell-limit-row"><input type="checkbox" class="spell-limit-check spell-armor-check" data-mod="-50" /> Metal Armor (-50%)</label>
+        <label class="spell-limit-row"><input type="checkbox" class="spell-limit-check spell-armor-check" data-mod="-75" /> Arnés (-75%)</label>
+
+        <div class="spell-card-label">Situational</div>
+        <label class="spell-limit-row"><input type="checkbox" class="spell-limit-check" data-mod="-10" /> Attacked, took no damage (-10%)</label>
+        <label class="spell-limit-row">HP lost this round: <input type="number" class="spell-limit-number spell-limit-lp" value="0" min="0" /> (x-10%)</label>
+        <label class="spell-limit-row">Target IRR above 100: <input type="number" class="spell-limit-number spell-limit-irr" value="0" min="0" /> (x-1%)</label>
+      </div>
+    </details>
+
+    <div class="spell-mod-summary">Total modifier: ${pctMod}%</div>
+    <button class="spell-cast-btn ritual-cast-btn">Cast Ritual</button>
   </div>
 </div>`;
 

@@ -1,0 +1,39 @@
+<form class="sabat-sheet item-sheet ritual-sheet" autocomplete="off">
+  <header class="item-header">
+    <img class="item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    <div class="item-header-fields">
+      <h1><input type="text" name="name" value="{{item.name}}" placeholder="Ritual Name" /></h1>
+      <div class="item-type-label">Ritual</div>
+    </div>
+    <a class="edit-toggle" title="Toggle edit mode"><i class="fas fa-lock-open"></i></a>
+  </header>
+
+  <section class="item-body">
+
+    <div class="spell-top-row">
+      <div class="field-group" style="flex:2"><label>Latin name</label><input type="text" name="system.latinName" value="{{system.latinName}}" placeholder="e.g., Benedictio" /></div>
+      <div class="field-group" style="flex:1"><label>Faith required</label><span class="spell-derived-inline">{{fpRequired}}</span></div>
+      <div class="field-group" style="flex:1"><label>Modifier</label><span class="spell-derived-inline">{{pctMod}}%</span></div>
+    </div>
+
+    <div class="spell-selects-row">
+      <div class="field-group"><label>Ordo</label>
+        <select name="system.ordo">
+          <option value="1" {{#if (eq system.ordo 1)}}selected{{/if}}>Primus Ordo</option>
+          <option value="2" {{#if (eq system.ordo 2)}}selected{{/if}}>Secundus Ordo</option>
+          <option value="3" {{#if (eq system.ordo 3)}}selected{{/if}}>Tertius Ordo</option>
+          <option value="4" {{#if (eq system.ordo 4)}}selected{{/if}}>Quartus Ordo</option>
+          <option value="5" {{#if (eq system.ordo 5)}}selected{{/if}}>Quintus Ordo</option>
+          <option value="6" {{#if (eq system.ordo 6)}}selected{{/if}}>Sextus Ordo</option>
+        </select></div>
+      <div class="field-group"><label>Duration</label><input type="text" name="system.duration" value="{{system.duration}}" placeholder="e.g., 1 hour" /></div>
+      <div class="field-group checkbox-group"><label>RR allowed</label><input type="checkbox" name="system.rrAllowed" {{#if system.rrAllowed}}checked{{/if}} /></div>
+    </div>
+
+    <div class="field-group full-width"><label>Short description</label><input type="text" name="system.shortDescription" value="{{system.shortDescription}}" placeholder="Brief summary" /></div>
+    <div class="field-group full-width"><label>Effects</label><textarea name="system.effects" rows="2">{{system.effects}}</textarea></div>
+    <div class="field-group full-width"><label>Ceremony</label><textarea name="system.ceremony" rows="3">{{system.ceremony}}</textarea></div>
+    <div class="field-group full-width"><label>Description</label><textarea name="system.description" rows="6">{{system.description}}</textarea></div>
+
+  </section>
+</form>

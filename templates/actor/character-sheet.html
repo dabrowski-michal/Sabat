@@ -338,6 +338,38 @@
         </div>
       </div>
 
+      {{#each ritualsByOrdo}}
+      <div class="spell-vis-group panel">
+        <h3 class="panel-title spell-vis-toggle">
+          <i class="fas fa-chevron-down spell-chevron"></i>
+          {{this.label}} Ordo
+          <span class="spell-vis-meta">Faith: {{this.fpRequired}} · Mod: {{this.pctMod}}%</span>
+        </h3>
+        <div class="spell-vis-body">
+          <div class="spell-list-header">
+            <span></span>
+            <span class="col-name">Name</span>
+            <span>Effect</span>
+            <span>Controls</span>
+          </div>
+          {{#each this.rituals}}
+          <div class="spell-row" data-item-id="{{this.id}}">
+            <a class="ritual-post" title="Post to chat"><img class="spell-row-icon" src="{{this.img}}" /></a>
+            <div class="spell-row-name">
+              <a class="item-edit spell-name-main" title="Open">{{this.name}}</a>
+              {{#if this.system.latinName}}<span class="spell-name-latin">{{this.system.latinName}}</span>{{/if}}
+            </div>
+            <span class="spell-row-effect">{{this.system.shortDescription}}</span>
+            <div class="item-controls">
+              <a class="item-edit" title="Edit"><i class="fas fa-edit"></i></a>
+              <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+      {{/each}}
+
       {{#each spellsByVis}}
       <div class="spell-vis-group panel">
         <h3 class="panel-title spell-vis-toggle">

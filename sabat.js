@@ -247,16 +247,26 @@ Hooks.on("renderChatMessage", (message, html) => {
     card.find(".spell-mod-summary").text(`Total modifier: ${_totalMod(card)}%`);
   });
 
-  // Cast Spell button (all modifiers)
-  html.find(".spell-cast-btn").click(async (ev) => {
+  // Cast Spell button (Magical Knowledge)
+  html.find(".spell-cast-btn:not(.ritual-cast-btn)").click(async (ev) => {
     const card = $(ev.currentTarget).closest(".sabat-spell-card");
     const actor = _resolveActor(message);
     if (!actor) return ui.notifications.warn("Actor not found.");
     const mkVal = actor.system.skills.magicalKnowledge?.value ?? 0;
     const mod = _totalMod(card);
     const target = Math.max(1, mkVal + mod);
-    const breakdown = `Magical Knowledge: ${mkVal}% · Modifiers: ${mod}%`;
-    await _rollMK(actor, target, "Magical Knowledge", breakdown);
+    await _rollMK(actor, target, "Magical Knowledge", `Magical Knowledge: ${mkVal}% · Modifiers: ${mod}%`);
+  });
+
+  // Cast Ritual button (Theology)
+  html.find(".ritual-cast-btn").click(async (ev) => {
+    const card = $(ev.currentTarget).closest(".sabat-spell-card");
+    const actor = _resolveActor(message);
+    if (!actor) return ui.notifications.warn("Actor not found.");
+    const thVal = actor.system.skills.theology?.value ?? 0;
+    const mod = _totalMod(card);
+    const target = Math.max(1, thVal + mod);
+    await _rollMK(actor, target, "Theology", `Theology: ${thVal}% · Modifiers: ${mod}%`);
   });
 });
 

@@ -669,6 +669,12 @@
   line-height: 1.2;
 }
 
+/* Ritual rows: icon | name | effect | controls (4 cols) */
+.sabat-sheet .spell-vis-group .spell-list-header:has(> :nth-child(4):last-child),
+.sabat-sheet .spell-vis-group .spell-row:has(> :nth-child(4):last-child) {
+  grid-template-columns: 48px 1fr 1.5fr 54px;
+}
+
 .sabat-sheet .spell-row-effect {
   font-size: 0.88em; color: var(--aq-text);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
@@ -794,6 +800,8 @@
 }
 .sabat-sheet.item-sheet .item-body { padding: 12px; }
 .spell-sheet .item-header { background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/frameEvil.png") repeat !important; }
+.ritual-sheet .item-header { background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/frameGood.png") repeat !important; }
+.sabat-ritual-card .spell-card-header { background: linear-gradient(135deg, #0a1a3a, #1a2a4a) !important; }
 .sabat-sheet .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; margin-bottom: 10px; }
 
 /* ---- Roll Card ---- */

@@ -41,7 +41,7 @@ export default class SabatItemSheet extends ItemSheet {
 
   get template() {
     const type = this.item.type;
-    const valid = ["weapon", "armor", "item", "spell"];
+    const valid = ["weapon", "armor", "item", "spell", "ritual"];
     const resolved = valid.includes(type) ? type : "item";
     return `systems/sabat/templates/item/${resolved}-sheet.html`;
   }
@@ -57,6 +57,13 @@ export default class SabatItemSheet extends ItemSheet {
       context.latinDescription = computeLatinDescription(itemData.system);
       context.cpCost = this.item.system.cpCost ?? 1;
       context.pctMod = this.item.system.pctMod ?? 0;
+    }
+
+    const ORDO_LABELS = { 1: "Primus", 2: "Secundus", 3: "Tertius", 4: "Quartus", 5: "Quintus", 6: "Sextus" };
+    if (this.item.type === "ritual") {
+      context.ordoLabel = ORDO_LABELS[itemData.system.ordo] ?? "Primus";
+      context.pctMod = this.item.system.pctMod ?? 0;
+      context.fpRequired = this.item.system.fpRequired ?? 10;
     }
 
     return context;
