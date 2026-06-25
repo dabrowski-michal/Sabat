@@ -570,12 +570,12 @@
 }
 
 .sabat-sheet .spell-points-boxes {
-  flex: 1; display: flex; justify-content: center; gap: 3px;
-  flex-wrap: wrap;
+  flex: 1; display: flex; justify-content: center; gap: 2px;
+  flex-wrap: nowrap; overflow: hidden;
 }
 
 .sabat-sheet .spell-point-box {
-  width: 50px; height: 50px;
+  width: 50px; height: 50px; min-width: 0; flex-shrink: 1;
   cursor: pointer; border: none !important; outline: none !important;
   transition: transform 0.1s;
 }
