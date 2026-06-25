@@ -234,6 +234,7 @@
 
 /* ---- Characteristics Tab ---- */
 .sabat-sheet .chars-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: start; }
+.sabat-sheet .primary-chars { grid-column: 1 / -1; padding: 4px 0; margin-bottom: 2px; }
 .sabat-sheet .chars-left,
 .sabat-sheet .chars-right { display: flex; flex-direction: column; gap: 10px; }
 
@@ -259,19 +260,23 @@
 .sabat-sheet .char-shield-img-wrap {
   position: relative;
   width: 100%;
+  aspect-ratio: 1 / 1;
   container-type: inline-size;
 }
 
 .sabat-sheet .char-shield-bg {
-  display: block; width: 100%; height: auto;
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: contain;
   border: none !important; outline: none !important;
 }
 
 .sabat-sheet .char-shield-label {
   display: block;
-  font-family: var(--aq-font-body);
-  font-size: 0.68em;
+  font-family: var(--aq-font-label); font-weight: bold;
+  font-size: 0.62em;
   color: var(--aq-brown);
+  text-transform: uppercase; letter-spacing: 0.04em;
   text-align: center;
   white-space: nowrap; overflow: hidden;
   margin-top: 1px; line-height: 1.3;
@@ -283,7 +288,7 @@
   display: flex; align-items: center; justify-content: center;
   width: 100%;
   font-family: var(--aq-font-number); font-weight: bold;
-  font-size: 22cqi;
+  font-size: 32cqi;
   color: var(--aq-accent) !important;
   text-shadow: 0 1px 3px var(--aq-accent-shadow), 0 0 6px var(--aq-accent-shadow);
   -webkit-text-fill-color: var(--aq-accent) !important;
