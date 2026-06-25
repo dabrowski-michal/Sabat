@@ -24,7 +24,10 @@
       "weapon": {},
       "armor": {},
       "item": {},
-      "spell": {}
+      "spell": {},
+      "ritual": {},
+      "trait": {},
+      "skill": {}
     }
   },
   "packs": [],
