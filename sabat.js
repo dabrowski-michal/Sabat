@@ -252,7 +252,8 @@ Hooks.on("renderChatMessage", (message, html) => {
     const card = $(ev.currentTarget).closest(".sabat-spell-card");
     const actor = _resolveActor(message);
     if (!actor) return ui.notifications.warn("Actor not found.");
-    const mkVal = actor.system.skills.magicalKnowledge?.value ?? 0;
+    const mkItem = actor.items.find(i => i.type === "skill" && i.name === "Magical Knowledge");
+    const mkVal = mkItem?.system.value ?? 0;
     const mod = _totalMod(card);
     const target = Math.max(1, mkVal + mod);
     await _rollMK(actor, target, "Magical Knowledge", `Magical Knowledge: ${mkVal}% · Modifiers: ${mod}%`);
@@ -263,7 +264,8 @@ Hooks.on("renderChatMessage", (message, html) => {
     const card = $(ev.currentTarget).closest(".sabat-spell-card");
     const actor = _resolveActor(message);
     if (!actor) return ui.notifications.warn("Actor not found.");
-    const thVal = actor.system.skills.theology?.value ?? 0;
+    const thItem = actor.items.find(i => i.type === "skill" && i.name === "Theology");
+    const thVal = thItem?.system.value ?? 0;
     const mod = _totalMod(card);
     const target = Math.max(1, thVal + mod);
     await _rollMK(actor, target, "Theology", `Theology: ${thVal}% · Modifiers: ${mod}%`);

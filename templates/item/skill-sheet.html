@@ -1,0 +1,44 @@
+<form class="sabat-sheet item-sheet skill-sheet" autocomplete="off">
+  <header class="item-header">
+    <img class="item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    <div class="item-header-fields">
+      <h1><input type="text" name="name" value="{{item.name}}" placeholder="Skill Name" /></h1>
+      <div class="item-type-label">Skill</div>
+    </div>
+    <a class="edit-toggle" title="Toggle edit mode"><i class="fas fa-lock-open"></i></a>
+  </header>
+
+  <section class="item-body">
+    <div class="form-grid">
+      <div class="field-group">
+        <label>Attribute</label>
+        <select name="system.attribute">
+          <option value="Strength"      {{#if (eq system.attribute "Strength")}}selected{{/if}}>Strength</option>
+          <option value="Agility"       {{#if (eq system.attribute "Agility")}}selected{{/if}}>Agility</option>
+          <option value="Dexterity"     {{#if (eq system.attribute "Dexterity")}}selected{{/if}}>Dexterity</option>
+          <option value="Vitality"      {{#if (eq system.attribute "Vitality")}}selected{{/if}}>Vitality</option>
+          <option value="Perception"    {{#if (eq system.attribute "Perception")}}selected{{/if}}>Perception</option>
+          <option value="Communication" {{#if (eq system.attribute "Communication")}}selected{{/if}}>Communication</option>
+          <option value="Culture"       {{#if (eq system.attribute "Culture")}}selected{{/if}}>Culture</option>
+          <option value="Appearance"    {{#if (eq system.attribute "Appearance")}}selected{{/if}}>Appearance</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Value</label>
+        <input type="number" name="system.value" value="{{system.value}}" min="0" max="200" />
+      </div>
+      <div class="field-group checkbox-group">
+        <label>Combat skill</label>
+        <input type="checkbox" name="system.combat" {{#if system.combat}}checked{{/if}} />
+      </div>
+      <div class="field-group checkbox-group">
+        <label>Advancement</label>
+        <input type="checkbox" name="system.advancement" {{#if system.advancement}}checked{{/if}} />
+      </div>
+    </div>
+    <div class="field-group full-width">
+      <label>Description</label>
+      <textarea name="system.description" rows="6">{{system.description}}</textarea>
+    </div>
+  </section>
+</form>

@@ -13,56 +13,7 @@ function _hitLocationKey(d10) {
   return "leftLeg";
 }
 
-const SKILL_LABELS = {
-  alchemy: "Alchemy", animalKnowledge: "Animal Knowledge",
-  areaKnowledge: "Area Knowledge", astrology: "Astrology",
-  climb: "Climb", command: "Command", commerce: "Commerce",
-  conceal: "Conceal", courtEtiquette: "Court Etiquette", craft: "Craft",
-  discovery: "Discovery", disguise: "Disguise", dodge: "Dodge",
-  drive: "Drive", eloquence: "Eloquence", empathy: "Empathy",
-  games: "Games", heal: "Heal", jump: "Jump", language: "Language",
-  legends: "Legends", listen: "Listen", magicalKnowledge: "Magical Knowledge",
-  medicine: "Medicine", memory: "Memory", mineralKnowledge: "Mineral Knowledge",
-  music: "Music", pickLock: "Pick Lock", plantKnowledge: "Plant Knowledge",
-  read: "Read", write: "Write", ride: "Ride", run: "Run",
-  seduction: "Seduction", shipHandling: "Ship Handling", singing: "Singing",
-  sleightOfHand: "Sleight of Hand", stealth: "Stealth", swim: "Swim",
-  taste: "Taste", teach: "Teach", theology: "Theology",
-  throw: "Throw", torture: "Torture", track: "Track",
-  axes: "Axes", bows: "Bows", brawl: "Brawl", clubs: "Clubs",
-  crossbows: "Crossbows", improvised: "Improvised", knives: "Knives",
-  longswords: "Longswords", maces: "Maces", shields: "Shields",
-  slings: "Slings", spears: "Spears", swords: "Swords"
-};
-
-const SKILL_ATTRS = {
-  alchemy: "CUL", animalKnowledge: "CUL", areaKnowledge: "CUL",
-  astrology: "CUL", climb: "AGI", command: "COM", commerce: "COM",
-  conceal: "DEX", courtEtiquette: "COM", craft: "DEX",
-  discovery: "PER", disguise: "COM", dodge: "AGI", drive: "DEX",
-  eloquence: "COM", empathy: "PER", games: "CUL", heal: "DEX",
-  jump: "AGI", language: "CUL", legends: "CUL", listen: "PER",
-  magicalKnowledge: "CUL", medicine: "CUL", memory: "PER",
-  mineralKnowledge: "CUL", music: "CUL", pickLock: "DEX",
-  plantKnowledge: "CUL", read: "CUL", write: "CUL", ride: "AGI", run: "AGI",
-  seduction: "APP", shipHandling: "AGI", singing: "COM",
-  sleightOfHand: "DEX", stealth: "AGI", swim: "AGI", taste: "PER",
-  teach: "COM", theology: "CUL", throw: "AGI", torture: "COM", track: "PER"
-};
-
-const GENERAL_SKILL_GROUPS = [
-  { attrKey: "agi", label: "Agility", keys: ["climb","dodge","jump","ride","run","shipHandling","sleightOfHand","stealth","swim","throw"] },
-  { attrKey: "com", label: "Communication", keys: ["command","commerce","courtEtiquette","disguise","eloquence","singing","teach","torture"] },
-  { attrKey: "cul", label: "Culture", keys: ["alchemy","animalKnowledge","areaKnowledge","astrology","games","language","legends","magicalKnowledge","medicine","mineralKnowledge","music","plantKnowledge","read","write","theology"] },
-  { attrKey: "dex", label: "Dexterity", keys: ["conceal","craft","drive","heal","pickLock"] },
-  { attrKey: "per", label: "Perception", keys: ["discovery","empathy","listen","memory","taste","track"] },
-  { attrKey: "app", label: "Appearance", keys: ["seduction"] }
-];
-
-const COMBAT_SKILL_KEYS = [
-  "axes", "bows", "brawl", "clubs", "crossbows", "improvised",
-  "knives", "longswords", "maces", "shields", "slings", "spears", "swords"
-];
+/* Skills are now items — no hardcoded skill lists */
 
 export default class SabatActorSheet extends ActorSheet {
 
@@ -151,24 +102,25 @@ export default class SabatActorSheet extends ActorSheet {
     }
     context.characterTitle = title;
 
-    // Skill groups
-    context.skillGroups = GENERAL_SKILL_GROUPS.map(group => ({
-      attrKey: group.attrKey,
-      label: group.label,
-      skills: group.keys.map(key => ({
-        key, label: SKILL_LABELS[key] ?? key,
-        skill: system.skills[key] ?? { value: 0, advancement: false },
-        isFav: !!favSkills[key]
-      })),
-      customSkills: Object.entries(customSkills)
-        .filter(([, v]) => v.attr === group.attrKey)
-        .map(([id, v]) => ({ id, ...v, isFav: !!favSkills[`custom.${id}`] }))
-    }));
+    // Skill groups — built from skill items
+    const allSkillItems = this.actor.items.filter(i => i.type === "skill");
+    const combatSkillItems = allSkillItems.filter(s => s.system.combat);
+    const generalSkillItems = allSkillItems.filter(s => !s.system.combat);
 
-    context.combatSkills = COMBAT_SKILL_KEYS.map(key => ({
-      key,
-      skill: system.skills[key] ?? { value: 0, advancement: false },
-      isFav: !!favSkills[key]
+    // Group general skills by attribute
+    const ATTR_ORDER = ["Agility", "Communication", "Culture", "Dexterity", "Perception", "Appearance", "Strength", "Vitality"];
+    const groupMap = {};
+    for (const s of generalSkillItems) {
+      const attr = s.system.attribute || "Agility";
+      if (!groupMap[attr]) groupMap[attr] = { attrKey: attr, label: attr, skills: [] };
+      groupMap[attr].skills.push({
+        id: s.id, name: s.name, system: s.system, isFav: !!favSkills[s.id]
+      });
+    }
+    context.skillGroups = ATTR_ORDER.filter(a => groupMap[a]).map(a => groupMap[a]);
+
+    context.combatSkills = combatSkillItems.map(s => ({
+      id: s.id, name: s.name, system: s.system, isFav: !!favSkills[s.id]
     }));
 
     // Rationality points (Faith or Concentration) — use live actor data for derived max
@@ -238,28 +190,25 @@ export default class SabatActorSheet extends ActorSheet {
     }
     context.ritualsByOrdo = Object.values(ritualsByOrdo).sort((a, b) => a.ordo - b.ordo);
 
-    // Weapons with linked skill info
+    // Weapons with linked skill info (find skill item by name)
     context.weaponsData = this.actor.items.filter(i => i.type === "weapon").map(w => {
-      const sk = w.system.skill || "improvised";
+      const skillName = w.system.skill || "Improvised";
+      const skillItem = allSkillItems.find(s => s.name.toLowerCase() === skillName.toLowerCase());
       return {
         id: w.id, name: w.name, system: w.system,
-        skillLabel: SKILL_LABELS[sk] ?? sk,
-        skillValue: system.skills[sk]?.value ?? 0,
+        skillLabel: skillItem?.name ?? skillName,
+        skillValue: skillItem?.system.value ?? 0,
         isFav: !!favWeapons[w.id]
       };
     });
 
-    // Favourite skills (read-only)
+    // Favourite skills — from skill item IDs
     context.favSkillsList = [];
-    for (const [key, val] of Object.entries(favSkills)) {
+    for (const [itemId, val] of Object.entries(favSkills)) {
       if (!val) continue;
-      if (key.startsWith("custom.")) {
-        const csId = key.slice(7);
-        const cs = customSkills[csId];
-        if (cs) context.favSkillsList.push({ key, label: cs.name, value: cs.value, advancement: cs.advancement, attr: cs.attr?.toUpperCase() ?? "", isCustom: true, customId: csId });
-      } else {
-        const sk = system.skills[key];
-        if (sk) context.favSkillsList.push({ key, label: SKILL_LABELS[key] ?? key, value: sk.value, advancement: sk.advancement, attr: SKILL_ATTRS[key] ?? "", isCustom: false });
+      const sk = this.actor.items.get(itemId);
+      if (sk && sk.type === "skill") {
+        context.favSkillsList.push({ id: sk.id, name: sk.name, system: sk.system, attr: sk.system.attribute ?? "" });
       }
     }
     context.favSkillsList.sort((a, b) => (a.attr || "").localeCompare(b.attr || ""));
@@ -350,11 +299,19 @@ export default class SabatActorSheet extends ActorSheet {
       const row = $(ev.currentTarget).closest("[data-item-id]");
       row.find(".weapon-roll-btn").trigger("click");
     });
-    html.find(".skill-add").click(this._onAddCustomSkill.bind(this));
-    html.find(".skill-delete").click(this._onSkillDelete.bind(this));
-    html.find(".custom-skill-delete").click(this._onDeleteCustomSkill.bind(this));
-    html.find(".skill-edit").click(this._onSkillEdit.bind(this));
     html.find(".fav-toggle").click(this._onToggleFavorite.bind(this));
+
+    // Skill item value/advancement change (inline editing)
+    html.find(".skill-value-item").change(async ev => {
+      const id = ev.currentTarget.dataset.itemId;
+      const item = this.actor.items.get(id);
+      if (item) await item.update({ "system.value": parseInt(ev.currentTarget.value) || 0 });
+    });
+    html.find(".skill-adv-item").change(async ev => {
+      const id = ev.currentTarget.dataset.itemId;
+      const item = this.actor.items.get(id);
+      if (item) await item.update({ "system.advancement": ev.currentTarget.checked });
+    });
 
     // Spell/Ritual: post to chat + collapsible panels
     html.find(".spell-post").click(this._onSpellPost.bind(this));
@@ -554,10 +511,10 @@ export default class SabatActorSheet extends ActorSheet {
     const item = this.actor.items.get(li.data("itemId"));
     if (!item) return;
 
-    const skillKey = item.system.skill || "improvised";
-    const skillData = this.actor.system.skills[skillKey] ?? { value: 0 };
-    const skillLabel = SKILL_LABELS[skillKey] ?? skillKey;
-    const target = skillData.value;
+    const skillName = item.system.skill || "Improvised";
+    const skillItem = this.actor.items.find(i => i.type === "skill" && i.name.toLowerCase() === skillName.toLowerCase());
+    const skillLabel = skillItem?.name ?? skillName;
+    const target = skillItem?.system.value ?? 0;
 
     const roll = await new Roll("1d100").evaluate({ async: true });
     const content = this._buildRollCard(skillLabel, roll.total, target, {
@@ -583,95 +540,7 @@ export default class SabatActorSheet extends ActorSheet {
   }
 
   // --- Skill edit dialog ---
-  async _onSkillEdit(event) {
-    event.preventDefault();
-    const el = event.currentTarget;
-    const skillKey = el.dataset.skill;
-    const customId = el.dataset.customId;
-
-    if (customId) {
-      const cs = this.actor.system.customSkills[customId];
-      if (!cs) return;
-      new Dialog({
-        title: `Edit: ${cs.name}`,
-        content: `<div class="form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
-          <div><label style="font-size:.8em;font-weight:bold">Name</label><input type="text" id="cs-name" value="${cs.name}" style="width:100%" /></div>
-          <div><label style="font-size:.8em;font-weight:bold">Value</label><input type="number" id="cs-val" value="${cs.value}" min="0" max="200" style="width:100%" /></div>
-          <div><label style="font-size:.8em;font-weight:bold"><input type="checkbox" id="cs-adv" ${cs.advancement ? "checked" : ""} /> Advancement</label></div>
-        </div>`,
-        buttons: {
-          save: { label: "Save", callback: html => {
-            const name = html.find("#cs-name").val().trim() || cs.name;
-            const value = parseInt(html.find("#cs-val").val()) || 0;
-            const advancement = html.find("#cs-adv").is(":checked");
-            this.actor.update({ [`system.customSkills.${customId}`]: { ...cs, name, value, advancement } });
-          }},
-          cancel: { label: "Cancel" }
-        },
-        default: "save"
-      }).render(true);
-    } else if (skillKey) {
-      const sk = this.actor.system.skills[skillKey] ?? { value: 0, advancement: false };
-      const label = SKILL_LABELS[skillKey] ?? skillKey;
-      const attr = SKILL_ATTRS[skillKey] ?? "—";
-      new Dialog({
-        title: `Edit: ${label}`,
-        content: `<div class="form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
-          <div><label style="font-size:.8em;font-weight:bold">Name</label><input type="text" value="${label}" disabled style="width:100%" /></div>
-          <div><label style="font-size:.8em;font-weight:bold">Attribute</label><input type="text" value="${attr}" disabled style="width:100%" /></div>
-          <div><label style="font-size:.8em;font-weight:bold">Value</label><input type="number" id="sk-val" value="${sk.value}" min="0" max="200" style="width:100%" /></div>
-          <div><label style="font-size:.8em;font-weight:bold"><input type="checkbox" id="sk-adv" ${sk.advancement ? "checked" : ""} /> Advancement</label></div>
-        </div>`,
-        buttons: {
-          save: { label: "Save", callback: html => {
-            const value = parseInt(html.find("#sk-val").val()) || 0;
-            const advancement = html.find("#sk-adv").is(":checked");
-            this.actor.update({ [`system.skills.${skillKey}.value`]: value, [`system.skills.${skillKey}.advancement`]: advancement });
-          }},
-          cancel: { label: "Cancel" }
-        },
-        default: "save"
-      }).render(true);
-    }
-  }
-
-  // --- Skill delete (reset built-in to 0) ---
-  async _onSkillDelete(event) {
-    event.preventDefault();
-    const key = event.currentTarget.dataset.skill;
-    if (!key) return;
-    await this.actor.update({
-      [`system.skills.${key}.value`]: 0,
-      [`system.skills.${key}.advancement`]: false,
-      [`system.favorites.skills.-=${key}`]: null
-    });
-  }
-
-  // --- Custom skill management ---
-  async _onAddCustomSkill(event) {
-    event.preventDefault();
-    const attrKey = event.currentTarget.dataset.attr;
-    const name = await new Promise(resolve => {
-      new Dialog({
-        title: `Add Skill (${attrKey.toUpperCase()})`,
-        content: `<div style="margin-bottom:8px"><label>Skill name:</label>
-          <input type="text" id="custom-skill-name" style="width:100%;margin-top:4px" autofocus /></div>`,
-        buttons: {
-          ok: { label: "Add", callback: html => resolve(html.find("#custom-skill-name").val().trim()) },
-          cancel: { label: "Cancel", callback: () => resolve(null) }
-        },
-        default: "ok"
-      }).render(true);
-    });
-    if (!name) return;
-    await this.actor.update({ [`system.customSkills.cs_${Date.now()}`]: { name, attr: attrKey, value: 0, advancement: false } });
-  }
-
-  async _onDeleteCustomSkill(event) {
-    event.preventDefault();
-    const id = event.currentTarget.dataset.customId;
-    await this.actor.update({ [`system.customSkills.-=${id}`]: null, [`system.favorites.skills.-=custom.${id}`]: null });
-  }
+  /* Old hardcoded skill handlers removed — skills are now items */
 
   // --- Items ---
   async _onSpellPost(event) {
@@ -684,7 +553,8 @@ export default class SabatActorSheet extends ActorSheet {
     const VP = { 1: 0, 2: -15, 3: -35, 4: -50, 5: -75, 6: -100, 7: -150 };
     const visLabel = VL[s.vis] ?? "Prima";
     const visPct = VP[s.vis] ?? 0;
-    const mkVal = this.actor.system.skills.magicalKnowledge?.value ?? 0;
+    const mkItem = this.actor.items.find(i => i.type === "skill" && i.name === "Magical Knowledge");
+    const mkVal = mkItem?.system.value ?? 0;
     const quickTarget = Math.max(1, mkVal + visPct);
 
     // Build field sections (new order: Effect, Duration, Expiration, Components, Preparation, Description)
@@ -767,7 +637,8 @@ export default class SabatActorSheet extends ActorSheet {
     const ordoLabel = OL[s.ordo] ?? "Primus";
     const pctMod = OP[s.ordo] ?? 0;
     const fpReq = OF[s.ordo] ?? 10;
-    const mkVal = this.actor.system.skills.theology?.value ?? 0;
+    const thItem = this.actor.items.find(i => i.type === "skill" && i.name === "Theology");
+    const mkVal = thItem?.system.value ?? 0;
 
     let fields = "";
     const fld = (label, val) => { if (val) fields += `<div class="spell-card-label">${label}</div><div class="spell-card-value">${val}</div>`; };

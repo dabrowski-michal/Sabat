@@ -1,4 +1,42 @@
+const DEFAULT_SKILLS = [
+  // Combat skills (auto-created)
+  { name: "Axes", system: { attribute: "Strength", combat: true } },
+  { name: "Bows", system: { attribute: "Perception", combat: true } },
+  { name: "Brawl", system: { attribute: "Agility", combat: true } },
+  { name: "Clubs", system: { attribute: "Agility", combat: true } },
+  { name: "Crossbows", system: { attribute: "Perception", combat: true } },
+  { name: "Improvised", system: { attribute: "Agility", combat: true } },
+  { name: "Knives", system: { attribute: "Dexterity", combat: true } },
+  { name: "Longswords", system: { attribute: "Strength", combat: true } },
+  { name: "Maces", system: { attribute: "Strength", combat: true } },
+  { name: "Shields", system: { attribute: "Strength", combat: true } },
+  { name: "Slings", system: { attribute: "Perception", combat: true } },
+  { name: "Spears", system: { attribute: "Agility", combat: true } },
+  { name: "Swords", system: { attribute: "Dexterity", combat: true } },
+  // Key general skills (auto-created)
+  { name: "Dodge", system: { attribute: "Agility", combat: false } },
+  { name: "Heal", system: { attribute: "Dexterity", combat: false } },
+  { name: "Discovery", system: { attribute: "Perception", combat: false } },
+  { name: "Stealth", system: { attribute: "Agility", combat: false } },
+  { name: "Teach", system: { attribute: "Communication", combat: false } },
+  { name: "Theology", system: { attribute: "Culture", combat: false } },
+  { name: "Magical Knowledge", system: { attribute: "Culture", combat: false } },
+];
+
 export default class SabatActor extends Actor {
+
+  async _onCreate(data, options, userId) {
+    await super._onCreate(data, options, userId);
+    if (this.type !== "character" || game.user.id !== userId) return;
+    if (this.items.filter(i => i.type === "skill").length > 0) return;
+
+    const skillItems = DEFAULT_SKILLS.map(s => ({
+      name: s.name,
+      type: "skill",
+      system: { attribute: s.system.attribute, combat: s.system.combat, advancement: false, value: 0, description: "" }
+    }));
+    await this.createEmbeddedDocuments("Item", skillItems);
+  }
 
   prepareDerivedData() {
     super.prepareDerivedData();
@@ -13,27 +51,16 @@ export default class SabatActor extends Actor {
     const ch = system.characteristics;
     const sec = system.secondaryCharacteristics;
 
-    // Max HP = VIT
     system.health.max = ch.vit;
-
-    // Luck = COM + PER + CUL
     sec.luckInitial = ch.com + ch.per + ch.cul;
-
-    // IRR is bound to RR
     sec.irr = 100 - sec.rr;
-
-    // Max CP = ceil(IRR * 0.2)
     sec.concentrationPoints.max = Math.ceil(sec.irr * 0.2);
-
-    // Max FP = ceil(RR * 0.2)
     sec.faithPoints.max = Math.ceil(sec.rr * 0.2);
 
-    // Clamp current HP
     if (system.health.value > system.health.max) {
       system.health.value = system.health.max;
     }
 
-    // Derived protection from equipped armor items
     const locs = ["head", "rightArm", "leftArm", "chest", "abdomen", "rightLeg", "leftLeg"];
     system.protection = Object.fromEntries(locs.map(l => [l, 0]));
     for (const item of this.items) {
