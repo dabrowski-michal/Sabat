@@ -42,6 +42,9 @@ export default class SabatItem extends Item {
         if (!changed.system) changed.system = {};
         changed.system.ordo = parseInt(sys.ordo) || 1;
       }
+      if (!this.img || this.img === "icons/svg/item-bag.svg") {
+        changed.img = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/specific/checkFaith.png";
+      }
     }
 
     if (this.type === "trait") {
