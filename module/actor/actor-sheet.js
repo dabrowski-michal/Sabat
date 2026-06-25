@@ -253,6 +253,8 @@ export default class SabatActorSheet extends ActorSheet {
     const rrVal2 = system.secondaryCharacteristics.rr ?? 50;
     const rrBg = rrVal2 >= 50 ? "good" : "evil";
     context.portraitBackground = sheetBase + "frame/" + rrBg + ".png";
+    const rrCap = rrVal2 >= 50 ? "Good" : "Evil";
+    context.shieldImage = sheetBase + "elements/shield" + rrCap + ".png";
 
     const FRAME_MAP = {
       "upper-nobility": "upper.png", "lower-nobility": "upper.png",
@@ -437,7 +439,7 @@ export default class SabatActorSheet extends ActorSheet {
       // Checkbox fill image
       const checkImg = sheetImgBase + "elements/check" + alignCap + ".png";
       document.documentElement.style.setProperty("--aq-check-img", `url("${checkImg}")`);
-
+      html.find(".char-shield-bg").attr("src", sheetImgBase + "elements/shield" + alignCap + ".png");
     }
     html.find("#rr-slider").on("input", function () {
       const rr = parseInt(this.value);

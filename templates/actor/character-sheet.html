@@ -23,67 +23,6 @@
     <div class="tab characteristics" data-group="primary" data-tab="characteristics">
       <div class="chars-layout">
 
-        <div class="primary-chars">
-          <div class="char-grid">
-            <div class="char-shield" data-char-key="str" data-char-label="Strength">
-              <div class="char-shield-img-wrap">
-                <img class="char-shield-bg" src="https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/specific/shield.png" />
-                <input class="char-shield-value" type="number" name="system.characteristics.str" value="{{system.characteristics.str}}" min="1" max="99" />
-              </div>
-              <span class="char-shield-label">STRENGTH</span>
-            </div>
-            <div class="char-shield" data-char-key="agi" data-char-label="Agility">
-              <div class="char-shield-img-wrap">
-                <img class="char-shield-bg" src="https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/specific/shield.png" />
-                <input class="char-shield-value" type="number" name="system.characteristics.agi" value="{{system.characteristics.agi}}" min="1" max="99" />
-              </div>
-              <span class="char-shield-label">AGILITY</span>
-            </div>
-            <div class="char-shield" data-char-key="dex" data-char-label="Dexterity">
-              <div class="char-shield-img-wrap">
-                <img class="char-shield-bg" src="https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/specific/shield.png" />
-                <input class="char-shield-value" type="number" name="system.characteristics.dex" value="{{system.characteristics.dex}}" min="1" max="99" />
-              </div>
-              <span class="char-shield-label">DEXTERITY</span>
-            </div>
-            <div class="char-shield" data-char-key="vit" data-char-label="Vitality">
-              <div class="char-shield-img-wrap">
-                <img class="char-shield-bg" src="https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/specific/shield.png" />
-                <input class="char-shield-value" type="number" name="system.characteristics.vit" value="{{system.characteristics.vit}}" min="1" max="99" />
-              </div>
-              <span class="char-shield-label">VITALITY</span>
-            </div>
-            <div class="char-shield" data-char-key="per" data-char-label="Perception">
-              <div class="char-shield-img-wrap">
-                <img class="char-shield-bg" src="https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/specific/shield.png" />
-                <input class="char-shield-value" type="number" name="system.characteristics.per" value="{{system.characteristics.per}}" min="1" max="99" />
-              </div>
-              <span class="char-shield-label">PERCEPTION</span>
-            </div>
-            <div class="char-shield" data-char-key="com" data-char-label="Communication">
-              <div class="char-shield-img-wrap">
-                <img class="char-shield-bg" src="https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/specific/shield.png" />
-                <input class="char-shield-value" type="number" name="system.characteristics.com" value="{{system.characteristics.com}}" min="1" max="99" />
-              </div>
-              <span class="char-shield-label">COMMUNICATION</span>
-            </div>
-            <div class="char-shield" data-char-key="cul" data-char-label="Culture">
-              <div class="char-shield-img-wrap">
-                <img class="char-shield-bg" src="https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/specific/shield.png" />
-                <input class="char-shield-value" type="number" name="system.characteristics.cul" value="{{system.characteristics.cul}}" min="1" max="99" />
-              </div>
-              <span class="char-shield-label">CULTURE</span>
-            </div>
-            <div class="char-shield" data-char-key="app" data-char-label="Appearance">
-              <div class="char-shield-img-wrap">
-                <img class="char-shield-bg" src="https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/specific/shield.png" />
-                <input class="char-shield-value" type="number" name="system.secondaryCharacteristics.app" value="{{system.secondaryCharacteristics.app}}" min="0" />
-              </div>
-              <span class="char-shield-label">APPEARANCE</span>
-            </div>
-          </div>
-        </div>
-
         <div class="chars-left">
           <div class="char-portrait-container">
             <img class="portrait-layer layer-portrait-bg" id="portrait-bg-layer" src="{{portraitBackground}}" alt="" />
@@ -152,6 +91,68 @@
         </div>
 
         <div class="chars-right">
+          <div class="primary-chars panel">
+            <h3 class="panel-title">Attributes</h3>
+            <div class="char-grid">
+              <div class="char-shield" data-char-key="str" data-char-label="Strength">
+                <span class="char-shield-label">Strength</span>
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="{{shieldImage}}" />
+                  <input class="char-shield-value" type="number" name="system.characteristics.str" value="{{system.characteristics.str}}" min="1" max="99" />
+                </div>
+              </div>
+              <div class="char-shield" data-char-key="agi" data-char-label="Agility">
+                <span class="char-shield-label">Agility</span>
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="{{shieldImage}}" />
+                  <input class="char-shield-value" type="number" name="system.characteristics.agi" value="{{system.characteristics.agi}}" min="1" max="99" />
+                </div>
+              </div>
+              <div class="char-shield" data-char-key="dex" data-char-label="Dexterity">
+                <span class="char-shield-label">Dexterity</span>
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="{{shieldImage}}" />
+                  <input class="char-shield-value" type="number" name="system.characteristics.dex" value="{{system.characteristics.dex}}" min="1" max="99" />
+                </div>
+              </div>
+              <div class="char-shield" data-char-key="vit" data-char-label="Vitality">
+                <span class="char-shield-label">Vitality</span>
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="{{shieldImage}}" />
+                  <input class="char-shield-value" type="number" name="system.characteristics.vit" value="{{system.characteristics.vit}}" min="1" max="99" />
+                </div>
+              </div>
+              <div class="char-shield" data-char-key="per" data-char-label="Perception">
+                <span class="char-shield-label">Perception</span>
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="{{shieldImage}}" />
+                  <input class="char-shield-value" type="number" name="system.characteristics.per" value="{{system.characteristics.per}}" min="1" max="99" />
+                </div>
+              </div>
+              <div class="char-shield" data-char-key="com" data-char-label="Communication">
+                <span class="char-shield-label">Communication</span>
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="{{shieldImage}}" />
+                  <input class="char-shield-value" type="number" name="system.characteristics.com" value="{{system.characteristics.com}}" min="1" max="99" />
+                </div>
+              </div>
+              <div class="char-shield" data-char-key="cul" data-char-label="Culture">
+                <span class="char-shield-label">Culture</span>
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="{{shieldImage}}" />
+                  <input class="char-shield-value" type="number" name="system.characteristics.cul" value="{{system.characteristics.cul}}" min="1" max="99" />
+                </div>
+              </div>
+              <div class="char-shield" data-char-key="app" data-char-label="Appearance">
+                <span class="char-shield-label">Appearance</span>
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="{{shieldImage}}" />
+                  <input class="char-shield-value" type="number" name="system.secondaryCharacteristics.app" value="{{system.secondaryCharacteristics.app}}" min="0" />
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- Life Points -->
           <div class="panel">
             <h3 class="panel-title">Life points</h3>
