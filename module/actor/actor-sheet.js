@@ -270,7 +270,7 @@ export default class SabatActorSheet extends ActorSheet {
 
     // Portrait frame from social class
     const FRAME_MAP = {
-      "upper-nobility": "UpperClass.png", "lower-nobility": "LowerNobility.png",
+      "upper-nobility": "UpperNobility.png", "lower-nobility": "LowerNobility.png",
       "burgher": "Burgher.png", "townsfolk": "Townsfolk.png",
       "peasant": "Peasant.png", "slave": "Slave.png"
     };
