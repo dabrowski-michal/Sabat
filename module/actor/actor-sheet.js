@@ -274,11 +274,11 @@ export default class SabatActorSheet extends ActorSheet {
     context.portraitBackground = rrVal2 >= 66 ? sheetBase + "good.png" : rrVal2 >= 33 ? sheetBase + "neutral.png" : sheetBase + "evil.png";
 
     const FRAME_MAP = {
-      "upper-nobility": "UpperNobility.png", "lower-nobility": "LowerNobility.png",
-      "burgher": "Burgher.png", "townsfolk": "Townsfolk.png",
-      "peasant": "Peasant.png", "slave": "Slave.png"
+      "upper-nobility": "Upper.png", "lower-nobility": "Upper.png",
+      "burgher": "Middle.png", "townsfolk": "Middle.png",
+      "peasant": "Lower.png", "slave": "Lower.png"
     };
-    const frameFile = FRAME_MAP[system.background?.socialClass] ?? "Peasant.png";
+    const frameFile = FRAME_MAP[system.background?.socialClass] ?? "Lower.png";
     context.portraitFrame = sheetBase + "frame/" + frameFile;
   }
 
