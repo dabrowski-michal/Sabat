@@ -378,8 +378,13 @@ export default class SabatActorSheet extends ActorSheet {
       html.find("#portrait-bg-layer").attr("src", sheetImgBase + "frame/" + alignment + ".png");
       html.find(".sheet-header").css("background-image", `url("${sheetImgBase}elements/frame${alignCap}.png")`);
       const btnImg = sheetImgBase + "elements/button" + alignCap + ".png";
-      html.find(".sheet-tabs .item.active").css("background-image", `url("${btnImg}")`);
       document.documentElement.style.setProperty("--aq-btn-img", `url("${btnImg}")`);
+      // Clear inline bg from all tabs so only .active gets the CSS variable bg
+      html.find(".sheet-tabs .item").css("background-image", "");
+      // Checkbox fill image
+      const checkImg = sheetImgBase + "elements/check" + alignCap + ".png";
+      document.documentElement.style.setProperty("--aq-check-img", `url("${checkImg}")`);
+
     }
     html.find("#rr-slider").on("input", function () {
       const rr = parseInt(this.value);
