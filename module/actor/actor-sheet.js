@@ -347,10 +347,10 @@ export default class SabatActorSheet extends ActorSheet {
       if (item) item.delete();
     });
 
-    html.find(".item-equip-toggle").click(async ev => {
+    html.find(".item-equip-check").change(async ev => {
       const li = $(ev.currentTarget).closest("[data-item-id]");
       const item = this.actor.items.get(li.data("itemId"));
-      if (item) await item.update({ "system.equipped": !item.system.equipped });
+      if (item) await item.update({ "system.equipped": ev.currentTarget.checked });
     });
 
     // Image-fill sliders — update the fill div width

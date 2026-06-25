@@ -161,9 +161,9 @@
 /* Primary characteristics identical in both modes */
 .edit-locked .char-value {
   background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/checkEmpty.png") center / contain no-repeat !important;
-  color: #f7c05c !important;
-  text-shadow: 0 1px 2px #a64329, 0 0 4px #a64329 !important;
-  -webkit-text-fill-color: #f7c05c !important;
+  color: var(--aq-brown) !important;
+  text-shadow: none !important;
+  -webkit-text-fill-color: var(--aq-brown) !important;
 }
 .edit-locked .char-name { color: var(--aq-brown) !important; }
 .edit-locked .char-item { opacity: 1 !important; }
@@ -178,8 +178,9 @@
 .edit-locked .item-create,
 .edit-locked .fav-toggle { display: none !important; }
 
-/* Keep equip toggles always visible */
+/* Keep equip checkboxes always interactive */
 .edit-locked .item-use-col { display: flex !important; }
+.edit-locked .item-equip-check { pointer-events: auto !important; }
 
 /* Keep skill checkboxes visible */
 .edit-locked .skill-adv { display: inline !important; pointer-events: none; }
@@ -206,7 +207,6 @@
 .edit-locked .skill-roll-btn,
 .edit-locked .weapon-roll-btn,
 .edit-locked .spell-post,
-.edit-locked .item-equip-toggle,
 .edit-locked .item-name { pointer-events: auto !important; }
 
 /* ---- Body ---- */
@@ -255,8 +255,9 @@
 .sabat-sheet .char-value {
   width: 40px; height: 40px; text-align: center;
   font-family: var(--aq-font-number); font-size: 1.15em; font-weight: bold;
-  color: #f7c05c;
-  text-shadow: 0 1px 2px #a64329, 0 0 4px #a64329;
+  color: var(--aq-brown) !important;
+  text-shadow: none !important;
+  -webkit-text-fill-color: var(--aq-brown) !important;
   background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/checkEmpty.png") center / contain no-repeat !important;
   border: none !important; border-radius: 0 !important;
   padding: 0 !important; flex-shrink: 0;

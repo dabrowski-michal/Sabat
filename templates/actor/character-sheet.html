@@ -282,7 +282,7 @@
             <ul class="item-list">
               {{#each weaponsData}}
               <li class="item flexrow weapon-row" data-item-id="{{this.id}}">
-                <span class="item-use-col"><a class="item-equip-toggle" title="Equip"><i class="fas fa-hand-paper {{#if this.system.equipped}}equipped-active{{else}}equipped-inactive{{/if}}"></i></a></span>
+                <span class="item-use-col"><input type="checkbox" class="item-equip-check" {{#if this.system.equipped}}checked{{/if}} /></span>
                 <a class="weapon-roll-btn item-dmg-btn" title="Roll attack"><i class="fas fa-dice-d20"></i></a>
                 <span class="item-name weapon-roll-name" data-item-id="{{this.id}}">{{this.name}}</span>
                 <span class="item-skill">{{this.skillLabel}} ({{this.skillValue}})</span>
@@ -308,7 +308,7 @@
             <ul class="item-list">
               {{#each armor}}
               <li class="item flexrow armor-row" data-item-id="{{this.id}}">
-                <span class="item-use-col"><a class="item-equip-toggle" title="Equip"><i class="fas fa-shield-alt {{#if this.system.equipped}}equipped-active{{else}}equipped-inactive{{/if}}"></i></a></span>
+                <span class="item-use-col"><input type="checkbox" class="item-equip-check" {{#if this.system.equipped}}checked{{/if}} /></span>
                 <span class="item-name">{{this.name}}</span>
                 <span class="item-prot">{{this.system.protection}}</span>
                 <span class="item-weight">{{this.system.weight}}</span>
