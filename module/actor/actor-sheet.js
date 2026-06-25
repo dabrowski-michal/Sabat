@@ -256,12 +256,13 @@ export default class SabatActorSheet extends ActorSheet {
       if (key.startsWith("custom.")) {
         const csId = key.slice(7);
         const cs = customSkills[csId];
-        if (cs) context.favSkillsList.push({ key, label: cs.name, value: cs.value, advancement: cs.advancement, attr: cs.attr?.toUpperCase() ?? "" });
+        if (cs) context.favSkillsList.push({ key, label: cs.name, value: cs.value, advancement: cs.advancement, attr: cs.attr?.toUpperCase() ?? "", isCustom: true, customId: csId });
       } else {
         const sk = system.skills[key];
-        if (sk) context.favSkillsList.push({ key, label: SKILL_LABELS[key] ?? key, value: sk.value, advancement: sk.advancement, attr: SKILL_ATTRS[key] ?? "" });
+        if (sk) context.favSkillsList.push({ key, label: SKILL_LABELS[key] ?? key, value: sk.value, advancement: sk.advancement, attr: SKILL_ATTRS[key] ?? "", isCustom: false });
       }
     }
+    context.favSkillsList.sort((a, b) => (a.attr || "").localeCompare(b.attr || ""));
 
     // Favourite weapons (read-only, with skill info)
     context.favWeaponsList = [];

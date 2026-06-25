@@ -496,10 +496,12 @@
 .sabat-sheet .fav-row { display: grid; gap: 4px; align-items: center; padding: 2px 4px; border-radius: 2px; transition: background 0.1s; }
 .sabat-sheet .fav-row:hover { background: rgba(201,162,39,0.15); }
 /* fav-skill: dice | name | attr | value | adv | controls */
-.sabat-sheet .fav-skill-row { grid-template-columns: 22px 1fr 36px 36px 18px 28px; }
+.sabat-sheet .fav-skill-row { grid-template-columns: 22px 1fr 36px 36px 22px 28px; }
+.edit-locked .fav-skill-row { grid-template-columns: 22px 1fr 36px 36px 22px !important; }
 .fav-attr { font-family: var(--aq-font-number); font-size: 0.8em; color: var(--aq-brown); text-align: center; }
 /* fav-weapon: dice | name | skill(val) | damage | controls */
 .sabat-sheet .fav-weapon-row { grid-template-columns: 22px 1fr 90px 50px 28px; }
+.edit-locked .fav-weapon-row { grid-template-columns: 22px 1fr 90px 50px !important; }
 .fav-val { font-family: var(--aq-font-number); font-size: 0.88em; color: var(--aq-brown); text-align: center; font-weight: bold; }
 .fav-damage { font-family: var(--aq-font-number); font-size: 0.88em; color: var(--aq-brown); text-align: center; font-weight: bold; }
 .fav-adv-icon { color: var(--aq-gold); font-size: 0.8em; text-align: center; display: inline-block; width: 18px; }

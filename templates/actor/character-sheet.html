@@ -149,7 +149,11 @@
                 <span class="skill-name">{{this.label}}</span>
                 <span class="fav-attr">{{this.attr}}</span>
                 <span class="fav-val">{{this.value}}</span>
-                {{#if this.advancement}}<i class="fas fa-check-circle fav-adv-icon"></i>{{else}}<span class="fav-adv-icon"></span>{{/if}}
+                {{#if this.isCustom}}
+                <input class="skill-adv" type="checkbox" name="system.customSkills.{{this.customId}}.advancement" {{#if this.advancement}}checked{{/if}} />
+                {{else}}
+                <input class="skill-adv" type="checkbox" name="system.skills.{{this.key}}.advancement" {{#if this.advancement}}checked{{/if}} />
+                {{/if}}
                 <div class="item-controls">
                   <a class="fav-toggle" data-fav-type="skills" data-fav-key="{{this.key}}" title="Remove"><i class="fas fa-star fav-active"></i></a>
                 </div>
