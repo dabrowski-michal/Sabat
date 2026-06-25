@@ -349,8 +349,8 @@
           <div class="spell-list-header">
             <span></span>
             <span class="col-name">Name</span>
-            <span>Nature</span>
             <span>Effect</span>
+            <span>Nature</span>
             <span>Controls</span>
           </div>
           {{#each this.spells}}
@@ -360,11 +360,11 @@
               <a class="item-edit spell-name-main" title="Open">{{this.name}}</a>
               {{#if this.system.latinName}}<span class="spell-name-latin">{{this.system.latinName}}</span>{{/if}}
             </div>
+            <span class="spell-row-effect">{{this.system.effect}}</span>
             <div class="spell-row-nature">
               <span class="spell-nature-eng">{{this.natureEng}}</span>
               <span class="spell-nature-latin">{{this.latinDesc}}</span>
             </div>
-            <span class="spell-row-effect">{{this.system.effect}}</span>
             <div class="item-controls">
               <a class="item-edit" title="Edit"><i class="fas fa-edit"></i></a>
               <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>
