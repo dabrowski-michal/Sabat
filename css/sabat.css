@@ -275,6 +275,7 @@
   font-family: var(--aq-font-label); font-weight: bold;
   font-size: 0.72em;
   color: var(--aq-brown);
+  text-transform: uppercase; letter-spacing: 0.04em;
   text-align: center;
   white-space: nowrap; overflow: hidden;
   margin-bottom: 2px; line-height: 1.3;
@@ -282,17 +283,18 @@
 
 .sabat-sheet .char-shield-value {
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  display: flex; align-items: center; justify-content: center;
-  width: 100%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
   font-family: var(--aq-font-number); font-weight: bold;
-  font-size: 32cqi;
+  font-size: 36cqi;
   color: var(--aq-accent) !important;
   text-shadow: 0 1px 3px var(--aq-accent-shadow), 0 0 6px var(--aq-accent-shadow);
   -webkit-text-fill-color: var(--aq-accent) !important;
   background: transparent !important;
   border: none !important; border-bottom: none !important;
   text-align: center; padding: 0 !important;
+  line-height: 1;
   pointer-events: none;
 }
 

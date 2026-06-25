@@ -30,9 +30,71 @@
             <img class="portrait-layer layer-portrait-frame" src="{{portraitFrame}}" alt="" />
           </div>
 
+          <div class="primary-chars panel">
+            <h3 class="panel-title">Attributes</h3>
+            <div class="char-grid">
+              <div class="char-shield" data-char-key="str" data-char-label="Strength">
+                <span class="char-shield-label">STRENGTH</span>
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="{{shieldGood}}" />
+                  <input class="char-shield-value" type="number" name="system.characteristics.str" value="{{system.characteristics.str}}" min="1" max="99" />
+                </div>
+              </div>
+              <div class="char-shield" data-char-key="agi" data-char-label="Agility">
+                <span class="char-shield-label">AGILITY</span>
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="{{shieldEvil}}" />
+                  <input class="char-shield-value" type="number" name="system.characteristics.agi" value="{{system.characteristics.agi}}" min="1" max="99" />
+                </div>
+              </div>
+              <div class="char-shield" data-char-key="dex" data-char-label="Dexterity">
+                <span class="char-shield-label">DEXTERITY</span>
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="{{shieldGood}}" />
+                  <input class="char-shield-value" type="number" name="system.characteristics.dex" value="{{system.characteristics.dex}}" min="1" max="99" />
+                </div>
+              </div>
+              <div class="char-shield" data-char-key="vit" data-char-label="Vitality">
+                <span class="char-shield-label">VITALITY</span>
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="{{shieldEvil}}" />
+                  <input class="char-shield-value" type="number" name="system.characteristics.vit" value="{{system.characteristics.vit}}" min="1" max="99" />
+                </div>
+              </div>
+              <div class="char-shield" data-char-key="per" data-char-label="Perception">
+                <span class="char-shield-label">PERCEPTION</span>
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="{{shieldEvil}}" />
+                  <input class="char-shield-value" type="number" name="system.characteristics.per" value="{{system.characteristics.per}}" min="1" max="99" />
+                </div>
+              </div>
+              <div class="char-shield" data-char-key="com" data-char-label="Communication">
+                <span class="char-shield-label">COMMUNICATION</span>
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="{{shieldGood}}" />
+                  <input class="char-shield-value" type="number" name="system.characteristics.com" value="{{system.characteristics.com}}" min="1" max="99" />
+                </div>
+              </div>
+              <div class="char-shield" data-char-key="cul" data-char-label="Culture">
+                <span class="char-shield-label">CULTURE</span>
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="{{shieldEvil}}" />
+                  <input class="char-shield-value" type="number" name="system.characteristics.cul" value="{{system.characteristics.cul}}" min="1" max="99" />
+                </div>
+              </div>
+              <div class="char-shield" data-char-key="app" data-char-label="Appearance">
+                <span class="char-shield-label">APPEARANCE</span>
+                <div class="char-shield-img-wrap">
+                  <img class="char-shield-bg" src="{{shieldGood}}" />
+                  <input class="char-shield-value" type="number" name="system.secondaryCharacteristics.app" value="{{system.secondaryCharacteristics.app}}" min="0" />
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- Experience / Temperance / Willpower -->
           <div class="extras-panel panel">
-            <h3 class="panel-title">Attributes</h3>
+            <h3 class="panel-title">Secondary</h3>
             <div class="extras-grid">
               <div class="extras-item">
                 <span class="extras-icon"><i class="fas fa-scroll"></i></span>
@@ -91,68 +153,6 @@
         </div>
 
         <div class="chars-right">
-          <div class="primary-chars panel">
-            <h3 class="panel-title">Attributes</h3>
-            <div class="char-grid">
-              <div class="char-shield" data-char-key="str" data-char-label="Strength">
-                <span class="char-shield-label">Strength</span>
-                <div class="char-shield-img-wrap">
-                  <img class="char-shield-bg" src="{{shieldGood}}" />
-                  <input class="char-shield-value" type="number" name="system.characteristics.str" value="{{system.characteristics.str}}" min="1" max="99" />
-                </div>
-              </div>
-              <div class="char-shield" data-char-key="agi" data-char-label="Agility">
-                <span class="char-shield-label">Agility</span>
-                <div class="char-shield-img-wrap">
-                  <img class="char-shield-bg" src="{{shieldEvil}}" />
-                  <input class="char-shield-value" type="number" name="system.characteristics.agi" value="{{system.characteristics.agi}}" min="1" max="99" />
-                </div>
-              </div>
-              <div class="char-shield" data-char-key="dex" data-char-label="Dexterity">
-                <span class="char-shield-label">Dexterity</span>
-                <div class="char-shield-img-wrap">
-                  <img class="char-shield-bg" src="{{shieldGood}}" />
-                  <input class="char-shield-value" type="number" name="system.characteristics.dex" value="{{system.characteristics.dex}}" min="1" max="99" />
-                </div>
-              </div>
-              <div class="char-shield" data-char-key="vit" data-char-label="Vitality">
-                <span class="char-shield-label">Vitality</span>
-                <div class="char-shield-img-wrap">
-                  <img class="char-shield-bg" src="{{shieldEvil}}" />
-                  <input class="char-shield-value" type="number" name="system.characteristics.vit" value="{{system.characteristics.vit}}" min="1" max="99" />
-                </div>
-              </div>
-              <div class="char-shield" data-char-key="per" data-char-label="Perception">
-                <span class="char-shield-label">Perception</span>
-                <div class="char-shield-img-wrap">
-                  <img class="char-shield-bg" src="{{shieldGood}}" />
-                  <input class="char-shield-value" type="number" name="system.characteristics.per" value="{{system.characteristics.per}}" min="1" max="99" />
-                </div>
-              </div>
-              <div class="char-shield" data-char-key="com" data-char-label="Communication">
-                <span class="char-shield-label">Communication</span>
-                <div class="char-shield-img-wrap">
-                  <img class="char-shield-bg" src="{{shieldEvil}}" />
-                  <input class="char-shield-value" type="number" name="system.characteristics.com" value="{{system.characteristics.com}}" min="1" max="99" />
-                </div>
-              </div>
-              <div class="char-shield" data-char-key="cul" data-char-label="Culture">
-                <span class="char-shield-label">Culture</span>
-                <div class="char-shield-img-wrap">
-                  <img class="char-shield-bg" src="{{shieldGood}}" />
-                  <input class="char-shield-value" type="number" name="system.characteristics.cul" value="{{system.characteristics.cul}}" min="1" max="99" />
-                </div>
-              </div>
-              <div class="char-shield" data-char-key="app" data-char-label="Appearance">
-                <span class="char-shield-label">Appearance</span>
-                <div class="char-shield-img-wrap">
-                  <img class="char-shield-bg" src="{{shieldEvil}}" />
-                  <input class="char-shield-value" type="number" name="system.secondaryCharacteristics.app" value="{{system.secondaryCharacteristics.app}}" min="0" />
-                </div>
-              </div>
-            </div>
-          </div>
-
           <!-- Life Points -->
           <div class="panel">
             <h3 class="panel-title">Life points</h3>
