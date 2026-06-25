@@ -271,7 +271,7 @@ export default class SabatActorSheet extends ActorSheet {
     // Portrait: background (RR-based), frame (social class)
     const sheetBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/";
     const rrVal2 = system.secondaryCharacteristics.rr ?? 50;
-    const rrBg = rrVal2 >= 66 ? "good" : rrVal2 >= 33 ? "neutral" : "evil";
+    const rrBg = rrVal2 >= 50 ? "good" : "evil";
     context.portraitBackground = sheetBase + "frame/" + rrBg + ".png";
 
     const FRAME_MAP = {
@@ -373,9 +373,12 @@ export default class SabatActorSheet extends ActorSheet {
     // RR slider: update display, portrait bg, header bg
     const sheetImgBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/";
     function updateRRVisuals(rr) {
-      const alignment = rr >= 66 ? "good" : rr >= 33 ? "neutral" : "evil";
+      const alignment = rr >= 50 ? "good" : "evil";
       html.find("#portrait-bg-layer").attr("src", sheetImgBase + "frame/" + alignment + ".png");
       html.find(".sheet-header").css("background-image", `url("${sheetImgBase}header/${alignment}.png")`);
+      const btnImg = sheetImgBase + (rr >= 50 ? "buttonGood.png" : "buttonEvil.png");
+      html.find(".sheet-tabs .item.active").css("background-image", `url("${btnImg}")`);
+      document.documentElement.style.setProperty("--aq-btn-img", `url("${btnImg}")`);
     }
     html.find("#rr-slider").on("input", function () {
       const rr = parseInt(this.value);

@@ -131,7 +131,7 @@
 .sabat-sheet .sheet-tabs .item.active {
   color: #f7c05c;
   text-shadow: 0 1px 2px #a64329, 0 0 4px #a64329;
-  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/button.png") center / contain no-repeat;
+  background: var(--aq-btn-img, url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/buttonGood.png")) center / contain no-repeat;
   border: none;
 }
 
@@ -732,7 +732,7 @@
 .sabat-sheet.item-sheet .item-header {
   display: flex; gap: 12px; align-items: center;
   height: 140px; box-sizing: border-box; padding: 20px 12px;
-  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/header/neutral.png") repeat;
+  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/header/good.png") repeat;
   border-bottom: none;
 }
 .sabat-sheet.item-sheet .item-img { width: 80px; height: 80px; object-fit: cover; border: 2px solid rgba(245,234,214,0.5); border-radius: 4px; cursor: pointer; }
@@ -750,6 +750,7 @@
   text-shadow: 0 1px 2px #a64329, 0 0 3px #a64329;
 }
 .sabat-sheet.item-sheet .item-body { padding: 12px; }
+.spell-sheet .item-header { background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/header/evil.png") repeat !important; }
 .sabat-sheet .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; margin-bottom: 10px; }
 
 /* ---- Roll Card ---- */
@@ -825,7 +826,7 @@
   font-size: 0.85em; font-weight: bold;
   color: #f7c05c; text-align: center;
   text-shadow: 0 1px 2px #a64329, 0 0 4px #a64329;
-  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/button.png") center / 100% 100% no-repeat;
+  background: var(--aq-btn-img, url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/buttonGood.png")) center / 100% 100% no-repeat;
   line-height: 50px;
 }
 .chat-damage-btn:hover, .apply-damage-btn:hover, .spell-cast-btn:hover {
