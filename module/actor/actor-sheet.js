@@ -268,10 +268,14 @@ export default class SabatActorSheet extends ActorSheet {
     }
     context.paperDoll = paperDoll;
 
-    // Alignment portrait background
-    const rr = system.secondaryCharacteristics.rr ?? 50;
-    const bgBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/";
-    context.alignmentBackground = rr >= 66 ? bgBase + "good.png" : rr >= 33 ? bgBase + "neutral.png" : bgBase + "evil.png";
+    // Portrait frame from social class
+    const FRAME_MAP = {
+      "upper-nobility": "UpperClass.png", "lower-nobility": "LowerNobility.png",
+      "burgher": "Burgher.png", "townsfolk": "Townsfolk.png",
+      "peasant": "Peasant.png", "slave": "Slave.png"
+    };
+    const frameFile = FRAME_MAP[system.background?.socialClass] ?? "Peasant.png";
+    context.alignmentBackground = `https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/frame/${frameFile}`;
   }
 
   _editMode = true;
@@ -361,37 +365,12 @@ export default class SabatActorSheet extends ActorSheet {
       slider.addEventListener("input", () => updateImageFill(slider, fillEl));
     }
 
-    // RR slider: update display + portrait background
-    const bgBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/";
-    // Header background: social class image + RR-based color
-    const HEADER_BGS = {
-      "upper-nobility": "UpperNobility.png", "lower-nobility": "LowerNobility.png",
-      "burgher": "Burgher.png", "townsfolk": "Townsfolk.png",
-      "peasant": "Peasant.png", "slave": "Slave.png"
-    };
-    const sc = this.actor.system.background?.socialClass ?? "";
-    const headerImg = HEADER_BGS[sc];
-    const headerBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/headers/";
-
-    function updateHeaderBg(rr) {
-      const color = rr >= 66 ? "#19397a" : rr >= 33 ? "#3a2010" : "#701014";
-      if (headerImg) {
-        html.find(".sheet-header").css("background", `url("${headerBase}${headerImg}") repeat, ${color}`);
-      } else {
-        html.find(".sheet-header").css("background-color", color);
-      }
-    }
-
+    // RR slider: update display
     html.find("#rr-slider").on("input", function () {
       const rr = parseInt(this.value);
       html.find("#rr-display").text(rr);
       html.find("#irr-display").text(100 - rr);
-      const src = rr >= 66 ? bgBase + "good.png" : rr >= 33 ? bgBase + "neutral.png" : bgBase + "evil.png";
-      html.find("#portrait-bg-layer").attr("src", src);
-      updateHeaderBg(rr);
     });
-
-    updateHeaderBg(this.actor.system.secondaryCharacteristics.rr ?? 50);
 
     // Other sliders: update display values
     html.find("#hp-slider").on("input", function () { html.find("#hp-current-display").text(this.value); });

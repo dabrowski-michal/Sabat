@@ -82,7 +82,7 @@
   padding: 20px 12px;
   height: 140px; box-sizing: border-box;
   align-items: center;
-  background: var(--aq-brown-dark);
+  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/sheet/header.png") repeat;
   border-bottom: none;
   color: #f5ead6;
 }
