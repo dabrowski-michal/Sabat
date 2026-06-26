@@ -200,7 +200,7 @@ export default class SabatActorSheet extends ActorSheet {
       const skillName = w.system.skill || "Improvised";
       const skillItem = allSkillItems.find(s => s.name.toLowerCase() === skillName.toLowerCase());
       return {
-        id: w.id, name: w.name, system: w.system,
+        id: w.id, name: w.name, img: w.img, system: w.system,
         skillLabel: skillItem?.name ?? skillName,
         skillValue: skillItem?.system.value ?? 0,
         isFav: !!favWeapons[w.id]
