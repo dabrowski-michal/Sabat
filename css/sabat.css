@@ -186,7 +186,7 @@
 
 /* Redistribute grid columns when Controls hidden — hide Controls header text too */
 .edit-locked .weapon-list-header, .edit-locked .weapon-row { grid-template-columns: 28px 40px 1fr 80px 50px 50px 50px !important; }
-.edit-locked .armor-list-header, .edit-locked .armor-row { grid-template-columns: 28px 1fr 50px 50px 50px 50px !important; }
+.edit-locked .armor-list-header, .edit-locked .armor-row { grid-template-columns: 28px 40px 1fr 50px 50px 50px 50px !important; }
 .edit-locked .item-list-cols, .edit-locked .item-row { grid-template-columns: 40px 1fr 50px 50px !important; }
 .edit-locked .spell-list-header, .edit-locked .spell-row { grid-template-columns: 48px 1fr 1.2fr 1.5fr !important; }
 .edit-locked .ritual-list-header, .edit-locked .ritual-row { grid-template-columns: 48px 1fr 1.2fr 1fr !important; }
@@ -211,6 +211,7 @@
 .edit-locked .spell-post,
 .edit-locked .trait-post,
 .edit-locked .affliction-post,
+.edit-locked .armor-post,
 .edit-locked .item-name,
 .edit-locked .char-shield { pointer-events: auto !important; }
 
@@ -798,8 +799,8 @@
 
 /* Weapons: use | dice | name | skill | damage | weight | price | controls */
 .sabat-sheet .weapon-list-header, .sabat-sheet .weapon-row { grid-template-columns: 28px 40px 1fr 80px 50px 50px 50px 80px; }
-/* Armor: use | name | protection | durability | weight | price | controls */
-.sabat-sheet .armor-list-header, .sabat-sheet .armor-row { grid-template-columns: 28px 1fr 50px 50px 50px 50px 80px; }
+/* Armor: use | icon | name | protection | durability | weight | price | controls */
+.sabat-sheet .armor-list-header, .sabat-sheet .armor-row { grid-template-columns: 28px 40px 1fr 50px 50px 50px 50px 80px; }
 
 .sabat-sheet .item-use-col {
   display: flex; align-items: center; justify-content: center;

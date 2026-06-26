@@ -306,7 +306,8 @@ export default class SabatActorSheet extends ActorSheet {
       item.sheet.render(true);
     });
 
-    // Clicking item icon posts to chat
+    // Clicking armor/item icon posts to chat
+    html.find(".armor-post").click(this._onArmorPost.bind(this));
     html.find(".item-post").click(this._onItemPost.bind(this));
     html.find(".fav-toggle").click(this._onToggleFavorite.bind(this));
 

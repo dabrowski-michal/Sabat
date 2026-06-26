@@ -383,13 +383,14 @@
           <div class="items-section panel">
             <div class="section-header"><h3 class="panel-title">Armor</h3><a class="item-create" data-type="armor" title="Add armor"><i class="fas fa-plus"></i></a></div>
             <div class="item-list-header armor-list-header">
-              <span>Use</span><span>Name</span><span>Protection</span><span>Durability</span><span>Weight</span><span>Price</span><span>Controls</span>
+              <span>Use</span><span></span><span>Name</span><span>Protection</span><span>Durability</span><span>Weight</span><span>Price</span><span>Controls</span>
             </div>
             <ul class="item-list">
               {{#each armor}}
               <li class="item flexrow armor-row" data-item-id="{{this.id}}">
                 <span class="item-use-col"><input type="checkbox" class="item-equip-check" {{#if this.system.equipped}}checked{{/if}} /></span>
-                <span class="item-name armor-post-name" title="Post to chat">{{this.name}}</span>
+                <a class="armor-post" title="Post to chat"><img class="row-icon" src="{{this.img}}" /></a>
+                <span class="item-name armor-post-name" title="Open">{{this.name}}</span>
                 <span class="item-prot">{{this.system.protection}}</span>
                 <span class="item-dur">{{this.system.durability}}</span>
                 <span class="item-weight">{{this.system.weight}}</span>
