@@ -297,7 +297,7 @@ export default class SabatActorSheet extends ActorSheet {
     html.find(".weapon-roll-btn").click(this._onWeaponPost.bind(this));
 
     // Universal: clicking name opens item sheet LOCKED
-    html.find(".skill-row .skill-name, .weapon-roll-name, .item-open-name, .item-open-locked, .armor-post-name").click(ev => {
+    html.find(".skill-row .skill-name, .fav-skill-row .skill-name, .weapon-roll-name, .item-open-name, .item-open-locked, .armor-post-name").click(ev => {
       ev.preventDefault();
       const li = $(ev.currentTarget).closest("[data-item-id]");
       const item = this.actor.items.get(li.data("itemId"));
