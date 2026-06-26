@@ -293,7 +293,7 @@ Hooks.on("renderChatMessage", (message, html) => {
   });
 
   // Cast Spell button (Magical Knowledge)
-  html.find(".spell-cast-btn:not(.ritual-cast-btn)").click(async (ev) => {
+  html.find(".spell-cast-btn:not(.ritual-cast-btn):not(.skill-chat-roll-btn):not(.weapon-chat-roll-btn)").click(async (ev) => {
     const card = $(ev.currentTarget).closest(".sabat-spell-card");
     const actor = _resolveActor(message);
     if (!actor) return ui.notifications.warn("Actor not found.");
@@ -314,6 +314,82 @@ Hooks.on("renderChatMessage", (message, html) => {
     const mod = _totalMod(card);
     const target = Math.max(1, thVal + mod);
     await _rollMK(actor, target, "Theology", `Theology: ${thVal}% · Modifiers: ${mod}%`);
+  });
+
+  // Roll Skill button from skill chat card
+  html.find(".skill-chat-roll-btn").click(async (ev) => {
+    const btn = ev.currentTarget;
+    const actor = _resolveActor(message);
+    if (!actor) return ui.notifications.warn("Actor not found.");
+    const item = actor.items.get(btn.dataset.itemId);
+    if (!item) return ui.notifications.warn("Skill not found.");
+    const target = item.system.value ?? 0;
+    await _rollMK(actor, target, item.name, `${item.name}: ${target}%`);
+    $(btn).prop("disabled", true).text("Rolled");
+  });
+
+  // Roll Attack button from weapon chat card
+  html.find(".weapon-chat-roll-btn").click(async (ev) => {
+    const btn = ev.currentTarget;
+    const actor = _resolveActor(message);
+    if (!actor) return ui.notifications.warn("Actor not found.");
+    const item = actor.items.get(btn.dataset.itemId);
+    if (!item) return ui.notifications.warn("Weapon not found.");
+
+    const skillName = item.system.skill || "Improvised";
+    const skillItem = actor.items.find(i => i.type === "skill" && i.name.toLowerCase() === skillName.toLowerCase());
+    const skillLabel = skillItem?.name ?? skillName;
+    const target = skillItem?.system.value ?? 0;
+
+    const roll = await new Roll("1d100").evaluate({ async: true });
+    const d = roll.total;
+    const margin = target - d;
+    const isSuccess = d <= 5 || (d < 96 && d <= target);
+    const imgBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/rolls/";
+    const folder = isSuccess ? "success" : "failure";
+    const n1 = Math.floor(Math.random() * 21) + 1;
+    let n2 = Math.floor(Math.random() * 20) + 1;
+    if (n2 >= n1) n2++;
+    const imgL = `${imgBase}${folder}/${n1}.png`;
+    const imgR = `${imgBase}${folder}/${n2}.png`;
+
+    let resultText, resultClass;
+    if (d <= 5) { resultText = "AUTOMATIC SUCCESS"; resultClass = "roll-card-auto-success"; }
+    else if (d >= 96) { resultText = "AUTOMATIC FAILURE"; resultClass = "roll-card-auto-fail"; }
+    else if (d <= target) {
+      const ct = Math.max(1, Math.floor(target * 0.1));
+      resultText = d <= ct ? "CRITICAL SUCCESS" : "SUCCESS";
+      resultClass = d <= ct ? "roll-card-crit" : "roll-card-success";
+    } else {
+      const bt = target + Math.floor((100 - target) * 0.9) + 1;
+      resultText = d >= bt ? "BLUNDER" : "FAILURE";
+      resultClass = d >= bt ? "roll-card-blunder" : "roll-card-fail";
+    }
+
+    const marginLabel = isSuccess ? "BEAT BY" : "MISSED BY";
+    const isAuto = d <= 5 || d >= 96;
+
+    await ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor }),
+      rolls: [roll],
+      content: `
+<div class="roll-card">
+  <div class="roll-card-title">${skillLabel}</div>
+  <div class="roll-card-subtitle">${item.name}</div>
+  <div class="roll-card-display">
+    <img class="roll-card-img" src="${imgL}" />
+    <span class="roll-card-number">${d}</span>
+    <img class="roll-card-img roll-card-img-flip" src="${imgR}" />
+  </div>
+  <div class="roll-card-result ${resultClass}">${resultText}</div>
+  ${isAuto ? "" : `<div class="roll-card-stats"><span>TARGET: <strong>${target}</strong></span><span>${marginLabel}: <strong>${Math.abs(margin)}</strong></span></div>`}
+  <div class="roll-card-mods">${skillLabel}: ${target}%</div>
+  <button class="chat-damage-btn" data-item-id="${item.id}">Roll Damage</button>
+</div>`,
+      rollMode: game.settings.get("core", "rollMode")
+    });
+
+    $(btn).prop("disabled", true).text("Rolled");
   });
 });
 

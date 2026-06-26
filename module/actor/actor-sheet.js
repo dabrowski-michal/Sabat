@@ -292,19 +292,32 @@ export default class SabatActorSheet extends ActorSheet {
 
     applyEditMode();
 
-    html.find(".skill-roll-btn").click(this._onSkillRollBtn.bind(this));
-    html.find(".weapon-roll-btn").click(this._onWeaponRoll.bind(this));
+    html.find(".skill-roll-btn").click(this._onSkillPost.bind(this));
+    html.find(".weapon-roll-btn").click(this._onWeaponPost.bind(this));
 
-    // Clicking skill name also triggers roll
+    // Clicking skill name opens item sheet
     html.find(".skill-row .skill-name").click(ev => {
-      const row = $(ev.currentTarget).closest(".skill-row");
-      row.find(".skill-roll-btn").trigger("click");
+      const li = $(ev.currentTarget).closest("[data-item-id]");
+      const item = this.actor.items.get(li.data("itemId"));
+      if (item) item.sheet.render(true);
     });
 
-    // Clicking weapon name also triggers weapon roll
+    // Clicking weapon name opens item sheet
     html.find(".weapon-roll-name").click(ev => {
-      const row = $(ev.currentTarget).closest("[data-item-id]");
-      row.find(".weapon-roll-btn").trigger("click");
+      const li = $(ev.currentTarget).closest("[data-item-id]");
+      const item = this.actor.items.get(li.data("itemId"));
+      if (item) item.sheet.render(true);
+    });
+
+    // Clicking armor name posts to chat
+    html.find(".armor-post-name").click(this._onArmorPost.bind(this));
+
+    // Clicking item icon posts to chat, clicking item name opens sheet
+    html.find(".item-post").click(this._onItemPost.bind(this));
+    html.find(".item-open-name").click(ev => {
+      const li = $(ev.currentTarget).closest("[data-item-id]");
+      const item = this.actor.items.get(li.data("itemId"));
+      if (item) item.sheet.render(true);
     });
     html.find(".fav-toggle").click(this._onToggleFavorite.bind(this));
 
@@ -498,11 +511,41 @@ export default class SabatActorSheet extends ActorSheet {
     });
   }
 
-  // --- Skill roll ---
-  async _onSkillRollBtn(event) {
+  // --- Skill post to chat ---
+  async _onSkillPost(event) {
     event.preventDefault();
     const el = event.currentTarget;
-    await this._rollSkillCheck(el.dataset.label, parseInt(el.dataset.target) || 0);
+    const li = $(el).closest("[data-item-id]");
+    const item = this.actor.items.get(li.data("itemId"));
+    if (!item) return;
+    const s = item.system;
+    const skillValue = s.value ?? 0;
+    const attribute = s.attribute || "";
+    const base = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/";
+
+    let fields = "";
+    if (attribute) fields += `<div class="trait-card-field"><strong>Attribute:</strong> ${attribute}</div>`;
+    fields += `<div class="trait-card-field"><strong>Value:</strong> ${skillValue}%</div>`;
+    if (s.description) fields += `<div class="trait-card-field">${s.description}</div>`;
+
+    const content = `
+<div class="sabat-trait-card">
+  <div class="trait-card-header" style="background: url('${base}ui/elements/frameGood.png') repeat;">
+    <img class="trait-card-icon" src="${item.img}" />
+    <div>
+      <div class="trait-card-name">${item.name}</div>
+      ${attribute ? `<div class="trait-card-type">${attribute}</div>` : ""}
+    </div>
+  </div>
+  <div class="trait-card-body">
+    ${fields}
+    <button class="spell-cast-btn skill-chat-roll-btn" data-item-id="${item.id}">Roll Skill</button>
+  </div>
+</div>`;
+    await ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      content
+    });
   }
 
   _buildRollCard(skillLabel, d, target, { subtitle, damageItemId, modBreakdown } = {}) {
@@ -566,27 +609,115 @@ export default class SabatActorSheet extends ActorSheet {
     });
   }
 
-  async _onWeaponRoll(event) {
+  async _onWeaponPost(event) {
     event.preventDefault();
     const li = $(event.currentTarget).closest("[data-item-id]");
     const item = this.actor.items.get(li.data("itemId"));
     if (!item) return;
+    const s = item.system;
+    const base = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/";
 
-    const skillName = item.system.skill || "Improvised";
+    const skillName = s.skill || "Improvised";
     const skillItem = this.actor.items.find(i => i.type === "skill" && i.name.toLowerCase() === skillName.toLowerCase());
     const skillLabel = skillItem?.name ?? skillName;
-    const target = skillItem?.system.value ?? 0;
+    const skillValue = skillItem?.system.value ?? 0;
 
-    const roll = await new Roll("1d100").evaluate({ async: true });
-    const content = this._buildRollCard(skillLabel, roll.total, target, {
-      subtitle: item.name,
-      damageItemId: item.id
-    });
+    let fields = "";
+    const fld = (label, val) => { if (val !== undefined && val !== "" && val !== null) fields += `<div class="trait-card-field"><strong>${label}:</strong> ${val}</div>`; };
+    fld("Skill", `${skillLabel} (${skillValue}%)`);
+    fld("Damage", s.damage);
+    fld("Size", s.size);
+    fld("Range", s.range);
+    fld("Weight", s.weight);
+    if (s.notes) fld("Notes", s.notes);
+    if (s.description) fields += `<div class="trait-card-field">${s.description}</div>`;
+
+    const content = `
+<div class="sabat-trait-card">
+  <div class="trait-card-header" style="background: url('${base}ui/elements/frameGood.png') repeat;">
+    <div>
+      <div class="trait-card-name">${item.name}</div>
+      <div class="trait-card-type">Weapon</div>
+    </div>
+  </div>
+  <div class="trait-card-body">
+    ${fields}
+    <button class="spell-cast-btn weapon-chat-roll-btn" data-item-id="${item.id}">Roll Attack</button>
+  </div>
+</div>`;
     await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      rolls: [roll],
-      content,
-      rollMode: game.settings.get("core", "rollMode")
+      content
+    });
+  }
+
+  // --- Armor post to chat ---
+  async _onArmorPost(event) {
+    event.preventDefault();
+    const li = $(event.currentTarget).closest("[data-item-id]");
+    const item = this.actor.items.get(li.data("itemId"));
+    if (!item) return;
+    const s = item.system;
+    const base = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/";
+
+    const LOC_LABELS = { head: "Head", rightArm: "Right Arm", leftArm: "Left Arm", chest: "Chest", abdomen: "Abdomen", rightLeg: "Right Leg", leftLeg: "Left Leg" };
+    const coveredLocs = Object.entries(s.locations ?? {}).filter(([, v]) => v).map(([k]) => LOC_LABELS[k] || k);
+
+    let fields = "";
+    const fld = (label, val) => { if (val !== undefined && val !== "" && val !== null) fields += `<div class="trait-card-field"><strong>${label}:</strong> ${val}</div>`; };
+    fld("Protection", s.protection);
+    fld("Durability", s.durability);
+    fld("Weight", s.weight);
+    fld("Price", s.price);
+    if (coveredLocs.length) fld("Locations", coveredLocs.join(", "));
+    if (s.description) fields += `<div class="trait-card-field">${s.description}</div>`;
+
+    const content = `
+<div class="sabat-trait-card">
+  <div class="trait-card-header" style="background: url('${base}ui/elements/frameGood.png') repeat;">
+    <div>
+      <div class="trait-card-name">${item.name}</div>
+      <div class="trait-card-type">Armor</div>
+    </div>
+  </div>
+  ${fields ? `<div class="trait-card-body">${fields}</div>` : ""}
+</div>`;
+    await ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      content
+    });
+  }
+
+  // --- Item post to chat ---
+  async _onItemPost(event) {
+    event.preventDefault();
+    const li = $(event.currentTarget).closest("[data-item-id]");
+    const item = this.actor.items.get(li.data("itemId"));
+    if (!item) return;
+    const s = item.system;
+    const base = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/";
+
+    let fields = "";
+    const fld = (label, val) => { if (val !== undefined && val !== "" && val !== null) fields += `<div class="trait-card-field"><strong>${label}:</strong> ${val}</div>`; };
+    fld("Weight", s.weight);
+    fld("Price", s.price);
+    if (s.notes) fld("Notes", s.notes);
+    if (s.description) fields += `<div class="trait-card-field">${s.description}</div>`;
+
+    const content = `
+<div class="sabat-trait-card">
+  <div class="trait-card-header" style="background: url('${base}ui/elements/frameGood.png') repeat;">
+    <img class="trait-card-icon" src="${item.img}" />
+    <div>
+      <div class="trait-card-name">${item.name}</div>
+      <div class="trait-card-type">Item</div>
+    </div>
+  </div>
+  ${fields ? `<div class="trait-card-body">${fields}</div>` : ""}
+</div>`;
+    await ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      content
     });
   }
 
