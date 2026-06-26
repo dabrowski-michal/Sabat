@@ -23,7 +23,7 @@ Hooks.once("ready", async function () {
   if (!game.user?.isGM) return;
 
   // Populate compendium packs from data/ JSON if they are empty
-  for (const [packName, dataFile] of [["sabat.skills", "skills"], ["sabat.traits", "traits"]]) {
+  for (const [packName, dataFile] of [["sabat.skills", "skills"]]) {
     const pack = game.packs.get(packName);
     if (!pack) continue;
     const index = await pack.getIndex();
@@ -324,50 +324,4 @@ function _registerHandlebarsHelpers() {
   Handlebars.registerHelper("add", (a, b) => a + b);
   Handlebars.registerHelper("pct", (value, max) => max > 0 ? Math.round((value / max) * 100) : 0);
 
-  Handlebars.registerHelper("skillLabel", (key) => {
-    const labels = {
-      alchemy: "Alchemy", animalKnowledge: "Animal Knowledge",
-      areaKnowledge: "Area Knowledge", astrology: "Astrology",
-      climb: "Climb", command: "Command", commerce: "Commerce",
-      conceal: "Conceal", courtEtiquette: "Court Etiquette", craft: "Craft",
-      discovery: "Discovery", disguise: "Disguise", dodge: "Dodge",
-      drive: "Drive", eloquence: "Eloquence", empathy: "Empathy",
-      games: "Games", heal: "Heal", jump: "Jump", language: "Language",
-      legends: "Legends", listen: "Listen", magicalKnowledge: "Magical Knowledge",
-      medicine: "Medicine", memory: "Memory", mineralKnowledge: "Mineral Knowledge",
-      music: "Music", pickLock: "Pick Lock", plantKnowledge: "Plant Knowledge",
-      read: "Read", write: "Write", ride: "Ride", run: "Run",
-      seduction: "Seduction", shipHandling: "Ship Handling", singing: "Singing",
-      sleightOfHand: "Sleight of Hand", stealth: "Stealth", swim: "Swim",
-      taste: "Taste", teach: "Teach", theology: "Theology",
-      throw: "Throw", torture: "Torture", track: "Track",
-      axes: "Axes", bows: "Bows", brawl: "Brawl", clubs: "Clubs",
-      crossbows: "Crossbows", improvised: "Improvised", knives: "Knives", longswords: "Longswords",
-      maces: "Maces", shields: "Shields", slings: "Slings",
-      spears: "Spears", swords: "Swords"
-    };
-    return labels[key] ?? key;
-  });
-
-  Handlebars.registerHelper("skillAttr", (key) => {
-    const attrs = {
-      alchemy: "CUL", animalKnowledge: "CUL", areaKnowledge: "CUL",
-      astrology: "CUL", climb: "AGI", command: "COM", commerce: "COM",
-      conceal: "DEX", courtEtiquette: "COM", craft: "DEX",
-      discovery: "PER", disguise: "COM", dodge: "AGI", drive: "DEX",
-      eloquence: "COM", empathy: "PER", games: "CUL", heal: "DEX",
-      jump: "AGI", language: "CUL", legends: "CUL", listen: "PER",
-      magicalKnowledge: "CUL", medicine: "CUL", memory: "PER",
-      mineralKnowledge: "CUL", music: "CUL", pickLock: "DEX",
-      plantKnowledge: "CUL", read: "CUL", write: "CUL", ride: "AGI", run: "AGI",
-      seduction: "APP", shipHandling: "AGI", singing: "COM",
-      sleightOfHand: "DEX", stealth: "AGI", swim: "AGI", taste: "PER",
-      teach: "COM", theology: "CUL", throw: "AGI", torture: "COM",
-      track: "PER", axes: "STR", bows: "PER", brawl: "AGI", improvised: "AGI",
-      clubs: "AGI", crossbows: "PER", knives: "DEX", longswords: "STR",
-      maces: "STR", shields: "STR", slings: "PER", spears: "AGI",
-      swords: "DEX"
-    };
-    return attrs[key] ?? "—";
-  });
 }
