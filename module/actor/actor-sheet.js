@@ -74,7 +74,7 @@ export default class SabatActorSheet extends ActorSheet {
     context.genderLabel = system.gender === "female" ? "Female" : "Male";
 
     // Nationality icon
-    const iconBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ikony/rasy/";
+    const iconBase = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/nations/";
     context.nationalityIcon = peopleLabel ? iconBase + peopleLabel.replace(/ /g, "_") + ".png" : "";
 
     // Character title

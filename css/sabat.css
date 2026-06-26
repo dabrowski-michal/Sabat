@@ -258,8 +258,7 @@
 
 .sabat-sheet .char-shield-img-wrap {
   position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;
+  width: 60px; height: 60px;
   container-type: inline-size;
 }
 
@@ -285,9 +284,9 @@
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 70%;
+  width: 75%;
   font-family: var(--aq-font-number); font-weight: bold;
-  font-size: 36cqi;
+  font-size: 40cqi;
   color: var(--aq-accent) !important;
   text-shadow: 0 1px 3px var(--aq-accent-shadow), 0 0 6px var(--aq-accent-shadow);
   -webkit-text-fill-color: var(--aq-accent) !important;
