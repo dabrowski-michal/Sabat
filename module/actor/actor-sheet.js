@@ -295,30 +295,18 @@ export default class SabatActorSheet extends ActorSheet {
     html.find(".skill-roll-btn").click(this._onSkillPost.bind(this));
     html.find(".weapon-roll-btn").click(this._onWeaponPost.bind(this));
 
-    // Clicking skill name opens item sheet
-    html.find(".skill-row .skill-name").click(ev => {
+    // Universal: clicking name opens item sheet LOCKED
+    html.find(".skill-row .skill-name, .weapon-roll-name, .item-open-name, .item-open-locked, .armor-post-name").click(ev => {
+      ev.preventDefault();
       const li = $(ev.currentTarget).closest("[data-item-id]");
       const item = this.actor.items.get(li.data("itemId"));
-      if (item) item.sheet.render(true);
+      if (!item) return;
+      item.sheet._editMode = false;
+      item.sheet.render(true);
     });
 
-    // Clicking weapon name opens item sheet
-    html.find(".weapon-roll-name").click(ev => {
-      const li = $(ev.currentTarget).closest("[data-item-id]");
-      const item = this.actor.items.get(li.data("itemId"));
-      if (item) item.sheet.render(true);
-    });
-
-    // Clicking armor name posts to chat
-    html.find(".armor-post-name").click(this._onArmorPost.bind(this));
-
-    // Clicking item icon posts to chat, clicking item name opens sheet
+    // Clicking item icon posts to chat
     html.find(".item-post").click(this._onItemPost.bind(this));
-    html.find(".item-open-name").click(ev => {
-      const li = $(ev.currentTarget).closest("[data-item-id]");
-      const item = this.actor.items.get(li.data("itemId"));
-      if (item) item.sheet.render(true);
-    });
     html.find(".fav-toggle").click(this._onToggleFavorite.bind(this));
 
     // Skill item value/advancement change (inline editing)
