@@ -38,6 +38,17 @@ Hooks.once("ready", async function () {
     }
   }
 
+  // Migrate legacy skills: remove old hardcoded skills (no description) and replace with compendium skills
+  for (const actor of game.actors) {
+    if (actor.type !== "character") continue;
+    const oldSkills = actor.items.filter(i => i.type === "skill" && !i.system.description);
+    if (!oldSkills.length) continue;
+    await actor.deleteEmbeddedDocuments("Item", oldSkills.map(i => i.id));
+    const skillData = await _loadSkillsData();
+    if (skillData.length) await actor.createEmbeddedDocuments("Item", skillData);
+    console.log(`Sabat | Replaced ${oldSkills.length} legacy skills on ${actor.name}`);
+  }
+
   // Migrate legacy "equipment" items → "armor" type.
   // The type field is immutable on existing documents, so we delete + recreate.
   const ARMOR_DEFAULTS = {
