@@ -114,13 +114,13 @@ export default class SabatActorSheet extends ActorSheet {
       const attr = s.system.attribute || "Agility";
       if (!groupMap[attr]) groupMap[attr] = { attrKey: attr, label: attr, skills: [] };
       groupMap[attr].skills.push({
-        id: s.id, name: s.name, system: s.system, isFav: !!favSkills[s.id]
+        id: s.id, name: s.name, img: s.img, system: s.system, isFav: !!favSkills[s.id]
       });
     }
     context.skillGroups = ATTR_ORDER.filter(a => groupMap[a]).map(a => groupMap[a]);
 
     context.combatSkills = combatSkillItems.map(s => ({
-      id: s.id, name: s.name, system: s.system, isFav: !!favSkills[s.id]
+      id: s.id, name: s.name, img: s.img, system: s.system, isFav: !!favSkills[s.id]
     }));
 
     // Rationality points (Faith or Concentration) — use live actor data for derived max
@@ -212,7 +212,7 @@ export default class SabatActorSheet extends ActorSheet {
       if (!val) continue;
       const sk = this.actor.items.get(itemId);
       if (sk && sk.type === "skill") {
-        context.favSkillsList.push({ id: sk.id, name: sk.name, system: sk.system, attr: sk.system.attribute ?? "" });
+        context.favSkillsList.push({ id: sk.id, name: sk.name, img: sk.img, system: sk.system, attr: sk.system.attribute ?? "" });
       }
     }
     context.favSkillsList.sort((a, b) => (a.attr || "").localeCompare(b.attr || ""));

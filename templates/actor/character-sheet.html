@@ -211,7 +211,7 @@
               </div>
               {{#each favSkillsList}}
               <div class="fav-row fav-skill-row" data-item-id="{{this.id}}">
-                <a class="skill-roll-btn" data-label="{{this.name}}" data-target="{{this.system.value}}" title="Roll"><i class="fas fa-dice-d20"></i></a>
+                <a class="skill-roll-btn" data-label="{{this.name}}" data-target="{{this.system.value}}" title="Roll"><img class="row-icon" src="{{this.img}}" /></a>
                 <span class="skill-name">{{this.name}}</span>
                 <span class="fav-attr">{{this.attr}}</span>
                 <span class="fav-val">{{this.system.value}}</span>
@@ -271,7 +271,7 @@
           </div>
           {{#each combatSkills}}
           <div class="skill-row" data-item-id="{{this.id}}">
-            <a class="skill-roll-btn" data-label="{{this.name}}" data-target="{{this.system.value}}" title="Roll"><i class="fas fa-dice-d20"></i></a>
+            <a class="skill-roll-btn" data-label="{{this.name}}" data-target="{{this.system.value}}" title="Roll"><img class="row-icon" src="{{this.img}}" /></a>
             <span class="skill-name">{{this.name}}</span>
             <span class="skill-attr">{{this.system.attribute}}</span>
             <input class="skill-value-item" type="number" data-item-id="{{this.id}}" value="{{this.system.value}}" min="0" max="200" />
@@ -296,7 +296,7 @@
           </div>
           {{#each this.skills}}
           <div class="skill-row" data-item-id="{{this.id}}">
-            <a class="skill-roll-btn" data-label="{{this.name}}" data-target="{{this.system.value}}" title="Roll"><i class="fas fa-dice-d20"></i></a>
+            <a class="skill-roll-btn" data-label="{{this.name}}" data-target="{{this.system.value}}" title="Roll"><img class="row-icon" src="{{this.img}}" /></a>
             <span class="skill-name">{{this.name}}</span>
             <input class="skill-value-item" type="number" data-item-id="{{this.id}}" value="{{this.system.value}}" min="0" max="200" />
             <input class="skill-adv-item" type="checkbox" data-item-id="{{this.id}}" {{#if this.system.advancement}}checked{{/if}} />
@@ -407,11 +407,12 @@
           <div class="items-section panel">
             <div class="section-header"><h3 class="panel-title">Items</h3><a class="item-create" data-type="item" title="Add item"><i class="fas fa-plus"></i></a></div>
             <div class="item-list-header item-list-cols">
-              <span>Name</span><span>Weight</span><span>Price</span><span>Controls</span>
+              <span></span><span>Name</span><span>Weight</span><span>Price</span><span>Controls</span>
             </div>
             <ul class="item-list">
               {{#each items}}
               <li class="item flexrow item-row" data-item-id="{{this.id}}">
+                <img class="row-icon" src="{{this.img}}" />
                 <span class="item-name">{{this.name}}</span>
                 <span class="item-weight">{{this.system.weight}}</span>
                 <span class="item-price">{{this.system.price}}</span>
