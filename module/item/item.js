@@ -59,7 +59,7 @@ export default class SabatItem extends Item {
       const form = sys.form ?? this.system.form;
       const nature = sys.nature ?? this.system.nature;
       if ((sys.form !== undefined || sys.nature !== undefined) && form && nature) {
-        changed.img = ASSET_BASE + `ui/icons/spells/${nature}${form}.png`;
+        changed.img = ASSET_BASE + `ui/icons/spells/${nature.toLowerCase()}${form}.png`;
       }
     }
 
