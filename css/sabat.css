@@ -193,11 +193,13 @@
 .edit-locked .skill-group .skill-row { grid-template-columns: 40px 1fr 44px 22px !important; }
 .edit-locked .combat-skills .skill-row { grid-template-columns: 40px 1fr 50px 44px 22px !important; }
 
-/* Hide the Controls header label and .item-controls in locked mode */
+/* Hide the Controls header label in locked mode */
 .edit-locked .weapon-list-header > :last-child,
 .edit-locked .armor-list-header > :last-child,
 .edit-locked .item-list-cols > :last-child,
-.edit-locked .spell-list-header > :last-child { display: none !important; }
+.edit-locked .spell-list-header > :last-child,
+.edit-locked .skill-list-header > :last-child,
+.edit-locked .fav-list-header > :last-child { display: none !important; }
 
 /* Keep sliders and point checkboxes interactive */
 .edit-locked .ghost-slider,
@@ -536,8 +538,8 @@
 .sabat-sheet .fav-row { display: grid; gap: 4px; align-items: center; padding: 3px 4px; border-radius: 2px; transition: background 0.1s; font-size: 0.95em; }
 .sabat-sheet .fav-row:hover { background: rgba(201,162,39,0.15); }
 /* fav-skill: icon | name | attr | value | adv | controls */
-.sabat-sheet .fav-skill-row { grid-template-columns: 40px 1fr 36px 36px 22px 28px; }
-.edit-locked .fav-skill-row { grid-template-columns: 40px 1fr 36px 36px 22px !important; }
+.sabat-sheet .fav-skill-row { grid-template-columns: 40px 1fr 80px 36px 22px 28px; }
+.edit-locked .fav-skill-row { grid-template-columns: 40px 1fr 80px 36px 22px !important; }
 .sabat-sheet .fav-list-header {
   font-size: 0.72em; font-weight: bold; color: var(--aq-brown);
   text-transform: none; letter-spacing: 0.02em;
