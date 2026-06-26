@@ -330,23 +330,14 @@ export default class SabatActorSheet extends ActorSheet {
       const item = this.actor.items.get(li.data("itemId"));
       if (!item) return;
       const s = item.system;
-      const isBoon = s.traitType === "boon";
-      const typeLabel = isBoon ? "Boon" : "Bane";
-      const headerBg = isBoon ? "frameGood" : "frameEvil";
-      const content = `
-<div class="sabat-trait-card">
-  <div class="trait-card-header" style="background: url('https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/${headerBg}.png') repeat;">
-    <img class="trait-card-icon" src="${item.img}" />
-    <div>
-      <div class="trait-card-name">${item.name}</div>
-      <div class="trait-card-type">${typeLabel} · ${s.points} pts</div>
-    </div>
-  </div>
-  ${s.description ? `<div class="trait-card-body"><div class="trait-card-desc">${s.description}</div></div>` : ""}
-</div>`;
+      const isBane = s.traitType === "bane";
+      const typeLabel = isBane ? "Bane" : "Boon";
+      const headerBg = isBane ? "frameEvil" : "frameGood";
       await ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-        content
+        content: this._buildChatCard(item.name, typeLabel, item.img, headerBg,
+          `<span>Type: <strong>${typeLabel}</strong></span><span>Points: <strong>${s.points}</strong></span>`,
+          s.description || "")
       });
     });
     html.find(".affliction-post").click(async ev => {
@@ -355,25 +346,14 @@ export default class SabatActorSheet extends ActorSheet {
       const item = this.actor.items.get(li.data("itemId"));
       if (!item) return;
       const s = item.system;
-      let fields = "";
-      if (s.severity) fields += `<div class="trait-card-field"><strong>Severity:</strong> ${s.severity}</div>`;
-      if (s.infection) fields += `<div class="trait-card-field"><strong>Infection:</strong> ${s.infection}%</div>`;
-      if (s.description) fields += `<div class="trait-card-field"><strong>Description:</strong> ${s.description}</div>`;
-      if (s.infectionDescription) fields += `<div class="trait-card-field"><strong>Infection:</strong> ${s.infectionDescription}</div>`;
-      const content = `
-<div class="sabat-trait-card">
-  <div class="trait-card-header" style="background: url('https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/frameEvil.png') repeat;">
-    <img class="trait-card-icon" src="${item.img}" />
-    <div>
-      <div class="trait-card-name">${item.name}</div>
-      <div class="trait-card-type">Affliction${s.severity ? " · " + s.severity : ""}</div>
-    </div>
-  </div>
-  ${fields ? `<div class="trait-card-body">${fields}</div>` : ""}
-</div>`;
+      let meta = "";
+      if (s.severity) meta += `<span>Severity: <strong>${s.severity}</strong></span>`;
+      if (s.infection) meta += `<span>Infection: <strong>${s.infection}%</strong></span>`;
+      let body = s.description || "";
+      if (s.infectionDescription) body += `<div class="spell-card-label">Infection</div><div class="spell-card-value">${s.infectionDescription}</div>`;
       await ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-        content
+        content: this._buildChatCard(item.name, "Affliction", item.img, "frameGood", meta, body)
       });
     });
     html.find(".char-shield").click(async ev => {
@@ -500,39 +480,36 @@ export default class SabatActorSheet extends ActorSheet {
   }
 
   // --- Skill post to chat ---
+  _buildChatCard(name, typeLabel, icon, headerBg, metaHtml, bodyHtml, buttonHtml) {
+    const base = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/";
+    return `
+<div class="sabat-spell-card">
+  <div class="spell-card-header" style="background: url('${base}ui/elements/${headerBg}.png') repeat;">
+    ${icon ? `<img class="spell-card-icon" src="${icon}" />` : ""}
+    <div>
+      <div class="spell-card-name">${name}</div>
+      <div class="spell-card-latin">${typeLabel}</div>
+    </div>
+  </div>
+  ${metaHtml ? `<div class="spell-card-meta-bar">${metaHtml}</div>` : ""}
+  <div class="spell-card-body">
+    ${bodyHtml ? `<div class="spell-card-value">${bodyHtml}</div>` : ""}
+    ${buttonHtml || ""}
+  </div>
+</div>`;
+  }
+
   async _onSkillPost(event) {
     event.preventDefault();
-    const el = event.currentTarget;
-    const li = $(el).closest("[data-item-id]");
+    const li = $(event.currentTarget).closest("[data-item-id]");
     const item = this.actor.items.get(li.data("itemId"));
     if (!item) return;
     const s = item.system;
-    const skillValue = s.value ?? 0;
-    const attribute = s.attribute || "";
-    const base = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/";
-
-    let fields = "";
-    if (attribute) fields += `<div class="trait-card-field"><strong>Attribute:</strong> ${attribute}</div>`;
-    fields += `<div class="trait-card-field"><strong>Value:</strong> ${skillValue}%</div>`;
-    if (s.description) fields += `<div class="trait-card-field">${s.description}</div>`;
-
-    const content = `
-<div class="sabat-trait-card">
-  <div class="trait-card-header" style="background: url('${base}ui/elements/frameGood.png') repeat;">
-    <img class="trait-card-icon" src="${item.img}" />
-    <div>
-      <div class="trait-card-name">${item.name}</div>
-      ${attribute ? `<div class="trait-card-type">${attribute}</div>` : ""}
-    </div>
-  </div>
-  <div class="trait-card-body">
-    ${fields}
-    <button class="spell-cast-btn skill-chat-roll-btn" data-item-id="${item.id}">Roll Skill</button>
-  </div>
-</div>`;
+    const meta = `<span>Attribute: <strong>${s.attribute || "—"}</strong></span><span>Value: <strong>${s.value ?? 0}%</strong></span>${s.advancement ? "<span>Advancement: <strong>Yes</strong></span>" : ""}`;
     await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      content
+      content: this._buildChatCard(item.name, "Skill", item.img, "frameGood", meta, s.description || "",
+        `<button class="spell-cast-btn skill-chat-roll-btn" data-item-id="${item.id}">Roll Skill</button>`)
     });
   }
 
@@ -603,109 +580,49 @@ export default class SabatActorSheet extends ActorSheet {
     const item = this.actor.items.get(li.data("itemId"));
     if (!item) return;
     const s = item.system;
-    const base = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/";
-
     const skillName = s.skill || "Improvised";
     const skillItem = this.actor.items.find(i => i.type === "skill" && i.name.toLowerCase() === skillName.toLowerCase());
     const skillLabel = skillItem?.name ?? skillName;
     const skillValue = skillItem?.system.value ?? 0;
-
-    let fields = "";
-    const fld = (label, val) => { if (val !== undefined && val !== "" && val !== null) fields += `<div class="trait-card-field"><strong>${label}:</strong> ${val}</div>`; };
-    fld("Skill", `${skillLabel} (${skillValue}%)`);
-    fld("Damage", s.damage);
-    fld("Size", s.size);
-    fld("Range", s.range);
-    fld("Weight", s.weight);
-    if (s.notes) fld("Notes", s.notes);
-    if (s.description) fields += `<div class="trait-card-field">${s.description}</div>`;
-
-    const content = `
-<div class="sabat-trait-card">
-  <div class="trait-card-header" style="background: url('${base}ui/elements/frameGood.png') repeat;">
-    <div>
-      <div class="trait-card-name">${item.name}</div>
-      <div class="trait-card-type">Weapon</div>
-    </div>
-  </div>
-  <div class="trait-card-body">
-    ${fields}
-    <button class="spell-cast-btn weapon-chat-roll-btn" data-item-id="${item.id}">Roll Attack</button>
-  </div>
-</div>`;
+    const meta = `<span>Skill: <strong>${skillLabel} (${skillValue}%)</strong></span><span>Damage: <strong>${s.damage}</strong></span><span>Size: <strong>${s.size}</strong></span><span>Range: <strong>${s.range}</strong></span><span>Weight: <strong>${s.weight}</strong></span>`;
+    let body = s.description || "";
+    if (s.notes) body += (body ? "<br>" : "") + `<em>${s.notes}</em>`;
     await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      content
+      content: this._buildChatCard(item.name, "Weapon", null, "frameGood", meta, body,
+        `<button class="spell-cast-btn weapon-chat-roll-btn" data-item-id="${item.id}">Roll Attack</button>`)
     });
   }
 
-  // --- Armor post to chat ---
   async _onArmorPost(event) {
     event.preventDefault();
     const li = $(event.currentTarget).closest("[data-item-id]");
     const item = this.actor.items.get(li.data("itemId"));
     if (!item) return;
     const s = item.system;
-    const base = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/";
-
     const LOC_LABELS = { head: "Head", rightArm: "Right Arm", leftArm: "Left Arm", chest: "Chest", abdomen: "Abdomen", rightLeg: "Right Leg", leftLeg: "Left Leg" };
-    const coveredLocs = Object.entries(s.locations ?? {}).filter(([, v]) => v).map(([k]) => LOC_LABELS[k] || k);
-
-    let fields = "";
-    const fld = (label, val) => { if (val !== undefined && val !== "" && val !== null) fields += `<div class="trait-card-field"><strong>${label}:</strong> ${val}</div>`; };
-    fld("Protection", s.protection);
-    fld("Durability", s.durability);
-    fld("Weight", s.weight);
-    fld("Price", s.price);
-    if (coveredLocs.length) fld("Locations", coveredLocs.join(", "));
-    if (s.description) fields += `<div class="trait-card-field">${s.description}</div>`;
-
-    const content = `
-<div class="sabat-trait-card">
-  <div class="trait-card-header" style="background: url('${base}ui/elements/frameGood.png') repeat;">
-    <div>
-      <div class="trait-card-name">${item.name}</div>
-      <div class="trait-card-type">Armor</div>
-    </div>
-  </div>
-  ${fields ? `<div class="trait-card-body">${fields}</div>` : ""}
-</div>`;
+    const locs = Object.entries(s.locations ?? {}).filter(([, v]) => v).map(([k]) => LOC_LABELS[k] || k);
+    const meta = `<span>Protection: <strong>${s.protection}</strong></span><span>Durability: <strong>${s.durability}</strong></span><span>Weight: <strong>${s.weight}</strong></span><span>Price: <strong>${s.price}</strong></span>${locs.length ? `<span>Locations: <strong>${locs.join(", ")}</strong></span>` : ""}`;
     await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      content
+      content: this._buildChatCard(item.name, "Armor", null, "frameGood", meta, s.description || "")
     });
   }
 
-  // --- Item post to chat ---
   async _onItemPost(event) {
     event.preventDefault();
     const li = $(event.currentTarget).closest("[data-item-id]");
     const item = this.actor.items.get(li.data("itemId"));
     if (!item) return;
     const s = item.system;
-    const base = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/";
-
-    let fields = "";
-    const fld = (label, val) => { if (val !== undefined && val !== "" && val !== null) fields += `<div class="trait-card-field"><strong>${label}:</strong> ${val}</div>`; };
-    fld("Weight", s.weight);
-    fld("Price", s.price);
-    if (s.notes) fld("Notes", s.notes);
-    if (s.description) fields += `<div class="trait-card-field">${s.description}</div>`;
-
-    const content = `
-<div class="sabat-trait-card">
-  <div class="trait-card-header" style="background: url('${base}ui/elements/frameGood.png') repeat;">
-    <img class="trait-card-icon" src="${item.img}" />
-    <div>
-      <div class="trait-card-name">${item.name}</div>
-      <div class="trait-card-type">Item</div>
-    </div>
-  </div>
-  ${fields ? `<div class="trait-card-body">${fields}</div>` : ""}
-</div>`;
+    let meta = "";
+    if (s.weight) meta += `<span>Weight: <strong>${s.weight}</strong></span>`;
+    if (s.price) meta += `<span>Price: <strong>${s.price}</strong></span>`;
+    let body = s.description || "";
+    if (s.notes) body += (body ? "<br>" : "") + `<em>${s.notes}</em>`;
     await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      content
+      content: this._buildChatCard(item.name, "Item", item.img, "frameGood", meta, body)
     });
   }
 

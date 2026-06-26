@@ -878,7 +878,7 @@
 .sabat-sheet.item-sheet .item-body { padding: 12px; }
 .spell-sheet .item-header { background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/frameEvil.png") repeat !important; }
 .ritual-sheet .item-header { background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/frameGood.png") repeat !important; }
-.sabat-ritual-card .spell-card-header { background: linear-gradient(135deg, #0a1a3a, #1a2a4a) !important; }
+.sabat-ritual-card .spell-card-header { background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/frameGood.png") repeat !important; }
 .trait-boon .item-header { background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/frameGood.png") repeat !important; }
 .trait-bane .item-header { background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/frameEvil.png") repeat !important; }
 .sabat-sheet .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; margin-bottom: 10px; }
@@ -981,10 +981,10 @@
   font-family: var(--aq-font);
 }
 
-/* Dark header: icon + name + latin */
+/* Dark header: icon + name + type */
 .spell-card-header {
   display: flex; gap: 12px; padding: 12px;
-  background: linear-gradient(135deg, #1a0e05, #2a1a0a);
+  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/frameEvil.png") repeat;
   align-items: center; color: var(--aq-parchment);
 }
 
