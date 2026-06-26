@@ -29,24 +29,31 @@ Hooks.once("ready", async function () {
     const index = await pack.getIndex();
     if (index.size > 0) continue;
 
+    const wasLocked = pack.locked;
+    if (wasLocked) await pack.configure({ locked: false });
+
     const resp = await fetch(`systems/sabat/data/${dataFile}.json`);
-    if (!resp.ok) continue;
+    if (!resp.ok) { if (wasLocked) await pack.configure({ locked: true }); continue; }
     const items = await resp.json();
     if (items.length) {
       await Item.createDocuments(items.map(i => { delete i._id; return i; }), { pack: packName });
       console.log(`Sabat | Populated ${packName} with ${items.length} items`);
     }
+    if (wasLocked) await pack.configure({ locked: true });
   }
 
-  // Migrate legacy skills: remove old hardcoded skills (no description) and replace with compendium skills
+  // Migrate legacy skills: remove skills without descriptions, ensure compendium skills present
   for (const actor of game.actors) {
     if (actor.type !== "character") continue;
     const oldSkills = actor.items.filter(i => i.type === "skill" && !i.system.description);
     if (!oldSkills.length) continue;
     await actor.deleteEmbeddedDocuments("Item", oldSkills.map(i => i.id));
-    const skillData = await _loadSkillsData();
-    if (skillData.length) await actor.createEmbeddedDocuments("Item", skillData);
-    console.log(`Sabat | Replaced ${oldSkills.length} legacy skills on ${actor.name}`);
+    const remaining = actor.items.filter(i => i.type === "skill");
+    if (!remaining.length) {
+      const skillData = await _loadSkillsData();
+      if (skillData.length) await actor.createEmbeddedDocuments("Item", skillData);
+    }
+    console.log(`Sabat | Removed ${oldSkills.length} legacy skills from ${actor.name}`);
   }
 
   // Migrate legacy "equipment" items → "armor" type.
