@@ -605,7 +605,7 @@ export default class SabatActorSheet extends ActorSheet {
     const meta = `<span>Protection: <strong>${s.protection}</strong></span><span>Durability: <strong>${s.durability}</strong></span><span>Weight: <strong>${s.weight}</strong></span><span>Price: <strong>${s.price}</strong></span>${locs.length ? `<span>Locations: <strong>${locs.join(", ")}</strong></span>` : ""}`;
     await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      content: this._buildChatCard(item.name, "Armor", null, "frameGood", meta, s.description || "")
+      content: this._buildChatCard(item.name, "Armor", item.img, "frameGood", meta, s.description || "")
     });
   }
 
