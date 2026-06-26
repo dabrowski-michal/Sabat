@@ -42,17 +42,12 @@ Hooks.once("ready", async function () {
     if (wasLocked) await pack.configure({ locked: true });
   }
 
-  // Migrate legacy skills: remove skills without descriptions, ensure compendium skills present
+  // Remove old hardcoded skills (no description) from all characters
   for (const actor of game.actors) {
     if (actor.type !== "character") continue;
     const oldSkills = actor.items.filter(i => i.type === "skill" && !i.system.description);
     if (!oldSkills.length) continue;
     await actor.deleteEmbeddedDocuments("Item", oldSkills.map(i => i.id));
-    const remaining = actor.items.filter(i => i.type === "skill");
-    if (!remaining.length) {
-      const skillData = await _loadSkillsData();
-      if (skillData.length) await actor.createEmbeddedDocuments("Item", skillData);
-    }
     console.log(`Sabat | Removed ${oldSkills.length} legacy skills from ${actor.name}`);
   }
 
