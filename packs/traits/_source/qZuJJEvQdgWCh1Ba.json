@@ -1,0 +1,13 @@
+{
+  "name": "Non-Combatant",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/banes/default.png",
+  "system": {
+    "traitType": "bane",
+    "points": 3,
+    "description": "For some reason — having killed a best friend in a fit of anger, received a grave wound in battle, or just seen and lived through too many things in life — the character hates combat, warfare, and fighting, such that he suffers -25% in all Arms skills. This isn't to say that he is a coward, only that he is not disposed to combat, and when he is involved in it, it pains him deeply."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "qZuJJEvQdgWCh1Ba"
+}

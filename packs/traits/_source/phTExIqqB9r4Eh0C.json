@@ -1,0 +1,13 @@
+{
+  "name": "Inheritor",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/boons/default.png",
+  "system": {
+    "traitType": "boon",
+    "points": 1,
+    "description": "The character's parents or guardians have died and he has become the inheritor of their fortunes and titles, whether because he is the firstborn or because no other sibling was able to assume the inheritance. The PC acquires his family's class and also begins the game with double the initial money.\n\nThis boon can be chosen only by characters belonging to the Upper or Lower Nobility."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "phTExIqqB9r4Eh0C"
+}

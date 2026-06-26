@@ -1,0 +1,15 @@
+{
+  "name": "Dodge",
+  "type": "skill",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/agility.png",
+  "system": {
+    "attribute": "Agility",
+    "combat": false,
+    "advancement": false,
+    "value": 0,
+    "description": "With this skill, a character can avoid an opponent's attack using his flexibility, swiftness, and reaction speed, and a certain amount of intuition that not everyone has. Nonetheless, some attacks can't be dodged, such as those coming from projectile weapons — arrows, darts or stones. This skill is described in complete detail in Chapter IV (page 126)."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "6h8l7qgATtLFxJpR"
+}

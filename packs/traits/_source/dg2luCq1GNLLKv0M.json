@@ -1,0 +1,13 @@
+{
+  "name": "Filthy",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/banes/default.png",
+  "system": {
+    "traitType": "bane",
+    "points": 2,
+    "description": "Although the low level of hygiene that existed during the Middle Ages is legendary, the character's own cleanliness is the lowest humanly possible: he is a person who never bathes (at least voluntarily), and he never changes his clothes until they fall apart. This means that the character's body odor has acquired a personality of its own, utterly filling the air around him: any skill roll that requires interaction between the PC and another person — Seduction, Commerce, Eloquence, etc. — is modified by -25% due to the loathing and repugnance provoked in his fellows."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "dg2luCq1GNLLKv0M"
+}

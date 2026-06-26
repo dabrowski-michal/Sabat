@@ -1,0 +1,13 @@
+{
+  "name": "Physical Defect (One-Handed)",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/banes/default.png",
+  "system": {
+    "traitType": "bane",
+    "points": 4,
+    "description": "The character has lost a hand, and although he suffers no \"offhand\" penalty, since he has learned to use the remaining hand well, his Dexterity is reduced by 3 points. This bane is incompatible with the Ambidextrous boon."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "cdWFMFzRfHMrtFmY"
+}

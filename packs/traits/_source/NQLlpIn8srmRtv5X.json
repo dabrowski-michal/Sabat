@@ -1,0 +1,13 @@
+{
+  "name": "Raised on the Coast",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/boons/default.png",
+  "system": {
+    "traitType": "boon",
+    "points": 2,
+    "description": "The character has been raised along the coast or near a major river, and learned to swim when he was small — an unusual quality in the Middle Ages — and to know how to handle small boats. Raise the percentage of his Swim and Shiphandling skills by 25% each."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "NQLlpIn8srmRtv5X"
+}

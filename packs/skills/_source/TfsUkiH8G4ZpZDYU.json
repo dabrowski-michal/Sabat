@@ -1,0 +1,15 @@
+{
+  "name": "Throw",
+  "type": "skill",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/agility.png",
+  "system": {
+    "attribute": "Agility",
+    "combat": false,
+    "advancement": false,
+    "value": 0,
+    "description": "By means of this skill, a character can throw objects to strike a specified spot with precision: tossing a weapon to the hands of a friend, pitching a ball through a hole, catching a rope with a grapnel on the ledge of a building — or to use a throwing weapon (knife, hand axe, rock, etc.). Any object that can fit in the hand and is balanced can be thrown a maximum distance in varas equal to the character's Strength; if it is bigger or unbalanced, the distance should be considerably reduced."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "TfsUkiH8G4ZpZDYU"
+}

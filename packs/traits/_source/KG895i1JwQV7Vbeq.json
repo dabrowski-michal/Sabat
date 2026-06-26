@@ -1,0 +1,13 @@
+{
+  "name": "Physical Defect (One-Eyed)",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/banes/default.png",
+  "system": {
+    "traitType": "bane",
+    "points": 3,
+    "description": "The character has only one good eye. His Perception is reduced by 2 points and all his skills with ranged weapons and Throw are reduced by 25%."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "KG895i1JwQV7Vbeq"
+}

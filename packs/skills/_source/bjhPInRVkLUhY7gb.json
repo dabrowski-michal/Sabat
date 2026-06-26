@@ -1,0 +1,15 @@
+{
+  "name": "Maces",
+  "type": "skill",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/strength.png",
+  "system": {
+    "attribute": "Strength",
+    "combat": true,
+    "advancement": false,
+    "value": 0,
+    "description": "Arms Skill for Soldiers or Nobles\n\nWith this skill a character is able to use all types of maces or clubs in hand-to-hand combat, no matter their size or weight, such as the maza de armas, the martillo de guerra, or the clava. For more information see Chapter IV (page 137)."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "bjhPInRVkLUhY7gb"
+}

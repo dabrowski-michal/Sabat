@@ -1,0 +1,13 @@
+{
+  "name": "Family Relic",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/banes/default.png",
+  "system": {
+    "traitType": "bane",
+    "points": 1,
+    "description": "The character possesses an object that has passed from generation to generation and which is considered extremely important; a tie to his family and a reminder of the place they occupy in the world. It could be a weapon, a jewel, a musical instrument, a book — although not of spells — and the character can never be separated from it. If it is stolen, he must do everything possible to recover it, and if it is ever lost, the character receives no Experience Points at the end of the adventure in which that occurred."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "I7ozlNAbMmKyRmUY"
+}

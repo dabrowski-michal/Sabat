@@ -1,0 +1,13 @@
+{
+  "name": "Natural Resistance (Hard Head)",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/boons/default.png",
+  "system": {
+    "traitType": "boon",
+    "points": 1,
+    "description": "The character never has headaches, is immune to hangovers, and is very difficult to render unconscious: any Vitality roll he makes to avoid losing consciousness is made as if his Vitality were 5 points higher."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "T18iwItCqpgrxMp1"
+}

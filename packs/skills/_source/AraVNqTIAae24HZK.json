@@ -1,0 +1,15 @@
+{
+  "name": "Craft",
+  "type": "skill",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/dexterity.png",
+  "system": {
+    "attribute": "Dexterity",
+    "combat": false,
+    "advancement": false,
+    "value": 0,
+    "description": "With this skill the character is able to create, construct, and repair all types of items, as long as he has adequate materials, whether small (gems, horseshoes, or chairs) or large (furniture, houses, or windmills).\n\nWhen a character learns this skill above his basic percentage in Dexterity, he should choose an area of experience, a specific craft, in which he specializes (carpentry, blacksmithing, silversmithing, etc.). He gets his full percentage when he performs a work related to his specialty. But if he tries to work on an item entirely outside the borders of his specialty, the Craft roll is made at half that value (rounding upward) to indicate his unfamiliarity with the common methods of that specialty."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "AraVNqTIAae24HZK"
+}

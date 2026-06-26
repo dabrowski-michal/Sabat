@@ -1,0 +1,13 @@
+{
+  "name": "Reduced Characteristic",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/banes/default.png",
+  "system": {
+    "traitType": "bane",
+    "points": 1,
+    "description": "The character has been left behind in development of one of his seven main characteristics, whether because of lack of a physical ability, relationship problems, illiteracy, etc. Subtract 1 from one of his primary characteristics for each point of bane you take.\n\nThis bane can be chosen several times with different characteristics, or with the same one. It is incompatible with the Enhanced Characteristic boon if it applies to the same characteristic."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "Fc1pDxj51I4TAtzS"
+}

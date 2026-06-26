@@ -1,0 +1,15 @@
+{
+  "name": "Climb",
+  "type": "skill",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/agility.png",
+  "system": {
+    "attribute": "Agility",
+    "combat": false,
+    "advancement": false,
+    "value": 0,
+    "description": "By using this skill a character can climb more or less vertical surfaces and terrain, such as walls, cliffs, precipices, trees, or battlements. A success with a Climb roll means that the character can scale a distance of 2 varas in one action. A failure indicates that he doesn't move in this round; two consecutive failures or a blunder on the roll causes the character to fall.\n\nIf the need arises, the character can cover a greater distance each round, although the percentage in Climb is reduced by 10% for each additional vara he wishes to climb this round. Certainly ladders, folding steps, and ropes can be used to help a climb, these items could raise the Climb skill by up to +40%."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "x9qWCA79ISjs8JHU"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Animal Empathy",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/boons/default.png",
+  "system": {
+    "traitType": "boon",
+    "points": 1,
+    "description": "The character gets along well with animals and can approach them without trouble; they won't attack him unless he demonstrates hostility toward them or their offspring, or the animals are starving, or they have been specifically trained to attack at the command of their handler. In any event, the PC raises his Animal Knowledge skill by 25%. Remember, however, that creatures of the irrational world do not count within the definition of animal.\n\nThis boon is incompatible with the Animal Antipathy bane."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "U1S8LvJnOng0wVJY"
+}

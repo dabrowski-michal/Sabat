@@ -1,0 +1,13 @@
+{
+  "name": "Man of the World",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/boons/default.png",
+  "system": {
+    "traitType": "boon",
+    "points": 1,
+    "description": "He has seen much and heard all sorts of stories about the world around him, which makes him well experienced with the local customs and habits of a goodly part of the peninsular kingdoms. Because of this, wherever the character finds himself on the Iberian peninsula, he always has a minimum percentage in Area Knowledge equal to his Culture rating, even though he was not born there."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "6jOSL0IZbcNJOVzN"
+}

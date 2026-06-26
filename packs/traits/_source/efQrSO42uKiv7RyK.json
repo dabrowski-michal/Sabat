@@ -1,0 +1,13 @@
+{
+  "name": "Comely (Nearly Inhuman Beauty)",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/boons/default.png",
+  "system": {
+    "traitType": "boon",
+    "points": 3,
+    "description": "Your character has a more pleasing appearance than normal. The character has an Appearance rating of 25.\n\nThis boon is incompatible with the Ugly bane."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "efQrSO42uKiv7RyK"
+}

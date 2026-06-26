@@ -1,0 +1,15 @@
+{
+  "name": "Staves",
+  "type": "skill",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/agility.png",
+  "system": {
+    "attribute": "Agility",
+    "combat": true,
+    "advancement": false,
+    "value": 0,
+    "description": "Arms Skill for Townsfolk\n\nWith this skill, a character can use all sorts of batons or staves in hand-to-hand combat, such as the bordon or the baston de combate. For more information, see Chapter IV (page 138)."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "WcURYxPY8EcFK12B"
+}

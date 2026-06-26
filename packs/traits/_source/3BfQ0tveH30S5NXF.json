@@ -1,0 +1,13 @@
+{
+  "name": "Leader",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/boons/default.png",
+  "system": {
+    "traitType": "boon",
+    "points": 1,
+    "description": "The character is accustomed to command. Maybe he was the leader of a group of mercenaries or bandits, or instructed a series of apprentices in his career, or it could be that he was simply in charge of a group of workers. But for a certainty, he knows how to give orders; raise his Command skill by 25%."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "3BfQ0tveH30S5NXF"
+}

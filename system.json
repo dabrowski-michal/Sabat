@@ -31,7 +31,22 @@
       "affliction": {}
     }
   },
-  "packs": [],
+  "packs": [
+    {
+      "name": "skills",
+      "label": "Skills",
+      "path": "packs/skills",
+      "type": "Item",
+      "system": "sabat"
+    },
+    {
+      "name": "traits",
+      "label": "Traits",
+      "path": "packs/traits",
+      "type": "Item",
+      "system": "sabat"
+    }
+  ],
   "languages": [
     {
       "lang": "en",

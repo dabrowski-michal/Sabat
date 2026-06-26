@@ -1,0 +1,15 @@
+{
+  "name": "Alchemy",
+  "type": "skill",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/culture.png",
+  "system": {
+    "attribute": "Culture",
+    "combat": false,
+    "advancement": false,
+    "value": 0,
+    "description": "With centuries of tradition at its back, Medieval alchemy is a strange hodgepodge of science and philosophy, of chemistry and astrology, of physics and art. The alchemist surrounds himself in his laboratory with alembics and athanors, experimenting with the strangest elements and preparations in the universe and, at the same time, reflecting on the influence of the stars, or the discovery of the philosopher's stone.\n\nWithin the scope of the game, the Alchemy skill permits a character to create simple chemical compounds — such as drugs, poisons, antidotes, acids, and other substances of the apothecary, develop magical unguents and potions, and understand the complicated language that appears in alchemical works and the more complicated jargon alchemists use to promulgate their secrets — or to disguise them."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "Fl41sNLjVHWGaub5"
+}

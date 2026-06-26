@@ -1,0 +1,15 @@
+{
+  "name": "Pick Lock",
+  "type": "skill",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/dexterity.png",
+  "system": {
+    "attribute": "Dexterity",
+    "combat": false,
+    "advancement": false,
+    "value": 0,
+    "description": "This skill measures the ability of a character to manipulate the old mechanical gadgets that are common at the time, although it is used especially for opening locks on doors, coffers, and similar things using picks and wires — if those are not available, the roll for Pick Lock should have a considerable penalty and the lock will be unserviceable after it is forced — as well as for removing devices such as traps, lures, etc. In cases where the GD wishes to increase the difficulty of opening and manipulating locks and other types of mechanisms, we remind you that in the Medieval period, these types of appliances are much larger, bulkier, and simpler than their counterparts today, and therefore only those lock workings crafted by true master artisans should be considered a challenge for the characters."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "HVlnES8GrgmolaHr"
+}

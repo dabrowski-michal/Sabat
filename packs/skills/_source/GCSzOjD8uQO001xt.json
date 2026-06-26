@@ -1,0 +1,15 @@
+{
+  "name": "Stealth",
+  "type": "skill",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/agility.png",
+  "system": {
+    "attribute": "Agility",
+    "combat": false,
+    "advancement": false,
+    "value": 0,
+    "description": "If a character wants to pass unseen, this is the skill to be used. With it he can move as quietly as possible, mix in with a crowd to escape pursuit, or hide in the shadows to avoid being seen. It is common for Stealth rolls to be modified by the Game Director, taking into account the specific situation around the character, since the weather (clouds, rain, snow), surrounding objects (rocks, trees, fallen leaves, walls), or the time (night or day) can help or hinder the character's intent to pass unnoticed. It is very common to oppose the Stealth skill with the Discovery or Listen skill of those who could notice him."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "GCSzOjD8uQO001xt"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Delicate",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/banes/default.png",
+  "system": {
+    "traitType": "bane",
+    "points": 2,
+    "description": "The character is a fragile and delicate person, weak to a fault, can't withstand pain, and faints or falls unconscious at the least provocation. As a result, each time that the character is required to make a Vitality roll to overcome pain or not lose consciousness, the roll is made as if the character's Vitality were 5 points less."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "PX4gfjlGYqyxzJ9o"
+}

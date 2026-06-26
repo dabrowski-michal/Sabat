@@ -1,0 +1,13 @@
+{
+  "name": "Insufficient Arcane Knowledge",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/banes/default.png",
+  "system": {
+    "traitType": "bane",
+    "points": 1,
+    "description": "This bane can be chosen only by characters who have the ability to use magic, which is to say, who have at least 50% in Magical Knowledge and 50 in IRR. Due to deficient instruction, the character has not been able to completely finish his study of magic and the occult, and therefore he has learned fewer spells than normal. For each point of bane, the character has one less spell, with a minimum of 1.\n\nThis bane is incompatible with the Arcane Knowledge boon."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "hWZwZcSH9gZUs9Bv"
+}

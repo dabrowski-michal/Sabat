@@ -1,0 +1,15 @@
+{
+  "name": "Memory",
+  "type": "skill",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/perception.png",
+  "system": {
+    "attribute": "Perception",
+    "combat": false,
+    "advancement": false,
+    "value": 0,
+    "description": "This skill determines a character's capacity to retain information and the ability to quickly access his memories of past experiences. With a successful Memory roll — which should always be at the request of the Game Director, never at the player's own initiative — the character can remember details he may have overlooked: a name lost in the memories of childhood or a face glimpsed once among a multitude. Furthermore, if the GD thinks that one of the players has forgotten an important element of the adventure currently being played, he may make a Memory roll for the character to recall it, and thus get the party back on track."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "HDBTq0Zf2pCLxb0l"
+}

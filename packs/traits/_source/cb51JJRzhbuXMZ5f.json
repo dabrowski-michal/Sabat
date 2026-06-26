@@ -1,0 +1,13 @@
+{
+  "name": "Arms Master",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/boons/default.png",
+  "system": {
+    "traitType": "boon",
+    "points": 3,
+    "description": "The character has a natural affinity for combat: all his arms skills are raised by 10%."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "cb51JJRzhbuXMZ5f"
+}

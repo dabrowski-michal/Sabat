@@ -1,0 +1,13 @@
+{
+  "name": "Understanding",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/boons/default.png",
+  "system": {
+    "traitType": "boon",
+    "points": 1,
+    "description": "The character is an insightful, sympathetic person, able to perceive emotions in others however much they try to hide them. This allows him to anticipate those feelings, as much to help those persons as to use the knowledge for his own benefit. Raise his Empathy percentage by 25%."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "r9HE60DlgkCplTXJ"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Companion in Misfortunes",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/banes/default.png",
+  "system": {
+    "traitType": "bane",
+    "points": 2,
+    "description": "The character is accompanied on his adventures by a friend, servant, partner, or spouse who travels with him and shares his fortunes and failures. The companion is created in the usual way, but has only 75 points to divide among characteristics, and no points at all to distribute among skills — so that only the four primary skills of the companion's occupation are elevated. Although the player is in charge of controlling this NPC companion, the GD should ensure that the NPC is not committed to stupid or suicidal actions. If the PC's companion dies during the course of the adventure, the PC receives no Experience Points at the adventure's finish."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "wqFEg8D04wzInjq5"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Disinherited",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/banes/default.png",
+  "system": {
+    "traitType": "bane",
+    "points": 1,
+    "description": "The character has been cast out of the bosom of his family for some sort of quarrel with his parents. He has no right to claim his inheritance or his family title — if the family is noble — and he is forced to live in a situation humbler than that in which he was raised. For all intents, the PC is considered to have a social position one level below his actual one.\n\nThis bane can't be chosen for characters that belong to the peasant or slave classes, nor for those PCs who have the Inheritor boon."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "Q0O1VfxIdakEAWJ1"
+}

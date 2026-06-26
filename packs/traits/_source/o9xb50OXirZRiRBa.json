@@ -1,0 +1,13 @@
+{
+  "name": "Friendship (Burgher/Lower Nobility)",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/boons/default.png",
+  "system": {
+    "traitType": "boon",
+    "points": 1,
+    "description": "The character has an influential \"friend in high places\" in a specific territory, and although that contact doesn't accompany the character on adventures, he might be able to help out if he finds the character in difficult circumstances within an area that falls under his influence. The friend belongs to the Burgher or Lower Nobility.\n\nIt is supposed that the area of influence of the character's friend is a city or something no larger than a specific part of a kingdom — a barony, for example. If the friend's influence extends throughout an entire kingdom, multiply the point cost by 2. However, it is impossible that the PC's friend has authority in all kingdoms of the Peninsula."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "o9xb50OXirZRiRBa"
+}

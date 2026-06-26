@@ -1,0 +1,15 @@
+{
+  "name": "Plant Knowledge",
+  "type": "skill",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/culture.png",
+  "system": {
+    "attribute": "Culture",
+    "combat": false,
+    "advancement": false,
+    "value": 0,
+    "description": "All that a character knows about the world of plants is reflected in this skill. With it, the character can easily identify all types of herbs and plants and their natural properties: curative, nutritional, or harmful. It also allows the character to know what type of flower grows in a specific environment, where to sow a crop for best yield, or where to find a specific plant. It is also possible to make a combined roll of this skill with Discover to forage for food or to find a particular herb."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "8IRh1E2JDBld6DYy"
+}

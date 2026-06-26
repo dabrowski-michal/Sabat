@@ -1,0 +1,13 @@
+{
+  "name": "Unbending",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/banes/default.png",
+  "system": {
+    "traitType": "bane",
+    "points": 1,
+    "description": "The character hates and despises everyone who isn't like him, whether that's because they are of a race different from his, they don't share his religion, or they belong to a lower social class than he does. In any case, he finds it impossibly distasteful to hide his feelings, which can provoke many problems each time he finds himself immersed in a \"clash of cultures.\""
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "ltn3Wd9GV98gOqY4"
+}

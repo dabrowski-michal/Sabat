@@ -1,0 +1,15 @@
+{
+  "name": "Music",
+  "type": "skill",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/culture.png",
+  "system": {
+    "attribute": "Culture",
+    "combat": false,
+    "advancement": false,
+    "value": 0,
+    "description": "Medieval music within the peninsular kingdoms of the 14th and 15th centuries is a mix of diverse musical traditions, such as Sephardic songs, Christian compositions, Andalusian and Arabic chants, the surviving Mozarabic rites, new French influences, and the Gregorian chants imposed on Christian liturgy since the 12th century.\n\nThis skill represents a character's musical knowledge; as much at a theoretical level, such as reading pneumatic notations — Medieval musical scores — or the capacity to distinguish influences or authors in a particular melody, as at a practical level. The character can play an instrument, which should be specified when a percentage above the basic value in Culture is gained. Other instruments can also be played, but they impose penalties of -25% to the roll."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "fnQsKDGAUuRqphlh"
+}

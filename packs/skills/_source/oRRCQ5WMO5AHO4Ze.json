@@ -1,0 +1,15 @@
+{
+  "name": "Run",
+  "type": "skill",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/agility.png",
+  "system": {
+    "attribute": "Agility",
+    "combat": false,
+    "advancement": false,
+    "value": 0,
+    "description": "Despite its name, this skill doesn't indicate the distance or speed a person can travel when running — which we shall speak about in Chapter IV (page 120) — but instead his endurance in long-distance races, his ability to leap obstacles, the additional effort he can apply when sprinting, and even the ability to perform particular tricks during a chase."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "oRRCQ5WMO5AHO4Ze"
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Read/Write",
+  "type": "skill",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/culture.png",
+  "system": {
+    "attribute": "Culture",
+    "combat": false,
+    "advancement": false,
+    "value": 0,
+    "description": "This skill represents the character's ability to read and write in all the languages he knows — if he doesn't have a skill for the corresponding language, the PC knows neither how to read or write that language. A successful roll permits him to quickly read a written text, copy paragraphs from an old tome, successfully falsify an official document, write calligraphy with big, beautiful letters in a book of liturgy, translate a book from one language to another — assuming he knows both languages, of course — or browse through the volumes of a library or record their knowledge for posterity. However, the percentage used for the Read/Write skill can never be higher than the percentage in the corresponding Language skill.\n\nIt is necessary to clarify that in the Medieval period the custom of reading in silence is not common, and a minimum rating of 50% in Read/Write is needed to do so. If the character has less than this percentage, he reads everything out loud, though he can decide whether to declaim it in a loud voice or prefers to whisper what he is reading."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "eNdjIs9hVLXnGBB1"
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Slings",
+  "type": "skill",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/perception.png",
+  "system": {
+    "attribute": "Perception",
+    "combat": true,
+    "advancement": false,
+    "value": 0,
+    "description": "Arms Skill for Townsfolk\n\nThis arms skill allows a character to use any type of sling — one of the best-known projectile weapons on the peninsula in the Middle Ages; especially among shepherds and other caretakers of livestock, but also used during battle by professional slingers. For more information, see Chapter IV (page 136)."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "qZ8pIx5F21rWz5FY"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Secret (Humiliation)",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/banes/default.png",
+  "system": {
+    "traitType": "bane",
+    "points": 1,
+    "description": "If the character's secret comes to light, he will be humiliated and people will make fun of him for it: maybe someone in his family is a sodomite or betrayed his lord, it could be that he has a pig's tail, or three nipples, etc."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "qexF3lX87eCr0uIa"
+}

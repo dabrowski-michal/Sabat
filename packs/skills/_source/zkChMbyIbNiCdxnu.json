@@ -1,0 +1,15 @@
+{
+  "name": "Listen",
+  "type": "skill",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/perception.png",
+  "system": {
+    "attribute": "Perception",
+    "combat": false,
+    "advancement": false,
+    "value": 0,
+    "description": "Whenever a character uses his sense of hearing, he is using this skill. With it he may be able to hear noises that in normal circumstances might pass unnoticed: noting how to pronounce someone's name in the middle of a tavern fight, perceiving sounds however soft they are, listening to a conversation through a closed door, or even hearing those noises you might otherwise have paid no attention to — the sound of footsteps approaching while you sleep. This skill is frequently rolled in opposition to a Stealth roll of a character who wishes to move in silence."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "zkChMbyIbNiCdxnu"
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Teach",
+  "type": "skill",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/communication.png",
+  "system": {
+    "attribute": "Communication",
+    "combat": false,
+    "advancement": false,
+    "value": 0,
+    "description": "With this skill a character is able to teach things he knows in the most effective way possible, as much at a theoretical level as a practical one. It is an ideal skill for all who wish to become instructors and masters of other characters, whether PCs or NPCs. With Teach, they can raise the student's percentage in a skill, as explained in the Teaching section of this chapter (page 95)."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "DoJJ9s8OrJQUdLE4"
+}

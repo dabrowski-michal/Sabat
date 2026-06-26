@@ -1,0 +1,13 @@
+{
+  "name": "Animal Companion (Enormous)",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/boons/default.png",
+  "system": {
+    "traitType": "boon",
+    "points": 3,
+    "description": "The character is accompanied everywhere by a truly enormous animal (a bear, for example) which follows him and obeys all his orders, as long as they are not very complicated or difficult. This is a normal animal, without special skills or magical abilities, which must be protected; for if it dies during the course of an adventure, the character receives no Experience Points at the end of that adventure."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "xj5eZffTYIKIuhvP"
+}

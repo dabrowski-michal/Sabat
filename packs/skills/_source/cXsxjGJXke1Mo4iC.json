@@ -1,0 +1,15 @@
+{
+  "name": "Swords",
+  "type": "skill",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/dexterity.png",
+  "system": {
+    "attribute": "Dexterity",
+    "combat": true,
+    "advancement": false,
+    "value": 0,
+    "description": "Arms Skill for Nobles\n\nWith this arms skill, a character can use any type of medium-length sword in hand-to-hand combat, such as the espada, saif, or estoque. For more information, see Chapter IV (page 135)."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "cXsxjGJXke1Mo4iC"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Corpulent",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/banes/default.png",
+  "system": {
+    "traitType": "bane",
+    "points": 3,
+    "description": "The character has serious problems with obesity, and although in the Middle Ages it is thought that fat people enjoy very good health, the truth is that they tire easily and it costs them much to move quickly and gracefully. Raise his body weight by 60 pounds and reduce his Agility by 2 points."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "JzjuxZEOQpY7NEkX"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Secret (Serious Sentence)",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/banes/default.png",
+  "system": {
+    "traitType": "bane",
+    "points": 3,
+    "description": "A powerful family, an organization, or the law of one of the kingdoms is seeking the character for some crime — whether he has actually committed it or not — and if he is caught, he will be severely punished, but not executed unless he resists arrest; the usual punishment is a prolonged prison sentence — we are talking years — perhaps even in a galley for that period of time."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "026aO0TgGoEd9Sf5"
+}

@@ -3,8 +3,48 @@ import SabatActorSheet from "./module/actor/actor-sheet.js";
 import SabatItem from "./module/item/item.js";
 import SabatItemSheet from "./module/item/item-sheet.js";
 
+Hooks.on("createActor", async (actor, options, userId) => {
+  if (actor.type !== "character") return;
+  if (game.user.id !== userId) return;
+  if (actor.items.some(i => i.type === "skill")) return;
+
+  const pack = game.packs.get("sabat.skills");
+  if (!pack) return;
+  const docs = await pack.getDocuments();
+  const skillData = docs.map(d => {
+    const obj = d.toObject();
+    delete obj._id;
+    delete obj.folder;
+    delete obj._stats;
+    return obj;
+  });
+  await actor.createEmbeddedDocuments("Item", skillData);
+});
+
 Hooks.once("ready", async function () {
   if (!game.user?.isGM) return;
+
+  // Populate packs from _source JSON if they are empty
+  for (const packName of ["sabat.skills", "sabat.traits"]) {
+    const pack = game.packs.get(packName);
+    if (!pack) continue;
+    const index = await pack.getIndex();
+    if (index.size > 0) continue;
+
+    const shortName = packName.split(".")[1];
+    const resp = await fetch(`systems/sabat/packs/${shortName}/_source/_manifest.json`);
+    if (!resp.ok) continue;
+    const manifest = await resp.json();
+    const items = [];
+    for (const filename of manifest) {
+      const r = await fetch(`systems/sabat/packs/${shortName}/_source/${filename}`);
+      if (r.ok) items.push(await r.json());
+    }
+    if (items.length) {
+      await Item.createDocuments(items.map(i => { delete i._id; return i; }), { pack: packName });
+      console.log(`Sabat | Populated ${packName} with ${items.length} items from source`);
+    }
+  }
 
   // Migrate legacy "equipment" items → "armor" type.
   // The type field is immutable on existing documents, so we delete + recreate.

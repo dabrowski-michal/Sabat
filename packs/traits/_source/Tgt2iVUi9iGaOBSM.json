@@ -1,0 +1,13 @@
+{
+  "name": "Physical Defect (Hunchbacked)",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/banes/default.png",
+  "system": {
+    "traitType": "bane",
+    "points": 4,
+    "description": "An accident or an illness has left the character misshapen. His Strength and Agility can't be greater than 15 points, he has a -25% modifier to all his Agility skills and his Appearance is reduced by 5 points."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "Tgt2iVUi9iGaOBSM"
+}

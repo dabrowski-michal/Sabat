@@ -1,0 +1,15 @@
+{
+  "name": "Shiphandling",
+  "type": "skill",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/agility.png",
+  "system": {
+    "attribute": "Agility",
+    "combat": false,
+    "advancement": false,
+    "value": 0,
+    "description": "With this skill a character can work any type of vessel that plies the seas in the Medieval period, from a simple rowboat to an immense warship, including pirate slave ships, commercial vessels, Italian argosies, or swift corsairs. It must be taken into account that small boats can be worked by a single character who makes the roll, but larger vessels need a minimum crew to be sailed, so that in those cases it is common to have a combined roll of this skill with Command. Furthermore, the Shiphandling rolls a character makes can be modified by the state of the water (high waves, chop), the weather (gales, tempests, fog, storms) or the vessel being used, since not all have the same sailing characteristics."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "EfvuP1uRr6YICtu8"
+}

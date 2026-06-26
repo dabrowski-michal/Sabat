@@ -1,0 +1,13 @@
+{
+  "name": "Naive",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/banes/default.png",
+  "system": {
+    "traitType": "bane",
+    "points": 1,
+    "description": "Whether due to insufficient experience or simple innocence, the character is a naive and trusting soul, not at all suspicious of others and distrustful of no one, unless given clear proof of someone's bad faith. Reduce the character's Empathy skill by 25%."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "6w6uaVTTCPwdHnAn"
+}

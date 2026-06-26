@@ -1,0 +1,13 @@
+{
+  "name": "Skinny",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/banes/default.png",
+  "system": {
+    "traitType": "bane",
+    "points": 1,
+    "description": "The character is considerably thinner than normal, which can be seen in both his limbs and his face. In the Middle Ages such emaciation is considered a symptom of illness, which can cause people to avoid the character or even treat him with hostility, believing they can be contaminated by him. Reduce the character's weight by 60 pounds."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "tqhjQZRcZufpwFPq"
+}

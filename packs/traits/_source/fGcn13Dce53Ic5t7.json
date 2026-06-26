@@ -1,0 +1,13 @@
+{
+  "name": "Disorder (Bashful)",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/banes/default.png",
+  "system": {
+    "traitType": "bane",
+    "points": 2,
+    "description": "The character is extremely timid and reserved, and it upsets him terribly to deal with others, which results in -15% in his Eloquence, Seduction, and Command skills."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "fGcn13Dce53Ic5t7"
+}

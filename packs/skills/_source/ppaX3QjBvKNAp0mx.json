@@ -1,0 +1,15 @@
+{
+  "name": "Taste",
+  "type": "skill",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/perception.png",
+  "system": {
+    "attribute": "Perception",
+    "combat": false,
+    "advancement": false,
+    "value": 0,
+    "description": "This skill represents a character's ability to smell and taste. The higher his percentage, the more refined those two senses are, permitting him to detect unfit food and drink, including poisons, with a mere sip; to smell aromatic or foul scents in the air — mere traces of a light perfume, the aroma of a plant, the stink of sulfur; or to distinguish between a refined, well-cooked dish and a simple, reheated garlic soup."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "ppaX3QjBvKNAp0mx"
+}

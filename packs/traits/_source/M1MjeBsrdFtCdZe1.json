@@ -1,0 +1,13 @@
+{
+  "name": "Combat Trained",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/boons/default.png",
+  "system": {
+    "traitType": "boon",
+    "points": 2,
+    "description": "For whatever reason or motive — hunting the murderer of his family, intent on finding a missing parent, educated by a warrior father, or the simple love of fighting — the character has been trained in combat since childhood. Add 25% to his percentage in one Arms skill.\n\nThis Boon can be chosen more than once, although for a different arms skill each time, never the same one."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "M1MjeBsrdFtCdZe1"
+}

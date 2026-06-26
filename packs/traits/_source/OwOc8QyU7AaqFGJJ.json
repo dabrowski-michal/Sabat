@@ -1,0 +1,13 @@
+{
+  "name": "Disorder (Sadist)",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/banes/default.png",
+  "system": {
+    "traitType": "bane",
+    "points": 1,
+    "description": "After many years of experience, whether through obligation or for pleasure, the character has developed a taste for inflicting pain on those around him, and we can say that he enjoys doing so. He never passes up an opportunity to torture a prisoner or a helpless creature, and he doesn't care what his companions think about it."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "OwOc8QyU7AaqFGJJ"
+}

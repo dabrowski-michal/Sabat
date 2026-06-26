@@ -1,0 +1,13 @@
+{
+  "name": "Valorous",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/boons/default.png",
+  "system": {
+    "traitType": "boon",
+    "points": 1,
+    "description": "The character is braver than most people, which allows him to face situations with better courage and presence of mind, although this doesn't mean that he is suicidal. As a Boon, the cost is equal to 1 point for each +5% he wishes to raise the value of his Temperance.\n\nThis boon is incompatible with the Coward bane."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "Uk13ZFfPliupqoU7"
+}

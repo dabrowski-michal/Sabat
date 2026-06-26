@@ -1,0 +1,13 @@
+{
+  "name": "Gift for Languages",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/boons/default.png",
+  "system": {
+    "traitType": "boon",
+    "points": 1,
+    "description": "The character has a natural gift for learning languages and can rapidly learn whatever languages he hears. Each time he spends Experience Points to raise the percentage he has in any tongue, the gain is twice the usual (+2% instead of +1%, for example)."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "bFpiAMozPf8eGF9I"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Natural Resistance (Iron Stomach)",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/boons/default.png",
+  "system": {
+    "traitType": "boon",
+    "points": 2,
+    "description": "He can swallow and digest practically whatever he wishes, whether it is fresh or spoiled, cooked or raw. Raise his ability to resist ingested poisons and sicknesses resulting from food by 25%, although his Taste percentage is also reduced by 25%."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "juJtVEFEtb6F7nvd"
+}

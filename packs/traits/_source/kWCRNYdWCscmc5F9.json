@@ -1,0 +1,13 @@
+{
+  "name": "Heightened Senses",
+  "type": "trait",
+  "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/boons/default.png",
+  "system": {
+    "traitType": "boon",
+    "points": 1,
+    "description": "One of the character's senses is extremely heightened, and he can use it with considerable skill. Raise the skill that corresponds to the sense you have heightened by 25%:\n\n* Vision: Discovery\n* Hearing: Listen\n* Smell and taste: Taste\n\nIt is possible to choose this boon more than once, as long as it is a different sense each time, never the same one."
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "kWCRNYdWCscmc5F9"
+}
