@@ -415,6 +415,8 @@ export default class SabatActorSheet extends ActorSheet {
       const alignCap = rr >= 50 ? "Good" : "Evil";
       html.find("#portrait-bg-layer").attr("src", sheetImgBase + "frame/" + alignment + ".png");
       html.find(".sheet-header").css("background-image", `url("${sheetImgBase}elements/frame${alignCap}.png")`);
+      document.documentElement.style.setProperty("--aq-btn-img", `url("${sheetImgBase}elements/button${alignCap}.png")`);
+      document.documentElement.style.setProperty("--aq-check-img", `url("${sheetImgBase}elements/check${alignCap}.png")`);
 
     }
     html.find("#rr-slider").on("input", function () {
@@ -476,18 +478,21 @@ export default class SabatActorSheet extends ActorSheet {
   // --- Skill post to chat ---
   _buildChatCard(name, typeLabel, icon, headerBg, metaHtml, bodyHtml, buttonHtml) {
     const base = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/";
-    return `
-<div class="sabat-spell-card">
+    const evilClass = headerBg === "frameEvil" ? " sabat-evil-card" : "";
+    const iconHtml = icon ? `<img class="spell-card-icon" src="${icon}" />` : "";
+    const metaBar = metaHtml ? `<div class="spell-card-meta-bar">${metaHtml}</div>` : "";
+    const bodyBlock = bodyHtml ? `<div class="spell-card-value">${bodyHtml}</div>` : "";
+    return `<div class="sabat-spell-card${evilClass}">
   <div class="spell-card-header" style="background: url('${base}ui/elements/${headerBg}.png') repeat;">
-    ${icon ? `<img class="spell-card-icon" src="${icon}" />` : ""}
+    ${iconHtml}
     <div>
       <div class="spell-card-name">${name}</div>
       <div class="spell-card-latin">${typeLabel}</div>
     </div>
   </div>
-  ${metaHtml ? `<div class="spell-card-meta-bar">${metaHtml}</div>` : ""}
+  ${metaBar}
   <div class="spell-card-body">
-    ${bodyHtml ? `<div class="spell-card-value">${bodyHtml}</div>` : ""}
+    ${bodyBlock}
     ${buttonHtml || ""}
   </div>
 </div>`;
@@ -583,7 +588,7 @@ export default class SabatActorSheet extends ActorSheet {
     if (s.notes) body += (body ? "<br>" : "") + `<em>${s.notes}</em>`;
     await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      content: this._buildChatCard(item.name, "Weapon", item.img, "frameGood", meta, body,
+      content: this._buildChatCard(item.name, "Weapon", item.img, "frameEvil", meta, body,
         `<button class="spell-cast-btn weapon-chat-roll-btn" data-item-id="${item.id}">Roll Attack</button>`)
     });
   }
@@ -666,7 +671,7 @@ export default class SabatActorSheet extends ActorSheet {
     const latinDesc = (s.form && NL[s.nature]?.[g] && OL[s.origin]?.[g]) ? `${s.form} ${NL[s.nature][g]} ${OL[s.origin][g]}` : "";
 
     const content = `
-<div class="sabat-spell-card" data-vis-pct="${visPct}">
+<div class="sabat-spell-card sabat-evil-card" data-vis-pct="${visPct}">
   <div class="spell-card-header">
     <img class="spell-card-icon" src="${item.img}" />
     <div>

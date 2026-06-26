@@ -62,7 +62,7 @@
   cursor: pointer; position: relative; vertical-align: middle; flex-shrink: 0;
 }
 .sabat-sheet input[type="checkbox"]:checked {
-  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/checkGood.png") center / contain no-repeat;
+  background: var(--aq-check-img, url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/checkGood.png")) center / contain no-repeat;
 }
 .spell-limit-row input[type="checkbox"]:checked {
   background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/checkEvil.png") center / contain no-repeat;
@@ -136,7 +136,7 @@
 .sabat-sheet .sheet-tabs .item.active {
   color: var(--aq-accent);
   text-shadow: 0 1px 2px var(--aq-accent-shadow), 0 0 4px var(--aq-accent-shadow);
-  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/buttonGood.png") center / contain no-repeat;
+  background: var(--aq-btn-img, url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/buttonGood.png")) center / contain no-repeat;
   border: none;
 }
 
@@ -962,8 +962,13 @@
   background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/buttonGood.png") center / 100% 100% no-repeat;
   line-height: 50px;
 }
-.sabat-spell-card:not(.sabat-ritual-card) .spell-cast-btn {
+.sabat-evil-card .spell-cast-btn,
+.sabat-evil-card .weapon-chat-roll-btn,
+.chat-damage-btn {
   background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/buttonEvil.png") center / 100% 100% no-repeat;
+}
+.sabat-evil-card .spell-limit-row input[type="checkbox"]:checked {
+  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/checkEvil.png") center / contain no-repeat;
 }
 .chat-damage-btn:hover, .apply-damage-btn:hover, .spell-cast-btn:hover {
   color: #fff;
