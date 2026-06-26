@@ -3,46 +3,38 @@ import SabatActorSheet from "./module/actor/actor-sheet.js";
 import SabatItem from "./module/item/item.js";
 import SabatItemSheet from "./module/item/item-sheet.js";
 
+async function _loadSkillsData() {
+  const resp = await fetch("systems/sabat/data/skills.json");
+  if (!resp.ok) return [];
+  const items = await resp.json();
+  return items.map(i => { delete i._id; delete i.folder; delete i._stats; return i; });
+}
+
 Hooks.on("createActor", async (actor, options, userId) => {
   if (actor.type !== "character") return;
   if (game.user.id !== userId) return;
   if (actor.items.some(i => i.type === "skill")) return;
 
-  const pack = game.packs.get("sabat.skills");
-  if (!pack) return;
-  const docs = await pack.getDocuments();
-  const skillData = docs.map(d => {
-    const obj = d.toObject();
-    delete obj._id;
-    delete obj.folder;
-    delete obj._stats;
-    return obj;
-  });
-  await actor.createEmbeddedDocuments("Item", skillData);
+  const skillData = await _loadSkillsData();
+  if (skillData.length) await actor.createEmbeddedDocuments("Item", skillData);
 });
 
 Hooks.once("ready", async function () {
   if (!game.user?.isGM) return;
 
-  // Populate packs from _source JSON if they are empty
-  for (const packName of ["sabat.skills", "sabat.traits"]) {
+  // Populate compendium packs from data/ JSON if they are empty
+  for (const [packName, dataFile] of [["sabat.skills", "skills"], ["sabat.traits", "traits"]]) {
     const pack = game.packs.get(packName);
     if (!pack) continue;
     const index = await pack.getIndex();
     if (index.size > 0) continue;
 
-    const shortName = packName.split(".")[1];
-    const resp = await fetch(`systems/sabat/packs/${shortName}/_source/_manifest.json`);
+    const resp = await fetch(`systems/sabat/data/${dataFile}.json`);
     if (!resp.ok) continue;
-    const manifest = await resp.json();
-    const items = [];
-    for (const filename of manifest) {
-      const r = await fetch(`systems/sabat/packs/${shortName}/_source/${filename}`);
-      if (r.ok) items.push(await r.json());
-    }
+    const items = await resp.json();
     if (items.length) {
       await Item.createDocuments(items.map(i => { delete i._id; return i; }), { pack: packName });
-      console.log(`Sabat | Populated ${packName} with ${items.length} items from source`);
+      console.log(`Sabat | Populated ${packName} with ${items.length} items`);
     }
   }
 

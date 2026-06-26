@@ -1,0 +1,812 @@
+[
+  {
+    "name": "Discovery",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/perception.png",
+    "system": {
+      "attribute": "Perception",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "With this skill a character can notice things that a simple glance would not normally be able to detect, whether consciously or not. With Discovery, for example, he could inspect a room to find secret doors, search inside a chest to find a concealed false bottom, note a hidden weapon among the folds of a person's clothing, locate a thief hidden in the shadows — which requires an opposed roll between his Discovery skill and the thief's Stealth skill — or spot an enemy army approaching his location."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "18Y2bTu5X1YqWg21"
+  },
+  {
+    "name": "Animal Knowledge",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/culture.png",
+    "system": {
+      "attribute": "Culture",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "This skill represents the character's knowledge of the life and habits of animals, as much at a practical level as in theory. With it a character can identify a specific animal by its cries, droppings, or behaviors, know its eating habits and its attitude toward people, predict its conduct in any particular situation, and even know whether it can be tamed or domesticated — though for such a purpose, the character should make a skill roll for Ride or for Animal Knowledge, whichever is lower. Remember that Animal Knowledge can be used only for those animals that do not have a magical nature, and never for creatures of Irrationality."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "2Ztd26fEeVVhDIq2"
+  },
+  {
+    "name": "Dodge",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/agility.png",
+    "system": {
+      "attribute": "Agility",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "With this skill, a character can avoid an opponent's attack using his flexibility, swiftness, and reaction speed, and a certain amount of intuition that not everyone has. Nonetheless, some attacks can't be dodged, such as those coming from projectile weapons — arrows, darts or stones. This skill is described in complete detail in Chapter IV (page 126)."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "6h8l7qgATtLFxJpR"
+  },
+  {
+    "name": "Plant Knowledge",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/culture.png",
+    "system": {
+      "attribute": "Culture",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "All that a character knows about the world of plants is reflected in this skill. With it, the character can easily identify all types of herbs and plants and their natural properties: curative, nutritional, or harmful. It also allows the character to know what type of flower grows in a specific environment, where to sow a crop for best yield, or where to find a specific plant. It is also possible to make a combined roll of this skill with Discover to forage for food or to find a particular herb."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "8IRh1E2JDBld6DYy"
+  },
+  {
+    "name": "Ride",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/agility.png",
+    "system": {
+      "attribute": "Agility",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "This skill indicates the ability of a character to ride horses, mules, donkeys, or burros. With just a 15% rating in the skill (or 5% for mules and burros), the character is able to stay mounted without too much trouble, as long as the animal travels at a walk; but he makes Ride rolls to avoid having it rear up, to keep it calm if engaged in combat, if he wants it to travel at a trot or gallop, or to make it perform some sort of jump or other such stunt. Failure at the roll means that the rider can't control the mount, and he will fall off if he rolls a second failure or a blunder. Falling from a moving horse is equivalent to falling from a height of 3 varas, meaning the rider receives 1D6 Damage Points.\n\nFor those who ride to battle on horseback, as mentioned in Chapter IV (page 130), fighting from horseback is a Combined Roll (see page 77) of Ride and his weapon skill."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "9sMLT6mnOjkeaBKs"
+  },
+  {
+    "name": "Astrology",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/culture.png",
+    "system": {
+      "attribute": "Culture",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "This skill encompasses all the knowledge of the time about stars, their movements, their particulars, and their influence over the life and behavior of people through the zodiacal signs and their horoscope. At a practical level, the use of Astrology permits the character to orient themselves by the position of the stars, to know the hour by the height of the sun, to deduce the precise time when certain astronomical events will occur (eclipses of the sun and moon, the appearance of comets, meteor showers, etc.), to make a star chart for a specific person, or calculate the alignment of planets needed to carry out certain magical invocations."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "AnHTmt9OBGhnuKon"
+  },
+  {
+    "name": "Craft",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/dexterity.png",
+    "system": {
+      "attribute": "Dexterity",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "With this skill the character is able to create, construct, and repair all types of items, as long as he has adequate materials, whether small (gems, horseshoes, or chairs) or large (furniture, houses, or windmills).\n\nWhen a character learns this skill above his basic percentage in Dexterity, he should choose an area of experience, a specific craft, in which he specializes (carpentry, blacksmithing, silversmithing, etc.). He gets his full percentage when he performs a work related to his specialty. But if he tries to work on an item entirely outside the borders of his specialty, the Craft roll is made at half that value (rounding upward) to indicate his unfamiliarity with the common methods of that specialty."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "AraVNqTIAae24HZK"
+  },
+  {
+    "name": "Medicine",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/culture.png",
+    "system": {
+      "attribute": "Culture",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "Medieval medicine, especially in the Christian kingdoms, is not very advanced, basing all its diagnoses and treatments on the old studies of Roman and Greek doctors; especially Galen, whose theory of the equilibrium of the four humors in the body dominates all medicine until the Modern Age is well underway. The Jews and Arabs, however, know techniques for curatives and diagnosis much more advanced than the Christians.\n\nThis skill represents the character's level of knowledge about medicine and anatomy, permitting him to diagnose and cure illnesses, wounds, or poisonings, as long as adequate medical equipment is at his disposal — medicines, enemas, leeches, bandages — as well as time and rest on the part of the patient."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "AwFv0Yg7NZRBT7qY"
+  },
+  {
+    "name": "Empathy",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/perception.png",
+    "system": {
+      "attribute": "Perception",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "This skill represents the ability for a character to grasp the emotional state of another person, to get them on his side, and even know that person's frame of mind even if he tries to hide it. A successful Empathy roll allows the character to know whether the person he speaks with is lying — with an opposed roll against the other person's Eloquence, whether his apparent sympathy hides jealously and hate, whether he is suffering inside, although continually smiling, or even if beneath the friendly face lies a cold, calculating mind, perhaps one not even human."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "BnD3XkfFNuYUPnmb"
+  },
+  {
+    "name": "Teach",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/communication.png",
+    "system": {
+      "attribute": "Communication",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "With this skill a character is able to teach things he knows in the most effective way possible, as much at a theoretical level as a practical one. It is an ideal skill for all who wish to become instructors and masters of other characters, whether PCs or NPCs. With Teach, they can raise the student's percentage in a skill, as explained in the Teaching section of this chapter (page 95)."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "DoJJ9s8OrJQUdLE4"
+  },
+  {
+    "name": "Shiphandling",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/agility.png",
+    "system": {
+      "attribute": "Agility",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "With this skill a character can work any type of vessel that plies the seas in the Medieval period, from a simple rowboat to an immense warship, including pirate slave ships, commercial vessels, Italian argosies, or swift corsairs. It must be taken into account that small boats can be worked by a single character who makes the roll, but larger vessels need a minimum crew to be sailed, so that in those cases it is common to have a combined roll of this skill with Command. Furthermore, the Shiphandling rolls a character makes can be modified by the state of the water (high waves, chop), the weather (gales, tempests, fog, storms) or the vessel being used, since not all have the same sailing characteristics."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "EfvuP1uRr6YICtu8"
+  },
+  {
+    "name": "Alchemy",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/culture.png",
+    "system": {
+      "attribute": "Culture",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "With centuries of tradition at its back, Medieval alchemy is a strange hodgepodge of science and philosophy, of chemistry and astrology, of physics and art. The alchemist surrounds himself in his laboratory with alembics and athanors, experimenting with the strangest elements and preparations in the universe and, at the same time, reflecting on the influence of the stars, or the discovery of the philosopher's stone.\n\nWithin the scope of the game, the Alchemy skill permits a character to create simple chemical compounds — such as drugs, poisons, antidotes, acids, and other substances of the apothecary, develop magical unguents and potions, and understand the complicated language that appears in alchemical works and the more complicated jargon alchemists use to promulgate their secrets — or to disguise them."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "Fl41sNLjVHWGaub5"
+  },
+  {
+    "name": "Stealth",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/agility.png",
+    "system": {
+      "attribute": "Agility",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "If a character wants to pass unseen, this is the skill to be used. With it he can move as quietly as possible, mix in with a crowd to escape pursuit, or hide in the shadows to avoid being seen. It is common for Stealth rolls to be modified by the Game Director, taking into account the specific situation around the character, since the weather (clouds, rain, snow), surrounding objects (rocks, trees, fallen leaves, walls), or the time (night or day) can help or hinder the character's intent to pass unnoticed. It is very common to oppose the Stealth skill with the Discovery or Listen skill of those who could notice him."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "GCSzOjD8uQO001xt"
+  },
+  {
+    "name": "Memory",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/perception.png",
+    "system": {
+      "attribute": "Perception",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "This skill determines a character's capacity to retain information and the ability to quickly access his memories of past experiences. With a successful Memory roll — which should always be at the request of the Game Director, never at the player's own initiative — the character can remember details he may have overlooked: a name lost in the memories of childhood or a face glimpsed once among a multitude. Furthermore, if the GD thinks that one of the players has forgotten an important element of the adventure currently being played, he may make a Memory roll for the character to recall it, and thus get the party back on track."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "HDBTq0Zf2pCLxb0l"
+  },
+  {
+    "name": "Pick Lock",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/dexterity.png",
+    "system": {
+      "attribute": "Dexterity",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "This skill measures the ability of a character to manipulate the old mechanical gadgets that are common at the time, although it is used especially for opening locks on doors, coffers, and similar things using picks and wires — if those are not available, the roll for Pick Lock should have a considerable penalty and the lock will be unserviceable after it is forced — as well as for removing devices such as traps, lures, etc. In cases where the GD wishes to increase the difficulty of opening and manipulating locks and other types of mechanisms, we remind you that in the Medieval period, these types of appliances are much larger, bulkier, and simpler than their counterparts today, and therefore only those lock workings crafted by true master artisans should be considered a challenge for the characters."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "HVlnES8GrgmolaHr"
+  },
+  {
+    "name": "Knives",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/dexterity.png",
+    "system": {
+      "attribute": "Dexterity",
+      "combat": true,
+      "advancement": false,
+      "value": 0,
+      "description": "Arms Skill for Townsfolk, Soldiers, and Nobles\n\nWith this arms skill a character can use all types of small, bladed weapons in hand-to-hand combat, such as the gumia, bracamante, daga, etc. For more information, see Chapter IV (page 134)."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "HioRRdzHzmA4KR1V"
+  },
+  {
+    "name": "Court Etiquette",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/communication.png",
+    "system": {
+      "attribute": "Communication",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "This skill covers all the knowledge a good courtier needs to thrive in the courts of the medieval kingdoms: from familiarity with the various nuances of palace etiquette, to navigating the extensive protocols that rule a courtier's life from day to day, to the best way to spread a rumor — whether true or false — or manipulating the subtle games of intrigue and conspiracy among the royal chambers and alcoves. Further, even far from court, a roll for this skill can allow a character to recognize the social niceties that distinguish the different classes and how best to comport himself in a specific situation, whether a royal audience, a banquet in the castle of a local lord, or a ceremony for the dead after a bloody battle."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "P6ihgIqLSmNqE40f"
+  },
+  {
+    "name": "Track",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/perception.png",
+    "system": {
+      "attribute": "Perception",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "With this skill a character can follow the trail of an animal or a person by means of observing the terrain, such as tracks in mud or snow, excrement left behind by the animal, fur on a bush, broken branches on a trail, offal left behind after feeding, etc. It permits stalking a person in a city or an animal in the wilderness, following without the target becoming aware — although this use of Track requires an opposed roll against the Discovery skill of the person or animal being pursued. Also, this skill allows the user to disguise his tracks to avoid being tracked by other characters — although it also slows his progress; or to locate shelter, food, prey, water, and everything needed to survive the outdoors in the wilderness."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "PKY6gob2I4ndZ4sz"
+  },
+  {
+    "name": "Swim",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/agility.png",
+    "system": {
+      "attribute": "Agility",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "Whenever a character wishes to swim or dive he uses this skill, which represents the ability to move through water, whether on top or below the surface. Success with this skill allows the character to move up to 3 varas in a single action, more if a critical success is rolled; a failure indicates only that he does not move this round, but he should take care; if he has three consecutive failures or a blunder, he begins to drown. Swim rolls can be modified by the state of the water (an agitated river, strong currents, tempestuous weather, etc.), the weight of any objects he carries, and the armor the character is wearing.\n\nSwim can also be used to rescue a person from the water, but the Swim roll is reduced to half its percentage, on top of which the Game Director may impose any other penalties he considers appropriate."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "SV2ceN59UAgN2BR4"
+  },
+  {
+    "name": "Throw",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/agility.png",
+    "system": {
+      "attribute": "Agility",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "By means of this skill, a character can throw objects to strike a specified spot with precision: tossing a weapon to the hands of a friend, pitching a ball through a hole, catching a rope with a grapnel on the ledge of a building — or to use a throwing weapon (knife, hand axe, rock, etc.). Any object that can fit in the hand and is balanced can be thrown a maximum distance in varas equal to the character's Strength; if it is bigger or unbalanced, the distance should be considerably reduced."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "TfsUkiH8G4ZpZDYU"
+  },
+  {
+    "name": "Longswords",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/strength.png",
+    "system": {
+      "attribute": "Strength",
+      "combat": true,
+      "advancement": false,
+      "value": 0,
+      "description": "Arms Skill for Nobles\n\nThis arms skill permits a character to use any type of two-handed sword, such as alfanjes or montantes, in hand-to-hand combat. For more information about its use, see Chapter IV (page 135)."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "VxUZpfbH9vOWOU6m"
+  },
+  {
+    "name": "Staves",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/agility.png",
+    "system": {
+      "attribute": "Agility",
+      "combat": true,
+      "advancement": false,
+      "value": 0,
+      "description": "Arms Skill for Townsfolk\n\nWith this skill, a character can use all sorts of batons or staves in hand-to-hand combat, such as the bordon or the baston de combate. For more information, see Chapter IV (page 138)."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "WcURYxPY8EcFK12B"
+  },
+  {
+    "name": "Jump",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/agility.png",
+    "system": {
+      "attribute": "Agility",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "This skill represents a character's ability to carry out all types of jumps, whether for height or distance. Assuming he has taken a running start to gain momentum, a successful Jump roll allows a character to make a vertical jump equal to his height or a horizontal jump equal to twice his height. If making a jump without a running start, the distance traveled is reduced by half. On a critical success the GD may increase the distance jumped a reasonable amount. A Jump roll also allows a character to carry out simple acrobatics, including turning in the air to land safely from a fall, as explained in the section about health and wounds (page 106)."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "ZH3UDqpNVGMrerqt"
+  },
+  {
+    "name": "Drive",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/dexterity.png",
+    "system": {
+      "attribute": "Dexterity",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "This skill is used to control and drive any type of animal-drawn vehicle, such as carts, wagons, carriages, or even plows. Most of the time a dice roll won't be necessary, but in some situations — if the animals rear up, the vehicle loses control, a wheel breaks while traveling at speed, a maneuver is made that the animals are not used to such as a violent turn, hard breaking, driving the vehicle at top speed — it is necessary to make a skill roll to determine the success of the action."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "a5HSUPwePut0Sstz"
+  },
+  {
+    "name": "Maces",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/strength.png",
+    "system": {
+      "attribute": "Strength",
+      "combat": true,
+      "advancement": false,
+      "value": 0,
+      "description": "Arms Skill for Soldiers or Nobles\n\nWith this skill a character is able to use all types of maces or clubs in hand-to-hand combat, no matter their size or weight, such as the maza de armas, the martillo de guerra, or the clava. For more information see Chapter IV (page 137)."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "bjhPInRVkLUhY7gb"
+  },
+  {
+    "name": "Swords",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/dexterity.png",
+    "system": {
+      "attribute": "Dexterity",
+      "combat": true,
+      "advancement": false,
+      "value": 0,
+      "description": "Arms Skill for Nobles\n\nWith this arms skill, a character can use any type of medium-length sword in hand-to-hand combat, such as the espada, saif, or estoque. For more information, see Chapter IV (page 135)."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "cXsxjGJXke1Mo4iC"
+  },
+  {
+    "name": "Command",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/communication.png",
+    "system": {
+      "attribute": "Communication",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "With this skill, the character is able to give orders to all NPCs found in his service, or who are socially inferior to him, whether as individuals or as a group. If he is successful with the roll, the NPC obeys the order received, as long as it isn't a command that goes against his principles, countermands orders received from an authority higher than the PC, or directly or indirectly harms his person or his loved ones.\n\nIt is also possible to use Command to intimidate an NPC, whether with thinly-veiled threats, by manipulating the person's sentiments and emotions, direct insults, threatening glances, or even the simple physical presence of the character. The character attempts to force the victim to do some action motivated solely by fear.\n\nIf Command is used in a language other than the character's native tongue, it is a Combined Roll of Command and the Language.\n\nThe Command skill can never be used by one PC to force another PC to perform an act he doesn't wish to do, no matter how high his percentage or how good the roll."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "dKF0j7elKPoh3pKM"
+  },
+  {
+    "name": "Read/Write",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/culture.png",
+    "system": {
+      "attribute": "Culture",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "This skill represents the character's ability to read and write in all the languages he knows — if he doesn't have a skill for the corresponding language, the PC knows neither how to read or write that language. A successful roll permits him to quickly read a written text, copy paragraphs from an old tome, successfully falsify an official document, write calligraphy with big, beautiful letters in a book of liturgy, translate a book from one language to another — assuming he knows both languages, of course — or browse through the volumes of a library or record their knowledge for posterity. However, the percentage used for the Read/Write skill can never be higher than the percentage in the corresponding Language skill.\n\nIt is necessary to clarify that in the Medieval period the custom of reading in silence is not common, and a minimum rating of 50% in Read/Write is needed to do so. If the character has less than this percentage, he reads everything out loud, though he can decide whether to declaim it in a loud voice or prefers to whisper what he is reading."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "eNdjIs9hVLXnGBB1"
+  },
+  {
+    "name": "Axes",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/strength.png",
+    "system": {
+      "attribute": "Strength",
+      "combat": true,
+      "advancement": false,
+      "value": 0,
+      "description": "Arms Skill for Townsfolk or Soldiers\n\nThis arms skill permits a character to use any type of axe in hand-to-hand combat, whatever the size, from the small hachuela to the hacha de petos. For more information, see Chapter IV (page 136)."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "eNo41eoPni6JDWYl"
+  },
+  {
+    "name": "Conceal",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/dexterity.png",
+    "system": {
+      "attribute": "Dexterity",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "Thanks to this skill, a character is able to conceal objects of small or medium size so that it becomes difficult to find them, such as hiding a knife within clothing, a letter in a room, or a jewel in a trunk. A successful Conceal roll also allows him to help other characters to hide from the sight of others — but remember to use the Stealth skill to conceal oneself. It is common to make opposed rolls of Conceal and the Discovery skill of whoever tries to find a hidden person or object."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "enq522wjZRL9OaYs"
+  },
+  {
+    "name": "Shields",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/dexterity.png",
+    "system": {
+      "attribute": "Dexterity",
+      "combat": true,
+      "advancement": false,
+      "value": 0,
+      "description": "Arms Skill for Soldiers and Nobles\n\nThis arms skill allows the use of any type of shield in combat to block and deflect attacks received, including protection from arrows and darts. For more information, see Chapter IV (page 143)."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "f7ZJ69PqcUDO4lKN"
+  },
+  {
+    "name": "Music",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/culture.png",
+    "system": {
+      "attribute": "Culture",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "Medieval music within the peninsular kingdoms of the 14th and 15th centuries is a mix of diverse musical traditions, such as Sephardic songs, Christian compositions, Andalusian and Arabic chants, the surviving Mozarabic rites, new French influences, and the Gregorian chants imposed on Christian liturgy since the 12th century.\n\nThis skill represents a character's musical knowledge; as much at a theoretical level, such as reading pneumatic notations — Medieval musical scores — or the capacity to distinguish influences or authors in a particular melody, as at a practical level. The character can play an instrument, which should be specified when a percentage above the basic value in Culture is gained. Other instruments can also be played, but they impose penalties of -25% to the roll."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "fnQsKDGAUuRqphlh"
+  },
+  {
+    "name": "Bows",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/perception.png",
+    "system": {
+      "attribute": "Perception",
+      "combat": true,
+      "advancement": false,
+      "value": 0,
+      "description": "Arms Skill for Townsfolk or Soldiers\n\nThis arms skill allows the character to use all types of bows, whether short, long, or composite. Bows are used in the Peninsula exclusively for hunting. For more information about this skill, see Chapter IV (page 133)."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "gAACTP9gyv1plBAr"
+  },
+  {
+    "name": "Sleight of Hand",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/dexterity.png",
+    "system": {
+      "attribute": "Dexterity",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "Through the use of this skill, a character can perform small tricks of juggling with objects the size of small balls, oranges, or even knives — for which he suffers a penalty to the roll — as well as to use his agile hands and visual deceptions to hide small objects before the very eyes of an audience, as in the case of a shell game.\n\nBesides all this, the manual speed and coordination that this skill lends can be used to steal small objects that someone carries on their person, like money purses hanging from belts, papers or notes tucked away in pockets and sleeves; or even rings, earrings, and other pieces of jewelry. To carry out the theft, the character makes an opposed Sleight of Hand roll against the victim's Discovery roll. A success on the thief's part indicates that he gets the object, while a success on the part of the victim indicates that he is aware he is being robbed."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "h8LojIIf94ChZESF"
+  },
+  {
+    "name": "Crossbows",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/perception.png",
+    "system": {
+      "attribute": "Perception",
+      "combat": true,
+      "advancement": false,
+      "value": 0,
+      "description": "Arms Skill for Soldiers or Nobles\n\nThis arms skill allows a character to use any type of crossbow, whether designed for war or for hunting. Crossbows are widespread across the peninsula during the Middle Ages. For more information, see Chapter IV (page 134)."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "jht3X13npgW2zMj5"
+  },
+  {
+    "name": "Heal",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/dexterity.png",
+    "system": {
+      "attribute": "Dexterity",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "If the Medicine skill indicates the character's theoretical knowledge about anatomy and the treatment of illnesses, this skill covers all those practical methods for healing that don't belong exclusively to medical science; treatments very similar to today's first aid. Therefore, with a successful Heal roll a mortal wound can be stabilized, bleeding staunched, an arrow removed, a drowning victim resuscitated, or a fainting person revived."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "k7Gdp0CXP9K63LSF"
+  },
+  {
+    "name": "Seduction",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/appearance.png",
+    "system": {
+      "attribute": "Appearance",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "With this skill, a character can have the most intimate possible relation with a member of the opposite sex, or even with the same sex if both characters share similar tastes in carnal matters. To completely seduce a character, the PC has to succeed with three consecutive Seduction rolls:\n\n* Friendship is initiated with the first roll, in which the pair share confidences and intimate secrets — which can be very useful for digging up information.\n* The second roll indicates a true confidence between the pair, resulting in hugs, kisses, and petting.\n* After the final roll, the character comes to the bed of the other person.\n\nA single failure in any of the three rolls stops the entire process, and the PC will have to start from the beginning, while a blunder in any of the rolls signifies that the PC has gravely offended the other person.\n\nThis skill doesn't depend on any of the seven principal characteristics, but instead on a secondary characteristic, Appearance."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "ktUJrhQR6FEecAtp"
+  },
+  {
+    "name": "Mineral Knowledge",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/culture.png",
+    "system": {
+      "attribute": "Culture",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "This skill represents the knowledge a character has about all types of minerals, metals, and earths, which can permit him to identify them and know their properties. With a successful roll, the character could, for example, distinguish a gold coin from a base imitation simply by looking, recognize a fertile parcel of land from an arid one, locate a vein of silver within a mine, know the type of stone extracted from a specific quarry, or even orient himself within the interior of a cave by following the flow of water or air currents."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "nXv2Rra6fSEVQOEX"
+  },
+  {
+    "name": "Disguise",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/communication.png",
+    "system": {
+      "attribute": "Communication",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "Unlike our modern conception of disguise, this skill doesn't involve use of costumes or makeup — which are almost nonexistent in the Middle Ages and seldom used — but instead is the ability of a character to pass himself off as someone he isn't really, using clothes, behaviors, and well-studied gestures. With it, a PC can pretend to come from a city or region different than his own, have a different profession, or be of a social position other than his true one; even to pass as a person of the opposite sex, although this last should probably be at least Very Difficult (-50%)."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "nYCsXoblu17rNy8H"
+  },
+  {
+    "name": "Run",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/agility.png",
+    "system": {
+      "attribute": "Agility",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "Despite its name, this skill doesn't indicate the distance or speed a person can travel when running — which we shall speak about in Chapter IV (page 120) — but instead his endurance in long-distance races, his ability to leap obstacles, the additional effort he can apply when sprinting, and even the ability to perform particular tricks during a chase."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "oRRCQ5WMO5AHO4Ze"
+  },
+  {
+    "name": "Brawl",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/agility.png",
+    "system": {
+      "attribute": "Agility",
+      "combat": true,
+      "advancement": false,
+      "value": 0,
+      "description": "Arms Skill for Townsfolk, Soldiers, and Nobles\n\nThis skill measures a character's ability to use fists and feet in a combat, and to use less honorable tactics such as tripping, pushing, etc. For more information, see Chapter IV (page 138)."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "p5B1Id9Z850kEnyd"
+  },
+  {
+    "name": "Games",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/culture.png",
+    "system": {
+      "attribute": "Culture",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "This skill indicates the knowledge a character has about everything related to games of chance or board games during the period: the rules, standards, and customs associated with them, etc. In those games that don't involve chance, such as chess, all participants can make a roll for this skill to determine who wins; but in games of chance, such as cards or dice, an opposed roll of the Luck characteristic is used, not this skill.\n\nA successful Games roll allows the character to perform trickery during the course of a game, or to detect if another participant is doing so, and what type it is."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "pD0ezNmREpOaUVgA"
+  },
+  {
+    "name": "Taste",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/perception.png",
+    "system": {
+      "attribute": "Perception",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "This skill represents a character's ability to smell and taste. The higher his percentage, the more refined those two senses are, permitting him to detect unfit food and drink, including poisons, with a mere sip; to smell aromatic or foul scents in the air — mere traces of a light perfume, the aroma of a plant, the stink of sulfur; or to distinguish between a refined, well-cooked dish and a simple, reheated garlic soup."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "ppaX3QjBvKNAp0mx"
+  },
+  {
+    "name": "Slings",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/perception.png",
+    "system": {
+      "attribute": "Perception",
+      "combat": true,
+      "advancement": false,
+      "value": 0,
+      "description": "Arms Skill for Townsfolk\n\nThis arms skill allows a character to use any type of sling — one of the best-known projectile weapons on the peninsula in the Middle Ages; especially among shepherds and other caretakers of livestock, but also used during battle by professional slingers. For more information, see Chapter IV (page 136)."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "qZ8pIx5F21rWz5FY"
+  },
+  {
+    "name": "Theology",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/culture.png",
+    "system": {
+      "attribute": "Culture",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "This skill represents what a character knows about the doctrines, dogma, liturgy, rites, and history of the religion he follows, whether Christianity, Judaism, or Islam. With a successful Theology roll he can know, for example, the Rule that governs a Cistercian monastery, how to distinguish a bishop from an archbishop, which saint to pray to for valor in combat, where precious objects are likely stored in a synagogue, or which verse of the Koran can be used to ward off the evil eye. Naturally, Theology is a primary skill for all those who wish to perform rituals of faith.\n\nSince the three religions practiced on the Peninsula have some points in common, a PC may know things about the other two to which he does not belong. For this, he should make a roll against his Theology skill with a penalty of -50%, unless he has the Language skill used in the religion he wishes to know something about: Latin for Christianity, Hebrew for Judaism, or Arabic for Islam."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "rXLvNMQSOZM4OtBJ"
+  },
+  {
+    "name": "Spears",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/agility.png",
+    "system": {
+      "attribute": "Agility",
+      "combat": true,
+      "advancement": false,
+      "value": 0,
+      "description": "Arms Skill for a Soldier or Noble\n\nWith this skill, a character can use all types of spears in hand-to-hand combat, regardless of size or weight, such as the lanza corta, the lanza de caballeria, etc. For more information, see Chapter IV (page 136)."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "rsK9EjHvIHCtlRJo"
+  },
+  {
+    "name": "Magical Knowledge",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/culture.png",
+    "system": {
+      "attribute": "Culture",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "If a character in Aquelarre wishes to familiarize himself to the mysterious world of magic, he needs this skill, as it represents knowledge about all types of magic arts: rituals, instruments, elements, formulas, invocations, conjurings, etc., but we are speaking of knowledge at a theoretical level only, not a practical one: to cast a spell, the character must know the spell separately from this skill. A successful roll for this skill allows the character to read grimoires written in intricate hermetic languages, recognize a spell by examining the remains of the components used in its making, or analyze old magical relics and artifacts of forgotten origin. Magical Knowledge can also be used to recognize the specific magical abilities possessed by certain creatures of the Irrational World, information much more academic and 'scientific' than what is offered by the Legends skill, although only details relating to the world of magic and its usage."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "tP7ySeQMgV0Lh8Wv"
+  },
+  {
+    "name": "Torture",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/communication.png",
+    "system": {
+      "attribute": "Communication",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "Life in the Medieval period is hard and difficult, and this common skill for soldiers, bandits, and inquisitors reflects that. The PC can pry information from a person using physical and psychological methods — but violent ones, in either case. The intention is to get useful information, so this skill is more about asking the right question and sifting through the answers of the victim than actually applying hot irons — or threatening to.\n\nIf used as a form of intimidation, without the desire to actually do physical harm to the target, the character's Torture roll is opposed by the Temperance of the victim: if he wins this opposed roll, the tortured person tells the PC what he wishes to know.\n\nIn cases where the character opts to use physical torture, the same opposition of Torture and Temperance is used, but the Temperance roll has a -25% penalty. If the PC fails his Torture roll, he injures his victim, causing the loss of 1D6 Life Points; if he blunders the Torture roll, the tortured person dies from it."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "vh7i71S87XwXaHCP"
+  },
+  {
+    "name": "Climb",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/agility.png",
+    "system": {
+      "attribute": "Agility",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "By using this skill a character can climb more or less vertical surfaces and terrain, such as walls, cliffs, precipices, trees, or battlements. A success with a Climb roll means that the character can scale a distance of 2 varas in one action. A failure indicates that he doesn't move in this round; two consecutive failures or a blunder on the roll causes the character to fall.\n\nIf the need arises, the character can cover a greater distance each round, although the percentage in Climb is reduced by 10% for each additional vara he wishes to climb this round. Certainly ladders, folding steps, and ropes can be used to help a climb, these items could raise the Climb skill by up to +40%."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "x9qWCA79ISjs8JHU"
+  },
+  {
+    "name": "Legends",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/culture.png",
+    "system": {
+      "attribute": "Culture",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "All a character knows about legends and popular tales is reflected in this skill. With a successful Legends roll, the character can discover the particulars and weaknesses of a legendary being, know the most extensive superstitions and beliefs in an area, or the stories and mythical fables surrounding an event, person, or place, though the information obtained should be used with caution, since legends aren't always entirely true.\n\nThe Game Director is reminded that a character's percentage in his Legends skill corresponds to the stories and tales of where he grew up, so that the Game Director is free to impose a larger difficulty on the roll when the character tries to remember legends from an area far from his place of birth."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "xavU07zUHLnnBbuQ"
+  },
+  {
+    "name": "Eloquence",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/communication.png",
+    "system": {
+      "attribute": "Communication",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "This skill represents the ease of a character's vocabulary and glibness, his rhetoric and dialectics. With it a character can convince another of a specific argument, changing that person's opinion to something more beneficial to himself: ask a castle guard not to search his wagon, convince someone that he was in a tavern the whole time, assure a local lord that he is harmless so that he may pass freely through his lands, or persuade an abbot to allow him to browse that beautiful codex he so jealously guards in his library. The skill can also be used to lie most sincerely, although in this case the character's Eloquence roll should be opposed with an Empathy roll by the person who is being deceived.\n\nHowever, this skill can't be used to force an NPC to attempt actions entirely impossible or unthinkable for him. Nor can it be used to reduce the price of an object — Commerce exists for that purpose — nor to seduce a member of the opposite sex — we have Seduction to do that — nor used against another Player Character, no matter what is rolled.\n\nIf Eloquence is used in a language other than the character's native tongue, use the Combined Roll rule with Eloquence and the language in question."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "yshA6P3MsHarAJOC"
+  },
+  {
+    "name": "Sing",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/communication.png",
+    "system": {
+      "attribute": "Communication",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "Whether performing a troubadour's song of love, a sacred Gregorian chant, or the accompaniment of a court dance, the character who masters this skill knows how to fine-tune his voice. A PC's percentage in Sing indicates the cadence, pitch, and modulation his voice is capable of — in short, how prettily he can sing — so that he will rarely have to make rolls for this skill, except in specific cases: an important performance, to achieve a specific tone, or even to sing a melody that moves the heart of a demon from hell."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "zF9OHzlwUMVmI5BR"
+  },
+  {
+    "name": "Commerce",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/communication.png",
+    "system": {
+      "attribute": "Communication",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "This skill measures a character's ability to handle small financial operations, know the main commercial routes between specific points, buy or sell all sorts of products, perform the most beneficial money changing, bribe a representative of the law to turn a blind eye, or bargain for the price of a specific item or service. In this last case, the buyer and seller of the object make opposed Commerce rolls: if the seller wins, the price remains firm, and if the buyer wins, he can acquire the object at a reduced price, which could be up to 30% in the case of a critical success on the roll, but which usually is a reduction between 10% and 20% of the original price."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "zKG5mSoyPstUeC99"
+  },
+  {
+    "name": "Listen",
+    "type": "skill",
+    "img": "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/skills/perception.png",
+    "system": {
+      "attribute": "Perception",
+      "combat": false,
+      "advancement": false,
+      "value": 0,
+      "description": "Whenever a character uses his sense of hearing, he is using this skill. With it he may be able to hear noises that in normal circumstances might pass unnoticed: noting how to pronounce someone's name in the middle of a tavern fight, perceiving sounds however soft they are, listening to a conversation through a closed door, or even hearing those noises you might otherwise have paid no attention to — the sound of footsteps approaching while you sleep. This skill is frequently rolled in opposition to a Stealth roll of a character who wishes to move in silence."
+    },
+    "effects": [],
+    "flags": {},
+    "_id": "zkChMbyIbNiCdxnu"
+  }
+]
