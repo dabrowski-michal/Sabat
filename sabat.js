@@ -174,7 +174,6 @@ Hooks.on("renderChatMessage", (message, html) => {
         </div>`
     });
 
-    $(btn).prop("disabled", true).text("Damage Rolled");
   });
 
   html.find(".apply-damage-btn").click(async (ev) => {
@@ -325,7 +324,6 @@ Hooks.on("renderChatMessage", (message, html) => {
     if (!item) return ui.notifications.warn("Skill not found.");
     const target = item.system.value ?? 0;
     await _rollMK(actor, target, item.name, `${item.name}: ${target}%`);
-    $(btn).prop("disabled", true).text("Rolled");
   });
 
   // Roll Attack button from weapon chat card
@@ -389,7 +387,6 @@ Hooks.on("renderChatMessage", (message, html) => {
       rollMode: game.settings.get("core", "rollMode")
     });
 
-    $(btn).prop("disabled", true).text("Rolled");
   });
 });
 

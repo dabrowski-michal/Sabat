@@ -29,8 +29,8 @@ export default class SabatItemSheet extends ItemSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["sabat", "sheet", "item"],
-      width: 520,
-      height: 560,
+      width: 400,
+      height: 600,
       tabs: [{
         navSelector: ".sheet-tabs",
         contentSelector: ".sheet-body",

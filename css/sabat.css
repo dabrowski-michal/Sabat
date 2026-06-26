@@ -29,7 +29,8 @@
   color: var(--aq-text);
   background: var(--aq-parchment) url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/parchment.jpg") repeat;
   background-size: 360px 360px;
-  min-width: 700px;
+  min-width: 820px;
+  min-height: 880px;
 }
 
 .sabat-sheet input[type="text"],
@@ -60,9 +61,11 @@
   background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/checkEmpty.png") center / contain no-repeat;
   cursor: pointer; position: relative; vertical-align: middle; flex-shrink: 0;
 }
-.sabat-sheet input[type="checkbox"]:checked,
+.sabat-sheet input[type="checkbox"]:checked {
+  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/checkGood.png") center / contain no-repeat;
+}
 .spell-limit-row input[type="checkbox"]:checked {
-  background: var(--aq-check-img, url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/checkEvil.png")) center / contain no-repeat;
+  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/checkEvil.png") center / contain no-repeat;
 }
 .sabat-sheet input[type="checkbox"]:checked::after,
 .spell-limit-row input[type="checkbox"]:checked::after {
@@ -133,7 +136,7 @@
 .sabat-sheet .sheet-tabs .item.active {
   color: var(--aq-accent);
   text-shadow: 0 1px 2px var(--aq-accent-shadow), 0 0 4px var(--aq-accent-shadow);
-  background: var(--aq-btn-img, url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/buttonGood.png")) center / contain no-repeat;
+  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/buttonGood.png") center / contain no-repeat;
   border: none;
 }
 
@@ -956,8 +959,11 @@
   font-size: 0.85em; font-weight: bold;
   color: var(--aq-accent); text-align: center;
   text-shadow: 0 1px 2px var(--aq-accent-shadow), 0 0 4px var(--aq-accent-shadow);
-  background: var(--aq-btn-img, url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/buttonGood.png")) center / 100% 100% no-repeat;
+  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/buttonGood.png") center / 100% 100% no-repeat;
   line-height: 50px;
+}
+.sabat-spell-card:not(.sabat-ritual-card) .spell-cast-btn {
+  background: url("https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/elements/buttonEvil.png") center / 100% 100% no-repeat;
 }
 .chat-damage-btn:hover, .apply-damage-btn:hover, .spell-cast-btn:hover {
   color: #fff;
@@ -971,7 +977,6 @@
   color: #dda040;
   border: none !important; outline: none !important; box-shadow: none !important;
 }
-.chat-damage-btn:disabled { opacity: 0.5; cursor: default; }
 
 /* ---- Spell Chat Card ---- */
 .sabat-spell-card {

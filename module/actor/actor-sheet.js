@@ -23,6 +23,7 @@ export default class SabatActorSheet extends ActorSheet {
       template: "systems/sabat/templates/actor/character-sheet.html",
       width: 820,
       height: 880,
+      resizable: true,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "characteristics" }],
       dragDrop: [{ dragSelector: ".item-list .item", dropSelector: null }]
     });
@@ -414,13 +415,6 @@ export default class SabatActorSheet extends ActorSheet {
       const alignCap = rr >= 50 ? "Good" : "Evil";
       html.find("#portrait-bg-layer").attr("src", sheetImgBase + "frame/" + alignment + ".png");
       html.find(".sheet-header").css("background-image", `url("${sheetImgBase}elements/frame${alignCap}.png")`);
-      const btnImg = sheetImgBase + "elements/button" + alignCap + ".png";
-      document.documentElement.style.setProperty("--aq-btn-img", `url("${btnImg}")`);
-      // Clear inline bg from all tabs so only .active gets the CSS variable bg
-      html.find(".sheet-tabs .item").css("background-image", "");
-      // Checkbox fill image
-      const checkImg = sheetImgBase + "elements/check" + alignCap + ".png";
-      document.documentElement.style.setProperty("--aq-check-img", `url("${checkImg}")`);
 
     }
     html.find("#rr-slider").on("input", function () {
