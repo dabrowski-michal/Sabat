@@ -235,7 +235,7 @@
               </div>
               {{#each favWeaponsList}}
               <div class="fav-row fav-weapon-row" data-item-id="{{this.id}}">
-                <a class="weapon-roll-btn item-dmg-btn" title="Roll attack"><i class="fas fa-dice-d20"></i></a>
+                <a class="weapon-roll-btn item-dmg-btn" title="Roll attack"><img class="row-icon" src="{{this.img}}" /></a>
                 <span class="skill-name">{{this.name}}</span>
                 <span class="fav-val">{{this.skillLabel}} ({{this.skillValue}})</span>
                 <span class="fav-damage">{{this.system.damage}}</span>
@@ -363,7 +363,7 @@
               {{#each weaponsData}}
               <li class="item flexrow weapon-row" data-item-id="{{this.id}}">
                 <span class="item-use-col"><input type="checkbox" class="item-equip-check" {{#if this.system.equipped}}checked{{/if}} /></span>
-                <a class="weapon-roll-btn item-dmg-btn" title="Roll attack"><i class="fas fa-dice-d20"></i></a>
+                <a class="weapon-roll-btn item-dmg-btn" title="Roll attack"><img class="row-icon" src="{{this.img}}" /></a>
                 <span class="item-name weapon-roll-name" data-item-id="{{this.id}}">{{this.name}}</span>
                 <span class="item-skill">{{this.skillLabel}} ({{this.skillValue}})</span>
                 <span class="item-damage">{{this.system.damage}}</span>

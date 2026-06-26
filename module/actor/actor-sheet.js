@@ -227,7 +227,7 @@ export default class SabatActorSheet extends ActorSheet {
       const skillName = w.system.skill || "Improvised";
       const skillItem = allSkillItems.find(s => s.name.toLowerCase() === skillName.toLowerCase());
       context.favWeaponsList.push({
-        id: w.id, name: w.name, system: w.system,
+        id: w.id, name: w.name, img: w.img, system: w.system,
         skillLabel: skillItem?.name ?? skillName,
         skillValue: skillItem?.system.value ?? 0
       });
@@ -583,7 +583,7 @@ export default class SabatActorSheet extends ActorSheet {
     if (s.notes) body += (body ? "<br>" : "") + `<em>${s.notes}</em>`;
     await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      content: this._buildChatCard(item.name, "Weapon", null, "frameGood", meta, body,
+      content: this._buildChatCard(item.name, "Weapon", item.img, "frameGood", meta, body,
         `<button class="spell-cast-btn weapon-chat-roll-btn" data-item-id="${item.id}">Roll Attack</button>`)
     });
   }

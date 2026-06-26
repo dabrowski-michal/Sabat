@@ -7,7 +7,7 @@ const ORDO_FP_REQ = { 1: 10, 2: 13, 3: 15, 4: 18, 5: 20, 6: 20 };
 const ASSET_BASE = "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/";
 const ICON_DEFAULTS = {
   item:       ASSET_BASE + "ui/icons/items/default.png",
-  weapon:     ASSET_BASE + "ui/icons/paperdoll/default.png",
+  weapon:     ASSET_BASE + "ui/icons/weapons/default.png",
   armor:      ASSET_BASE + "ui/icons/paperdoll/default.png",
   spell:      ASSET_BASE + "ui/icons/spells/default.png",
   ritual:     ASSET_BASE + "ui/icons/rituals/default.png",

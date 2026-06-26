@@ -188,7 +188,7 @@
 .edit-locked .skill-adv { display: inline !important; pointer-events: none; }
 
 /* Redistribute grid columns when Controls hidden — hide Controls header text too */
-.edit-locked .weapon-list-header, .edit-locked .weapon-row { grid-template-columns: 28px 22px 1fr 80px 50px 50px 50px !important; }
+.edit-locked .weapon-list-header, .edit-locked .weapon-row { grid-template-columns: 28px 40px 1fr 80px 50px 50px 50px !important; }
 .edit-locked .armor-list-header, .edit-locked .armor-row { grid-template-columns: 28px 1fr 50px 50px 50px 50px !important; }
 .edit-locked .item-list-cols, .edit-locked .item-row { grid-template-columns: 40px 1fr 50px 50px !important; }
 .edit-locked .spell-list-header, .edit-locked .spell-row { grid-template-columns: 48px 1fr 1.2fr 1.5fr !important; }
@@ -550,9 +550,9 @@
 }
 .sabat-sheet .fav-list-header:hover { background: none !important; }
 .fav-attr { font-family: var(--aq-font-number); font-size: 0.8em; color: var(--aq-brown); text-align: center; }
-/* fav-weapon: dice | name | skill(val) | damage | controls */
-.sabat-sheet .fav-weapon-row { grid-template-columns: 22px 1fr 90px 50px 28px; }
-.edit-locked .fav-weapon-row { grid-template-columns: 22px 1fr 90px 50px !important; }
+/* fav-weapon: icon | name | skill(val) | damage | controls */
+.sabat-sheet .fav-weapon-row { grid-template-columns: 40px 1fr 90px 50px 28px; }
+.edit-locked .fav-weapon-row { grid-template-columns: 40px 1fr 90px 50px !important; }
 .fav-val { font-family: var(--aq-font-number); font-size: 0.88em; color: var(--aq-brown); text-align: center; font-weight: bold; }
 .fav-damage { font-family: var(--aq-font-number); font-size: 0.88em; color: var(--aq-brown); text-align: center; font-weight: bold; }
 .fav-adv-icon { color: var(--aq-gold); font-size: 0.8em; text-align: center; display: inline-block; width: 18px; }
@@ -800,7 +800,7 @@
 }
 
 /* Weapons: use | dice | name | skill | damage | weight | price | controls */
-.sabat-sheet .weapon-list-header, .sabat-sheet .weapon-row { grid-template-columns: 28px 22px 1fr 80px 50px 50px 50px 80px; }
+.sabat-sheet .weapon-list-header, .sabat-sheet .weapon-row { grid-template-columns: 28px 40px 1fr 80px 50px 50px 50px 80px; }
 /* Armor: use | name | protection | durability | weight | price | controls */
 .sabat-sheet .armor-list-header, .sabat-sheet .armor-row { grid-template-columns: 28px 1fr 50px 50px 50px 50px 80px; }
 
