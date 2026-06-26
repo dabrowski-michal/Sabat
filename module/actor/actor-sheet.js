@@ -237,8 +237,8 @@ export default class SabatActorSheet extends ActorSheet {
     // Paper doll
     const gender = system.gender ?? "male";
     context.bodyImage = gender === "female"
-      ? "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/paperdoll/base_woman.png"
-      : "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/paperdoll/base_man.png";
+      ? "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/paperdoll/base/base_woman.png"
+      : "https://assets.forge-vtt.com/60cd864e5436577c8d4c2acc/ui/icons/paperdoll/base/base_man.png";
 
     const validLayers = new Set(["weapon", "legs", "boots", "chest", "head", "hands"]);
     const paperDoll = {};
